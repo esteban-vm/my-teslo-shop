@@ -1,10 +1,13 @@
+import tw from 'tailwind-styled-components'
 import { Navigation } from '@/components/navigation'
 
 export default function ShopLayout({ children }: LayoutProps<'/'>) {
   return (
     <>
       <Navigation />
-      <main className='container mx-auto mt-13 border border-green-500'>{children}</main>
+      <MainContainer>{children}</MainContainer>
     </>
   )
 }
+
+const MainContainer = tw.main`container mx-auto mt-13 border border-cyan-500`
