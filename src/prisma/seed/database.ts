@@ -1,5 +1,5 @@
 import type { CategoryName, Prisma } from '@/generated/prisma/client'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import { initialProducts } from '@/prisma/data'
 
 async function main() {
