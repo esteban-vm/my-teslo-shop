@@ -3,7 +3,9 @@ import { prisma } from '@/lib/prisma'
 import { initialProducts } from '@/prisma/data'
 
 async function main() {
-  await Promise.all([prisma.picture.deleteMany(), prisma.product.deleteMany(), prisma.category.deleteMany()])
+  await prisma.picture.deleteMany()
+  await prisma.product.deleteMany()
+  await prisma.category.deleteMany()
 
   const categoriesDB = await prisma.category.createManyAndReturn({
     data: [{ name: 'Shirts' }, { name: 'Pants' }, { name: 'Hoodies' }, { name: 'Hats' }],
