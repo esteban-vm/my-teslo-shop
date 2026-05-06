@@ -12,7 +12,7 @@ import {
 
 export function Navigation() {
   return (
-    <NavigationMenu className='fixed top-2 min-w-screen'>
+    <NavigationMenu className='fixed top-0 min-w-screen bg-white py-2'>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationMenuTriggerStyle()} render={<Link href='/' />}>
