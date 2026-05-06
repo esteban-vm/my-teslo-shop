@@ -5,7 +5,9 @@
 ## Ejecutar proyecto en desarrollo
 
 1. Clonar el repositorio
-2. Instalar dependencias con `npm install` o `pnpm install`
-3. Correr el proyecto con `npm run dev` o `pnpm run dev`
+2. Renombrar el archivo `.env.template` a `.env` y configurar la variable `DATABASE_URL` con la URL de conexión a tu base de datos PostgreSQL
+3. Instalar dependencias con `npm install` o `pnpm install`
+4. Correr las migraciones de Prisma con `npx prisma migrate dev` o `pnpm prisma migrate dev`
+5. Correr el proyecto con `npm run dev` o `pnpm run dev`
 
 ## Ejecutar proyecto en producción

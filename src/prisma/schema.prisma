@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
+  XXXL
+
+  @@map("sizes")
+}
+
+enum Gender {
+  Men
+  Women
+  Kids
+  Unisex
+
+  @@map("genders")
+}
+
+enum CategoryName {
+  Shirts  @map("T-Shirts")
+  Pants
+  Hoodies
+  Hats
+
+  @@map("category_names")
+}
+
+model Category {
+  id       String       @id @default(cuid())
+  name     CategoryName @unique
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  stock       Int
+  price       Float     @default(0)
+  sizes       Size[]    @default([])
+  gender      Gender
+  slug        String    @unique
+  tags        String[]  @default([])
+  categoryId  String    @map("category_id")
+  category    Category  @relation(fields: [categoryId], references: [id])
+  images      Picture[]
+
+  @@index([gender])
+  @@map("products")
+}
+
+model Picture {
+  id        Int     @id @default(autoincrement())
+  url       String
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("pictures")
+}
