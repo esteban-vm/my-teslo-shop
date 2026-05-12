@@ -6,3 +6,13 @@
 }
 
 @source "../../node_modules/rsc-daisyui/dist";
+
+@theme inline {
+  --font-geist: var(--font-geist-variable);
+}
+
+@layer base {
+  body {
+    @apply font-geist;
+  }
+}
