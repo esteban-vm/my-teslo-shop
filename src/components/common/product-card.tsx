@@ -4,17 +4,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Card } from 'rsc-daisyui'
+import tw from 'tailwind-styled-components'
 
 export function ProductCard() {
   const [imageScr, setImageSrc] = useState<`/img${1 | 2}.jpg`>('/img1.jpg')
 
   return (
-    <Card border className='fade-in animate-in overflow-hidden rounded-md shadow-md'>
+    <CardContainer border>
       <Link href='/'>
         <figure className='relative aspect-square'>
-          <Image
+          <CardImage
             alt='Shoes'
-            className='absolute inset-0 object-cover object-center contrast-125'
             fill
             onMouseEnter={() => setImageSrc('/img2.jpg')}
             onMouseLeave={() => setImageSrc('/img1.jpg')}
@@ -28,6 +28,9 @@ export function ProductCard() {
         </Link>
         <p>$ 123.45</p>
       </Card.Body>
-    </Card>
+    </CardContainer>
   )
 }
+
+const CardContainer = tw(Card)`fade-in animate-in overflow-hidden rounded-md shadow-md`
+const CardImage = tw(Image)`absolute inset-0 object-cover object-center contrast-125`
