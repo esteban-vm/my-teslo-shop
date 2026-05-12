@@ -24,9 +24,9 @@ export function ProductCard() {
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
         <Link href='/'>
-          <Card.Title className='line-clamp-1 text-lg hover:opacity-75'>Product Title</Card.Title>
+          <Card.Title className='line-clamp-1 text-base hover:opacity-75'>Product Title</Card.Title>
         </Link>
-        <p>$ 123.45</p>
+        <p className='text-sm'>$ 123.45</p>
       </Card.Body>
     </CardContainer>
   )
