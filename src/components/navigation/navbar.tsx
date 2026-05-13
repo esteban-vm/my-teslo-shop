@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Button, Navbar as DaisyNavbar, Indicator, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
-export function Navbar({ drawerId }: { drawerId: string }) {
+export function Navbar({ id }: Props.WithId) {
   return (
     <DaisyNavbar as='nav' className='sticky top-0 z-10 w-full'>
       <Link className='ml-3 hover:opacity-75' href='/'>
@@ -41,7 +41,7 @@ export function Navbar({ drawerId }: { drawerId: string }) {
             <ShoppingCart aria-label='icon' className='size-[85%] stroke-current' role='img' />
           </Button>
         </Indicator>
-        <Button as='label' ghost htmlFor={drawerId} shape='square' size='sm'>
+        <Button as='label' ghost htmlFor={id} shape='square' size='sm'>
           <MenuIcon aria-label='icon' className='size-[90%] stroke-current' role='img' />
         </Button>
       </ButtonContainer>
