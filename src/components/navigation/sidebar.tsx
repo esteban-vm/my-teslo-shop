@@ -1,16 +1,15 @@
-import { LogIn, LogOut, Search, Shirt, Ticket, User, Users, X } from 'lucide-react'
+import { LogIn, LogOut, Search, Shirt, Ticket, User, Users } from 'lucide-react'
 import Link from 'next/link'
-import { Button, Drawer, Input, Menu } from 'rsc-daisyui'
+import { Drawer, Input, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { CloseButton } from './close-button'
 
-export function Sidebar({ drawerId }: { drawerId: string }) {
+export function Sidebar({ id }: Props.WithId) {
   return (
-    <Drawer.Side as='aside' className='z-10 h-full' drawerId={drawerId}>
+    <Drawer.Side as='aside' className='z-10 h-full' drawerId={id}>
       <Menu as='menu' className='min-h-full w-fit bg-base-200 p-4' vanilla>
         <Menu.Title className='items-end'>
-          <Button ghost shape='square' size='xs'>
-            <X className='stroke-current' />
-          </Button>
+          <CloseButton id={id} />
         </Menu.Title>
         <Menu.Title>
           <Input as='label'>
