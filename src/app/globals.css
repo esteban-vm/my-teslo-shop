@@ -16,3 +16,7 @@
     @apply font-geist;
   }
 }
+
+@utility drawer-overlay {
+  @apply cursor-default backdrop-blur-xs backdrop-filter;
+}

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html className={`${mainFont.variable} h-screen min-h-192 antialiased`} lang='en'>
+    <html className={`${mainFont.variable} h-screen min-h-192 bg-base-200 antialiased`} lang='es'>
       <body>{children}</body>
     </html>
   )
