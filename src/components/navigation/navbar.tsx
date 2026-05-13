@@ -1,4 +1,4 @@
-import { Menu as LucideMenu, Search, ShoppingCart } from 'lucide-react'
+import { MenuIcon, Search, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { Button, Navbar as DaisyNavbar, Indicator, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
@@ -42,7 +42,7 @@ export function Navbar({ drawerId }: { drawerId: string }) {
           </Button>
         </Indicator>
         <Button as='label' ghost htmlFor={drawerId} shape='square' size='sm'>
-          <LucideMenu aria-label='icon' className='size-[90%] stroke-current' role='img' />
+          <MenuIcon aria-label='icon' className='size-[90%] stroke-current' role='img' />
         </Button>
       </ButtonContainer>
     </DaisyNavbar>
