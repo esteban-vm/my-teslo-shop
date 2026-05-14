@@ -1,18 +1,17 @@
 import { Drawer } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { DRAWER_ID } from '@/lib/constants'
 import { Navbar } from './navbar'
 import { Sidebar } from './sidebar'
 
 export function Navigation({ children }: Props.WithChildren) {
-  const id = crypto.randomUUID()
-
   return (
-    <Drawer className='min-h-screen' end id={id} theme=''>
+    <Drawer className='min-h-screen' end id={DRAWER_ID} theme=''>
       <Drawer.Content className='relative flex flex-col'>
-        <Navbar id={id} />
+        <Navbar />
         <PageContainer>{children}</PageContainer>
       </Drawer.Content>
-      <Sidebar id={id} />
+      <Sidebar />
     </Drawer>
   )
 }

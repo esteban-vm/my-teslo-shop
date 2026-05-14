@@ -8,10 +8,6 @@ declare global {
     interface WithChildren {
       children: React.ReactNode
     }
-
-    interface WithId {
-      id: string
-    }
   }
 }
 

@@ -2,8 +2,9 @@ import { MenuIcon, Search, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { Button, Navbar as DaisyNavbar, Indicator, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { DRAWER_ID } from '@/lib/constants'
 
-export function Navbar({ id }: Props.WithId) {
+export function Navbar() {
   return (
     <DaisyNavbar as='nav' className='sticky top-0 z-10 w-full'>
       <Link className='ml-3 hover:opacity-75' href='/'>
@@ -41,7 +42,7 @@ export function Navbar({ id }: Props.WithId) {
             <ShoppingCart aria-label='icon' className='size-[85%] stroke-current' role='img' />
           </Button>
         </Indicator>
-        <Button as='label' ghost htmlFor={id} shape='square' size='sm'>
+        <Button as='label' ghost htmlFor={DRAWER_ID} shape='square' size='sm'>
           <MenuIcon aria-label='icon' className='size-[90%] stroke-current' role='img' />
         </Button>
       </ButtonContainer>
