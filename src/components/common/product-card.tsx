@@ -7,14 +7,14 @@ import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
 export function ProductCard() {
-  const ref = useRef<HTMLImageElement>(null!)
+  const imageRef = useRef<HTMLImageElement>(null!)
 
   const handleMouseEnter = () => {
-    ref.current.src = '/img2.jpg'
+    imageRef.current.src = '/img2.jpg'
   }
 
   const handleMouseLeave = () => {
-    ref.current.src = '/img1.jpg'
+    imageRef.current.src = '/img1.jpg'
   }
 
   return (
@@ -27,16 +27,16 @@ export function ProductCard() {
             fill
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            ref={ref}
+            ref={imageRef}
             src='/img1.jpg'
           />
         </figure>
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
         <Link href='/'>
-          <Card.Title className='line-clamp-1 text-base hover:opacity-75'>Product Title</Card.Title>
+          <Card.Title className='line-clamp-1 text-base hover:opacity-75'>Título del producto</Card.Title>
         </Link>
-        <p className='text-sm'>$ 123.45</p>
+        <p className='text-sm'>{(123.45).toLocaleString('en-US', { style: 'currency', currency: 'USD' })} </p>
       </Card.Body>
     </CardContainer>
   )
