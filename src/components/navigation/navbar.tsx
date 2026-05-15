@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button, Navbar as DaisyNavbar, Indicator, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { DRAWER_ID } from '@/lib/constants'
+import { NavLink } from './nav-link'
 
 export function Navbar() {
   return (
@@ -12,21 +13,9 @@ export function Navbar() {
       </Link>
       <MenuContainer>
         <Menu as='menu' className='gap-0.5 p-0!' horizontal vanilla>
-          <Link href='/' passHref>
-            <Menu.Item as='span' className='font-semibold'>
-              Hombres
-            </Menu.Item>
-          </Link>
-          <Link href='/' passHref>
-            <Menu.Item as='span' className='font-semibold'>
-              Mujeres
-            </Menu.Item>
-          </Link>
-          <Link href='/' passHref>
-            <Menu.Item as='span' className='font-semibold'>
-              Niños
-            </Menu.Item>
-          </Link>
+          <NavLink>Hombres</NavLink>
+          <NavLink>Mujeres</NavLink>
+          <NavLink>Niños</NavLink>
         </Menu>
       </MenuContainer>
       <div className='grow lg:hidden' />
