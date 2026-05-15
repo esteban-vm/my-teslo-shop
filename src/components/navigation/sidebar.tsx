@@ -1,9 +1,9 @@
 import { LogIn, LogOut, Search, Shirt, Ticket, User, Users } from 'lucide-react'
-import Link from 'next/link'
 import { Drawer, Input, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { DRAWER_ID } from '@/lib/constants'
 import { CloseButton } from './close-button'
+import { NavLink } from './nav-link'
 
 export function Sidebar() {
   return (
@@ -18,59 +18,35 @@ export function Sidebar() {
             <input placeholder='Buscar' type='search' />
           </Input>
         </Menu.Title>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            Hombres
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            Mujeres
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            Niños
-          </Menu.Item>
-        </Link>
+        <NavLink>Hombres</NavLink>
+        <NavLink>Mujeres</NavLink>
+        <NavLink>Niños</NavLink>
         <Separator />
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <User />
-            Perfil
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <Ticket />
-            Órdenes
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <LogIn />
-            Ingresar
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <LogOut />
-            Salir
-          </Menu.Item>
-        </Link>
+        <NavLink>
+          <User />
+          Perfil
+        </NavLink>
+        <NavLink>
+          <Ticket />
+          Órdenes
+        </NavLink>
+        <NavLink>
+          <LogIn />
+          Ingresar
+        </NavLink>
+        <NavLink>
+          <LogOut />
+          Salir
+        </NavLink>
         <Separator />
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <Shirt />
-            Productos
-          </Menu.Item>
-        </Link>
-        <Link href='/' passHref>
-          <Menu.Item as='span' className='font-semibold'>
-            <Users />
-            Usuarios
-          </Menu.Item>
-        </Link>
+        <NavLink>
+          <Shirt />
+          Productos
+        </NavLink>
+        <NavLink>
+          <Users />
+          Usuarios
+        </NavLink>
       </Menu>
     </Drawer.Side>
   )
