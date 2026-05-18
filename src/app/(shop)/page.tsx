@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
-import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
-import { PageTitle, Pagination, ProductCard } from '@/components/common'
+import { PagePagination, PageTitle, ProductCard, ProductGrid } from '@/components/common'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
@@ -18,9 +17,7 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
           <ProductCard key={product.id} {...product} />
         ))}
       </ProductGrid>
-      <Pagination totalPages={totalPages} />
+      <PagePagination totalPages={totalPages} />
     </>
   )
 }
-
-const ProductGrid = tw.main`grid grid-cols-[repeat(auto-fit,minmax(--spacing(80),1fr))] gap-4 p-4`
