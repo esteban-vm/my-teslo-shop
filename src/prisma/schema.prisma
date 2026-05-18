@@ -20,10 +20,10 @@ enum Size {
 }
 
 enum Gender {
-  Men
-  Women
-  Kids
-  Unisex
+  men    @map("Men")
+  women  @map("Women")
+  kids   @map("Kids")
+  unisex @map("Unisex")
 
   @@map("genders")
 }
