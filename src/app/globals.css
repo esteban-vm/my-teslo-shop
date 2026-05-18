@@ -9,6 +9,7 @@
 
 @theme inline {
   --font-geist: var(--font-geist-variable);
+  --font-montserrat: var(--font-montserrat-alternates);
 }
 
 @layer base {
