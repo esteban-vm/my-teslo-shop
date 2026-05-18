@@ -8,8 +8,8 @@ import { NavLink } from './nav-link'
 export function Navbar() {
   return (
     <DaisyNavbar as='nav' className='sticky top-0 z-10 w-full'>
-      <Link className='ml-3 hover:opacity-75' href='/'>
-        <span className='font-bold'>Teslo</span> | Shop
+      <Link className='ml-3 font-montserrat hover:opacity-75' href='/'>
+        <span className='font-semibold text-rose-700'>Teslo</span> | Shop
       </Link>
       <MenuContainer>
         <Menu as='menu' className='gap-0.5 p-0!' horizontal vanilla>
