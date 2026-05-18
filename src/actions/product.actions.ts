@@ -19,5 +19,14 @@ export async function getProductsWithImages({ page = 1, take = 12 }: { page?: nu
   const totalProducts = await prisma.product.count()
   const totalPages = Math.ceil(totalProducts / take)
 
-  return { currentPage: page, totalPages, products }
+  return {
+    currentPage: page,
+    totalPages,
+    products: products.map((product) => {
+      return {
+        ...product,
+        images: product.images.map((image) => image.url),
+      }
+    }),
+  }
 }
