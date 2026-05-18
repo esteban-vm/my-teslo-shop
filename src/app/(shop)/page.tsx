@@ -6,18 +6,14 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
 
-  const results = await ProductActions.getProductsWithImages({ page: Number.parseInt(page, 10) })
-  if (results.products.length === 0) redirect('/?page=1')
-
-  console.log({ results })
+  const { products } = await ProductActions.getProductsWithImages({ page: Number.parseInt(page, 10) })
+  if (products.length === 0) redirect('/?page=1')
 
   return (
     <>
-      {Array(20)
-        .fill(null)
-        .map(() => (
-          <ProductCard key={crypto.randomUUID()} />
-        ))}
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
+      ))}
     </>
   )
 }
