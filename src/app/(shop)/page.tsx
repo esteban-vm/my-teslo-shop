@@ -12,7 +12,7 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
 
   return (
     <>
-      <PageTitle />
+      <PageTitle subtitle='Todos los productos' title='Tienda' />
       <ProductGrid>
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
