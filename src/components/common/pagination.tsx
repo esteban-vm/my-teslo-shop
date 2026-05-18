@@ -31,41 +31,43 @@ export function Pagination({ totalPages }: { totalPages: number }) {
   }
 
   return (
-    <Join className='mx-auto mb-4'>
-      <Join.Button
-        as={Link}
-        disabled={currentPage === 1}
-        href={createPageUrl(currentPage - 1)}
-        shape='square'
-        size='sm'
-      >
-        <ChevronLeft />
-      </Join.Button>
+    <div className='mb-4 text-center'>
+      <Join>
+        <Join.Button
+          as={Link}
+          disabled={currentPage === 1}
+          href={createPageUrl(currentPage - 1)}
+          shape='square'
+          size='sm'
+        >
+          <ChevronLeft />
+        </Join.Button>
 
-      {allPages.map((page) => {
-        return (
-          <Join.Button
-            active={currentPage === page}
-            as={Link}
-            href={createPageUrl(page)}
-            key={crypto.randomUUID()}
-            shape='square'
-            size='sm'
-          >
-            {page}
-          </Join.Button>
-        )
-      })}
+        {allPages.map((page) => {
+          return (
+            <Join.Button
+              active={currentPage === page}
+              as={Link}
+              href={createPageUrl(page)}
+              key={crypto.randomUUID()}
+              shape='square'
+              size='sm'
+            >
+              {page}
+            </Join.Button>
+          )
+        })}
 
-      <Join.Button
-        as={Link}
-        disabled={totalPages === currentPage}
-        href={createPageUrl(currentPage + 1)}
-        shape='square'
-        size='sm'
-      >
-        <ChevronRight />
-      </Join.Button>
-    </Join>
+        <Join.Button
+          as={Link}
+          disabled={totalPages === currentPage}
+          href={createPageUrl(currentPage + 1)}
+          shape='square'
+          size='sm'
+        >
+          <ChevronRight />
+        </Join.Button>
+      </Join>
+    </div>
   )
 }
