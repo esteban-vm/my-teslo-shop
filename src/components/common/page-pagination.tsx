@@ -8,7 +8,11 @@ import { Join } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { generatePaginationNumbers } from '@/lib/pagination'
 
-export function Pagination({ totalPages }: { totalPages: number }) {
+export interface PagePaginationProps {
+  totalPages: number
+}
+
+export function PagePagination({ totalPages }: PagePaginationProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const currentPage = Math.floor(Math.abs(Number(searchParams.get('page')))) || 1
