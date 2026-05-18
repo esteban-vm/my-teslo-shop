@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation'
 import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
-import { ProductCard } from '@/components/common'
-import { Pagination } from '@/components/pagination'
+import { Pagination, ProductCard } from '@/components/common'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
