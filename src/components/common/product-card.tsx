@@ -25,7 +25,7 @@ export function ProductCard({ id, title, price, images }: ProductCardProps) {
   }
 
   return (
-    <CardContainer border id={id}>
+    <CardContainer $as={Card} border id={id}>
       <Link href='/'>
         <figure className='relative aspect-square'>
           <CardImage
@@ -49,5 +49,5 @@ export function ProductCard({ id, title, price, images }: ProductCardProps) {
   )
 }
 
-const CardContainer = tw(Card)`fade-in animate-in overflow-hidden rounded-md shadow-md`
+const CardContainer = tw.div`fade-in animate-in overflow-hidden rounded-md shadow-md`
 const CardImage = tw.img`absolute inset-0 object-cover object-center contrast-125`
