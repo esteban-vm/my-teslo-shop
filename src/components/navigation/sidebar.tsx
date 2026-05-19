@@ -18,9 +18,9 @@ export function Sidebar() {
             <input placeholder='Buscar' type='search' />
           </Input>
         </Menu.Title>
-        <NavLink>Hombres</NavLink>
-        <NavLink>Mujeres</NavLink>
-        <NavLink>Niños</NavLink>
+        <NavLink href='/gender/men'>Hombres</NavLink>
+        <NavLink href='/gender/women'>Mujeres</NavLink>
+        <NavLink href='/gender/kids'>Niños</NavLink>
         <Separator />
         <NavLink>
           <User />
