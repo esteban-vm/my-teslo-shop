@@ -49,5 +49,5 @@ export function ProductCard({ id, title, price, images }: ProductCardProps) {
   )
 }
 
-const CardContainer = tw.div`fade-in animate-in overflow-hidden rounded-md shadow-md`
+const CardContainer = tw.div`fade-in w-full max-w-96 animate-in overflow-hidden rounded-md shadow-md`
 const CardImage = tw.img`absolute inset-0 object-cover object-center contrast-125`
