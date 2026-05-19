@@ -14,7 +14,7 @@ export function Sidebar() {
         </Menu.Title>
         <Menu.Title>
           <Input as='label'>
-            <Search />
+            <Search role='img' />
             <input placeholder='Buscar' type='search' />
           </Input>
         </Menu.Title>
@@ -23,28 +23,28 @@ export function Sidebar() {
         <NavLink href='/gender/kids'>Niños</NavLink>
         <Separator />
         <NavLink>
-          <User />
+          <User className='stroke-[1.5]' role='img' />
           Perfil
         </NavLink>
         <NavLink>
-          <Ticket />
+          <Ticket className='stroke-[1.5]' role='img' />
           Órdenes
         </NavLink>
         <NavLink>
-          <LogIn />
+          <LogIn className='stroke-[1.5]' role='img' />
           Ingresar
         </NavLink>
         <NavLink>
-          <LogOut />
+          <LogOut className='stroke-[1.5]' role='img' />
           Salir
         </NavLink>
         <Separator />
         <NavLink>
-          <Shirt />
+          <Shirt className='stroke-[1.5]' role='img' />
           Productos
         </NavLink>
         <NavLink>
-          <Users />
+          <Users className='stroke-[1.5]' role='img' />
           Usuarios
         </NavLink>
       </Menu>

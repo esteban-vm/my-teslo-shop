@@ -18,6 +18,15 @@
   }
 }
 
-@utility drawer-overlay {
+.drawer-overlay {
   @apply cursor-default backdrop-blur-xs backdrop-filter;
+}
+
+.menu-active,
+.btn-active {
+  @apply bg-primary/50;
+}
+
+.btn-disabled {
+  @apply opacity-50;
 }

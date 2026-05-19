@@ -21,18 +21,18 @@ export function Navbar() {
       <div className='grow lg:hidden' />
       <ButtonContainer>
         <Button ghost shape='square' size='sm'>
-          <Search aria-label='icon' className='size-[85%] stroke-current' role='img' />
+          <Search aria-label='icon' className='size-[85%] stroke-[1.5]' role='img' />
         </Button>
         <Indicator>
           <Indicator.Badge ghost size='xs'>
             12
           </Indicator.Badge>
           <Button ghost shape='square' size='sm'>
-            <ShoppingCart aria-label='icon' className='size-[85%] stroke-current' role='img' />
+            <ShoppingCart aria-label='icon' className='size-[85%] stroke-[1.5]' role='img' />
           </Button>
         </Indicator>
         <Button as='label' ghost htmlFor={DRAWER_ID} shape='square' size='sm'>
-          <MenuIcon aria-label='icon' className='size-[90%] stroke-current' role='img' />
+          <MenuIcon aria-label='icon' className='size-[90%] stroke-[1.5]' role='img' />
         </Button>
       </ButtonContainer>
     </DaisyNavbar>
