@@ -13,6 +13,14 @@
 }
 
 @layer base {
+  * {
+    scrollbar-width: thin;
+
+    &::selection {
+      @apply bg-primary text-primary-content;
+    }
+  }
+
   body {
     @apply font-geist;
   }
