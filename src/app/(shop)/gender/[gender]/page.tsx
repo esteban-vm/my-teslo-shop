@@ -5,7 +5,7 @@ import { PagePagination, PageTitle, ProductCard, ProductGrid } from '@/component
 
 export default async function GenderPage({ params, searchParams }: PageProps<'/gender/[gender]'>) {
   const { gender } = await params
-  const genderEnum = gender as Gender
+  const genderDB = gender as Gender
 
   const genderMap: Record<Gender, string> = {
     men: 'hombres',
@@ -14,21 +14,22 @@ export default async function GenderPage({ params, searchParams }: PageProps<'/g
     unisex: 'todos',
   }
 
-  if (!genderMap[genderEnum]) notFound()
+  const selectedGender = genderMap[genderDB]
+  if (!selectedGender) notFound()
 
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
 
   const { products, totalPages } = await ProductActions.getProductsWithImages({
     page: Number.parseInt(page, 10),
-    gender: genderEnum,
+    gender: genderDB,
   })
 
-  if (products.length === 0) redirect(`/gender/${gender}`)
+  if (products.length === 0) redirect(`/gender/${genderDB}`)
 
   return (
     <>
-      <PageTitle title={`Artículos para ${genderMap[genderEnum]}`} />
+      <PageTitle title={`Artículos para ${selectedGender}`} />
       <ProductGrid>
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
