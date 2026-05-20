@@ -24,6 +24,14 @@
   body {
     @apply font-geist;
   }
+
+  img {
+    @apply select-none;
+
+    &[data-nimg="fill"] {
+      @apply absolute inset-0 object-cover object-center contrast-125;
+    }
+  }
 }
 
 .drawer-overlay {
