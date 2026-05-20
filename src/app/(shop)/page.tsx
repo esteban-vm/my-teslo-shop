@@ -7,7 +7,7 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   if (Array.isArray(page)) page = '1'
 
   const { products, totalPages } = await ProductActions.getProductsWithImages({ page: Number.parseInt(page, 10) })
-  if (products.length === 0) redirect('/?page=1')
+  if (products.length === 0) redirect('/')
 
   return (
     <>
