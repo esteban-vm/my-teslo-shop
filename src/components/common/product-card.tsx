@@ -19,7 +19,7 @@ export function ProductCard({ id, title, price, images }: ProductCardProps) {
         </figure>
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
-        <Link href='/'>
+        <Link href='/' title={title}>
           <Card.Title className='line-clamp-1 text-base hover:opacity-75'>{title}</Card.Title>
         </Link>
         <p className='text-sm'>{price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
