@@ -14,39 +14,21 @@ export function Sidebar() {
         </Menu.Title>
         <Menu.Title>
           <Input as='label'>
-            <Search role='img' />
+            <Search />
             <input placeholder='Buscar' type='search' />
           </Input>
         </Menu.Title>
-        <NavLink href='/gender/men'>Hombres</NavLink>
-        <NavLink href='/gender/women'>Mujeres</NavLink>
-        <NavLink href='/gender/kids'>Niños</NavLink>
+        <NavLink href='/gender/men' text='Hombres' />
+        <NavLink href='/gender/women' text='Mujeres' />
+        <NavLink href='/gender/kids' text='Niños' />
         <Separator />
-        <NavLink>
-          <User className='stroke-[1.5]' role='img' />
-          Perfil
-        </NavLink>
-        <NavLink>
-          <Ticket className='stroke-[1.5]' role='img' />
-          Órdenes
-        </NavLink>
-        <NavLink>
-          <LogIn className='stroke-[1.5]' role='img' />
-          Ingresar
-        </NavLink>
-        <NavLink>
-          <LogOut className='stroke-[1.5]' role='img' />
-          Salir
-        </NavLink>
+        <NavLink icon={<User />} text='Perfil' />
+        <NavLink icon={<Ticket />} text='Órdenes' />
+        <NavLink icon={<LogIn />} text='Ingresar' />
+        <NavLink icon={<LogOut />} text='Salir' />
         <Separator />
-        <NavLink>
-          <Shirt className='stroke-[1.5]' role='img' />
-          Productos
-        </NavLink>
-        <NavLink>
-          <Users className='stroke-[1.5]' role='img' />
-          Usuarios
-        </NavLink>
+        <NavLink icon={<Shirt />} text='Productos' />
+        <NavLink icon={<Users />} text='Usuarios' />
       </Menu>
     </Drawer.Side>
   )
