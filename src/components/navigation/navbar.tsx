@@ -8,7 +8,7 @@ import { NavLink } from './nav-link'
 export function Navbar() {
   return (
     <DaisyNavbar as='nav' className='sticky top-0 z-10 w-full'>
-      <Link className='ml-3 font-montserrat font-semibold' href='/'>
+      <Link className='ml-3 font-montserrat font-semibold hover:opacity-75' href='/'>
         <span className='font-bold text-rose-700'>Teslo</span> | Shop
       </Link>
       <MenuContainer>
