@@ -9,3 +9,5 @@ ignoredBuiltDependencies:
   - unrs-resolver
 publicHoistPattern:
   - '*biome*'
+fetchTimeout: 300000
+fetchRetries: 3
