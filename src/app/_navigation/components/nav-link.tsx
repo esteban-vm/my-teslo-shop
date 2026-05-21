@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Menu } from 'rsc-daisyui'
 import { closeSidebar } from '@/lib/utils'
 
-export interface NavLinkProps<T extends string> {
+export interface NavLinkProps<T extends string = string> {
   text: string
   href?: Route<T>
   icon?: React.JSX.Element

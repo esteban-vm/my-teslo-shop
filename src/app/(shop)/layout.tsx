@@ -1,4 +1,4 @@
-import { Navigation } from '@/components/navigation'
+import { Navigation } from '@/app/_navigation'
 
 export default function ShopLayout({ children }: LayoutProps<'/'>) {
   return (
