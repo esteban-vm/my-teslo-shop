@@ -32,6 +32,10 @@
       @apply absolute inset-0 object-cover object-center contrast-125;
     }
   }
+
+  a {
+    @apply hover:opacity-75;
+  }
 }
 
 .drawer-overlay {
