@@ -32,6 +32,10 @@
       @apply absolute inset-0 object-cover object-center contrast-125;
     }
   }
+
+  svg {
+    @apply stroke-[1.5];
+  }
 }
 
 .drawer-overlay {
