@@ -1,7 +1,8 @@
 import type { Gender } from '@/generated/prisma/client'
 import { notFound, redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
-import { PagePagination, PageTitle, ProductCard, ProductGrid } from '@/components/common'
+import { PagePagination, PageTitle } from '@/components/shared'
+import { ProductCard, ProductGrid } from '@/components/shop'
 
 export default async function GenderPage({ params, searchParams }: PageProps<'/gender/[gender]'>) {
   const { gender } = await params

@@ -53,7 +53,7 @@ export function PagePagination({ totalPages }: PagePaginationProps) {
               active={currentPage === page}
               as={Link}
               href={createPageUrl(page)}
-              key={crypto.randomUUID()}
+              key={page}
               shape='square'
               size='sm'
             >

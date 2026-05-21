@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
-import { PagePagination, PageTitle, ProductCard, ProductGrid } from '@/components/common'
+import { PagePagination, PageTitle } from '@/components/shared'
+import { ProductCard, ProductGrid } from '@/components/shop'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
