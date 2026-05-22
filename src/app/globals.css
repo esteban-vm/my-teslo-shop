@@ -21,10 +21,6 @@
     }
   }
 
-  body {
-    @apply font-geist;
-  }
-
   img {
     @apply select-none;
 
