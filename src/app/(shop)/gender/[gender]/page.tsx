@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import type { Gender } from '@/generated/prisma/client'
 import { notFound, redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'

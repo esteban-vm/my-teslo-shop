@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
 import { PagePagination, PageTitle } from '@/components/shared'
