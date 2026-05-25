@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import type { Product } from '@/generated/prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,10 +9,12 @@ export interface ProductCardProps extends Product {
   images: string[]
 }
 
-export function ProductCard({ id, title, price, images }: ProductCardProps) {
+export function ProductCard({ id, title, price, slug, images }: ProductCardProps) {
+  const productRoute: Route<`/product/${string}`> = `/product/${slug}`
+
   return (
     <CardContainer $as={Card} border id={id}>
-      <Link href='/'>
+      <Link href={productRoute}>
         <figure className='hover-gallery relative aspect-square'>
           {images.map((image) => (
             <Image alt={title} fill key={image} src={`/products/${image}`} />
@@ -19,7 +22,7 @@ export function ProductCard({ id, title, price, images }: ProductCardProps) {
         </figure>
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
-        <Link href='/' title={title}>
+        <Link href={productRoute} title={title}>
           <Card.Title className='line-clamp-1 text-base hover:opacity-75'>{title}</Card.Title>
         </Link>
         <p className='text-sm'>{price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
