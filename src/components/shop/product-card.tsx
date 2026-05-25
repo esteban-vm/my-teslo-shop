@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { formatProductPrice } from '@/lib/helpers'
 
 export interface ProductCardProps extends Product {
   images: string[]
@@ -25,7 +26,7 @@ export function ProductCard({ id, title, price, slug, images }: ProductCardProps
         <Link href={productRoute} title={title}>
           <Card.Title className='line-clamp-1 text-base hover:opacity-75'>{title}</Card.Title>
         </Link>
-        <p className='text-sm'>{price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+        <p className='text-sm'>{formatProductPrice(price)}</p>
       </Card.Body>
     </CardContainer>
   )
