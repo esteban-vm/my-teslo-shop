@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react'
 import { Button } from 'rsc-daisyui'
-import { closeSidebar } from '@/lib/utils'
+import { closeSidebar } from '@/lib/ui'
 
 export function CloseButton() {
   return (
