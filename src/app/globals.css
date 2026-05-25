@@ -46,3 +46,11 @@
 .btn-disabled {
   @apply opacity-50;
 }
+
+.image-gallery-thumbnail {
+  &.active,
+  &:focus,
+  &:hover {
+    @apply border-primary/50!;
+  }
+}
