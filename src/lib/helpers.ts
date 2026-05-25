@@ -15,3 +15,11 @@ export function generatePaginationNumbers(currentPage: number, totalPages: numbe
 
   return [1, ELLIPSIS_CHAR, currentPage - 1, currentPage, currentPage + 1, ELLIPSIS_CHAR, totalPages]
 }
+
+export function formatProductPrice(price: number) {
+  return price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  })
+}
