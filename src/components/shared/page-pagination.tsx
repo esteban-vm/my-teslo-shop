@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Join } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
-import { generatePaginationNumbers } from '@/lib/pagination'
+import { generatePaginationNumbers } from '@/lib/helpers'
 
 export interface PagePaginationProps {
   totalPages: number
