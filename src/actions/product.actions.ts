@@ -3,13 +3,13 @@
 import type { Gender } from '@/generated/prisma/client'
 import { prisma } from '@/lib/prisma'
 
-export interface PaginationOptions {
-  page?: number
-  take?: number
-  gender?: Gender
-}
+type ProductWithImageProps = Partial<{
+  page: number
+  take: number
+  gender: Gender
+}>
 
-export async function getProductsWithImages({ page = 1, take = 12, gender }: PaginationOptions) {
+export async function getProductsWithImages({ page = 1, take = 12, gender }: ProductWithImageProps) {
   if (Number.isNaN(page) || page < 1) page = 1
 
   const products = await prisma.product.findMany({
@@ -36,5 +36,27 @@ export async function getProductsWithImages({ page = 1, take = 12, gender }: Pag
         images: product.images.map((image) => image.url),
       }
     }),
+  }
+}
+
+interface ProductBySlugProps {
+  slug: string
+}
+
+export async function getProductBySlug({ slug }: ProductBySlugProps) {
+  const product = await prisma.product.findFirst({
+    where: { slug },
+    include: {
+      images: {
+        select: { url: true },
+      },
+    },
+  })
+
+  if (!product) return null
+
+  return {
+    ...product,
+    images: product.images.map((image) => image.url),
   }
 }
