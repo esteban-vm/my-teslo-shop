@@ -4,7 +4,7 @@ import type { Route } from 'next'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu } from 'rsc-daisyui'
-import { closeSidebar } from '@/lib/utils'
+import { closeSidebar } from '@/lib/ui'
 
 export interface NavLinkProps<T extends string = string> {
   text: string
