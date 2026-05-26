@@ -8,11 +8,7 @@ import { Button } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { cn } from '@/lib/ui'
 
-export interface ProductSliderProps {
-  images: string[]
-}
-
-export function ProductSlider({ images }: ProductSliderProps) {
+export function ProductSlider({ images }: { images: string[] }) {
   const galleryRef = useRef<ImageGalleryRef>(null)
 
   const playSlide = () => galleryRef.current?.play()
@@ -23,12 +19,13 @@ export function ProductSlider({ images }: ProductSliderProps) {
       additionalClass={cn('col-span-1 lg:col-span-2')}
       autoPlay
       items={images.map((image) => {
+        const productUrl = `/products/${image}`
+
         return {
-          original: `/products/${image}`,
-          originalAlt: 'foo',
-          originalTitle: 'title',
-          thumbnailAlt: 'bar',
-          thumbnail: `/products/${image}`,
+          original: productUrl,
+          originalAlt: 'Imagen del producto',
+          thumbnail: productUrl,
+          thumbnailAlt: 'Miniatura del producto',
         }
       })}
       onMouseLeave={playSlide}

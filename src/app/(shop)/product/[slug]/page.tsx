@@ -10,7 +10,7 @@ import { formatProductPrice } from '@/lib/helpers'
 export default async function ProductPage({ params }: PageProps<'/product/[slug]'>) {
   const { slug } = await params
 
-  const product = await ProductActions.getProductBySlug({ slug })
+  const product = await ProductActions.getProductBySlug(slug)
   if (!product) notFound()
 
   const { title, description, price, images } = product

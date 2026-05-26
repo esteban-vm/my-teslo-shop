@@ -1,6 +1,7 @@
 'use server'
 
 import type { Gender } from '@/generated/prisma/client'
+import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 
 type GetProductWithImageParams = Partial<{
@@ -39,7 +40,7 @@ export async function getProductsWithImages({ page = 1, take = 12, gender }: Get
   }
 }
 
-export async function getProductBySlug({ slug }: { slug: string }) {
+export async function getProductBySlug(slug: string) {
   const product = await prisma.product.findFirst({
     where: { slug },
     include: {
@@ -57,9 +58,9 @@ export async function getProductBySlug({ slug }: { slug: string }) {
   }
 }
 
-export async function getStockBySlug({ slug }: { slug: string }) {
+export async function getStockBySlug(slug: string) {
   try {
-    await sleep(3)
+    await sleepExecution(3)
 
     const { stock } = await prisma.product.findFirstOrThrow({
       where: { slug },
@@ -70,12 +71,4 @@ export async function getStockBySlug({ slug }: { slug: string }) {
   } catch {
     return 0
   }
-}
-
-function sleep(seconds = 1) {
-  if (process.env.NODE_ENV === 'production') return
-
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(true), seconds * 1000)
-  })
 }

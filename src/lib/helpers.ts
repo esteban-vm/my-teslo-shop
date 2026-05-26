@@ -23,3 +23,11 @@ export function formatProductPrice(price: number) {
     minimumFractionDigits: 0,
   })
 }
+
+export function sleepExecution(seconds = 1) {
+  if (process.env.NODE_ENV !== 'development') return
+
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(true), seconds * 1000)
+  })
+}
