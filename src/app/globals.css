@@ -47,7 +47,13 @@
   @apply opacity-50;
 }
 
+.image-gallery-thumbnails-container {
+  @apply cursor-default!;
+}
+
 .image-gallery-thumbnail {
+  @apply cursor-pointer;
+
   &.active,
   &:focus,
   &:hover {

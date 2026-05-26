@@ -26,7 +26,7 @@ export function ProductSlider({ images }: ProductSliderProps) {
       renderLeftNav={(leftNavOnClick) => {
         return (
           <div className='absolute top-1/2 z-30 -translate-y-1/2'>
-            <Button onClick={leftNavOnClick} shape='square' soft>
+            <Button onClick={leftNavOnClick} shape='circle' soft>
               <ChevronLeft />
             </Button>
           </div>
@@ -35,14 +35,13 @@ export function ProductSlider({ images }: ProductSliderProps) {
       renderRightNav={(rightNavOnClick) => {
         return (
           <div className='absolute top-1/2 left-full z-30 -translate-x-full -translate-y-1/2'>
-            <Button onClick={rightNavOnClick} shape='square' soft>
+            <Button onClick={rightNavOnClick} shape='circle' soft>
               <ChevronRight />
             </Button>
           </div>
         )
       }}
       showFullscreenButton={false}
-      showIndex
       showPlayButton={false}
     />
   )
