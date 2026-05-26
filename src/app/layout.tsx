@@ -3,7 +3,10 @@ import { mainFont, titleFont } from '@/fonts'
 import '@/app/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Teslo | Shop',
+  title: {
+    template: '%s - Teslo | Shop',
+    default: 'Inicio - Teslo | Shop',
+  },
   description: 'Una tienda virtual de ropa',
 }
 
