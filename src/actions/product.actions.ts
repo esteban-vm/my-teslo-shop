@@ -3,13 +3,13 @@
 import type { Gender } from '@/generated/prisma/client'
 import { prisma } from '@/lib/prisma'
 
-type ProductWithImageProps = Partial<{
+type GetProductWithImageParams = Partial<{
   page: number
   take: number
   gender: Gender
 }>
 
-export async function getProductsWithImages({ page = 1, take = 12, gender }: ProductWithImageProps) {
+export async function getProductsWithImages({ page = 1, take = 12, gender }: GetProductWithImageParams) {
   if (Number.isNaN(page) || page < 1) page = 1
 
   const products = await prisma.product.findMany({
@@ -39,11 +39,7 @@ export async function getProductsWithImages({ page = 1, take = 12, gender }: Pro
   }
 }
 
-interface ProductBySlugProps {
-  slug: string
-}
-
-export async function getProductBySlug({ slug }: ProductBySlugProps) {
+export async function getProductBySlug({ slug }: { slug: string }) {
   const product = await prisma.product.findFirst({
     where: { slug },
     include: {
@@ -59,4 +55,27 @@ export async function getProductBySlug({ slug }: ProductBySlugProps) {
     ...product,
     images: product.images.map((image) => image.url),
   }
+}
+
+export async function getStockBySlug({ slug }: { slug: string }) {
+  try {
+    await sleep(3)
+
+    const { stock } = await prisma.product.findFirstOrThrow({
+      where: { slug },
+      select: { stock: true },
+    })
+
+    return stock
+  } catch {
+    return 0
+  }
+}
+
+function sleep(seconds = 1) {
+  if (process.env.NODE_ENV === 'production') return
+
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(true), seconds * 1000)
+  })
 }
