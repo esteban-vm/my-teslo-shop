@@ -1,4 +1,5 @@
 import type { NavLinkProps } from '@/app/_navigation/components'
+import type { Gender } from '@/generated/prisma/client'
 import { LogIn, LogOut, Shirt, Ticket, User, Users } from 'lucide-react'
 
 // UI
@@ -23,3 +24,10 @@ export const sidebarLinks: NavLinkProps[] = [
   { text: 'Productos', icon: <Shirt /> },
   { text: 'Usuarios', icon: <Users /> },
 ]
+
+export const genderMap: Record<Gender, string> = {
+  men: 'hombres',
+  women: 'mujeres',
+  kids: 'niños',
+  unisex: 'todos',
+}
