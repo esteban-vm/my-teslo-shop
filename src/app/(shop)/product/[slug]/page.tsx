@@ -1,5 +1,6 @@
 export const revalidate = 604_800 // 7 días
 
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import tw from 'tailwind-styled-components'
@@ -7,7 +8,32 @@ import { ProductActions } from '@/actions'
 import { ProductSlider, StockCounter } from '@/components/shop'
 import { formatProductPrice } from '@/lib/helpers'
 
-export default async function ProductPage({ params }: PageProps<'/product/[slug]'>) {
+type ProductPageProps = PageProps<'/product/[slug]'>
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const product = await ProductActions.getProductBySlug(slug)
+
+  if (!product) {
+    return {
+      title: 'Producto no encontrado',
+    }
+  }
+
+  const { title, description, images } = product
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [`/products/${images[1]}`],
+    },
+  }
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params
 
   const product = await ProductActions.getProductBySlug(slug)
