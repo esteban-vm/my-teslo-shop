@@ -1,24 +1,37 @@
 export const revalidate = 60
 
+import type { Metadata } from 'next'
 import type { Gender } from '@/generated/prisma/client'
 import { notFound, redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
 import { PagePagination, PageTitle } from '@/components/shared'
 import { ProductCard, ProductGrid } from '@/components/shop'
+import { genderMap } from '@/lib/constants'
 
-export default async function GenderPage({ params, searchParams }: PageProps<'/gender/[gender]'>) {
+type GenderPageProps = PageProps<'/gender/[gender]'>
+
+export async function generateMetadata({ params }: GenderPageProps): Promise<Metadata> {
+  const { gender } = await params
+  const genderDB = gender as Gender
+  const currentGender = genderMap[genderDB]
+
+  if (!currentGender) {
+    return {
+      title: 'Género no encontrado',
+    }
+  }
+
+  return {
+    title: `Artículos para ${currentGender}`,
+  }
+}
+
+export default async function GenderPage({ params, searchParams }: GenderPageProps) {
   const { gender } = await params
   const genderDB = gender as Gender
 
-  const genderMap: Record<Gender, string> = {
-    men: 'hombres',
-    women: 'mujeres',
-    kids: 'niños',
-    unisex: 'todos',
-  }
-
-  const selectedGender = genderMap[genderDB]
-  if (!selectedGender) notFound()
+  const currentGender = genderMap[genderDB]
+  if (!currentGender) notFound()
 
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
@@ -32,7 +45,7 @@ export default async function GenderPage({ params, searchParams }: PageProps<'/g
 
   return (
     <>
-      <PageTitle title={`Artículos para ${selectedGender}`} />
+      <PageTitle title={`Artículos para ${currentGender}`} />
       <ProductGrid>
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
