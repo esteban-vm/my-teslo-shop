@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef } from 'react'
 import ImageGallery from 'react-image-gallery'
 import { Button } from 'rsc-daisyui'
+import tw from 'tailwind-styled-components'
 import { cn } from '@/lib/ui'
 
 export interface ProductSliderProps {
@@ -37,20 +38,20 @@ export function ProductSlider({ images }: ProductSliderProps) {
       ref={galleryRef}
       renderLeftNav={(leftNavOnClick) => {
         return (
-          <div className='absolute top-1/2 z-10 -translate-y-1/2'>
+          <ButtonContainer>
             <Button onClick={leftNavOnClick} shape='circle' soft>
               <ChevronLeft />
             </Button>
-          </div>
+          </ButtonContainer>
         )
       }}
       renderRightNav={(rightNavOnClick) => {
         return (
-          <div className='absolute top-1/2 left-full z-10 -translate-x-full -translate-y-1/2'>
+          <ButtonContainer className='left-full -translate-x-full'>
             <Button onClick={rightNavOnClick} shape='circle' soft>
               <ChevronRight />
             </Button>
-          </div>
+          </ButtonContainer>
         )
       }}
       showFullscreenButton={false}
@@ -59,3 +60,5 @@ export function ProductSlider({ images }: ProductSliderProps) {
     />
   )
 }
+
+const ButtonContainer = tw.div`absolute top-1/2 z-10 -translate-y-1/2`
