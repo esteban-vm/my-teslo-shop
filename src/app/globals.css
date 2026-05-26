@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "react-image-gallery/styles/image-gallery.css";
 
 @plugin "daisyui" {
   themes: wireframe --default;

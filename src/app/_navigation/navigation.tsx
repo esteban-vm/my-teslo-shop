@@ -9,7 +9,7 @@ export function Navigation({ children }: { children: ReactNode }) {
   return (
     <Drawer className='min-h-screen' end id={DRAWER_ID} theme=''>
       <Drawer.Content className='relative flex flex-col'>
-        <Navbar as='nav' className='sticky top-0 z-10 w-full'>
+        <Navbar as='nav' className='sticky top-0 z-20 w-full'>
           <HomeLink />
           <MenuContainer>
             <Menu as='menu' className='gap-0.5 p-0!' horizontal vanilla>
@@ -38,7 +38,7 @@ export function Navigation({ children }: { children: ReactNode }) {
         </Navbar>
         {children}
       </Drawer.Content>
-      <Drawer.Side as='aside' className='z-10 h-full' drawerId={DRAWER_ID}>
+      <Drawer.Side as='aside' className='z-20 h-full' drawerId={DRAWER_ID}>
         <Menu as='menu' className='min-h-full w-fit bg-base-200 p-4' vanilla>
           <Menu.Title className='items-end'>
             <CloseButton />

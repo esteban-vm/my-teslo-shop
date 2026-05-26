@@ -2,11 +2,10 @@
 
 import type { ImageGalleryRef } from 'react-image-gallery'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRef } from 'react'
 import ImageGallery from 'react-image-gallery'
 import { Button } from 'rsc-daisyui'
 import { cn } from '@/lib/ui'
-import 'react-image-gallery/styles/image-gallery.css'
-import { useRef } from 'react'
 
 export interface ProductSliderProps {
   images: string[]
@@ -38,7 +37,7 @@ export function ProductSlider({ images }: ProductSliderProps) {
       ref={galleryRef}
       renderLeftNav={(leftNavOnClick) => {
         return (
-          <div className='absolute top-1/2 z-30 -translate-y-1/2'>
+          <div className='absolute top-1/2 z-10 -translate-y-1/2'>
             <Button onClick={leftNavOnClick} shape='circle' soft>
               <ChevronLeft />
             </Button>
@@ -47,7 +46,7 @@ export function ProductSlider({ images }: ProductSliderProps) {
       }}
       renderRightNav={(rightNavOnClick) => {
         return (
-          <div className='absolute top-1/2 left-full z-30 -translate-x-full -translate-y-1/2'>
+          <div className='absolute top-1/2 left-full z-10 -translate-x-full -translate-y-1/2'>
             <Button onClick={rightNavOnClick} shape='circle' soft>
               <ChevronRight />
             </Button>
