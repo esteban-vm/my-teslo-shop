@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
-import { ProductSlider, SizeSelector, StockCounter } from '@/components/shop'
+import { ProductSlider, QuantityCounter, SizeSelector, StockCounter } from '@/components/shop'
 import { formatProductPrice } from '@/lib/helpers'
 
 type ProductPageProps = PageProps<'/product/[slug]'>
@@ -51,6 +51,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </Suspense>
         <p>{formatProductPrice(price)}</p>
         <SizeSelector availableSizes={sizes} selectedSize={sizes[1]} />
+        <QuantityCounter />
         <p>{description}</p>
       </div>
     </PageContainer>
