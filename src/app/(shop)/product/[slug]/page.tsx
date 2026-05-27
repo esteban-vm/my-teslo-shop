@@ -54,13 +54,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {formatProductPrice(price)}
         </p>
         <SizeSelector availableSizes={sizes} selectedSize={sizes[1]} />
-        <QuantityCounter />
-        <p className='text-justify'>{description}</p>
+        <QuantityCounter quantity={2} />
+        <p className='font-semibold'>Descripción:</p>
+        <p className='text-justify text-sm'>{description}</p>
       </div>
     </PageContainer>
   )
 }
 
 const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
-const ProductTitle = tw.h1`font-montserrat font-semibold text-xl`
+const ProductTitle = tw.h1`font-bold font-montserrat text-xl`
 const CounterSkeleton = tw.div`h-6 w-full animate-pulse rounded-md bg-accent/30`
