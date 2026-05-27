@@ -1,4 +1,5 @@
 export * from './product-card'
 export * from './product-grid'
 export * from './product-slider'
+export * from './size-selector'
 export * from './stock-counter'
