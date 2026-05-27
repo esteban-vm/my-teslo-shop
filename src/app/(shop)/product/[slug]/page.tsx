@@ -44,20 +44,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <PageContainer>
       <ProductSlider images={images} />
-      <div className='px-3 py-1.5'>
+      <div className='space-y-1 px-3 py-1.5'>
         <ProductTitle>{title}</ProductTitle>
         <Suspense fallback={<CounterSkeleton />}>
           <StockCounter slug={slug} />
         </Suspense>
-        <p>{formatProductPrice(price)}</p>
+        <p>
+          <span className='font-semibold'>Precio:&nbsp;</span>
+          {formatProductPrice(price)}
+        </p>
         <SizeSelector availableSizes={sizes} selectedSize={sizes[1]} />
         <QuantityCounter />
-        <p>{description}</p>
+        <p className='text-justify'>{description}</p>
       </div>
     </PageContainer>
   )
 }
 
 const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
-const ProductTitle = tw.h1`font-montserrat font-semibold text-lg`
+const ProductTitle = tw.h1`font-montserrat font-semibold text-xl`
 const CounterSkeleton = tw.div`h-6 w-full animate-pulse rounded-md bg-accent/30`

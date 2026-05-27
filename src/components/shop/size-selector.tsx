@@ -9,7 +9,7 @@ export interface SizeSelectorProps {
 export function SizeSelector({ selectedSize, availableSizes }: SizeSelectorProps) {
   return (
     <>
-      <h2 className='font-semibold'>Selector de tallas</h2>
+      <p className='font-semibold'>Tamaño:</p>
       <Join className='space-x-1'>
         {availableSizes.map((size) => {
           return (

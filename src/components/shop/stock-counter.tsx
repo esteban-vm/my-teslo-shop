@@ -4,5 +4,9 @@ import { ProductActions } from '@/actions'
 export function StockCounter({ slug }: { slug: string }) {
   const stock = use(ProductActions.getStockBySlug(slug))
 
-  return <p className='font-semibold'>Quedan: {stock} unidades</p>
+  return (
+    <p>
+      <span className='font-semibold'>Quedan:</span> {stock} unidades
+    </p>
+  )
 }

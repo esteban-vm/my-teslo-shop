@@ -3,7 +3,7 @@ import { Join } from 'rsc-daisyui'
 export function QuantityCounter() {
   return (
     <>
-      <h2 className='font-semibold'>Cantidad:</h2>
+      <p className='font-semibold'>Cantidad:</p>
       <Join className='space-x-1'>
         <Join.Button className='rounded-full' size='sm'>
           -
