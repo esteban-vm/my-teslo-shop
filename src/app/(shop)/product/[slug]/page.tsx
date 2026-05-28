@@ -6,6 +6,7 @@ import { Suspense } from 'react'
 import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
 import { ProductSlider, QuantityCounter, SizeSelector, StockCounter } from '@/components/shop'
+import { AddToCartProvider } from '@/contexts'
 import { formatProductPrice } from '@/lib/helpers'
 
 type ProductPageProps = PageProps<'/product/[slug]'>
@@ -53,8 +54,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <span className='font-semibold'>Precio:&nbsp;</span>
           {formatProductPrice(price)}
         </p>
-        <SizeSelector availableSizes={sizes} selectedSize={sizes[1]} />
-        <QuantityCounter quantity={2} />
+        <AddToCartProvider sizes={sizes}>
+          <SizeSelector />
+          <QuantityCounter />
+        </AddToCartProvider>
         <p className='font-semibold'>Descripción:</p>
         <p className='text-justify text-sm'>{description}</p>
       </div>
