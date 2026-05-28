@@ -1,29 +1,25 @@
 'use client'
 
 import { LucideMinus, LucidePlus } from 'lucide-react'
-import { useState } from 'react'
 import { Button, Join } from 'rsc-daisyui'
+import { useAddToCart } from '@/hooks'
 
-export function QuantityCounter({ quantity }: { quantity: number }) {
-  const [count, setCount] = useState(quantity)
-
-  const handleClick = (value: number) => {
-    const newCount = count + value
-    if (newCount < 1) return
-    setCount(newCount)
-  }
+export function QuantityCounter() {
+  const quantity = useAddToCart((s) => s.quantity)
+  const decrement = useAddToCart((s) => s.decrement)
+  const increment = useAddToCart((s) => s.increment)
 
   return (
     <div className='w-fit space-y-1.5'>
       <p className='font-semibold'>Cantidad:</p>
       <Join className='space-x-1'>
-        <Join.Button className='rounded-full' onClick={() => handleClick(-1)} shape='square' size='sm'>
+        <Join.Button className='rounded-full' onClick={decrement} shape='square' size='sm'>
           <LucideMinus className='stroke-current/70' />
         </Join.Button>
         <Join.Input as='label' className='rounded-full outline-none' color='primary' size='sm'>
-          <input className='text-center' maxLength={2} min={1} readOnly size={2} type='text' value={count} />
+          <input className='text-center' maxLength={2} min={1} readOnly size={2} type='text' value={quantity} />
         </Join.Input>
-        <Join.Button className='rounded-full' onClick={() => handleClick(1)} shape='square' size='sm'>
+        <Join.Button className='rounded-full' onClick={increment} shape='square' size='sm'>
           <LucidePlus className='stroke-current/70' />
         </Join.Button>
       </Join>
