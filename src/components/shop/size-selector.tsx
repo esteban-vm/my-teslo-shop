@@ -1,19 +1,27 @@
-import type { Size } from '@/generated/prisma/client'
+'use client'
+
 import { Join } from 'rsc-daisyui'
+import { useAddToCart } from '@/hooks'
 
-export interface SizeSelectorProps {
-  selectedSize: Size
-  availableSizes: Size[]
-}
+export function SizeSelector() {
+  const selectedSize = useAddToCart((s) => s.selectedSize)
+  const sizes = useAddToCart((s) => s.sizes)
+  const setSize = useAddToCart((s) => s.setSize)
 
-export function SizeSelector({ selectedSize, availableSizes }: SizeSelectorProps) {
   return (
     <>
       <p className='font-semibold'>Tamaño:</p>
       <Join className='space-x-1'>
-        {availableSizes.map((size) => {
+        {sizes.map((size) => {
           return (
-            <Join.Button active={size === selectedSize} ghost key={size} shape='square' size='sm'>
+            <Join.Button
+              active={size === selectedSize}
+              ghost
+              key={size}
+              onClick={() => setSize(size)}
+              shape='square'
+              size='sm'
+            >
               {size}
             </Join.Button>
           )
