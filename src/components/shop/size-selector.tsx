@@ -2,13 +2,13 @@
 
 import { TriangleAlert } from 'lucide-react'
 import { Alert, Join } from 'rsc-daisyui'
-import { useAddToCart } from '@/hooks'
+import { useShoppingCartUI } from '@/hooks'
 
 export function SizeSelector() {
-  const size = useAddToCart((s) => s.size)
-  const sizes = useAddToCart((s) => s.sizes)
-  const posted = useAddToCart((s) => s.posted)
-  const setSize = useAddToCart((s) => s.setSize)
+  const size = useShoppingCartUI((s) => s.size)
+  const sizes = useShoppingCartUI((s) => s.sizes)
+  const posted = useShoppingCartUI((s) => s.posted)
+  const setSize = useShoppingCartUI((s) => s.setSize)
 
   return (
     <>
