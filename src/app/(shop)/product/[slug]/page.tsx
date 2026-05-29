@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
-import { ProductSlider, QuantityCounter, SizeSelector, StockCounter } from '@/components/shop'
+import { ProductSlider, QuantitySelector, SizeSelector, StockCounter } from '@/components/shop'
 import { AddToCartProvider } from '@/contexts'
 import { formatProductPrice } from '@/lib/helpers'
 
@@ -56,7 +56,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </p>
         <AddToCartProvider sizes={sizes}>
           <SizeSelector />
-          <QuantityCounter />
+          <QuantitySelector />
         </AddToCartProvider>
         <p className='font-semibold'>Descripción:</p>
         <p className='text-justify text-sm'>{description}</p>

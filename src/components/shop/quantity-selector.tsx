@@ -4,7 +4,7 @@ import { LucideMinus, LucidePlus } from 'lucide-react'
 import { Button, Join } from 'rsc-daisyui'
 import { useAddToCart } from '@/hooks'
 
-export function QuantityCounter() {
+export function QuantitySelector() {
   const size = useAddToCart((s) => s.size)
   const quantity = useAddToCart((s) => s.quantity)
   const decreaseQuantity = useAddToCart((s) => s.decreaseQuantity)
