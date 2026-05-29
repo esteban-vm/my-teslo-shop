@@ -7,8 +7,8 @@ import { useAddToCart } from '@/hooks'
 export function QuantityCounter() {
   const size = useAddToCart((s) => s.size)
   const quantity = useAddToCart((s) => s.quantity)
-  const decrement = useAddToCart((s) => s.decrement)
-  const increment = useAddToCart((s) => s.increment)
+  const decreaseQuantity = useAddToCart((s) => s.decreaseQuantity)
+  const increaseQuantity = useAddToCart((s) => s.increaseQuantity)
   const setPosted = useAddToCart((s) => s.setPosted)
 
   const addToCart = () => {
@@ -21,13 +21,13 @@ export function QuantityCounter() {
     <div className='w-fit space-y-1.5'>
       <p className='font-semibold'>Cantidad:</p>
       <Join className='space-x-1'>
-        <Join.Button className='rounded-full' onClick={decrement} shape='square' size='sm'>
+        <Join.Button className='rounded-full' onClick={decreaseQuantity} shape='square' size='sm'>
           <LucideMinus className='stroke-current/70' />
         </Join.Button>
         <Join.Input as='label' className='rounded-full outline-none' color='primary' size='sm'>
           <input className='text-center' maxLength={2} min={1} readOnly size={2} type='text' value={quantity} />
         </Join.Input>
-        <Join.Button className='rounded-full' onClick={increment} shape='square' size='sm'>
+        <Join.Button className='rounded-full' onClick={increaseQuantity} shape='square' size='sm'>
           <LucidePlus className='stroke-current/70' />
         </Join.Button>
       </Join>

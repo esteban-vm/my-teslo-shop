@@ -7,8 +7,8 @@ export interface AddToCartState extends AddToCartProps {
   quantity: number
   posted: boolean
   setSize: (size: Size) => void
-  decrement: () => void
-  increment: () => void
+  decreaseQuantity: () => void
+  increaseQuantity: () => void
   setPosted: (posted: boolean) => void
 }
 
@@ -23,12 +23,12 @@ export const createAddToCartStore = (initProps: AddToCartProps) => {
       setSize(size) {
         set({ size })
       },
-      decrement() {
+      decreaseQuantity() {
         const { quantity } = get()
         if (quantity === 1) return
         set({ quantity: quantity - 1 })
       },
-      increment() {
+      increaseQuantity() {
         const { quantity } = get()
         if (quantity === 5) return
         set({ quantity: quantity + 1 })
