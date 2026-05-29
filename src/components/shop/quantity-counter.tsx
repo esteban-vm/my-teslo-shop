@@ -5,11 +5,17 @@ import { Button, Join } from 'rsc-daisyui'
 import { useAddToCart } from '@/hooks'
 
 export function QuantityCounter() {
+  const size = useAddToCart((s) => s.size)
   const quantity = useAddToCart((s) => s.quantity)
   const decrement = useAddToCart((s) => s.decrement)
   const increment = useAddToCart((s) => s.increment)
+  const setPosted = useAddToCart((s) => s.setPosted)
 
-  const addToCart = () => {}
+  const addToCart = () => {
+    setPosted(true)
+    if (!size) return
+    console.log({ size, quantity })
+  }
 
   return (
     <div className='w-fit space-y-1.5'>
