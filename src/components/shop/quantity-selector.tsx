@@ -2,14 +2,14 @@
 
 import { LucideMinus, LucidePlus } from 'lucide-react'
 import { Button, Join } from 'rsc-daisyui'
-import { useAddToCart } from '@/hooks'
+import { useShoppingCartUI } from '@/hooks'
 
 export function QuantitySelector() {
-  const size = useAddToCart((s) => s.size)
-  const quantity = useAddToCart((s) => s.quantity)
-  const decreaseQuantity = useAddToCart((s) => s.decreaseQuantity)
-  const increaseQuantity = useAddToCart((s) => s.increaseQuantity)
-  const setPosted = useAddToCart((s) => s.setPosted)
+  const size = useShoppingCartUI((s) => s.size)
+  const quantity = useShoppingCartUI((s) => s.quantity)
+  const decreaseQuantity = useShoppingCartUI((s) => s.decreaseQuantity)
+  const increaseQuantity = useShoppingCartUI((s) => s.increaseQuantity)
+  const setPosted = useShoppingCartUI((s) => s.setPosted)
 
   const addToCart = () => {
     setPosted(true)
