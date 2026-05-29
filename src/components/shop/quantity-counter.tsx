@@ -9,6 +9,8 @@ export function QuantityCounter() {
   const decrement = useAddToCart((s) => s.decrement)
   const increment = useAddToCart((s) => s.increment)
 
+  const addToCart = () => {}
+
   return (
     <div className='w-fit space-y-1.5'>
       <p className='font-semibold'>Cantidad:</p>
@@ -24,7 +26,7 @@ export function QuantityCounter() {
         </Join.Button>
       </Join>
       <br />
-      <Button color='secondary' size='sm' wide>
+      <Button color='secondary' onClick={addToCart} size='sm' wide>
         Agregar al carrito
       </Button>
     </div>
