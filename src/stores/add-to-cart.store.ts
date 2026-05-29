@@ -3,7 +3,7 @@ import type { Size } from '@/generated/prisma/client'
 import { createStore } from 'zustand'
 
 export interface AddToCartState extends AddToCartProps {
-  selectedSize?: Size
+  size?: Size
   quantity: number
   setSize: (size: Size) => void
   decrement: () => void
@@ -18,7 +18,7 @@ export const createAddToCartStore = (initProps: AddToCartProps) => {
       ...initProps,
       quantity: 1,
       setSize(size) {
-        set({ selectedSize: size })
+        set({ size })
       },
       decrement() {
         const { quantity } = get()
