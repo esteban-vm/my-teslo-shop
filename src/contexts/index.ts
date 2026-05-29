@@ -1,1 +1,1 @@
-export * from './add-to-cart.context'
+export * from './shopping-cart-ui.context'
