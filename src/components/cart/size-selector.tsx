@@ -3,6 +3,7 @@
 import { TriangleAlert } from 'lucide-react'
 import { Alert, Join } from 'rsc-daisyui'
 import { useShoppingCartUI } from '@/hooks'
+import { cn } from '@/lib/ui'
 
 export function SizeSelector() {
   const size = useShoppingCartUI((s) => s.size)
@@ -10,14 +11,18 @@ export function SizeSelector() {
   const posted = useShoppingCartUI((s) => s.posted)
   const setSize = useShoppingCartUI((s) => s.setSize)
 
+  const isError = posted && !size
+
   return (
     <>
-      {posted && !size && (
-        <Alert className='w-fit gap-1 px-2 py-1 text-sm' color='error' soft>
-          <TriangleAlert className='size-4 stroke-current' />
-          <span>Tamaño requerido</span>
-        </Alert>
-      )}
+      <Alert
+        className={cn('w-fit gap-1 px-2 py-1 text-sm', isError ? 'fade-in animate-in' : 'hidden')}
+        color='error'
+        soft
+      >
+        <TriangleAlert className='size-4 stroke-current' />
+        <span>Tamaño requerido</span>
+      </Alert>
       <p className='font-semibold'>Tamaño:</p>
       <Join className='space-x-1'>
         {sizes.map((s) => {
