@@ -7,7 +7,7 @@ export function useShoppingCartUI<T>(selector: (state: ShoppingCartUIState) => T
   const store = useContext(ShoppingCartUIContext)
 
   if (!store) {
-    throw new Error('Se require AddToCartProvider')
+    throw new Error('ShoppingCartUIContext missing')
   }
 
   return useStore(store, selector)
