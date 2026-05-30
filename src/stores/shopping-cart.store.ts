@@ -14,6 +14,7 @@ export interface ShoppingCartProduct {
 
 export interface ShoppingCartState {
   cart: ShoppingCartProduct[]
+  getTotalItems: () => number
   addToCart: (product: ShoppingCartProduct) => void
 }
 
@@ -25,6 +26,10 @@ export const createShoppingCartStore = () => {
       (set, get) => {
         return {
           cart: [],
+          getTotalItems() {
+            const { cart } = get()
+            return cart.reduce((total, item) => total + item.quantity, 0)
+          },
           addToCart(product) {
             const { cart } = get()
 
@@ -56,7 +61,7 @@ export const createShoppingCartStore = () => {
           },
         }
       },
-      { name: 'shopping-cart-storage' }
+      { name: 'teslo-shop/shopping-cart' }
     )
   )
 }
