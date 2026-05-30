@@ -11,7 +11,7 @@ export function QuantitySelector() {
   const increaseQuantity = useShoppingCartUI((s) => s.increaseQuantity)
   const setPosted = useShoppingCartUI((s) => s.setPosted)
 
-  const addToCart = () => {
+  const onAddToCart = () => {
     setPosted(true)
     if (!size) return
     console.log({ size, quantity })
@@ -32,7 +32,7 @@ export function QuantitySelector() {
         </Join.Button>
       </Join>
       <br />
-      <Button color='secondary' onClick={addToCart} size='sm' wide>
+      <Button color='secondary' onClick={onAddToCart} size='sm' wide>
         Agregar al carrito
       </Button>
     </div>
