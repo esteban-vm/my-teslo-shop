@@ -3,13 +3,13 @@ import type { Size } from '@/generated/prisma/client'
 import { createStore } from 'zustand'
 
 export interface ShoppingCartUIState extends ShoppingCartUIProps {
-  size?: Size
+  currentSize?: Size
   quantity: number
-  posted: boolean
-  setSize: (size: Size) => void
+  isPosted: boolean
+  setCurrentSize: (size: Size) => void
   decreaseQuantity: () => void
   increaseQuantity: () => void
-  setPosted: (posted: boolean) => void
+  setIsPosted: (posted: boolean) => void
 }
 
 export type ShoppingCartUIStore = ReturnType<typeof createShoppingCartUIStore>
@@ -19,9 +19,9 @@ export const createShoppingCartUIStore = (initProps: ShoppingCartUIProps) => {
     return {
       ...initProps,
       quantity: 1,
-      posted: false,
-      setSize(size) {
-        set({ size })
+      isPosted: false,
+      setCurrentSize(size) {
+        set({ currentSize: size })
       },
       decreaseQuantity() {
         const { quantity } = get()
@@ -33,8 +33,8 @@ export const createShoppingCartUIStore = (initProps: ShoppingCartUIProps) => {
         if (quantity === 5) return
         set({ quantity: quantity + 1 })
       },
-      setPosted(posted) {
-        set({ posted })
+      setIsPosted(posted) {
+        set({ isPosted: posted })
       },
     }
   })
