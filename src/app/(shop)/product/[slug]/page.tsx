@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product = await ProductActions.getProductBySlug(slug)
   if (!product) notFound()
 
-  const { title, description, price, images, sizes } = product
+  const { title, description, price, images } = product
 
   return (
     <PageContainer>
@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <span className='font-semibold'>Precio:&nbsp;</span>
           {formatProductPrice(price)}
         </p>
-        <ShoppingCartUIProvider sizes={sizes}>
+        <ShoppingCartUIProvider product={product}>
           <SizeSelector />
           <QuantitySelector />
         </ShoppingCartUIProvider>
