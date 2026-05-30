@@ -1,6 +1,5 @@
+import type { StateCreator } from 'zustand'
 import type { Size } from '@/generated/prisma/client'
-import { createStore } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 export interface ShoppingCartProduct {
   id: string
@@ -18,50 +17,41 @@ export interface ShoppingCartState {
   addToCart: (product: ShoppingCartProduct) => void
 }
 
-export type ShoppingCartStore = ReturnType<typeof createShoppingCartStore>
+export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, get) => {
+  return {
+    cart: [],
+    getTotalItems() {
+      const { cart } = get()
+      return cart.reduce((total, item) => total + item.quantity, 0)
+    },
+    addToCart(product) {
+      const { cart } = get()
 
-export const createShoppingCartStore = () => {
-  return createStore<ShoppingCartState>()(
-    persist(
-      (set, get) => {
-        return {
-          cart: [],
-          getTotalItems() {
-            const { cart } = get()
-            return cart.reduce((total, item) => total + item.quantity, 0)
-          },
-          addToCart(product) {
-            const { cart } = get()
+      const checkProduct = (item: ShoppingCartProduct) => {
+        return item.id === product.id && item.size === product.size
+      }
 
-            const checkProduct = (item: ShoppingCartProduct) => {
-              return item.id === product.id && item.size === product.size
-            }
+      // 1. Revisar si el producto existe en el carrito con la talla seleccionada
+      const productInCart = cart.some(checkProduct)
 
-            // 1. Revisar si el producto existe en el carrito con la talla seleccionada
-            const productInCart = cart.some(checkProduct)
+      if (!productInCart) {
+        set({ cart: [...cart, product] })
+        return
+      }
 
-            if (!productInCart) {
-              set({ cart: [...cart, product] })
-              return
-            }
-
-            // 2. Si el producto existe con la talla, incrementar la cantidad
-            const updatedCart = cart.map((item) => {
-              if (checkProduct(item)) {
-                return {
-                  ...item,
-                  quantity: item.quantity + product.quantity,
-                }
-              }
-
-              return item
-            })
-
-            set({ cart: updatedCart })
-          },
+      // 2. Si el producto existe con la talla, incrementar la cantidad
+      const updatedCart = cart.map((item) => {
+        if (checkProduct(item)) {
+          return {
+            ...item,
+            quantity: item.quantity + product.quantity,
+          }
         }
-      },
-      { name: 'teslo-shop/shopping-cart' }
-    )
-  )
+
+        return item
+      })
+
+      set({ cart: updatedCart })
+    },
+  }
 }
