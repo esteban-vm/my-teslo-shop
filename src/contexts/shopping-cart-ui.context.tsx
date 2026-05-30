@@ -7,7 +7,7 @@ import { createContext, useState } from 'react'
 import { createShoppingCartUIStore } from '@/stores'
 
 export interface ShoppingCartUIProps {
-  product: Product
+  product: Product & { images: string[] }
 }
 
 export type ShoppingCartUIProviderProps = PropsWithChildren<ShoppingCartUIProps>
