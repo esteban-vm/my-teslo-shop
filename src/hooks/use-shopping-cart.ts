@@ -1,10 +1,8 @@
 import type { ShoppingCartState } from '@/stores'
-import { useState } from 'react'
-import { useStore } from 'zustand'
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import { createShoppingCartStore } from '@/stores'
 
-export function useShoppingCart<T>(selector: (state: ShoppingCartState) => T): T {
-  const [store] = useState(createShoppingCartStore)
-
-  return useStore(store, selector)
-}
+export const useShoppingCart = create<ShoppingCartState>()(
+  persist(createShoppingCartStore, { name: 'teslo-shop/shopping-cart' })
+)
