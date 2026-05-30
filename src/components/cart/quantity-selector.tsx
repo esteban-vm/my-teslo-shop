@@ -5,16 +5,16 @@ import { Button, Join } from 'rsc-daisyui'
 import { useShoppingCartUI } from '@/hooks'
 
 export function QuantitySelector() {
-  const size = useShoppingCartUI((s) => s.size)
   const quantity = useShoppingCartUI((s) => s.quantity)
+  const currentSize = useShoppingCartUI((s) => s.currentSize)
   const decreaseQuantity = useShoppingCartUI((s) => s.decreaseQuantity)
   const increaseQuantity = useShoppingCartUI((s) => s.increaseQuantity)
-  const setPosted = useShoppingCartUI((s) => s.setPosted)
+  const setIsPosted = useShoppingCartUI((s) => s.setIsPosted)
 
   const onAddToCart = () => {
-    setPosted(true)
-    if (!size) return
-    console.log({ size, quantity })
+    setIsPosted(true)
+    if (!currentSize) return
+    console.log({ size: currentSize, quantity })
   }
 
   return (
