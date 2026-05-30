@@ -11,12 +11,10 @@ export function SizeSelector() {
   const posted = useShoppingCartUI((s) => s.posted)
   const setSize = useShoppingCartUI((s) => s.setSize)
 
-  const isError = posted && !size
-
   return (
     <>
       <Alert
-        className={cn('w-fit gap-1 px-2 py-1 text-sm', isError ? 'fade-in animate-in' : 'hidden')}
+        className={cn('w-fit gap-1 px-2 py-1 text-sm', posted && !size ? 'fade-in animate-in' : 'hidden')}
         color='error'
         soft
       >
