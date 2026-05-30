@@ -10,9 +10,9 @@ export interface ShoppingCartUIProps {
   sizes: Size[]
 }
 
-export const ShoppingCartUIContext = createContext<ShoppingCartUIStore | null>(null)
-
 export type ShoppingCartUIProviderProps = PropsWithChildren<ShoppingCartUIProps>
+
+export const ShoppingCartUIContext = createContext<ShoppingCartUIStore | null>(null)
 
 export function ShoppingCartUIProvider({ children, ...props }: ShoppingCartUIProviderProps) {
   const [store] = useState(() => createShoppingCartUIStore(props))
