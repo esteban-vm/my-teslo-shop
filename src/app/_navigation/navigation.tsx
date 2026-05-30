@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
-import { MenuIcon, Search, ShoppingCart } from 'lucide-react'
-import { Button, Drawer, Indicator, Input, Menu, Navbar } from 'rsc-daisyui'
+import { MenuIcon, Search } from 'lucide-react'
+import { Button, Drawer, Input, Menu, Navbar } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { DRAWER_ID, navbarLinks, sidebarLinks } from '@/lib/constants'
-import { CloseButton, HomeLink, NavLink } from './components'
+import { CartLink, CloseButton, HomeLink, NavLink } from './components'
 
 export function Navigation({ children }: { children: ReactNode }) {
   return (
@@ -23,14 +23,7 @@ export function Navigation({ children }: { children: ReactNode }) {
             <Button ghost shape='square' size='sm'>
               <Search />
             </Button>
-            <Indicator>
-              <Indicator.Badge ghost size='xs'>
-                5
-              </Indicator.Badge>
-              <Button ghost shape='square' size='sm'>
-                <ShoppingCart />
-              </Button>
-            </Indicator>
+            <CartLink />
             <Button as='label' ghost htmlFor={DRAWER_ID} shape='square' size='sm'>
               <MenuIcon className='size-[90%]' />
             </Button>
