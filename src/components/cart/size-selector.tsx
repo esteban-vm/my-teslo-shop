@@ -2,14 +2,14 @@
 
 import { TriangleAlert } from 'lucide-react'
 import { Alert, Join } from 'rsc-daisyui'
-import { useShoppingCartUI } from '@/hooks'
+import { useCartContext } from '@/hooks'
 import { cn } from '@/lib/ui'
 
 export function SizeSelector() {
-  const product = useShoppingCartUI((s) => s.product)
-  const isPosted = useShoppingCartUI((s) => s.isPosted)
-  const currentSize = useShoppingCartUI((s) => s.currentSize)
-  const setCurrentSize = useShoppingCartUI((s) => s.setCurrentSize)
+  const product = useCartContext((s) => s.product)
+  const isPosted = useCartContext((s) => s.isPosted)
+  const currentSize = useCartContext((s) => s.currentSize)
+  const setCurrentSize = useCartContext((s) => s.setCurrentSize)
 
   const showError = isPosted && !currentSize
 
