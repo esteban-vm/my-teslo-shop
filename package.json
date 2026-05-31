@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",
+    "@redux-devtools/extension": "^4.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.20.0",
