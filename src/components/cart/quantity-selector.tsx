@@ -4,16 +4,16 @@ import type { ShoppingCartProduct } from '@/stores'
 import { LucideMinus, LucidePlus } from 'lucide-react'
 import { useState } from 'react'
 import { Button, Join } from 'rsc-daisyui'
-import { useShoppingCart, useShoppingCartUI } from '@/hooks'
+import { useCartContext, useShoppingCart } from '@/hooks'
 
 export function QuantitySelector() {
   const [quantity, setQuantity] = useState(1)
   const addToCart = useShoppingCart((s) => s.addToCart)
 
-  const product = useShoppingCartUI((s) => s.product)
-  const currentSize = useShoppingCartUI((s) => s.currentSize)
-  const setIsPosted = useShoppingCartUI((s) => s.setIsPosted)
-  const setCurrentSize = useShoppingCartUI((s) => s.setCurrentSize)
+  const product = useCartContext((s) => s.product)
+  const currentSize = useCartContext((s) => s.currentSize)
+  const setIsPosted = useCartContext((s) => s.setIsPosted)
+  const setCurrentSize = useCartContext((s) => s.setCurrentSize)
 
   const onQuantityChange = (value: number) => {
     const newQuantity = quantity + value
