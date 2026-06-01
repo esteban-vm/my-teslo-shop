@@ -5,7 +5,7 @@ import type { Gender } from '@/generated/prisma/client'
 import { notFound, redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { ProductCard, ProductGrid } from '@/components/shop'
+import { ProductGrid } from '@/components/shop'
 import { genderMap } from '@/lib/constants'
 
 type GenderPageProps = PageProps<'/gender/[gender]'>
@@ -46,11 +46,7 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
   return (
     <>
       <PageTitle title={`Artículos para ${currentGender}`} />
-      <ProductGrid>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </ProductGrid>
+      <ProductGrid products={products} />
       <PagePagination totalPages={totalPages} />
     </>
   )

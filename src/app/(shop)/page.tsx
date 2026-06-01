@@ -3,7 +3,7 @@ export const revalidate = 60
 import { redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { ProductCard, ProductGrid } from '@/components/shop'
+import { ProductGrid } from '@/components/shop'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
@@ -15,11 +15,7 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   return (
     <>
       <PageTitle subtitle='Todos los productos' title='Tienda' />
-      <ProductGrid>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </ProductGrid>
+      <ProductGrid products={products} />
       <PagePagination totalPages={totalPages} />
     </>
   )
