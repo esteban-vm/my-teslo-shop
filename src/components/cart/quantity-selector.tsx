@@ -1,10 +1,10 @@
 'use client'
 
 import type { ShoppingCartProduct } from '@/stores'
-import { LucideMinus, LucidePlus } from 'lucide-react'
 import { useState } from 'react'
-import { Button, Join } from 'rsc-daisyui'
+import { Button } from 'rsc-daisyui'
 import { useCartContext, useShoppingCart } from '@/hooks'
+import { CounterInput } from '../shared'
 
 export function QuantitySelector() {
   const [quantity, setQuantity] = useState(1)
@@ -44,17 +44,11 @@ export function QuantitySelector() {
   return (
     <div className='w-fit space-y-1.5'>
       <p className='font-semibold'>Cantidad:</p>
-      <Join className='space-x-1'>
-        <Join.Button className='rounded-full' onClick={() => onQuantityChange(-1)} shape='square' size='sm'>
-          <LucideMinus className='stroke-current/70' />
-        </Join.Button>
-        <Join.Input as='label' className='rounded-full outline-none' color='primary' size='sm'>
-          <input className='text-center' maxLength={2} min={1} readOnly size={1} type='text' value={quantity} />
-        </Join.Input>
-        <Join.Button className='rounded-full' onClick={() => onQuantityChange(1)} shape='square' size='sm'>
-          <LucidePlus className='stroke-current/70' />
-        </Join.Button>
-      </Join>
+      <CounterInput
+        onDecrease={() => onQuantityChange(-1)}
+        onIncrease={() => onQuantityChange(1)}
+        quantity={quantity}
+      />
       <br />
       <Button color='secondary' onClick={onAddToCart} size='sm' wide>
         Agregar al carrito
