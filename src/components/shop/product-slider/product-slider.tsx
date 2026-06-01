@@ -13,7 +13,7 @@ export function ProductSlider({ images }: { images: string[] }) {
   const playSlide = () => galleryRef.current?.play()
   const pauseSlide = () => galleryRef.current?.pause()
 
-  const items = images.map((image): GalleryItem => {
+  const galleryItems = images.map((image): GalleryItem => {
     const productUrl = `/products/${image}`
 
     return {
@@ -28,7 +28,7 @@ export function ProductSlider({ images }: { images: string[] }) {
     <ImageGallery
       additionalClass={cn('col-span-1 lg:col-span-2')}
       autoPlay
-      items={items}
+      items={galleryItems}
       onMouseLeave={playSlide}
       onMouseOver={pauseSlide}
       onTouchEnd={playSlide}
