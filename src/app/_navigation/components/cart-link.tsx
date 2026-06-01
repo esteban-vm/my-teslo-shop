@@ -1,6 +1,7 @@
 'use client'
 
 import { ShoppingCart } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Button, Indicator } from 'rsc-daisyui'
 import { useShoppingCart } from '@/hooks'
@@ -20,7 +21,7 @@ export function CartLink() {
       <Indicator.Badge ghost size='xs'>
         {totalItems}
       </Indicator.Badge>
-      <Button ghost shape='square' size='sm'>
+      <Button as={Link} ghost href='/cart' shape='square' size='sm'>
         <ShoppingCart />
       </Button>
     </Indicator>
