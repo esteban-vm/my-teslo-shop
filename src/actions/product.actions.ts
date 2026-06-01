@@ -1,16 +1,27 @@
 'use server'
 
 import type { Gender } from '@/generated/prisma/client'
+import type { ProductWithImages } from '@/types'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 
-type GetProductWithImageParams = Partial<{
+interface ProductsWithImagesParams {
   page: number
   take: number
   gender: Gender
-}>
+}
 
-export async function getProductsWithImages({ page = 1, take = 12, gender }: GetProductWithImageParams) {
+interface ProductsWithImagesResult {
+  currentPage: number
+  totalPages: number
+  products: ProductWithImages[]
+}
+
+export async function getProductsWithImages({
+  page = 1,
+  take = 12,
+  gender,
+}: Partial<ProductsWithImagesParams>): Promise<ProductsWithImagesResult> {
   if (Number.isNaN(page) || page < 1) page = 1
 
   const products = await prisma.product.findMany({
@@ -40,7 +51,7 @@ export async function getProductsWithImages({ page = 1, take = 12, gender }: Get
   }
 }
 
-export async function getProductBySlug(slug: string) {
+export async function getProductBySlug(slug: string): Promise<ProductWithImages | null> {
   const product = await prisma.product.findFirst({
     where: { slug },
     include: {
@@ -58,7 +69,7 @@ export async function getProductBySlug(slug: string) {
   }
 }
 
-export async function getStockBySlug(slug: string) {
+export async function getStockBySlug(slug: string): Promise<number> {
   try {
     await sleepExecution(3)
 
