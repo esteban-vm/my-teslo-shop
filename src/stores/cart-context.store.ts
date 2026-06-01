@@ -1,8 +1,8 @@
-import type { CartProviderBaseProps } from '@/contexts'
 import type { Size } from '@/generated/prisma/client'
+import type { PropsWithProduct } from '@/types'
 import { createStore } from 'zustand'
 
-export interface CartContextState extends CartProviderBaseProps {
+export interface CartContextState extends PropsWithProduct {
   currentSize?: Size
   setCurrentSize: (size?: Size) => void
   isPosted: boolean
@@ -11,7 +11,7 @@ export interface CartContextState extends CartProviderBaseProps {
 
 export type CartContextStore = ReturnType<typeof createCartContextStore>
 
-export const createCartContextStore = (initProps: CartProviderBaseProps) => {
+export const createCartContextStore = (initProps: PropsWithProduct) => {
   return createStore<CartContextState>()((set) => {
     return {
       ...initProps,
