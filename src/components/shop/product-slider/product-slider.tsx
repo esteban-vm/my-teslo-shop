@@ -31,8 +31,8 @@ export function ProductSlider({ images }: { images: string[] }) {
       onTouchEnd={playSlide}
       onTouchStart={pauseSlide}
       ref={galleryRef}
-      renderLeftNav={(leftNavOnClick) => <SliderButton icon={<ChevronLeft />} isLeft onClick={leftNavOnClick} />}
-      renderRightNav={(rightNavOnClick) => <SliderButton icon={<ChevronRight />} onClick={rightNavOnClick} />}
+      renderLeftNav={(cb) => <SliderButton icon={<ChevronLeft />} isLeft onClick={cb} />}
+      renderRightNav={(cb) => <SliderButton icon={<ChevronRight />} onClick={cb} />}
       showFullscreenButton={false}
       showPlayButton={false}
       slideInterval={5000}
