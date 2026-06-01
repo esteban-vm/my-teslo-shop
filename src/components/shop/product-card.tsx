@@ -1,16 +1,13 @@
 import type { Route } from 'next'
-import type { Product } from '@/generated/prisma/client'
+import type { PropsWithProduct } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { formatProductPrice } from '@/lib/helpers'
 
-export interface ProductCardProps extends Product {
-  images: string[]
-}
-
-export function ProductCard({ id, title, price, slug, images }: ProductCardProps) {
+export function ProductCard({ product }: PropsWithProduct) {
+  const { id, title, price, slug, images } = product
   const productRoute: Route<`/product/${string}`> = `/product/${slug}`
 
   return (

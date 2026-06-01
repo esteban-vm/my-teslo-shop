@@ -48,7 +48,7 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
       <PageTitle title={`Artículos para ${currentGender}`} />
       <ProductGrid>
         {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </ProductGrid>
       <PagePagination totalPages={totalPages} />

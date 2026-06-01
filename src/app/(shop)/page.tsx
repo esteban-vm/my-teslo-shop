@@ -17,7 +17,7 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
       <PageTitle subtitle='Todos los productos' title='Tienda' />
       <ProductGrid>
         {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </ProductGrid>
       <PagePagination totalPages={totalPages} />
