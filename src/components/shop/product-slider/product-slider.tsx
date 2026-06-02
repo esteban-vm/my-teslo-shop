@@ -13,11 +13,12 @@ export function ProductSlider({ images }: { images: string[] }) {
   const playSlide = () => galleryRef.current?.play()
   const pauseSlide = () => galleryRef.current?.pause()
 
-  const onSlideNav = () => {
+  const slideNav = () => {
+    playSlide()
+
     const gallery = galleryRef.current
 
     if (gallery) {
-      gallery.pause()
       const currentIndex = gallery.getCurrentIndex()
 
       if (currentIndex === 0) {
@@ -25,9 +26,9 @@ export function ProductSlider({ images }: { images: string[] }) {
       } else {
         gallery.slideToIndex(0)
       }
-
-      gallery.play()
     }
+
+    pauseSlide()
   }
 
   const galleryItems = images.map((image): GalleryItem => {
@@ -51,8 +52,8 @@ export function ProductSlider({ images }: { images: string[] }) {
       onTouchEnd={playSlide}
       onTouchStart={pauseSlide}
       ref={galleryRef}
-      renderLeftNav={() => <SliderButton icon={<ChevronRight />} isLeft onClick={onSlideNav} />}
-      renderRightNav={() => <SliderButton icon={<ChevronLeft />} onClick={onSlideNav} />}
+      renderLeftNav={() => <SliderButton icon={<ChevronRight />} isLeft onClick={slideNav} />}
+      renderRightNav={() => <SliderButton icon={<ChevronLeft />} onClick={slideNav} />}
       showFullscreenButton={false}
       showPlayButton={false}
       slideInterval={5000}
