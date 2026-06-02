@@ -10,11 +10,11 @@ import { SliderButton } from './slider-button'
 export function ProductSlider({ images }: { images: string[] }) {
   const galleryRef = useRef<ImageGalleryRef>(null)
 
-  const playSlide = () => galleryRef.current?.play()
-  const pauseSlide = () => galleryRef.current?.pause()
+  const onPlay = () => galleryRef.current?.play()
+  const onPause = () => galleryRef.current?.pause()
 
-  const slideNav = () => {
-    pauseSlide()
+  const onSlide = () => {
+    onPause()
 
     const gallery = galleryRef.current
 
@@ -28,7 +28,7 @@ export function ProductSlider({ images }: { images: string[] }) {
       }
     }
 
-    playSlide()
+    onPlay()
   }
 
   const galleryItems = images.map((image): GalleryItem => {
@@ -47,16 +47,16 @@ export function ProductSlider({ images }: { images: string[] }) {
       additionalClass={cn('col-span-1 lg:col-span-2')}
       autoPlay
       items={galleryItems}
-      onMouseLeave={playSlide}
-      onMouseOver={pauseSlide}
-      onTouchEnd={playSlide}
-      onTouchStart={pauseSlide}
+      onMouseLeave={onPlay}
+      onMouseOver={onPause}
+      onTouchEnd={onPlay}
+      onTouchStart={onPause}
       ref={galleryRef}
-      renderLeftNav={() => <SliderButton icon={<ChevronRight />} isLeft onClick={slideNav} />}
-      renderRightNav={() => <SliderButton icon={<ChevronLeft />} onClick={slideNav} />}
+      renderLeftNav={() => <SliderButton icon={<ChevronRight />} isLeft onClick={onSlide} />}
+      renderRightNav={() => <SliderButton icon={<ChevronLeft />} onClick={onSlide} />}
       showFullscreenButton={false}
       showPlayButton={false}
-      slideInterval={5000}
+      slideInterval={5_000}
     />
   )
 }
