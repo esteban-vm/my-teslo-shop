@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Button, List, Skeleton } from 'rsc-daisyui'
+import { Button, List } from 'rsc-daisyui'
+import { SkeletonLoader } from '@/components/shared'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CartItem } from './cart-item'
 
@@ -10,7 +11,7 @@ export function CartList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <Skeleton className='h-48 w-full rounded-box' />
+    return <SkeletonLoader text='Cargando carrito de compras' />
   }
 
   return (
