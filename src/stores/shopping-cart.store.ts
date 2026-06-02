@@ -11,9 +11,17 @@ export interface ShoppingCartProduct {
   image: string
 }
 
+export interface SummaryInformation {
+  total: number
+  subtotal: number
+  tax: number
+  totalItems: number
+}
+
 export interface ShoppingCartState {
   cart: ShoppingCartProduct[]
   getTotalItems: () => number
+  getSummaryInformation: () => SummaryInformation
   addToCart: (product: ShoppingCartProduct) => void
   updateQuantity: (product: ShoppingCartProduct, quantity: number) => void
   removeFromCart: (product: ShoppingCartProduct) => void
@@ -25,30 +33,43 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
 
     getTotalItems() {
       const { cart } = get()
-      return cart.reduce((total, item) => total + item.quantity, 0)
+      return cart.reduce((total, p) => total + p.quantity, 0)
+    },
+
+    getSummaryInformation() {
+      const { cart, getTotalItems } = get()
+
+      const subtotal = cart.reduce((st, p) => p.price * p.quantity + st, 0)
+      const tax = subtotal * 0.15
+      const total = subtotal + tax
+
+      return {
+        total,
+        subtotal,
+        tax,
+        totalItems: getTotalItems(),
+      }
     },
 
     addToCart(product) {
       const { cart } = get()
 
-      // 1. Revisar si el producto existe en el carrito con la talla seleccionada
-      const productInCart = cart.some((item) => checkProduct(item, product))
+      const productInCart = cart.some((p) => checkProduct(p, product))
 
       if (!productInCart) {
         set({ cart: [...cart, product] })
         return
       }
 
-      // 2. Si el producto existe con la talla, incrementar la cantidad
-      const updatedCart = cart.map((item) => {
-        if (checkProduct(item, product)) {
+      const updatedCart = cart.map((p) => {
+        if (checkProduct(p, product)) {
           return {
-            ...item,
-            quantity: item.quantity + product.quantity,
+            ...p,
+            quantity: p.quantity + product.quantity,
           }
         }
 
-        return item
+        return p
       })
 
       set({ cart: updatedCart })
@@ -57,15 +78,15 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
     updateQuantity(product, quantity) {
       const { cart } = get()
 
-      const updatedCart = cart.map((item) => {
-        if (checkProduct(item, product)) {
+      const updatedCart = cart.map((p) => {
+        if (checkProduct(p, product)) {
           return {
-            ...item,
+            ...p,
             quantity,
           }
         }
 
-        return item
+        return p
       })
 
       set({ cart: updatedCart })
@@ -73,16 +94,12 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
 
     removeFromCart(product) {
       const { cart } = get()
-
-      const updatedCart = cart.filter((item) => {
-        return item.id !== product.id || item.size !== product.size
-      })
-
+      const updatedCart = cart.filter((p) => p.id !== product.id || p.size !== product.size)
       set({ cart: updatedCart })
     },
   }
 }
 
-function checkProduct(product1: ShoppingCartProduct, product2: ShoppingCartProduct) {
-  return product1.id === product2.id && product1.size === product2.size
+function checkProduct(p1: ShoppingCartProduct, p2: ShoppingCartProduct) {
+  return p1.id === p2.id && p1.size === p2.size
 }
