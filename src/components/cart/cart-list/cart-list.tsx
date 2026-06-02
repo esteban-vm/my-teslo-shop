@@ -20,7 +20,7 @@ export function CartList() {
       </li>
       <li className='px-4'>
         <Button as={Link} className='p-0 hover:opacity-75' color='info' href='/' link size='sm'>
-          Continúa comprando
+          Continuar comprando
         </Button>
       </li>
       {cart.map((product) => (
