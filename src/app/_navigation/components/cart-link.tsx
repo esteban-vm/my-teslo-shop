@@ -2,19 +2,16 @@
 
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { Button, Indicator } from 'rsc-daisyui'
-import { useShoppingCart } from '@/hooks'
+import { Button, Indicator, Skeleton } from 'rsc-daisyui'
+import { useMounted, useShoppingCart } from '@/hooks'
 
 export function CartLink() {
-  const [mounted, setMounted] = useState(false)
+  const { mounted } = useMounted(2)
   const totalItems = useShoppingCart((s) => s.getTotalItems())
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
+  if (!mounted) {
+    return <Skeleton className='size-7 rounded-box' />
+  }
 
   return (
     <Indicator>
