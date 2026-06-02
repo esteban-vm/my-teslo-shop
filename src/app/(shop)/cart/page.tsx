@@ -9,7 +9,7 @@ export default function CartPage() {
         <div className='px-5 py-3 lg:col-span-2'>
           <CartList />
         </div>
-        <div className='h-64 border border-primary'>
+        <div className='px-5 py-3'>
           <OrderSummary />
         </div>
       </div>
