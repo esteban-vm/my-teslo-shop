@@ -14,7 +14,7 @@ export function ProductSlider({ images }: { images: string[] }) {
   const pauseSlide = () => galleryRef.current?.pause()
 
   const slideNav = () => {
-    playSlide()
+    pauseSlide()
 
     const gallery = galleryRef.current
 
@@ -28,7 +28,7 @@ export function ProductSlider({ images }: { images: string[] }) {
       }
     }
 
-    pauseSlide()
+    playSlide()
   }
 
   const galleryItems = images.map((image): GalleryItem => {
