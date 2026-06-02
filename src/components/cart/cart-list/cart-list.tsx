@@ -1,20 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { Button, List } from 'rsc-daisyui'
-import { useShoppingCart } from '@/hooks'
+import { Button, List, Skeleton } from 'rsc-daisyui'
+import { useMounted, useShoppingCart } from '@/hooks'
 import { CartItem } from './cart-item'
 
 export function CartList() {
-  const [mounted, setMounted] = useState(false)
+  const { mounted } = useMounted(5)
   const cart = useShoppingCart((s) => s.cart)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
+  if (!mounted) {
+    return <Skeleton className='h-48 w-full rounded-box' />
+  }
 
   return (
     <List>
