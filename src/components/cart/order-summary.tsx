@@ -15,7 +15,7 @@ export function OrderSummary() {
   }
 
   return (
-    <Card border className='mx-auto w-[90%]'>
+    <Card border className='mx-auto shadow-md xl:w-[90%]'>
       <Card.Body className='px-4 pt-2 pb-3'>
         <Card.Title>Resumen de orden</Card.Title>
 

@@ -15,7 +15,7 @@ export function CartList() {
   }
 
   return (
-    <List>
+    <List className='border border-primary/25'>
       <li className='px-4 pt-2'>
         <h2 className='font-semibold text-lg'>Agregar más artículos</h2>
       </li>
