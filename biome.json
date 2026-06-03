@@ -25,6 +25,7 @@
           "level": "error",
           "fix": "safe",
           "options": {
+            "attributes": ["additionalClass"],
             "functions": ["clsx", "cva", "cn", "tw", "tw.*"]
           }
         }
