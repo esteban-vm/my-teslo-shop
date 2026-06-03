@@ -4,7 +4,6 @@ import type { GalleryItem, ImageGalleryRef } from 'react-image-gallery'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef } from 'react'
 import ImageGallery from 'react-image-gallery'
-import { cn } from '@/lib/ui'
 import { SliderButton } from './slider-button'
 
 export function ProductSlider({ images }: { images: string[] }) {
@@ -44,7 +43,7 @@ export function ProductSlider({ images }: { images: string[] }) {
 
   return (
     <ImageGallery
-      additionalClass={cn('col-span-1 lg:col-span-2')}
+      additionalClass='col-span-1 mx-auto w-[75%] lg:col-span-2'
       autoPlay
       items={galleryItems}
       onMouseLeave={onPlay}
@@ -52,7 +51,7 @@ export function ProductSlider({ images }: { images: string[] }) {
       onTouchEnd={onPlay}
       onTouchStart={onPause}
       ref={galleryRef}
-      renderLeftNav={() => <SliderButton icon={<ChevronRight />} isLeft onClick={onSlide} />}
+      renderLeftNav={() => <SliderButton icon={<ChevronRight />} left onClick={onSlide} />}
       renderRightNav={() => <SliderButton icon={<ChevronLeft />} onClick={onSlide} />}
       showFullscreenButton={false}
       showPlayButton={false}
