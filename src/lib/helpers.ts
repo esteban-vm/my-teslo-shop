@@ -21,6 +21,7 @@ export function formatProductPrice(price: number) {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
   })
 }
 
