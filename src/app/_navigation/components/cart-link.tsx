@@ -18,7 +18,7 @@ export function CartLink() {
       <Indicator.Badge className='rounded-full!' ghost size='xs'>
         {totalItems}
       </Indicator.Badge>
-      <Button as={Link} ghost href='/cart' shape='square' size='sm'>
+      <Button as={Link} ghost href={totalItems === 0 ? '/cart/empty' : '/cart'} shape='square' size='sm'>
         <ShoppingCart />
       </Button>
     </Indicator>
