@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import { sleepExecution } from '@/lib/helpers'
 
-export const useMounted = (s = 2) => {
+export const useMounted = (delay = 2) => {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const mount = async () => {
-      await sleepExecution(s)
+      await sleepExecution(delay)
       setMounted(true)
     }
 
     mount()
-  }, [s])
+  }, [delay])
 
   return { mounted }
 }
