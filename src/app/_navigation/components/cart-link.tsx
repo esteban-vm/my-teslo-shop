@@ -10,12 +10,12 @@ export function CartLink() {
   const totalItems = useShoppingCart((s) => s.getTotalItems())
 
   if (!mounted) {
-    return <Skeleton className='size-7 rounded-box' />
+    return <Skeleton className='h-7 w-8 rounded-box' />
   }
 
   return (
     <Indicator>
-      <Indicator.Badge ghost size='xs'>
+      <Indicator.Badge className='rounded-full!' ghost size='xs'>
         {totalItems}
       </Indicator.Badge>
       <Button as={Link} ghost href='/cart' shape='square' size='sm'>
