@@ -19,7 +19,7 @@ export const navbarLinks: NavLinkProps<`/gender/${string}`>[] = [
 export const sidebarLinks: NavLinkProps[] = [
   { text: 'Perfil', icon: <User /> },
   { text: 'Órdenes', icon: <Ticket /> },
-  { text: 'Ingresar', icon: <LogIn /> },
+  { text: 'Ingresar', icon: <LogIn />, href: '/auth/login' },
   { text: 'Salir', icon: <LogOut /> },
   { text: 'Productos', icon: <Shirt /> },
   { text: 'Usuarios', icon: <Users /> },
