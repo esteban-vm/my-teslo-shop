@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html className={`${mainFont.variable} ${titleFont.variable} h-screen min-h-192 antialiased`} lang='es'>
-      <body className='h-fit bg-linear-to-t from-base-200 to-base-100 font-geist'>{children}</body>
+    <html className={`${mainFont.variable} ${titleFont.variable} antialiased`} lang='es'>
+      <body className='bg-linear-to-t from-base-200 to-base-100 font-geist'>{children}</body>
     </html>
   )
 }
