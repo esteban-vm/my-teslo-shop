@@ -13,25 +13,39 @@
   --font-montserrat: var(--font-montserrat-alternates);
 }
 
-@layer base {
-  * {
-    scrollbar-width: thin;
+* {
+  scrollbar-width: thin;
 
-    &::selection {
-      @apply bg-primary text-primary-content;
-    }
+  &::selection {
+    @apply bg-primary text-primary-content;
   }
+}
 
-  img {
-    @apply select-none;
+img {
+  @apply select-none;
 
-    &[data-nimg="fill"] {
-      @apply absolute inset-0 object-cover object-center;
-    }
+  &[data-nimg="fill"] {
+    @apply absolute inset-0 object-cover object-center;
   }
+}
 
-  svg {
-    @apply stroke-[1.5];
+svg {
+  @apply stroke-[1.5];
+}
+
+form[data-auth] {
+  @apply w-full max-w-sm;
+
+  fieldset {
+    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4;
+
+    legend {
+      @apply text-lg uppercase;
+    }
+
+    label {
+      @apply cursor-pointer! font-semibold;
+    }
   }
 }
 
@@ -42,10 +56,6 @@
 .menu-active,
 .btn-active {
   @apply bg-primary/50;
-}
-
-.btn-disabled {
-  @apply opacity-50;
 }
 
 .image-gallery-thumbnails-container {
