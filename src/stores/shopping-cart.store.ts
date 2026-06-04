@@ -38,7 +38,6 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
 
     getSummaryInformation() {
       const { cart, getTotalItems } = get()
-
       const subtotal = cart.reduce((st, p) => p.price * p.quantity + st, 0)
       const tax = subtotal * 0.15
       const total = subtotal + tax
@@ -51,55 +50,33 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
       }
     },
 
-    addToCart(product) {
+    addToCart(prod) {
       const { cart } = get()
-
-      const productInCart = cart.some((p) => checkProduct(p, product))
+      const productInCart = cart.some((p) => equals(p, prod))
 
       if (!productInCart) {
-        set({ cart: [...cart, product] })
+        set({ cart: cart.concat(prod) })
         return
       }
 
-      const updatedCart = cart.map((p) => {
-        if (checkProduct(p, product)) {
-          return {
-            ...p,
-            quantity: p.quantity + product.quantity,
-          }
-        }
-
-        return p
-      })
-
+      const updatedCart = cart.map((p) => (equals(p, prod) ? { ...p, quantity: p.quantity + prod.quantity } : p))
       set({ cart: updatedCart })
     },
 
-    updateQuantity(product, quantity) {
+    updateQuantity(prod, quantity) {
       const { cart } = get()
-
-      const updatedCart = cart.map((p) => {
-        if (checkProduct(p, product)) {
-          return {
-            ...p,
-            quantity,
-          }
-        }
-
-        return p
-      })
-
+      const updatedCart = cart.map((p) => (equals(p, prod) ? { ...p, quantity } : p))
       set({ cart: updatedCart })
     },
 
-    removeFromCart(product) {
+    removeFromCart(prod) {
       const { cart } = get()
-      const updatedCart = cart.filter((p) => p.id !== product.id || p.size !== product.size)
+      const updatedCart = cart.filter((p) => !equals(p, prod))
       set({ cart: updatedCart })
     },
   }
 }
 
-function checkProduct(p1: ShoppingCartProduct, p2: ShoppingCartProduct) {
+function equals(p1: ShoppingCartProduct, p2: ShoppingCartProduct) {
   return p1.id === p2.id && p1.size === p2.size
 }
