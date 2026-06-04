@@ -13,7 +13,7 @@ export function LoginForm() {
           <GithubIcon />
           Ingresar con GitHub
         </Button>
-        <Button className='border-[#e5e5e5] bg-white text-black' size='sm' type='button'>
+        <Button className='border-base-300 bg-white text-black' size='sm' type='button'>
           <GoogleIcon />
           Ingresar con Google
         </Button>
