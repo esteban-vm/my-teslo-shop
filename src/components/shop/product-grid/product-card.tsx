@@ -21,7 +21,7 @@ export function ProductCard({ product }: PropsWithProduct) {
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
         <Link href={productRoute} title={title}>
-          <Card.Title className='line-clamp-1 text-base hover:opacity-75'>{title}</Card.Title>
+          <Card.Title className='line-clamp-1 text-sm hover:opacity-75 xl:text-base'>{title}</Card.Title>
         </Link>
         <p className='text-sm'>{formatProductPrice(price)}</p>
       </Card.Body>
@@ -29,4 +29,4 @@ export function ProductCard({ product }: PropsWithProduct) {
   )
 }
 
-const CardContainer = tw.div`fade-in w-full max-w-96 animate-in overflow-hidden rounded-md shadow-md`
+const CardContainer = tw.div`fade-in mx-auto w-full max-w-96 animate-in overflow-hidden rounded-md shadow-md`
