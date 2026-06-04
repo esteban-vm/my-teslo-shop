@@ -22,7 +22,7 @@ export function CartItem({ product }: { product: ShoppingCartProduct }) {
   return (
     <List.Row className='items-center py-2 last:pb-3' id={id}>
       <div className='relative size-24 overflow-hidden rounded-box'>
-        <Image alt='' fill src={`/products/${image}`} />
+        <Image alt={title} fill src={`/products/${image}`} />
       </div>
       <List.ColGrow className='space-y-1'>
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
