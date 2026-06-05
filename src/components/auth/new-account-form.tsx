@@ -15,7 +15,7 @@ export function NewAccountForm() {
           <GithubIcon />
           Registrarse con GitHub
         </Button>
-        <Button size='sm' type='button'>
+        <Button onClick={() => AuthActions.signInWithGoogle()} size='sm' type='button'>
           <GoogleIcon />
           Registrarse con Google
         </Button>
