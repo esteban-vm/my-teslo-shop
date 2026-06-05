@@ -3,7 +3,7 @@ import { MenuIcon, Search } from 'lucide-react'
 import { Button, Drawer, Input, Menu, Navbar } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { DRAWER_ID, navbarLinks, sidebarLinks } from '@/lib/constants'
-import { CartLink, CloseButton, HomeLink, NavLink } from './components'
+import { CartLink, CloseButton, HomeLink, NavLink, SignOutButton } from './components'
 
 export function Navigation({ children }: { children: ReactNode }) {
   return (
@@ -20,6 +20,7 @@ export function Navigation({ children }: { children: ReactNode }) {
           </MenuContainer>
           <div className='grow lg:hidden' />
           <ButtonContainer>
+            <SignOutButton />
             <Button ghost shape='square' size='sm'>
               <Search />
             </Button>
