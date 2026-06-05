@@ -37,7 +37,7 @@ form[data-auth] {
   @apply w-full max-w-sm;
 
   fieldset {
-    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4;
+    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
 
     legend {
       @apply text-lg uppercase;
@@ -45,6 +45,32 @@ form[data-auth] {
 
     label {
       @apply cursor-pointer! font-semibold;
+    }
+
+    button {
+      &[type="submit"] {
+        @apply mt-2;
+      }
+
+      &[type="button"] {
+        /* GitHub Button */
+        &:first-of-type {
+          @apply border-black bg-black text-white;
+        }
+
+        /* Google Button */
+        &:nth-of-type(2) {
+          @apply border-base-300 bg-white text-black;
+        }
+      }
+    }
+
+    input {
+      @apply w-full;
+    }
+
+    .divider {
+      @apply m-0 text-xs;
     }
   }
 }
