@@ -1,4 +1,3 @@
-import type { Route } from 'next'
 import type { NextAuthConfig } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
 
@@ -9,8 +8,4 @@ export const authConfig: NextAuthConfig = {
       clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
   ],
-  pages: {
-    signIn: '/auth/login' satisfies Route,
-    newUser: '/auth/new-account' satisfies Route,
-  },
 }
