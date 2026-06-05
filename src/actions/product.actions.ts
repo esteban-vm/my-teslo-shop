@@ -5,13 +5,13 @@ import type { ProductWithImages } from '@/types'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 
-interface ProductsWithImagesParams {
+export interface GetProductsWithImagesParams {
   page: number
   take: number
   gender: Gender
 }
 
-interface ProductsWithImagesResult {
+export interface GetProductsWithImagesResult {
   currentPage: number
   totalPages: number
   products: ProductWithImages[]
@@ -21,7 +21,7 @@ export async function getProductsWithImages({
   page = 1,
   take = 12,
   gender,
-}: Partial<ProductsWithImagesParams>): Promise<ProductsWithImagesResult> {
+}: Partial<GetProductsWithImagesParams>): Promise<GetProductsWithImagesResult> {
   if (Number.isNaN(page) || page < 1) page = 1
 
   const products = await prisma.product.findMany({
