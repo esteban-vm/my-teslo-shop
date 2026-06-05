@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Button, Divider, Fieldset, Input } from 'rsc-daisyui'
+import { AuthActions } from '@/actions'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { GithubIcon, GoogleIcon } from '../shared'
 
@@ -10,7 +11,7 @@ export function NewAccountForm() {
     <form data-auth>
       <Fieldset>
         <Fieldset.Legend>Crear cuenta</Fieldset.Legend>
-        <Button size='sm' type='button'>
+        <Button onClick={() => AuthActions.signInWithGitHub()} size='sm' type='button'>
           <GithubIcon />
           Registrarse con GitHub
         </Button>
