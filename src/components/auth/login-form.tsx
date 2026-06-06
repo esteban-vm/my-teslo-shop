@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Button, Divider, Fieldset, Input } from 'rsc-daisyui'
+import { AuthActions } from '@/actions'
 import { GithubIcon, GoogleIcon } from '../shared'
 
 export function LoginForm() {
@@ -9,11 +10,11 @@ export function LoginForm() {
     <form data-auth>
       <Fieldset>
         <Fieldset.Legend>Iniciar sesión</Fieldset.Legend>
-        <Button size='sm' type='button'>
+        <Button onClick={() => AuthActions.signInWithGitHub()} size='sm' type='button'>
           <GithubIcon />
           Ingresar con GitHub
         </Button>
-        <Button size='sm' type='button'>
+        <Button onClick={() => AuthActions.signInWithGoogle()} size='sm' type='button'>
           <GoogleIcon />
           Ingresar con Google
         </Button>
