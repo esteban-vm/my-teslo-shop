@@ -68,4 +68,4 @@ export default async function ProductPage({ params }: ProductPageProps) {
 }
 
 const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
-const ProductTitle = tw.h1`font-bold font-montserrat text-xl`
+const ProductTitle = tw.h1`font-bold font-montserrat text-rose-700 text-xl`
