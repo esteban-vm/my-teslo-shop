@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { sleepExecution } from '@/lib/helpers'
 
-export const useMounted = (delay = 2) => {
+export function useMounted(delay = 2) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
