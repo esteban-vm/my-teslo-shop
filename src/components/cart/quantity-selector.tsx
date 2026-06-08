@@ -1,19 +1,19 @@
 'use client'
 
 import type { ShoppingCartProduct } from '@/stores'
+import type { PropsWithProduct } from '@/types'
 import { useState } from 'react'
 import { Button } from 'rsc-daisyui'
-import { useCartContext, useShoppingCart } from '@/hooks'
+import { useCartUI, useShoppingCart } from '@/hooks'
 import { CounterInput } from '../shared'
 
-export function QuantitySelector() {
+export function QuantitySelector({ product }: PropsWithProduct) {
   const [quantity, setQuantity] = useState(1)
   const addToCart = useShoppingCart((s) => s.addToCart)
 
-  const product = useCartContext((s) => s.product)
-  const currentSize = useCartContext((s) => s.currentSize)
-  const setIsPosted = useCartContext((s) => s.setIsPosted)
-  const setCurrentSize = useCartContext((s) => s.setCurrentSize)
+  const currentSize = useCartUI((s) => s.currentSize)
+  const setIsPosted = useCartUI((s) => s.setIsPosted)
+  const setCurrentSize = useCartUI((s) => s.setCurrentSize)
 
   const onQuantityChange = (value: number) => {
     const newQuantity = quantity + value
@@ -38,7 +38,7 @@ export function QuantitySelector() {
     addToCart(cartProduct)
     setQuantity(1)
     setIsPosted(false)
-    setCurrentSize(undefined)
+    setCurrentSize(null)
   }
 
   return (
