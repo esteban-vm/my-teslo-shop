@@ -28,6 +28,13 @@ enum Gender {
   @@map("genders")
 }
 
+enum Role {
+  client
+  admin
+
+  @@map("user_roles")
+}
+
 enum CategoryName {
   Shirts  @map("T-Shirts")
   Pants
@@ -73,7 +80,7 @@ model Picture {
 }
 
 /**
- * ************ Auth.js ************
+ * Auth.js
  */
 model User {
   id            String          @id @default(uuid())
@@ -81,6 +88,7 @@ model User {
   email         String          @unique
   emailVerified DateTime?       @map("email_verified")
   image         String?
+  role          Role?           @default(client)
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
