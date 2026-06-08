@@ -56,6 +56,7 @@ export async function getProductBySlug(slug: string): Promise<ProductWithImages 
     where: { slug },
     include: {
       images: {
+        take: 2,
         select: { url: true },
       },
     },
