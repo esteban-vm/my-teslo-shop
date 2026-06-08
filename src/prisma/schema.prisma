@@ -90,6 +90,7 @@ model User {
   image         String?
   role          Role?           @default(client)
   active        Boolean?        @default(true)
+  password      String?
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
