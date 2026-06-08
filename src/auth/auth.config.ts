@@ -1,4 +1,3 @@
-import type { Route } from 'next'
 import type { NextAuthConfig } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import GitHubProvider from 'next-auth/providers/github'
@@ -8,11 +7,6 @@ import { prisma } from '@/lib/prisma'
 export const authConfig: NextAuthConfig = {
   trustHost: true,
   adapter: PrismaAdapter(prisma),
-
-  pages: {
-    signIn: '/auth/login' satisfies Route,
-    newUser: '/auth/new-account' satisfies Route,
-  },
 
   providers: [
     GitHubProvider({
