@@ -1,2 +1,2 @@
 export * from './login-form'
-export * from './new-account-form'
+export * from './new-user-form'

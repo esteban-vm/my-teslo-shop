@@ -6,11 +6,11 @@ import { AuthActions } from '@/actions'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { GithubIcon, GoogleIcon } from '../shared'
 
-export function NewAccountForm() {
+export function NewUserForm() {
   return (
     <form data-auth>
       <Fieldset>
-        <Fieldset.Legend>Crear cuenta</Fieldset.Legend>
+        <Fieldset.Legend>Nuevo usuario</Fieldset.Legend>
         <Button onClick={() => AuthActions.signInWithGitHub()} size='sm' type='button'>
           <GithubIcon />
           Registrarse con GitHub
@@ -29,7 +29,7 @@ export function NewAccountForm() {
         <Fieldset.Label htmlFor='repeat-password'>Repetir contraseña:</Fieldset.Label>
         <Input id='repeat-password' placeholder='************' size='sm' type='password' />
         <Button color='primary' size='sm' type='submit'>
-          Crear cuenta
+          Registrarse
         </Button>
         <Divider>O</Divider>
         <Button as={Link} color='secondary' href='/auth/login' size='sm'>
