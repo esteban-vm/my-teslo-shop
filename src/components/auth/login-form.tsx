@@ -27,8 +27,8 @@ export function LoginForm() {
           Iniciar sesión
         </Button>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' href='/auth/new-account' size='sm'>
-          Crear cuenta
+        <Button as={Link} color='secondary' href='/auth/new-user' size='sm'>
+          Registrarse
         </Button>
       </Fieldset>
     </form>
