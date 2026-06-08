@@ -8,7 +8,6 @@ import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
 import { ProductSlider, StockCounter } from '@/components/shop'
-import { CartProvider } from '@/contexts'
 import { formatProductPrice } from '@/lib/helpers'
 
 type ProductPageProps = PageProps<'/product/[slug]'>
@@ -56,10 +55,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <span className='font-semibold'>Precio:&nbsp;</span>
           {formatProductPrice(price)}
         </p>
-        <CartProvider product={product}>
-          <SizeSelector />
-          <QuantitySelector />
-        </CartProvider>
+        <SizeSelector product={product} />
+        <QuantitySelector product={product} />
         <p className='font-semibold'>Descripción:</p>
         <p className='text-justify text-sm'>{description}</p>
       </div>
