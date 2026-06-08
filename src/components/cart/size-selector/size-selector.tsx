@@ -1,14 +1,21 @@
 'use client'
 
+import type { PropsWithProduct } from '@/types'
+import { useEffect } from 'react'
 import { Join } from 'rsc-daisyui'
-import { useCartContext } from '@/hooks'
+import { useCartUI } from '@/hooks'
 import { ErrorAlert } from './error-alert'
 
-export function SizeSelector() {
-  const product = useCartContext((s) => s.product)
-  const isPosted = useCartContext((s) => s.isPosted)
-  const currentSize = useCartContext((s) => s.currentSize)
-  const setCurrentSize = useCartContext((s) => s.setCurrentSize)
+export function SizeSelector({ product }: PropsWithProduct) {
+  const isPosted = useCartUI((s) => s.isPosted)
+  const currentSize = useCartUI((s) => s.currentSize)
+  const setIsPosted = useCartUI((s) => s.setIsPosted)
+  const setCurrentSize = useCartUI((s) => s.setCurrentSize)
+
+  useEffect(() => {
+    setIsPosted(false)
+    setCurrentSize(null)
+  }, [setCurrentSize, setIsPosted])
 
   return (
     <>
