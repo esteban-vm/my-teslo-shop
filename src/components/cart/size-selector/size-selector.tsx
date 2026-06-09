@@ -1,12 +1,12 @@
 'use client'
 
-import type { PropsWithProduct } from '@/types'
+import type { Size } from '@/generated/prisma/client'
 import { useEffect } from 'react'
 import { Join } from 'rsc-daisyui'
 import { useCartUI } from '@/hooks'
 import { ErrorAlert } from './error-alert'
 
-export function SizeSelector({ product }: PropsWithProduct) {
+export function SizeSelector({ sizes }: { sizes: Size[] }) {
   const isPosted = useCartUI((s) => s.isPosted)
   const currentSize = useCartUI((s) => s.currentSize)
   const setIsPosted = useCartUI((s) => s.setIsPosted)
@@ -22,7 +22,7 @@ export function SizeSelector({ product }: PropsWithProduct) {
       <ErrorAlert isShowing={isPosted && !currentSize} />
       <p className='font-semibold'>Tamaño:</p>
       <Join className='space-x-1'>
-        {product.sizes.map((size) => {
+        {sizes.map((size) => {
           return (
             <Join.Button
               active={size === currentSize}
