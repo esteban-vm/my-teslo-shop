@@ -1,4 +1,4 @@
-import type { Product as ProductDB, Size } from '@/generated/prisma/client'
+import type { Product as ProductDB, Size } from '@/prisma/generated/client'
 
 export interface Product extends ProductDB {
   images: string[]
