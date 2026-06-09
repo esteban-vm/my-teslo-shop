@@ -1,25 +1,19 @@
 import type { StateCreator } from 'zustand'
-import type { Size } from '@/generated/prisma/client'
+import type { ShoppingCartProduct } from '@/types'
+import { checkProduct } from '@/lib/helpers'
 
-export interface ShoppingCartProduct {
-  id: string
-  title: string
-  slug: string
-  price: number
-  quantity: number
-  size: Size
-  image: string
-}
-
-export interface SummaryInformation {
+interface SummaryInformation {
   total: number
   subtotal: number
   tax: number
   totalItems: number
 }
 
-export interface ShoppingCartState {
+interface ShoppingCartState {
   cart: ShoppingCartProduct[]
+}
+
+interface ShoppingCartActions {
   getTotalItems: () => number
   getSummaryInformation: () => SummaryInformation
   addToCart: (product: ShoppingCartProduct) => void
@@ -27,7 +21,9 @@ export interface ShoppingCartState {
   removeFromCart: (product: ShoppingCartProduct) => void
 }
 
-export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, get) => {
+export type ShoppingCartStore = ShoppingCartState & ShoppingCartActions
+
+export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, get) => {
   return {
     cart: [],
 
@@ -50,33 +46,32 @@ export const createShoppingCartStore: StateCreator<ShoppingCartState> = (set, ge
       }
     },
 
-    addToCart(prod) {
+    addToCart(product) {
       const { cart } = get()
-      const productInCart = cart.some((p) => equals(p, prod))
+      const productInCart = cart.some((p) => checkProduct(p, product))
 
       if (!productInCart) {
-        set({ cart: cart.concat(prod) })
+        set({ cart: cart.concat(product) })
         return
       }
 
-      const updatedCart = cart.map((p) => (equals(p, prod) ? { ...p, quantity: p.quantity + prod.quantity } : p))
+      const updatedCart = cart.map((p) => {
+        return checkProduct(p, product) ? { ...p, quantity: p.quantity + product.quantity } : p
+      })
+
       set({ cart: updatedCart })
     },
 
-    updateQuantity(prod, quantity) {
+    updateQuantity(product, quantity) {
       const { cart } = get()
-      const updatedCart = cart.map((p) => (equals(p, prod) ? { ...p, quantity } : p))
+      const updatedCart = cart.map((p) => (checkProduct(p, product) ? { ...p, quantity } : p))
       set({ cart: updatedCart })
     },
 
-    removeFromCart(prod) {
+    removeFromCart(product) {
       const { cart } = get()
-      const updatedCart = cart.filter((p) => !equals(p, prod))
+      const updatedCart = cart.filter((p) => !checkProduct(p, product))
       set({ cart: updatedCart })
     },
   }
-}
-
-function equals(p1: ShoppingCartProduct, p2: ShoppingCartProduct) {
-  return p1.id === p2.id && p1.size === p2.size
 }
