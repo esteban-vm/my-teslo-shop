@@ -12,15 +12,11 @@ export function SizeSelector({ sizes }: { sizes: Size[] }) {
   const isPosted = useCartUI((s) => s.isPosted)
   const currentSize = useCartUI((s) => s.currentSize)
 
+  const reset = useCartUI((s) => s.reset)
   const setIsAdded = useCartUI((s) => s.setIsAdded)
-  const setIsPosted = useCartUI((s) => s.setIsPosted)
   const setCurrentSize = useCartUI((s) => s.setCurrentSize)
 
-  useEffect(() => {
-    setIsAdded(false)
-    setIsPosted(false)
-    setCurrentSize(null)
-  }, [setCurrentSize, setIsPosted, setIsAdded])
+  useEffect(reset, [reset])
 
   const onSizeChange = (size: Size) => {
     setIsAdded(false)
