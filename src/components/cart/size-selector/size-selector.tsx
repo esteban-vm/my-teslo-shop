@@ -1,6 +1,6 @@
 'use client'
 
-import type { Size } from '@/generated/prisma/client'
+import type { Size } from '@/prisma/generated/client'
 import { useEffect } from 'react'
 import { Join } from 'rsc-daisyui'
 import { useCartUI } from '@/hooks'
