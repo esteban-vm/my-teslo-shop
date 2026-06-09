@@ -1,7 +1,7 @@
 'use server'
 
 import type { Gender } from '@/generated/prisma/client'
-import type { ProductWithImages } from '@/types'
+import type { Product } from '@/types'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 
@@ -14,7 +14,7 @@ export interface GetProductsWithImagesParams {
 export interface GetProductsWithImagesResult {
   currentPage: number
   totalPages: number
-  products: ProductWithImages[]
+  products: Product[]
 }
 
 export async function getProductsWithImages({
@@ -51,7 +51,7 @@ export async function getProductsWithImages({
   }
 }
 
-export async function getProductBySlug(slug: string): Promise<ProductWithImages | null> {
+export async function getProductBySlug(slug: string): Promise<Product | null> {
   const product = await prisma.product.findFirst({
     where: { slug },
     include: {

@@ -1,8 +1,8 @@
-import type { ProductWithImages } from '@/types'
+import type { Product } from '@/types'
 import tw from 'tailwind-styled-components'
 import { ProductCard } from './product-card'
 
-export function ProductGrid({ products }: { products: ProductWithImages[] }) {
+export function ProductGrid({ products }: { products: Product[] }) {
   return (
     <GridContainer>
       {products.map((product) => (

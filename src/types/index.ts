@@ -1,11 +1,7 @@
-import type { Product, Size } from '@/generated/prisma/client'
+import type { Product as ProductDB, Size } from '@/generated/prisma/client'
 
-export interface ProductWithImages extends Product {
+export interface Product extends ProductDB {
   images: string[]
-}
-
-export interface PropsWithProduct {
-  product: ProductWithImages
 }
 
 export interface CartProduct {

@@ -1,12 +1,12 @@
 import type { Route } from 'next'
-import type { PropsWithProduct } from '@/types'
+import type { Product } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { formatProductPrice } from '@/lib/helpers'
 
-export function ProductCard({ product }: PropsWithProduct) {
+export function ProductCard({ product }: { product: Product }) {
   const { id, title, price, slug, images } = product
   const productRoute: Route<`/product/${string}`> = `/product/${slug}`
 
