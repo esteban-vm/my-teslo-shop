@@ -27,15 +27,14 @@ export const authConfig: NextAuthConfig = {
   },
 
   callbacks: {
-    jwt({ token }) {
-      // console.log({ token })
-      return token
-    },
-
-    session({ session, token }) {
-      console.log({ token })
-      // console.log({ session })
-      return session
-    },
+    // jwt({ token }) {
+    //   // console.log({ token })
+    //   return token
+    // },
+    // session({ session, token }) {
+    //   console.log({ token })
+    //   // console.log({ session })
+    //   return session
+    // },
   },
 }
