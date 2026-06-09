@@ -1,4 +1,4 @@
-import type { ShoppingCartProduct } from '@/stores'
+import type { CartProduct } from '@/types'
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { CounterInput } from '@/components/shared'
 import { useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
-export function CartItem({ product }: { product: ShoppingCartProduct }) {
+export function CartItem({ product }: { product: CartProduct }) {
   const { id, title, image, price, size, slug, quantity } = product
 
   const updateQuantity = useShoppingCart((s) => s.updateQuantity)
