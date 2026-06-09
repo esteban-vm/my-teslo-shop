@@ -1,5 +1,5 @@
 import type { NavLinkProps } from '@/app/_navigation/components'
-import type { Gender } from '@/generated/prisma/client'
+import type { Gender } from '@/prisma/generated/client'
 import { LogIn, LogOut, Shirt, Ticket, User, Users } from 'lucide-react'
 
 // UI
