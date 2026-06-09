@@ -1,6 +1,6 @@
-import type { CategoryName, Prisma } from '@/generated/prisma/client'
+import type { CategoryName, Prisma } from '../generated/client'
 import { prisma } from '@/lib/prisma'
-import { initialProducts } from '@/prisma/data'
+import { initialProducts } from '../data'
 
 async function main() {
   await prisma.picture.deleteMany()
