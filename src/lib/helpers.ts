@@ -1,3 +1,4 @@
+import type { ShoppingCartProduct } from '@/types'
 import { ELLIPSIS_CHAR } from './constants'
 
 export function generatePaginationNumbers(currentPage: number, totalPages: number) {
@@ -31,4 +32,8 @@ export function sleepExecution(seconds = 1) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(true), seconds * 1000)
   })
+}
+
+export function checkProduct(p1: ShoppingCartProduct, p2: ShoppingCartProduct) {
+  return p1.id === p2.id && p1.size === p2.size
 }
