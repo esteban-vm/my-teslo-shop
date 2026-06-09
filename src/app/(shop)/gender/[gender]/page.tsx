@@ -36,12 +36,14 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
 
-  const { products, totalPages } = await ProductActions.getProductsWithImages({
+  const { products, totalPages } = await ProductActions.getProducts({
     page: Number.parseInt(page, 10),
     gender: genderDB,
   })
 
-  if (products.length === 0) redirect(`/gender/${genderDB}`)
+  if (products.length === 0) {
+    redirect(`/gender/${genderDB}`)
+  }
 
   return (
     <>

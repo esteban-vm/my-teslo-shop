@@ -2,7 +2,6 @@ export const revalidate = 60
 
 import { redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
-import { auth } from '@/auth'
 import { PagePagination, PageTitle } from '@/components/shared'
 import { ProductGrid } from '@/components/shop'
 
@@ -10,11 +9,11 @@ export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
 
-  const { products, totalPages } = await ProductActions.getProductsWithImages({ page: Number.parseInt(page, 10) })
-  if (products.length === 0) redirect('/')
+  const { products, totalPages } = await ProductActions.getProducts({
+    page: Number.parseInt(page, 10),
+  })
 
-  const session = await auth()
-  console.log({ session })
+  if (products.length === 0) redirect('/')
 
   return (
     <>
