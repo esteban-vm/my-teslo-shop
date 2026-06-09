@@ -3,14 +3,21 @@ import type { Size } from '@/generated/prisma/client'
 
 export interface CartUIState {
   currentSize: Size | null
-  setCurrentSize: (size: Size | null) => void
   isPosted: boolean
-  setIsPosted: (posted: boolean) => void
   isAdded: boolean
+}
+
+export interface CartUIActions {
+  setCurrentSize: (size: Size | null) => void
+  setIsPosted: (posted: boolean) => void
   setIsAdded: (added: boolean) => void
 }
 
-export const createCartUIStore: StateCreator<CartUIState> = (set) => {
+export interface CartUIStore extends CartUIState, CartUIActions {
+  reset: () => void
+}
+
+export const createCartUIStore: StateCreator<CartUIStore> = (set, _, store) => {
   return {
     currentSize: null,
     setCurrentSize(size) {
@@ -25,6 +32,10 @@ export const createCartUIStore: StateCreator<CartUIState> = (set) => {
     isAdded: false,
     setIsAdded(added) {
       set({ isAdded: added })
+    },
+
+    reset() {
+      set(store.getInitialState())
     },
   }
 }
