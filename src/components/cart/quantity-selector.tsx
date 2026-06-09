@@ -23,6 +23,7 @@ export function QuantitySelector({ product }: PropsWithProduct) {
   }
 
   const onAddToCart = () => {
+    setIsAdded(false)
     setIsPosted(true)
     if (!currentSize) return
 
