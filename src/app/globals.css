@@ -75,6 +75,14 @@ form[data-auth] {
   }
 }
 
+[data-size] {
+  @apply fade-in w-fit animate-in gap-1 px-2 py-1 text-sm;
+
+  svg {
+    @apply size-4 stroke-current;
+  }
+}
+
 .drawer-overlay {
   @apply cursor-default backdrop-blur-xs backdrop-filter;
 }
