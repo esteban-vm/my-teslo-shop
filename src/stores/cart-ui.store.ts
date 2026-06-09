@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand'
-import type { Size } from '@/generated/prisma/client'
+import type { Size } from '@/prisma/generated/client'
 
 interface CartUIState {
   currentSize: Size | null
