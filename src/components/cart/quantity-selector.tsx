@@ -12,10 +12,12 @@ export function QuantitySelector({ product }: PropsWithProduct) {
   const addToCart = useShoppingCart((s) => s.addToCart)
 
   const currentSize = useCartUI((s) => s.currentSize)
+  const setIsAdded = useCartUI((s) => s.setIsAdded)
   const setIsPosted = useCartUI((s) => s.setIsPosted)
   const setCurrentSize = useCartUI((s) => s.setCurrentSize)
 
   const onQuantityChange = (value: number) => {
+    setIsAdded(false)
     const newQuantity = quantity + value
     if (newQuantity < 1 || newQuantity > 5) return
     setQuantity(newQuantity)
@@ -37,6 +39,7 @@ export function QuantitySelector({ product }: PropsWithProduct) {
 
     addToCart(cartProduct)
     setQuantity(1)
+    setIsAdded(true)
     setIsPosted(false)
     setCurrentSize(null)
   }
