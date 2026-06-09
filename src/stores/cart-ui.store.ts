@@ -1,13 +1,13 @@
 import type { StateCreator } from 'zustand'
 import type { Size } from '@/generated/prisma/client'
 
-export interface CartUIState {
+interface CartUIState {
   currentSize: Size | null
   isPosted: boolean
   isAdded: boolean
 }
 
-export interface CartUIActions {
+interface CartUIActions {
   setCurrentSize: (size: Size | null) => void
   setIsPosted: (posted: boolean) => void
   setIsAdded: (added: boolean) => void
