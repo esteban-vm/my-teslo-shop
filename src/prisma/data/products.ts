@@ -1,4 +1,4 @@
-import type { CategoryName, Prisma } from '@/generated/prisma/client'
+import type { CategoryName, Prisma } from '../generated/client'
 
 export interface InitialProduct extends Omit<Prisma.ProductCreateManyInput, 'categoryId' | 'id'> {
   category: CategoryName
