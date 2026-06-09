@@ -8,7 +8,7 @@ export interface PropsWithProduct {
   product: ProductWithImages
 }
 
-export interface ShoppingCartProduct {
+export interface CartProduct {
   id: string
   title: string
   slug: string

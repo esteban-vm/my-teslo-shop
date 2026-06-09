@@ -1,6 +1,6 @@
 'use client'
 
-import type { PropsWithProduct, ShoppingCartProduct } from '@/types'
+import type { CartProduct, PropsWithProduct } from '@/types'
 import { useState } from 'react'
 import { Button } from 'rsc-daisyui'
 import { useCartUI, useShoppingCart } from '@/hooks'
@@ -26,7 +26,7 @@ export function QuantitySelector({ product }: PropsWithProduct) {
     setIsPosted(true)
     if (!currentSize) return
 
-    const cartProduct: ShoppingCartProduct = {
+    const cartProduct: CartProduct = {
       id: product.id,
       title: product.title,
       slug: product.slug,

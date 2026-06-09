@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand'
-import type { ShoppingCartProduct } from '@/types'
+import type { CartProduct } from '@/types'
 import { checkProduct } from '@/lib/helpers'
 
 interface SummaryInformation {
@@ -10,15 +10,15 @@ interface SummaryInformation {
 }
 
 interface ShoppingCartState {
-  cart: ShoppingCartProduct[]
+  cart: CartProduct[]
 }
 
 interface ShoppingCartActions {
   getTotalItems: () => number
   getSummaryInformation: () => SummaryInformation
-  addToCart: (product: ShoppingCartProduct) => void
-  updateQuantity: (product: ShoppingCartProduct, quantity: number) => void
-  removeFromCart: (product: ShoppingCartProduct) => void
+  addToCart: (product: CartProduct) => void
+  updateQuantity: (product: CartProduct, quantity: number) => void
+  removeFromCart: (product: CartProduct) => void
 }
 
 export type ShoppingCartStore = ShoppingCartState & ShoppingCartActions
