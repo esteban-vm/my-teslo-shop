@@ -1,6 +1,6 @@
 'use server'
 
-import type { Gender } from '@/generated/prisma/client'
+import type { Gender } from '@/prisma/generated/client'
 import type { Product } from '@/types'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
