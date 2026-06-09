@@ -1,7 +1,6 @@
 'use client'
 
-import type { ShoppingCartProduct } from '@/stores'
-import type { PropsWithProduct } from '@/types'
+import type { PropsWithProduct, ShoppingCartProduct } from '@/types'
 import { useState } from 'react'
 import { Button } from 'rsc-daisyui'
 import { useCartUI, useShoppingCart } from '@/hooks'
