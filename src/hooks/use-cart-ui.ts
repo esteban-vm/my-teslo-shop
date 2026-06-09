@@ -1,5 +1,5 @@
-import type { CartUIState } from '@/stores'
+import type { CartUIStore } from '@/stores'
 import { create } from 'zustand'
 import { createCartUIStore } from '@/stores'
 
-export const useCartUI = create<CartUIState>()(createCartUIStore)
+export const useCartUI = create<CartUIStore>()(createCartUIStore)
