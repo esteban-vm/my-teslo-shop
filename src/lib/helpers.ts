@@ -34,6 +34,6 @@ export function sleepExecution(seconds = 1) {
   })
 }
 
-export function checkProduct(p1: CartProduct, p2: CartProduct) {
-  return p1.id === p2.id && p1.size === p2.size
+export function checkProduct(product1: CartProduct, product2: CartProduct) {
+  return product1.id === product2.id && product1.size === product2.size
 }
