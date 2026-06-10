@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react'
+import { SearchIcon } from 'lucide-react'
 import { Navbar as $Navbar, Button, Menu } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { NavLink } from '@/components/shared'
@@ -20,7 +20,7 @@ export function Navbar() {
       <div className='grow lg:hidden' />
       <ButtonContainer>
         <Button ghost shape='square' size='sm'>
-          <Search />
+          <SearchIcon />
         </Button>
         <CartLink />
         <MenuButton />
