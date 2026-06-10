@@ -23,9 +23,9 @@ export async function Sidebar() {
       <Divider className='mx-4 my-0' />
       <NavLink href='/' icon={<User />} text='Perfil' />
       <NavLink href='/' icon={<Ticket />} text='Órdenes' />
-      {!userLogged && <NavLink href='/auth/login' icon={<LogIn />} text='Ingresar' />}
+      {!userLogged ? <NavLink href='/auth/login' icon={<LogIn />} text='Ingresar' /> : null}
       <Divider className='mx-4 my-0' />
-      {userLogged && <LogoutButton />}
+      {userLogged ? <LogoutButton /> : null}
       <NavLink href='/' icon={<Shirt />} text='Productos' />
       <NavLink href='/' icon={<Users />} text='Usuarios' />
     </Menu>
