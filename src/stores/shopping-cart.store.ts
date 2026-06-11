@@ -1,6 +1,6 @@
 import type { StateCreator } from 'zustand'
 import type { CartProduct } from '@/types'
-import { checkProduct } from '@/lib/helpers'
+import { isSameProduct } from '@/lib/helpers'
 
 interface SummaryInformation {
   total: number
@@ -48,7 +48,7 @@ export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, ge
 
     addToCart(product) {
       const { cart } = get()
-      const productInCart = cart.some((p) => checkProduct(p, product))
+      const productInCart = cart.some((p) => isSameProduct(p, product))
 
       if (!productInCart) {
         set({ cart: cart.concat(product) })
@@ -56,7 +56,7 @@ export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, ge
       }
 
       const updatedCart = cart.map((p) => {
-        return checkProduct(p, product) ? { ...p, quantity: p.quantity + product.quantity } : p
+        return isSameProduct(p, product) ? { ...p, quantity: p.quantity + product.quantity } : p
       })
 
       set({ cart: updatedCart })
@@ -64,13 +64,13 @@ export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, ge
 
     updateQuantity(product, quantity) {
       const { cart } = get()
-      const updatedCart = cart.map((p) => (checkProduct(p, product) ? { ...p, quantity } : p))
+      const updatedCart = cart.map((p) => (isSameProduct(p, product) ? { ...p, quantity } : p))
       set({ cart: updatedCart })
     },
 
     removeFromCart(product) {
       const { cart } = get()
-      const updatedCart = cart.filter((p) => !checkProduct(p, product))
+      const updatedCart = cart.filter((p) => !isSameProduct(p, product))
       set({ cart: updatedCart })
     },
   }

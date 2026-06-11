@@ -34,6 +34,6 @@ export function sleepExecution(seconds = 1) {
   })
 }
 
-export function checkProduct(product1: CartProduct, product2: CartProduct) {
+export function isSameProduct(product1: CartProduct, product2: CartProduct) {
   return product1.id === product2.id && product1.size === product2.size
 }
