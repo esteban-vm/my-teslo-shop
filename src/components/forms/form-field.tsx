@@ -45,7 +45,7 @@ export function FormField<T extends FieldValues>({
         const iconStyle = cn('cursor-pointer text-current/50', invalid ? 'text-error' : valid && 'text-success')
 
         return (
-          <Label.Floating as='div' className='even:mt-2'>
+          <Label.Floating as='div' className='mt-0 mb-2'>
             <span className={labelStyle}>{label}:</span>
             <Input as='label' className={inputStyle} validator>
               {Icon && <Icon className={iconStyle} />}
