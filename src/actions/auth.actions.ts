@@ -2,7 +2,9 @@
 
 import type { Route } from 'next'
 import { signIn, signOut } from '@/auth'
+import { CredentialsSigninError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
+import { prisma } from '@/lib/prisma'
 import { actionClient } from '@/lib/safe-action'
 import { AuthSchemas } from '@/schemas'
 
@@ -22,4 +24,18 @@ export const login = actionClient.inputSchema(AuthSchemas.LoginSchema).action(as
 
 export const logout = actionClient.action(async () => {
   await signOut({ redirectTo: '/' satisfies Route })
+})
+
+export const createUser = actionClient.inputSchema(AuthSchemas.NewUserSchema).action(async ({ parsedInput }) => {
+  await sleepExecution(5)
+  const { email, name, password } = parsedInput
+
+  const savedUser = await prisma.user.findUnique({ where: { email, active: true } })
+
+  if (savedUser) {
+    throw new CredentialsSigninError('Correo electrónico en uso')
+  }
+
+  const createdUser = await prisma.user.create({ data: { email, name, password } })
+  return createdUser
 })
