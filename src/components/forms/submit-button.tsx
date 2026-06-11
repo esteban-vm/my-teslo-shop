@@ -12,5 +12,5 @@ export interface SubmitButtonProps<T extends FieldValues> extends SubmitButtonBa
 
 export function SubmitButton<T extends FieldValues>({ control, ...rest }: SubmitButtonProps<T>) {
   const { isValid } = useFormState({ control })
-  return <Button {...rest} className='mt-2' color='primary' disabled={!isValid} type='submit' />
+  return <Button {...rest} color='primary' disabled={!isValid} type='submit' />
 }
