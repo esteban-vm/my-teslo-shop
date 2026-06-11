@@ -44,6 +44,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      react-hook-form:
+        specifier: ^7.78.0
+        version: 7.78.0(react@19.2.4)
       react-image-gallery:
         specifier: ^2.1.2
         version: 2.1.2(react@19.2.4)
@@ -1311,6 +1314,12 @@ packages:
     peerDependencies:
       react: ^19.2.4
 
+  react-hook-form@7.78.0:
+    resolution: {integrity: sha512-EEZqc+N23moyzTlz61Pj+JvcXo76ICkpfOZo8JZw+sM4+wLQGh6nI2Ms+PdMOYNluFu0ghlM7B8mCzhRYtJCnA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-image-gallery@2.1.2:
     resolution: {integrity: sha512-H+/elQ75DwdRbGJcAd4LnGDac115YxWp6u4d2O1jThkRVJMkJuQFLPvcnhGu5YFNwqk+tywg0c4D4SuQZ0KvGA==}
     peerDependencies:
@@ -2455,6 +2464,10 @@ snapshots:
     dependencies:
       react: 19.2.4
       scheduler: 0.27.0
+
+  react-hook-form@7.78.0(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   react-image-gallery@2.1.2(react@19.2.4):
     dependencies:
