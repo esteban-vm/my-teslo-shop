@@ -2,23 +2,16 @@
 
 import Link from 'next/link'
 import { Button, Divider, Fieldset, Input } from 'rsc-daisyui'
-import { AuthActions } from '@/actions'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
-import { GithubIcon, GoogleIcon } from '../shared'
+import { SocialButtons } from '../forms'
 
 export function NewUserForm() {
   return (
     <form data-auth>
       <Fieldset>
         <Fieldset.Legend>Nuevo usuario</Fieldset.Legend>
-        <Button onClick={() => AuthActions.loginWithGitHub()} size='sm' type='button'>
-          <GithubIcon />
-          Registrarse con GitHub
-        </Button>
-        <Button onClick={() => AuthActions.loginWithGoogle()} size='sm' type='button'>
-          <GoogleIcon />
-          Registrarse con Google
-        </Button>
+        <SocialButtons.Github />
+        <SocialButtons.Google />
         <Divider>O</Divider>
         <Fieldset.Label htmlFor='name'>Nombre completo:</Fieldset.Label>
         <Input id='name' placeholder={ELLIPSIS_CHAR} size='sm' type='text' />
