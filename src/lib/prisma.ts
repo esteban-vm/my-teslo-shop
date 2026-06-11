@@ -8,6 +8,7 @@ const omitConfig = {
   user: {
     active: true,
     password: true,
+    emailVerified: true,
     createdAt: true,
     updatedAt: true,
   },
