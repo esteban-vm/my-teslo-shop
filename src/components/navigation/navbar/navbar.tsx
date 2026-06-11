@@ -12,9 +12,9 @@ export function Navbar() {
       <HomeLink />
       <MenuContainer>
         <Menu as='menu' className='gap-0.5 p-0!' horizontal vanilla>
-          <NavLink href='/gender/men' text='Hombres' type='navbar' />
-          <NavLink href='/gender/women' text='Mujeres' type='navbar' />
-          <NavLink href='/gender/kids' text='Niños' type='navbar' />
+          <NavLink text='Hombres' to='/gender/men' type='navbar' />
+          <NavLink text='Mujeres' to='/gender/women' type='navbar' />
+          <NavLink text='Niños' to='/gender/kids' type='navbar' />
         </Menu>
       </MenuContainer>
       <div className='grow lg:hidden' />
