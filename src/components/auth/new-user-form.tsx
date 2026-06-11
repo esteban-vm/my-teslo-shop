@@ -11,11 +11,11 @@ export function NewUserForm() {
     <form data-auth>
       <Fieldset>
         <Fieldset.Legend>Nuevo usuario</Fieldset.Legend>
-        <Button onClick={() => AuthActions.signInWithGitHub()} size='sm' type='button'>
+        <Button onClick={() => AuthActions.loginWithGitHub()} size='sm' type='button'>
           <GithubIcon />
           Registrarse con GitHub
         </Button>
-        <Button onClick={() => AuthActions.signInWithGoogle()} size='sm' type='button'>
+        <Button onClick={() => AuthActions.loginWithGoogle()} size='sm' type='button'>
           <GoogleIcon />
           Registrarse con Google
         </Button>

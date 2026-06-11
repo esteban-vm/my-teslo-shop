@@ -10,11 +10,11 @@ export function LoginForm() {
     <form data-auth>
       <Fieldset>
         <Fieldset.Legend>Iniciar sesión</Fieldset.Legend>
-        <Button onClick={() => AuthActions.signInWithGitHub()} size='sm' type='button'>
+        <Button onClick={() => AuthActions.loginWithGitHub()} size='sm' type='button'>
           <GithubIcon />
           Ingresar con GitHub
         </Button>
-        <Button onClick={() => AuthActions.signInWithGoogle()} size='sm' type='button'>
+        <Button onClick={() => AuthActions.loginWithGoogle()} size='sm' type='button'>
           <GoogleIcon />
           Ingresar con Google
         </Button>

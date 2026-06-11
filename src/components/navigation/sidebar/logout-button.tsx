@@ -8,7 +8,7 @@ import { closeSidebar } from '@/lib/ui'
 export function LogoutButton() {
   const onLogout = () => {
     closeSidebar()
-    AuthActions.signOut()
+    AuthActions.logout()
   }
 
   return (
