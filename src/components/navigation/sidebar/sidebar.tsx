@@ -17,17 +17,17 @@ export async function Sidebar() {
       <Menu.Title>
         <SearchInput />
       </Menu.Title>
-      <NavLink href='/gender/men' icon={<Mars />} text='Hombres' />
-      <NavLink href='/gender/women' icon={<Venus />} text='Mujeres' />
-      <NavLink href='/gender/kids' icon={<Baby />} text='Niños' />
+      <NavLink icon={<Mars />} text='Hombres' to='/gender/men' />
+      <NavLink icon={<Venus />} text='Mujeres' to='/gender/women' />
+      <NavLink icon={<Baby />} text='Niños' to='/gender/kids' />
       <Divider className='mx-4 my-0' />
-      <NavLink href='/' icon={<User />} text='Perfil' />
-      <NavLink href='/' icon={<Ticket />} text='Órdenes' />
-      {!userLogged ? <NavLink href='/auth/login' icon={<LogIn />} text='Ingresar' /> : null}
+      <NavLink icon={<User />} text='Perfil' to='/' />
+      <NavLink icon={<Ticket />} text='Órdenes' to='/' />
+      {!userLogged && <NavLink icon={<LogIn />} text='Ingresar' to='/auth/login' />}
       <Divider className='mx-4 my-0' />
-      {userLogged ? <LogoutButton /> : null}
-      <NavLink href='/' icon={<Shirt />} text='Productos' />
-      <NavLink href='/' icon={<Users />} text='Usuarios' />
+      {userLogged && <LogoutButton />}
+      <NavLink icon={<Shirt />} text='Productos' to='/' />
+      <NavLink icon={<Users />} text='Usuarios' to='/' />
     </Menu>
   )
 }
