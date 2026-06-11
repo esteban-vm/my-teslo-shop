@@ -37,4 +37,24 @@ export const authConfig: NextAuthConfig = {
     //   return session
     // },
   },
+
+  logger: {
+    error(error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error(error)
+      }
+    },
+
+    warn(code) {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(code)
+      }
+    },
+
+    debug(message) {
+      if (process.env.NODE_ENV === 'development') {
+        console.debug(message)
+      }
+    },
+  },
 }
