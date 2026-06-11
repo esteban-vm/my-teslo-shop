@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html className={`${mainFont.variable} ${titleFont.variable} antialiased`} lang='es'>
+    <html className={`${mainFont.variable} ${titleFont.variable} bg-base-200 antialiased`} lang='es'>
       <body className='bg-linear-to-t from-base-200 to-base-100 font-geist'>{children}</body>
     </html>
   )
