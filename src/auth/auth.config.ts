@@ -1,5 +1,7 @@
 import type { NextAuthConfig } from 'next-auth'
+import type { AuthSchemas } from '@/schemas'
 import { PrismaAdapter } from '@auth/prisma-adapter'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import { prisma } from '@/lib/prisma'
