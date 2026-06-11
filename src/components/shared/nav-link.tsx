@@ -8,17 +8,17 @@ import { closeSidebar } from '@/lib/ui'
 
 export interface NavLinkProps<T extends string> {
   text: string
-  href: Route<T>
-  type?: 'navbar' | 'sidebar'
-  icon?: React.JSX.Element
+  to: Route<T>
+  type?: `${'nav' | 'side'}bar`
+  icon?: JSX.Element
 }
 
-export function NavLink<T extends string>({ text, href, type = 'sidebar', icon }: NavLinkProps<T>) {
+export function NavLink<T extends string>({ text, to, type = 'sidebar', icon }: NavLinkProps<T>) {
   const pathname = usePathname()
 
   return (
-    <Link href={href} onNavigate={type === 'sidebar' ? closeSidebar : undefined} passHref>
-      <Menu.Item active={type === 'navbar' ? pathname === href : undefined} as='span'>
+    <Link href={to} onNavigate={type === 'sidebar' ? closeSidebar : undefined} passHref>
+      <Menu.Item active={type === 'navbar' ? pathname === to : undefined} as='span'>
         {type === 'sidebar' ? icon : null}
         {text}
       </Menu.Item>
