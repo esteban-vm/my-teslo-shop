@@ -1,36 +1,30 @@
 'use client'
 
+import { AtSign, LockKeyhole } from 'lucide-react'
 import Link from 'next/link'
-import { Button, Divider, Fieldset, Input } from 'rsc-daisyui'
-import { AuthActions } from '@/actions'
+import { Button, Divider, Fieldset } from 'rsc-daisyui'
 import { useLoginForm } from '@/hooks'
-import { GithubIcon, GoogleIcon } from '../shared'
+import { FormField, SocialButtons, SubmitButton } from '../forms'
 
 export function LoginForm() {
-  const { handleSubmitWithAction } = useLoginForm()
+  const {
+    form: { control },
+    isDisabled,
+    handleSubmitWithAction,
+  } = useLoginForm()
 
   return (
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
-      <Fieldset>
+      <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Iniciar sesión</Fieldset.Legend>
-        <Button onClick={() => AuthActions.loginWithGitHub()} size='sm' type='button'>
-          <GithubIcon />
-          Ingresar con GitHub
-        </Button>
-        <Button onClick={() => AuthActions.loginWithGoogle()} size='sm' type='button'>
-          <GoogleIcon />
-          Ingresar con Google
-        </Button>
+        <SocialButtons.Github />
+        <SocialButtons.Google />
         <Divider>O</Divider>
-        <Fieldset.Label htmlFor='email'>Correo electrónico:</Fieldset.Label>
-        <Input id='email' placeholder='correo@ejemplo.com' size='sm' type='email' />
-        <Fieldset.Label htmlFor='password'>Contraseña:</Fieldset.Label>
-        <Input id='password' placeholder='************' size='sm' type='password' />
-        <Button color='primary' size='sm' type='submit'>
-          Iniciar sesión
-        </Button>
+        <FormField control={control} icon={AtSign} inputMode='email' label='Correo electrónico' name='email' />
+        <FormField control={control} icon={LockKeyhole} label='Contraseña' name='password' type='password' />
+        <SubmitButton control={control}>Iniciar sesión</SubmitButton>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' href='/auth/new-user' size='sm'>
+        <Button as={Link} color='secondary' href='/auth/new-user'>
           Registrarse
         </Button>
       </Fieldset>
