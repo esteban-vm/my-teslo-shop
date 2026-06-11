@@ -34,14 +34,15 @@ export function FormField<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState: { error, isDirty, invalid: isInvalid } }) => {
-        const isValid = isDirty && !isInvalid
+      render={({ field, fieldState }) => {
+        const { error, isDirty, invalid } = fieldState
+        const valid = isDirty && !invalid
         const isEmail = type === 'email' || inputMode === 'email'
         const placeholderText = isEmail ? 'ejemplo@email.com' : type === 'password' ? '********' : placeholder
 
-        const inputStyle = cn('w-full', isValid && 'border-success outline-success')
+        const inputStyle = cn('w-full', valid && 'border-success outline-success')
         const labelStyle = cn('font-semibold', required && 'after:font-semibold after:text-current after:content-["*"]')
-        const iconStyle = cn('cursor-pointer text-current/50', isInvalid ? 'text-error' : isValid && 'text-success')
+        const iconStyle = cn('cursor-pointer text-current/50', invalid ? 'text-error' : valid && 'text-success')
 
         return (
           <Label.Floating as='div' className='even:mt-2'>
@@ -51,14 +52,15 @@ export function FormField<T extends FieldValues>({
               <input
                 {...rest}
                 aria-errormessage={errorId}
-                aria-invalid={isInvalid}
+                aria-invalid={invalid}
+                inputMode={inputMode}
                 placeholder={placeholderText}
                 required={required}
                 type={type}
                 {...field}
               />
             </Input>
-            <Validator.Hint as='small' className='mt-0.5 empty:hidden' id={errorId} role='alert'>
+            <Validator.Hint as='small' className='mt-1.5 empty:hidden' id={errorId} role='alert'>
               {error?.message}
             </Validator.Hint>
           </Label.Floating>
