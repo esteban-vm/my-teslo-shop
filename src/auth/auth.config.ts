@@ -19,6 +19,16 @@ export const authConfig: NextAuthConfig = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
+
+    CredentialsProvider({
+      async authorize(credentials) {
+        const { email, password } = credentials as AuthSchemas.LoginSchema
+
+        console.log({ email, password })
+
+        return null
+      },
+    }),
   ],
 
   session: {
