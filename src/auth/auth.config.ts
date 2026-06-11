@@ -1,9 +1,11 @@
 import type { NextAuthConfig } from 'next-auth'
 import type { AuthSchemas } from '@/schemas'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import GitHubProvider from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
+import { compare } from 'bcryptjs'
+import Credentials from 'next-auth/providers/credentials'
+import GitHub from 'next-auth/providers/github'
+import Google from 'next-auth/providers/google'
+import { CredentialsSigninError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 
 export const authConfig: NextAuthConfig = {
@@ -11,24 +13,34 @@ export const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
 
   providers: [
-    GitHubProvider({
+    GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
 
-    GoogleProvider({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
 
-    CredentialsProvider({
+    Credentials({
       async authorize(credentials) {
         const { email, password } = credentials as AuthSchemas.LoginSchema
 
-        console.log({ email, password })
+        const savedUser = await prisma.user.findUnique({
+          where: { email, active: true },
+          omit: { password: false },
+        })
 
-        return null
+        const isLogged = await compare(password, savedUser?.password ?? '')
+
+        if (!savedUser || !isLogged) {
+          throw new CredentialsSigninError('Correo electrónico y/o contraseña inválido(s)')
+        }
+
+        const { password: _, ...loggedUser } = savedUser
+        return loggedUser
       },
     }),
   ],
