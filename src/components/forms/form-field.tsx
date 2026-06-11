@@ -46,7 +46,7 @@ export function FormField<T extends FieldValues>({
 
         return (
           <Label.Floating as='div' className='even:mt-2'>
-            <span className={labelStyle}>{label}</span>
+            <span className={labelStyle}>{label}:</span>
             <Input as='label' className={inputStyle} validator>
               {Icon && <Icon className={iconStyle} />}
               <input
