@@ -1,31 +1,41 @@
 'use client'
 
+import { AtSign, LockKeyhole, Pencil } from 'lucide-react'
 import Link from 'next/link'
-import { Button, Divider, Fieldset, Input } from 'rsc-daisyui'
-import { ELLIPSIS_CHAR } from '@/lib/constants'
-import { SocialButtons } from '../forms'
+import { Button, Divider, Fieldset } from 'rsc-daisyui'
+import { useNewUserForm } from '@/hooks'
+import { FormField, SocialButtons, SubmitButton } from '../forms'
 
 export function NewUserForm() {
+  const {
+    form: { control },
+    isDisabled,
+    handleSubmitWithAction,
+  } = useNewUserForm()
+
   return (
-    <form data-auth>
-      <Fieldset>
+    <form data-auth noValidate onSubmit={handleSubmitWithAction}>
+      <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Nuevo usuario</Fieldset.Legend>
         <SocialButtons.Github />
         <SocialButtons.Google />
         <Divider>O</Divider>
-        <Fieldset.Label htmlFor='name'>Nombre completo:</Fieldset.Label>
-        <Input id='name' placeholder={ELLIPSIS_CHAR} size='sm' type='text' />
-        <Fieldset.Label htmlFor='email'>Correo electrónico:</Fieldset.Label>
-        <Input id='email' placeholder='correo@ejemplo.com' size='sm' type='email' />
-        <Fieldset.Label htmlFor='password'>Contraseña:</Fieldset.Label>
-        <Input id='password' placeholder='************' size='sm' type='password' />
-        <Fieldset.Label htmlFor='repeat-password'>Repetir contraseña:</Fieldset.Label>
-        <Input id='repeat-password' placeholder='************' size='sm' type='password' />
-        <Button color='primary' size='sm' type='submit'>
-          Registrarse
-        </Button>
+
+        <FormField control={control} icon={Pencil} label='Nombre completo' name='name' />
+        <FormField control={control} icon={AtSign} inputMode='email' label='Correo electrónico' name='email' />
+        <FormField control={control} icon={LockKeyhole} label='Contraseña' name='password' type='password' />
+
+        <FormField
+          control={control}
+          icon={LockKeyhole}
+          label='Repetir contraseña'
+          name='repeatPassword'
+          type='password'
+        />
+
+        <SubmitButton control={control}>Registrarse</SubmitButton>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' href='/auth/login' size='sm'>
+        <Button as={Link} color='secondary' href='/auth/login'>
           Iniciar sesión
         </Button>
       </Fieldset>
