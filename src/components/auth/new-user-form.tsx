@@ -20,12 +20,19 @@ export function NewUserForm() {
         <SocialButtons.Github />
         <SocialButtons.Google />
         <Divider>O</Divider>
-        <FormField control={control} icon={Pencil} label='Nombre completo' name='name' />
-        <FormField control={control} icon={AtSign} inputMode='email' label='Correo electrónico' name='email' />
-        <FormField control={control} icon={LockKeyhole} label='Contraseña' name='password' type='password' />
+        <FormField control={control} icon={<Pencil />} label='Nombre completo' name='name' />
+        <FormField
+          autoComplete='email'
+          control={control}
+          icon={<AtSign />}
+          label='Correo electrónico'
+          name='email'
+          type='email'
+        />
+        <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
         <FormField
           control={control}
-          icon={LockKeyhole}
+          icon={<LockKeyhole />}
           label='Repetir contraseña'
           name='repeatPassword'
           type='password'
