@@ -79,3 +79,15 @@ form[data-auth] {
     @apply border-primary/50!;
   }
 }
+
+.input {
+  @apply w-full;
+
+  svg {
+    @apply cursor-pointer text-current/50;
+  }
+}
+
+.floating-label:has(input:required) > span::after {
+  @apply font-semibold text-current text-lg content-["*"];
+}
