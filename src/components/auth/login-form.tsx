@@ -20,8 +20,15 @@ export function LoginForm() {
         <SocialButtons.Github />
         <SocialButtons.Google />
         <Divider>O</Divider>
-        <FormField control={control} icon={AtSign} inputMode='email' label='Correo electrónico' name='email' />
-        <FormField control={control} icon={LockKeyhole} label='Contraseña' name='password' type='password' />
+        <FormField
+          autoComplete='email'
+          control={control}
+          icon={<AtSign />}
+          label='Correo electrónico'
+          name='email'
+          type='email'
+        />
+        <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
         <SubmitButton control={control}>Iniciar sesión</SubmitButton>
         <Divider>O</Divider>
         <Button as={Link} color='secondary' href='/auth/new-user'>
