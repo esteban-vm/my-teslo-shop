@@ -34,19 +34,7 @@ svg {
 }
 
 form[data-auth] {
-  @apply w-full max-w-sm;
-
-  fieldset {
-    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
-
-    legend {
-      @apply text-xl uppercase;
-    }
-
-    .divider {
-      @apply m-0 text-xs;
-    }
-  }
+  @apply w-full max-w-md;
 }
 
 [data-size] {
@@ -77,6 +65,18 @@ form[data-auth] {
   &:focus,
   &:hover {
     @apply border-primary/50!;
+  }
+}
+
+.fieldset {
+  @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
+
+  .fieldset-legend {
+    @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
+  }
+
+  .divider {
+    @apply m-0 text-xs;
   }
 }
 
