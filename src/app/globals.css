@@ -13,6 +13,17 @@
   --font-montserrat: var(--font-montserrat-alternates);
 }
 
+:root {
+  --toastify-color-info: var(--color-info);
+  --toastify-color-success: var(--color-success);
+  --toastify-color-warning: var(--color-warning);
+  --toastify-color-error: var(--color-error);
+  --toastify-text-color-info: var(--color-info-content);
+  --toastify-text-color-success: var(--color-success-content);
+  --toastify-text-color-warning: var(--color-warning-content);
+  --toastify-text-color-error: var(--color-error-content);
+}
+
 * {
   scrollbar-width: thin;
 
