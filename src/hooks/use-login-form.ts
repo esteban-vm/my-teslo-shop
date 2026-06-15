@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
 import { AuthActions } from '@/actions'
+import { Toasts } from '@/lib/toasts'
 import { AuthSchemas } from '@/schemas'
 
 export function useLoginForm() {
@@ -19,6 +20,9 @@ export function useLoginForm() {
       onSettled() {
         methods.resetFormAndAction()
       },
+      onExecute() {
+        Toasts.execute('Ingresando')
+      },
       onSuccess() {
         setIsServerError(false)
       },
@@ -27,7 +31,11 @@ export function useLoginForm() {
 
         if (serverError) {
           setIsServerError(true)
+          Toasts.error(serverError)
         }
+      },
+      onNavigation() {
+        Toasts.close()
       },
     },
   })
