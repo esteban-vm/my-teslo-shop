@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
 import { AuthActions } from '@/actions'
+import { Toasts } from '@/lib/toasts'
 import { AuthSchemas } from '@/schemas'
 
 export function useNewUserForm() {
@@ -21,6 +22,9 @@ export function useNewUserForm() {
       onSettled() {
         methods.resetFormAndAction()
       },
+      onExecute() {
+        Toasts.execute('Registrando')
+      },
       onSuccess() {
         setIsServerError(false)
       },
@@ -29,7 +33,11 @@ export function useNewUserForm() {
 
         if (serverError) {
           setIsServerError(true)
+          Toasts.error(serverError)
         }
+      },
+      onNavigation() {
+        Toasts.close()
       },
     },
   })
