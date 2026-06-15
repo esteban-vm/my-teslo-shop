@@ -33,6 +33,7 @@ export function SizeSelector({ sizes }: { sizes: Size[] }) {
           return (
             <Join.Button
               active={size === currentSize}
+              className='rounded-none'
               ghost
               key={size}
               onClick={() => onSizeChange(size)}
