@@ -1,5 +1,6 @@
 import type { Id } from 'react-toastify'
 import { toast } from 'react-toastify'
+import { ELLIPSIS_CHAR } from './constants'
 
 export function Toasts() {}
 
@@ -12,7 +13,7 @@ let toastId: Id
 
 function handleExecute(message: string) {
   closeToast()
-  toastId = toast.loading(message)
+  toastId = toast.loading(message + ELLIPSIS_CHAR)
 }
 
 function handleSuccess(message: string, onClose: () => void) {
