@@ -16,13 +16,12 @@ function handleExecute(message: string) {
   toastId = toast.loading(message + ELLIPSIS_CHAR)
 }
 
-function handleSuccess(message: string, onClose: () => void) {
+function handleSuccess(message: string) {
   toast.update(toastId, {
     type: 'success',
     autoClose: 4000,
     isLoading: false,
-    render: message,
-    onClose,
+    render: <p className='line-clamp-2'>{message}</p>,
   })
 }
 
@@ -32,7 +31,7 @@ function handleError(message: string) {
     isLoading: false,
     closeButton: true,
     autoClose: false,
-    render: message,
+    render: <p className='line-clamp-2'>{message}</p>,
   })
 }
 
