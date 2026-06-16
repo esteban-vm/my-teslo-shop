@@ -7,9 +7,20 @@ import 'next-auth/jwt'
 type UserType = Omit<UserPrisma, UserOmittedFields>
 
 declare module 'next-auth' {
-  interface User extends UserType {}
+  interface User extends UserType {
+    id: string
+    name: string | null
+    email: string
+    image: string | null
+  }
 
   interface Session {
     user: UserType & DefaultSession['user']
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    data: UserType
   }
 }
