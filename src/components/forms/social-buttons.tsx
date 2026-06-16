@@ -10,7 +10,11 @@ SocialButtons.Google = GoogleButton
 
 function GithubButton() {
   return (
-    <Button className='border-black bg-black text-white' onClick={() => AuthActions.loginWithGitHub()} type='button'>
+    <Button
+      className='border-black bg-black text-white disabled:opacity-50'
+      onClick={() => AuthActions.loginWithGitHub()}
+      type='button'
+    >
       <GithubIcon />
       Ingresar con GitHub
     </Button>
@@ -19,7 +23,11 @@ function GithubButton() {
 
 function GoogleButton() {
   return (
-    <Button className='border-base-300 bg-white text-black' onClick={() => AuthActions.loginWithGoogle()} type='button'>
+    <Button
+      className='border-base-300 bg-white text-black disabled:opacity-50'
+      onClick={() => AuthActions.loginWithGoogle()}
+      type='button'
+    >
       <GoogleIcon />
       Ingresar con Google
     </Button>
