@@ -104,5 +104,5 @@ form[data-auth] {
 }
 
 .Toastify__toast-container {
-  @apply font-geist text-sm font-semibold;
+  @apply font-geist text-sm font-semibold w-full max-w-sm;
 }
