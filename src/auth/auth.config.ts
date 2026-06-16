@@ -2,10 +2,10 @@ import type { NextAuthConfig } from 'next-auth'
 import type { AuthSchemas } from '@/schemas'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { compare } from 'bcryptjs'
+import { CredentialsSignin } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
-import { CredentialsSigninError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 
 export const authConfig: NextAuthConfig = {
@@ -36,7 +36,7 @@ export const authConfig: NextAuthConfig = {
         const isLogged = await compare(password, savedUser?.password ?? '')
 
         if (!savedUser || !isLogged) {
-          throw new CredentialsSigninError('Correo electrónico y/o contraseña inválido(s)')
+          throw new CredentialsSignin('Correo electrónico y/o contraseña inválido(s)')
         }
 
         const { password: _, ...loggedUser } = savedUser
@@ -65,7 +65,7 @@ export const authConfig: NextAuthConfig = {
   logger: {
     error(error) {
       if (process.env.NODE_ENV === 'development') {
-        console.error(error)
+        console.error(error.message)
       }
     },
 
