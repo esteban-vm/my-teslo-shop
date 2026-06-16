@@ -39,7 +39,7 @@ export function NewUserForm() {
         />
         <SubmitButton control={control}>Registrarse</SubmitButton>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' href='/auth/login'>
+        <Button as={Link} color='secondary' disabled={isDisabled} href='/auth/login'>
           Iniciar sesión
         </Button>
       </Fieldset>

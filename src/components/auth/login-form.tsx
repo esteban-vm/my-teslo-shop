@@ -31,7 +31,7 @@ export function LoginForm() {
         <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
         <SubmitButton control={control}>Iniciar sesión</SubmitButton>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' href='/auth/new-user'>
+        <Button as={Link} color='secondary' disabled={isDisabled} href='/auth/new-user'>
           Registrarse
         </Button>
       </Fieldset>
