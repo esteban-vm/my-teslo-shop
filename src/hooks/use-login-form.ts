@@ -8,7 +8,7 @@ import { AuthSchemas } from '@/schemas'
 export function useLoginForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AuthActions.login, zodResolver(AuthSchemas.LoginSchema), {
+  const methods = useHookFormAction(AuthActions.loginWithCredentials, zodResolver(AuthSchemas.LoginSchema), {
     formProps: {
       mode: 'onChange',
       defaultValues: {

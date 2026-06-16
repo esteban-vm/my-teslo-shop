@@ -19,36 +19,40 @@ export const loginWithGoogle = actionClient.action(async () => {
   await signIn('google', { redirectTo: homePage })
 })
 
-export const login = actionClient.inputSchema(AuthSchemas.LoginSchema).action(async ({ parsedInput }) => {
-  await sleepExecution(5)
-  const { email, password } = parsedInput
-  await signIn('credentials', { email, password, redirectTo: homePage })
-})
+export const loginWithCredentials = actionClient
+  .inputSchema(AuthSchemas.LoginSchema)
+  .action(async ({ parsedInput }) => {
+    await sleepExecution(5)
+    const { email, password } = parsedInput
+    await signIn('credentials', { email, password, redirectTo: homePage })
+  })
 
 export const logout = actionClient.action(async () => {
   await sleepExecution(1)
   await signOut({ redirectTo: homePage })
 })
 
-export const createUser = actionClient.inputSchema(AuthSchemas.NewUserSchema).action(async ({ parsedInput }) => {
-  await sleepExecution(3)
-  const { email, name, password } = parsedInput
-  const savedUser = await prisma.user.findUnique({ where: { email, active: true } })
+export const createUserWithCredentials = actionClient
+  .inputSchema(AuthSchemas.NewUserSchema)
+  .action(async ({ parsedInput }) => {
+    await sleepExecution(3)
+    const { email, name, password } = parsedInput
+    const savedUser = await prisma.user.findUnique({ where: { email, active: true } })
 
-  if (savedUser) {
-    throw new CredentialsSigninError('Correo electrónico en uso')
-  }
+    if (savedUser) {
+      throw new CredentialsSigninError('Correo electrónico en uso')
+    }
 
-  const passwordHash = await hash(password, 10)
+    const passwordHash = await hash(password, 10)
 
-  const createdUser = await prisma.user.create({
-    data: {
-      name,
-      email: email.toLowerCase(),
-      password: passwordHash,
-    },
-    select: { email: true },
+    const createdUser = await prisma.user.create({
+      data: {
+        name,
+        email: email.toLowerCase(),
+        password: passwordHash,
+      },
+      select: { email: true },
+    })
+
+    await signIn('credentials', { email: createdUser.email, password, redirectTo: homePage })
   })
-
-  await signIn('credentials', { email: createdUser.email, password, redirectTo: homePage })
-})
