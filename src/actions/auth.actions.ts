@@ -3,7 +3,6 @@
 import type { Route } from 'next'
 import { hash } from 'bcryptjs'
 import { signIn, signOut } from '@/auth'
-import { CredentialsSigninError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { actionClient } from '@/lib/safe-action'
@@ -37,12 +36,6 @@ export const createUserWithCredentials = actionClient
   .action(async ({ parsedInput }) => {
     await sleepExecution(3)
     const { email, name, password } = parsedInput
-    const savedUser = await prisma.user.findUnique({ where: { email, active: true } })
-
-    if (savedUser) {
-      throw new CredentialsSigninError('Correo electrónico en uso')
-    }
-
     const passwordHash = await hash(password, 10)
 
     const createdUser = await prisma.user.create({
