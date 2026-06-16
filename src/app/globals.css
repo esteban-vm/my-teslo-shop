@@ -102,3 +102,7 @@ form[data-auth] {
 .floating-label:has(input:required) > span::after {
   @apply font-semibold text-current text-lg content-["*"];
 }
+
+.Toastify__toast-container {
+  @apply font-geist text-sm font-semibold;
+}
