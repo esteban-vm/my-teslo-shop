@@ -20,7 +20,7 @@ export function NewUserForm() {
         <SocialButtons.Github />
         <SocialButtons.Google />
         <Divider>O</Divider>
-        <FormField control={control} icon={<Pencil />} label='Nombre completo' name='name' />
+        <FormField autoComplete='name' control={control} icon={<Pencil />} label='Nombre completo' name='name' />
         <FormField
           autoComplete='email'
           control={control}
