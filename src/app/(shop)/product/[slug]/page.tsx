@@ -46,7 +46,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <PageContainer>
       <ProductSlider images={images} />
-      <div className='space-y-1 px-3 py-1.5'>
+      <ProductDetails>
         <ProductTitle>{title}</ProductTitle>
         <Suspense fallback={<Skeleton className='h-6 w-full rounded-box' />}>
           <StockCounter slug={slug} />
@@ -58,11 +58,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <SizeSelector sizes={sizes} />
         <QuantitySelector product={product} />
         <p className='font-semibold'>Descripción:</p>
-        <p className='text-justify text-sm'>{description}</p>
-      </div>
+        <ProductDesc>{description}</ProductDesc>
+      </ProductDetails>
     </PageContainer>
   )
 }
 
 const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
+const ProductDetails = tw.div`space-y-1 px-3 py-1.5`
 const ProductTitle = tw.h1`font-bold font-montserrat text-rose-700 text-xl`
+const ProductDesc = tw.p`text-justify indent-8 text-sm`
