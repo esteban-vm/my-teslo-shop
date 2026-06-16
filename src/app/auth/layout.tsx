@@ -1,8 +1,10 @@
+import { redirect } from 'next/navigation'
 import tw from 'tailwind-styled-components'
-import { verifyNoUser } from '@/lib/auth'
+import { auth } from '@/auth'
 
 export default async function AuthLayout({ children }: LayoutProps<'/auth'>) {
-  await verifyNoUser()
+  const session = await auth()
+  if (session?.user) redirect('/')
 
   return <PageContainer>{children}</PageContainer>
 }
