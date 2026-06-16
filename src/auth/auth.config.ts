@@ -39,8 +39,8 @@ export const authConfig: NextAuthConfig = {
           throw new CredentialsSignin('Correo electrónico y/o contraseña inválido(s)')
         }
 
-        const { password: _, ...loggedUser } = savedUser
-        return loggedUser
+        const { password: _, ...loggedInUser } = savedUser
+        return loggedInUser
       },
     }),
   ],
