@@ -5,6 +5,7 @@ import { NavLink } from '@/components/shared'
 import { CloseButton } from './close-button'
 import { LogoutButton } from './logout-button'
 import { SearchInput } from './search-input'
+import { ThemeSwitch } from './theme-switch'
 
 export async function Sidebar() {
   const session = await auth()
@@ -42,6 +43,9 @@ export async function Sidebar() {
       )}
 
       {isLoggedIn && <LogoutButton />}
+
+      <Divider className='mx-4 my-0' />
+      <ThemeSwitch />
     </Menu>
   )
 }
