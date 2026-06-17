@@ -11,10 +11,10 @@ export default function CartPage() {
     <>
       <PageTitle title='Mi carrito' />
       <div className='my-3 grid gap-3 md:grid-cols-3'>
-        <div className='px-5 py-3 md:col-span-2'>
+        <div className='px-5 md:col-span-2'>
           <CartList />
         </div>
-        <div className='px-5 py-3'>
+        <div className='px-5'>
           <OrderSummary />
         </div>
       </div>
