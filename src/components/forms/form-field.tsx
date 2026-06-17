@@ -1,7 +1,4 @@
-'use client'
-
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
-import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
@@ -27,7 +24,8 @@ export function FormField<T extends FieldValues>({
   placeholder = ELLIPSIS_CHAR,
   ...rest
 }: FormFieldProps<T>) {
-  const errorId = useId()
+  const fieldId = `${name}-field-id`
+  const errorId = `${name}-error-id`
   const isEmail = type === 'email' || inputMode === 'email'
   placeholder = isEmail ? 'correo@ejemplo.com' : type === 'password' ? '********' : placeholder
 
@@ -47,6 +45,7 @@ export function FormField<T extends FieldValues>({
                 {...rest}
                 aria-errormessage={errorId}
                 aria-invalid={invalid}
+                id={fieldId}
                 inputMode={inputMode}
                 placeholder={placeholder}
                 required={required}
