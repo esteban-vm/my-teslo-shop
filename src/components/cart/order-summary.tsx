@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Button, Card } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useMounted, useShoppingCart } from '@/hooks'
@@ -18,7 +19,6 @@ export function OrderSummary() {
     <Card border className='mx-auto shadow-md xl:w-[90%]'>
       <Card.Body className='px-4 pt-2 pb-3'>
         <Card.Title>Resumen de orden</Card.Title>
-
         <div>
           <p>
             Nro. de artículos:
@@ -34,8 +34,7 @@ export function OrderSummary() {
             Total:<span className='float-end'>{formatProductPrice(total)}</span>
           </p>
         </div>
-
-        <Button className='mx-auto' size='sm' wide>
+        <Button as={Link} className='mx-auto' href='/checkout/address' size='sm' wide>
           Comprar ahora
         </Button>
       </Card.Body>
