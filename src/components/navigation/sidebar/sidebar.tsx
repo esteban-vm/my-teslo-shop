@@ -26,7 +26,7 @@ export async function Sidebar() {
 
       {isLoggedIn ? (
         <>
-          <NavLink icon={<User />} text='Perfil' to='/' />
+          <NavLink icon={<User />} text='Perfil' to='/profile' />
           <NavLink icon={<Ticket />} text='Órdenes' to='/' />
           <Divider className='mx-4 my-0' />
         </>
