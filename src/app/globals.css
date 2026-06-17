@@ -3,7 +3,9 @@
 @import "react-image-gallery/styles/image-gallery.css";
 
 @plugin "daisyui" {
-  themes: wireframe --default;
+  themes:
+    wireframe --default,
+    night --prefersdark;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";
@@ -46,6 +48,26 @@ svg {
 
 form[data-auth] {
   @apply w-full max-w-md;
+
+  .fieldset {
+    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
+
+    .fieldset-legend {
+      @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
+    }
+
+    .input {
+      @apply w-full;
+
+      svg {
+        @apply cursor-pointer text-current/50;
+      }
+    }
+
+    .divider {
+      @apply m-0 text-xs;
+    }
+  }
 }
 
 [data-size] {
@@ -60,7 +82,6 @@ form[data-auth] {
   @apply cursor-default backdrop-blur-xs backdrop-filter;
 }
 
-.menu-active,
 .btn-active {
   @apply bg-primary/50;
 }
@@ -76,26 +97,6 @@ form[data-auth] {
   &:focus,
   &:hover {
     @apply border-primary/50!;
-  }
-}
-
-.fieldset {
-  @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
-
-  .fieldset-legend {
-    @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
-  }
-
-  .divider {
-    @apply m-0 text-xs;
-  }
-}
-
-.input {
-  @apply w-full;
-
-  svg {
-    @apply cursor-pointer text-current/50;
   }
 }
 
