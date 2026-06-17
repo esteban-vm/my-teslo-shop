@@ -29,13 +29,13 @@ export const authConfig: NextAuthConfig = {
         const { email, password } = credentials as AuthSchemas.LoginSchema
 
         const savedUser = await prisma.user.findUnique({
-          where: { email, active: true },
+          where: { email: email.toLowerCase(), active: true },
           omit: { password: false },
         })
 
-        const isLogged = await compare(password, savedUser?.password ?? '')
+        const isLoggedIn = await compare(password, savedUser?.password ?? '')
 
-        if (!savedUser || !isLogged) {
+        if (!savedUser || !isLoggedIn) {
           throw new CredentialsSignin('Correo electrónico y/o contraseña inválido(s)')
         }
 
