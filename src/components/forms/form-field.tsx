@@ -21,13 +21,15 @@ export function FormField<T extends FieldValues>({
   name,
   label,
   icon,
-  placeholder = ELLIPSIS_CHAR,
-  type = 'text',
   inputMode,
+  type = 'text',
   required = true,
+  placeholder = ELLIPSIS_CHAR,
   ...rest
 }: FormFieldProps<T>) {
   const errorId = useId()
+  const isEmail = type === 'email' || inputMode === 'email'
+  placeholder = isEmail ? 'correo@ejemplo.com' : type === 'password' ? '********' : placeholder
 
   return (
     <Controller
@@ -35,21 +37,18 @@ export function FormField<T extends FieldValues>({
       name={name}
       render={({ field, fieldState }) => {
         const { error, isDirty, invalid } = fieldState
-        const valid = isDirty && !invalid
-        const isEmail = type === 'email' || inputMode === 'email'
-        const placeholderText = isEmail ? 'correo@ejemplo.com' : type === 'password' ? '********' : placeholder
 
         return (
           <Label.Floating as='div' className='mt-0 mb-2'>
             <span className='font-semibold'>{label}:</span>
-            <Input as='label' className={cn(valid && 'border-success outline-success')} validator>
+            <Input as='label' className={cn(isDirty && !invalid && 'border-success outline-success')} validator>
               {icon}
               <input
                 {...rest}
                 aria-errormessage={errorId}
                 aria-invalid={invalid}
                 inputMode={inputMode}
-                placeholder={placeholderText}
+                placeholder={placeholder}
                 required={required}
                 type={type}
                 {...field}
