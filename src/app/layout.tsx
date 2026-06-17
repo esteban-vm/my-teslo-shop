@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import tw from 'tailwind-styled-components'
-import { ToastProvider } from '@/components/providers'
 import { mainFont, titleFont } from '@/fonts'
+import { Providers } from './providers'
 import '@/app/globals.css'
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html className={`${mainFont.variable} ${titleFont.variable} bg-base-200 antialiased`} lang='es'>
       <PageContainer>
-        <ToastProvider>{children}</ToastProvider>
+        <Providers>{children}</Providers>
       </PageContainer>
     </html>
   )
