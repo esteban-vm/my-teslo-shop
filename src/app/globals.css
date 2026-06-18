@@ -4,7 +4,9 @@
 
 @plugin "daisyui" {
   logs: false;
-  themes: wireframe, night;
+  themes:
+    wireframe --default,
+    night --prefersdark;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";
@@ -13,6 +15,8 @@
   --font-geist: var(--font-geist-variable);
   --font-montserrat: var(--font-montserrat-alternates);
 }
+
+@custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
 
 :root {
   --toastify-color-info: var(--color-info);
@@ -79,6 +83,10 @@ form[data-auth] {
 
 .drawer-overlay {
   @apply cursor-default backdrop-blur-xs backdrop-filter;
+}
+
+.menu-active {
+  @apply not-dark:bg-primary/50;
 }
 
 .btn-active {
