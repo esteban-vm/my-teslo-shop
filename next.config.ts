@@ -1,10 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
   typedRoutes: true,
   devIndicators: false,
   reactCompiler: true,
+  allowedDevOrigins: ['192.168.100.22'],
   experimental: {
     typedEnv: true,
   },
