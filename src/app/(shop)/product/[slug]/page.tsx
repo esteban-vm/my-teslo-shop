@@ -7,7 +7,7 @@ import { Skeleton } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { ProductActions } from '@/actions'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
-import { ProductSlider, StockCounter } from '@/components/shop'
+import { ProductInfo, ProductSlider, StockCounter } from '@/components/shop'
 import { formatProductPrice } from '@/lib/helpers'
 
 type ProductPageProps = PageProps<'/product/[slug]'>
@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <SizeSelector sizes={sizes} />
         <QuantitySelector product={product} />
         <p className='font-semibold'>Descripción:</p>
-        <ProductDesc>{description}</ProductDesc>
+        <ProductInfo info={description} />
       </ProductDetails>
     </PageContainer>
   )
@@ -67,4 +67,3 @@ export default async function ProductPage({ params }: ProductPageProps) {
 const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
 const ProductDetails = tw.div`space-y-1 px-3 py-1.5`
 const ProductTitle = tw.h1`font-bold font-montserrat text-rose-700 text-xl`
-const ProductDesc = tw.p`text-justify indent-8 text-sm`
