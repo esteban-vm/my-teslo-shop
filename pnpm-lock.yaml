@@ -93,6 +93,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.2.2
+      '@types/dom-chromium-ai':
+        specifier: ^0.0.17
+        version: 0.0.17
       '@types/node':
         specifier: ^20
         version: 20.19.39
@@ -899,6 +902,9 @@ packages:
     resolution: {integrity: sha512-MroybZONDmiuaWLz77itri62mkSKgfzA5C3qfbnSZrsE6nh0JKvRWZsUXRd40SYckXg35TTAPaTFNJGEAz6YCg==}
     peerDependencies:
       react: '>=16.8.0'
+
+  '@types/dom-chromium-ai@0.0.17':
+    resolution: {integrity: sha512-UnSAIVKONaY2vTAM4TkPpwdKeGgg3tPCwNP3KxR+U8bLYC2rQU7UrgW9LIVx0B02dKZxuPA6a0Q5wvyW5Rk6nw==}
 
   '@types/node@20.19.39':
     resolution: {integrity: sha512-orrrD74MBUyK8jOAD/r0+lfa1I2MO6I+vAkmAWzMYbCcgrN4lCrmK52gRFQq/JRxfYPfonkr4b0jcY7Olqdqbw==}
@@ -2122,6 +2128,8 @@ snapshots:
     dependencies:
       '@tw-classed/core': 1.7.0
       react: 19.2.4
+
+  '@types/dom-chromium-ai@0.0.17': {}
 
   '@types/node@20.19.39':
     dependencies:
