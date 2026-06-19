@@ -1,3 +1,5 @@
+'use client'
+
 import { LucideMinus, LucidePlus } from 'lucide-react'
 import { Join } from 'rsc-daisyui'
 
