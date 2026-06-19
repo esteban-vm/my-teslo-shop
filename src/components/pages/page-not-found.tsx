@@ -4,11 +4,7 @@ import Link from 'next/link'
 import { Button } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
-export interface PageNotFoundProps {
-  title?: string
-}
-
-export function PageNotFound({ title = 'Página no encontrada' }: PageNotFoundProps) {
+export function PageNotFound({ title = 'Página no encontrada' }: { title?: string }) {
   return (
     <Container>
       <ImageContainer>
