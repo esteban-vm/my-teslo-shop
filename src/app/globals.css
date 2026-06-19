@@ -50,26 +50,10 @@ svg {
 }
 
 form[data-auth] {
-  @apply w-full max-w-md;
+  @apply w-full max-w-sm;
 
-  .fieldset {
-    @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
-
-    .fieldset-legend {
-      @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
-    }
-
-    .input {
-      @apply w-full;
-
-      svg {
-        @apply cursor-pointer text-current/50;
-      }
-    }
-
-    .divider {
-      @apply m-0 text-xs;
-    }
+  .divider {
+    @apply m-0 text-xs;
   }
 }
 
@@ -85,6 +69,22 @@ form[data-auth] {
   }
 }
 
+.fieldset {
+  @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
+
+  .fieldset-legend {
+    @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
+  }
+
+  .input {
+    @apply w-full;
+
+    svg {
+      @apply cursor-pointer text-current/50;
+    }
+  }
+}
+
 .drawer-overlay {
   @apply cursor-default backdrop-blur-xs backdrop-filter;
 }
@@ -95,6 +95,10 @@ form[data-auth] {
 
 .btn-active {
   @apply bg-primary/50;
+}
+
+.floating-label:has(input:required) > span::after {
+  @apply font-semibold text-current text-lg content-["*"];
 }
 
 .image-gallery-thumbnails-container {
@@ -109,10 +113,6 @@ form[data-auth] {
   &:hover {
     @apply border-primary/50!;
   }
-}
-
-.floating-label:has(input:required) > span::after {
-  @apply font-semibold text-current text-lg content-["*"];
 }
 
 .Toastify__toast-container {
