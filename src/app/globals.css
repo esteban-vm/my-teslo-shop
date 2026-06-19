@@ -73,6 +73,10 @@ form[data-auth] {
   }
 }
 
+#app_sidebar .divider {
+  @apply mx-4 my-0;
+}
+
 [data-size] {
   @apply fade-in w-fit animate-in gap-1 px-2 py-1 text-sm;
 
