@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { mainFont, titleFont } from '@/fonts'
 import { Providers } from './providers'
 import '@/app/globals.css'
