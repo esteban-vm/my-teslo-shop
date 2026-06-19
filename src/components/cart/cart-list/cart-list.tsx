@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Button, List } from 'rsc-daisyui'
-import { TextSkeleton } from '@/components/shared'
+import { Button, List, Skeleton } from 'rsc-daisyui'
 import { useMounted, useShoppingCart } from '@/hooks'
+import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { CartItem } from './cart-item'
 
 export function CartList() {
@@ -11,7 +11,7 @@ export function CartList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <TextSkeleton text='Cargando carrito de compras' />
+    return <Skeleton text>Cargando carrito de compras{ELLIPSIS_CHAR}</Skeleton>
   }
 
   return (
