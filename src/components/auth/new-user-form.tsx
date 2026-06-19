@@ -16,7 +16,7 @@ export function NewUserForm() {
   return (
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
-        <Fieldset.Legend>Nuevo usuario</Fieldset.Legend>
+        <Fieldset.Legend>Registrarse</Fieldset.Legend>
         <SocialButtons.Github />
         <SocialButtons.Google />
         <Divider>O</Divider>
