@@ -18,9 +18,9 @@ export function ProductInfo({ info }: { info: string }) {
         targetLanguage: 'es',
       }
 
-      const translatorCapabilities = await Translator.availability(options)
+      const capabilities = await Translator.availability(options)
 
-      if (translatorCapabilities === 'available') {
+      if (capabilities === 'available') {
         translator.current = await Translator.create(options)
         setCanTranslate(true)
       }
@@ -34,11 +34,10 @@ export function ProductInfo({ info }: { info: string }) {
   }, [])
 
   const onTranslate = async () => {
-    if (translator.current) {
-      setCanTranslate(false)
-      const translation = await translator.current.translate(productInfo)
-      setProductInfo(translation)
-    }
+    if (!translator.current) return
+    setCanTranslate(false)
+    const translation = await translator.current.translate(productInfo)
+    setProductInfo(translation)
   }
 
   return (
