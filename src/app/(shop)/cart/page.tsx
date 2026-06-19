@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { CartList, OrderSummary } from '@/components/cart'
-import { PageTitle } from '@/components/shared'
+import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
   title: 'Carrito de compras',
