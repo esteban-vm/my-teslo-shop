@@ -13,7 +13,7 @@ export async function Sidebar() {
   const isAdmin = session?.user.role === 'admin'
 
   return (
-    <Menu as='menu' className='min-h-full w-fit bg-base-200 p-4' vanilla>
+    <Menu as='menu' className='min-h-full w-fit bg-base-200 p-4' id='app_sidebar' vanilla>
       <Menu.Title className='items-end'>
         <CloseButton />
       </Menu.Title>
@@ -23,13 +23,13 @@ export async function Sidebar() {
       <NavLink icon={<Mars />} text='Hombres' to='/gender/men' />
       <NavLink icon={<Venus />} text='Mujeres' to='/gender/women' />
       <NavLink icon={<Baby />} text='Niños' to='/gender/kids' />
-      <Divider className='mx-4 my-0' />
+      <Divider />
 
       {isLoggedIn ? (
         <>
           <NavLink icon={<User />} text='Perfil' to='/profile' />
           <NavLink icon={<Ticket />} text='Órdenes' to='/' />
-          <Divider className='mx-4 my-0' />
+          <Divider />
         </>
       ) : (
         <NavLink icon={<LogIn />} text='Ingresar' to='/auth/login' />
@@ -43,8 +43,7 @@ export async function Sidebar() {
       )}
 
       {isLoggedIn && <LogoutButton />}
-
-      <Divider className='mx-4 my-0' />
+      <Divider />
       <ThemeSwitch />
     </Menu>
   )
