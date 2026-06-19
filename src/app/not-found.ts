@@ -1,1 +1,1 @@
-export { PageNotFound as default } from '@/components/shared'
+export { PageNotFound as default } from '@/components/pages'
