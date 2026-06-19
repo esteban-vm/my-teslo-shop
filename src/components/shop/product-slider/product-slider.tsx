@@ -14,7 +14,6 @@ export function ProductSlider({ images }: { images: string[] }) {
 
   const onSlide = () => {
     onPause()
-
     const gallery = galleryRef.current
 
     if (gallery) {
@@ -43,8 +42,10 @@ export function ProductSlider({ images }: { images: string[] }) {
 
   return (
     <ImageGallery
-      additionalClass='col-span-1 mx-auto w-[75%] lg:col-span-2'
+      additionalClass='col-span-1 mx-auto px-3 py-1.5 lg:col-span-2 lg:w-[75%]'
       autoPlay
+      disableThumbnailScroll
+      disableThumbnailSwipe
       items={galleryItems}
       onMouseLeave={onPlay}
       onMouseOver={onPause}

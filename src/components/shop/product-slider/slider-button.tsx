@@ -11,7 +11,7 @@ export interface SliderButtonProps {
 export function SliderButton({ isLeft, icon, onClick }: SliderButtonProps) {
   return (
     <div className={cn('absolute top-1/2 z-10 -translate-y-1/2', isLeft && 'left-full -translate-x-full')}>
-      <Button className='[&_svg]:stroke-3!' color='info' glass onClick={onClick} shape='circle' type='button'>
+      <Button className='[&_svg]:stroke-3!' link onClick={onClick} shape='circle' size='lg' type='button'>
         {icon}
       </Button>
     </div>
