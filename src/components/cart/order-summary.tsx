@@ -5,18 +5,20 @@ import { Button, Card } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
-import { SkeletonLoader } from '../shared'
+import { TextSkeleton } from '../shared'
 
 export function OrderSummary() {
   const { mounted } = useMounted(4)
-  const { total, subtotal, tax, totalItems } = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
+  const summaryInfo = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
 
   if (!mounted) {
-    return <SkeletonLoader text='Cargando resumen de orden' />
+    return <TextSkeleton text='Cargando resumen de orden' />
   }
 
+  const { total, subtotal, tax, totalItems } = summaryInfo
+
   return (
-    <Card border className='mx-auto shadow-md xl:w-[90%]'>
+    <Card className='mx-auto border border-primary/25 shadow-md xl:w-[90%]'>
       <Card.Body className='px-4 pt-2 pb-3'>
         <Card.Title>Resumen de orden</Card.Title>
         <div>
