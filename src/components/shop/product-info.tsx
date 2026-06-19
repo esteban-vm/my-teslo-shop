@@ -10,23 +10,23 @@ export function ProductInfo({ info }: { info: string }) {
   const [canTranslate, setCanTranslate] = useState(false)
 
   useEffect(() => {
-    if ('Translator' in self) {
-      const initTranslator = async () => {
-        const options: TranslatorCreateCoreOptions = {
-          sourceLanguage: 'en',
-          targetLanguage: 'es',
-        }
+    const initTranslator = async () => {
+      if (!('Translator' in self)) return
 
-        const translatorCapabilities = await Translator.availability(options)
-
-        if (translatorCapabilities === 'available') {
-          translator.current = await Translator.create(options)
-          setCanTranslate(true)
-        }
+      const options: TranslatorCreateCoreOptions = {
+        sourceLanguage: 'en',
+        targetLanguage: 'es',
       }
 
-      initTranslator()
+      const translatorCapabilities = await Translator.availability(options)
+
+      if (translatorCapabilities === 'available') {
+        translator.current = await Translator.create(options)
+        setCanTranslate(true)
+      }
     }
+
+    initTranslator()
 
     return () => {
       translator.current?.destroy()
