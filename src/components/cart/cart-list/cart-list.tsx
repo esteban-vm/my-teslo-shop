@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Button, List } from 'rsc-daisyui'
-import { SkeletonLoader } from '@/components/shared'
+import { TextSkeleton } from '@/components/shared'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CartItem } from './cart-item'
 
@@ -11,7 +11,7 @@ export function CartList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <SkeletonLoader text='Cargando carrito de compras' />
+    return <TextSkeleton text='Cargando carrito de compras' />
   }
 
   return (
