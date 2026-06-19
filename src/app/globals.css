@@ -105,6 +105,10 @@ form {
   @apply font-semibold text-current text-lg content-["*"];
 }
 
+.skeleton-text {
+  @apply py-2 text-center font-montserrat font-semibold text-xs md:text-sm;
+}
+
 .image-gallery-thumbnails-container {
   @apply cursor-default!;
 }
