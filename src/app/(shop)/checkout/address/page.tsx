@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Button, Fieldset, Input, Label, Validator } from 'rsc-daisyui'
 import { PageTitle } from '@/components/shared'
 
 export const metadata: Metadata = {
@@ -9,10 +10,103 @@ export default function AddressPage() {
   return (
     <>
       <PageTitle subtitle='Dirección de entrega' title='Dirección' />
-      <div className='my-3 flex flex-col gap-3 lg:flex-row'>
-        <div className='h-32 w-full bg-accent px-5'></div>
-        <div className='h-32 w-full bg-accent px-5'></div>
-      </div>
+      <form className='mx-auto w-full max-w-5xl' noValidate>
+        <Fieldset>
+          <Fieldset.Legend>Datos requeridos</Fieldset.Legend>
+
+          <div className='flex w-full flex-col lg:flex-row lg:gap-5'>
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Nombres:</span>
+              <Input as='label' validator>
+                <input placeholder='Nombres' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Apellidos:</span>
+              <Input as='label' validator>
+                <input placeholder='Apellidos' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+          </div>
+
+          <div className='flex w-full flex-col lg:flex-row lg:gap-5'>
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Dirección:</span>
+              <Input as='label' validator>
+                <input placeholder='Dirección' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Dirección 2 (opcional):</span>
+              <Input as='label' validator>
+                <input placeholder='Dirección 2 (opcional)' type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+          </div>
+
+          <div className='flex w-full flex-col lg:flex-row lg:gap-5'>
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Código postal:</span>
+              <Input as='label' validator>
+                <input placeholder='Código postal' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Ciudad:</span>
+              <Input as='label' validator>
+                <input placeholder='Ciudad' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+          </div>
+
+          <div className='flex w-full flex-col lg:flex-row lg:gap-5'>
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>País:</span>
+              <Input as='label' validator>
+                <input placeholder='País' required type='text' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+
+            <Label.Floating as='div' className='w-full'>
+              <span className='font-semibold'>Teléfono:</span>
+              <Input as='label' validator>
+                <input placeholder='Teléfono' required type='tel' />
+              </Input>
+              <Validator.Hint as='small' className='mt-1.5 empty:hidden' role='alert'>
+                error
+              </Validator.Hint>
+            </Label.Floating>
+          </div>
+
+          <Button className='btn-sm lg:btn-md -mt-1 w-fit' color='primary' type='submit'>
+            Siguiente
+          </Button>
+        </Fieldset>
+      </form>
     </>
   )
 }
