@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   typedRoutes: true,
   devIndicators: false,
   reactCompiler: true,
-  allowedDevOrigins: ['192.168.100.22'],
+  allowedDevOrigins: ['192.168.100.22', '10.16.28.139'],
   experimental: {
     typedEnv: true,
   },
