@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Button, Card, Skeleton } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useMounted, useShoppingCart } from '@/hooks'
-import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function OrderSummary() {
@@ -12,7 +11,7 @@ export function OrderSummary() {
   const summaryInfo = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
 
   if (!mounted) {
-    return <Skeleton text>Cargando resumen de orden{ELLIPSIS_CHAR}</Skeleton>
+    return <Skeleton text>Cargando resumen de orden</Skeleton>
   }
 
   const { total, subtotal, tax, totalItems } = summaryInfo
