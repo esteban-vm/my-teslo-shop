@@ -11,7 +11,7 @@ export function ProductInfo({ info }: { info: string }) {
 
   useEffect(() => {
     if ('Translator' in self) {
-      const init = async () => {
+      const initTranslator = async () => {
         const options: TranslatorCreateCoreOptions = {
           sourceLanguage: 'en',
           targetLanguage: 'es',
@@ -25,10 +25,12 @@ export function ProductInfo({ info }: { info: string }) {
         }
       }
 
-      init()
+      initTranslator()
     }
 
-    return () => translator.current?.destroy()
+    return () => {
+      translator.current?.destroy()
+    }
   }, [])
 
   const onTranslate = async () => {
