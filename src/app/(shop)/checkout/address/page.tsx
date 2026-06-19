@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Button, Fieldset, Input, Label, Validator } from 'rsc-daisyui'
-import { PageTitle } from '@/components/shared'
+import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
   title: 'Dirección de entrega',
