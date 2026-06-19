@@ -8,7 +8,7 @@ import { MenuButton } from './menu-button'
 
 export function Navbar() {
   return (
-    <$Navbar as='nav' className='sticky top-0 z-20 w-full'>
+    <$Navbar as='nav' className='sticky top-0 z-20 w-full' id='app_navbar'>
       <HomeLink />
       <MenuContainer>
         <Menu as='menu' className='gap-0.5 p-0!' horizontal vanilla>
