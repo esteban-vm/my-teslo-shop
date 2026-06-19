@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Button, List, Skeleton } from 'rsc-daisyui'
 import { useMounted, useShoppingCart } from '@/hooks'
-import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { CartItem } from './cart-item'
 
 export function CartList() {
@@ -11,7 +10,7 @@ export function CartList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <Skeleton text>Cargando carrito de compras{ELLIPSIS_CHAR}</Skeleton>
+    return <Skeleton text>Cargando carrito de compras</Skeleton>
   }
 
   return (
