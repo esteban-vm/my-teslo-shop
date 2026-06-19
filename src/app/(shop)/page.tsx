@@ -2,7 +2,7 @@ export const revalidate = 60
 
 import { redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
-import { PagePagination, PageTitle } from '@/components/shared'
+import { PagePagination, PageTitle } from '@/components/pages'
 import { ProductGrid } from '@/components/shop'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
