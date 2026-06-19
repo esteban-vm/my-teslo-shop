@@ -1,5 +1,6 @@
 import { CredentialsSignin } from 'next-auth'
 import { createSafeActionClient } from 'next-safe-action'
+import { auth } from '@/auth'
 import { Prisma } from '@/prisma/generated/client'
 
 export const actionClient = createSafeActionClient({
@@ -19,4 +20,14 @@ export const actionClient = createSafeActionClient({
 
     return 'Ha ocurrido un error'
   },
+})
+
+export const authClient = actionClient.use(async ({ next }) => {
+  const session = await auth()
+
+  if (!session?.user) {
+    throw new CredentialsSignin('Acceso no autorizado')
+  }
+
+  return next({ ctx: { user: session.user } })
 })
