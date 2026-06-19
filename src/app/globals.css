@@ -106,7 +106,7 @@ form {
 }
 
 .skeleton-text {
-  @apply py-2 text-center font-montserrat font-semibold text-xs md:text-sm;
+  @apply py-2 text-center font-montserrat font-semibold text-xs md:text-sm after:content-["…"];
 }
 
 .image-gallery-thumbnails-container {
