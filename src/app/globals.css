@@ -49,11 +49,15 @@ svg {
   @apply stroke-[1.5];
 }
 
-form[data-auth] {
-  @apply w-full max-w-sm;
+form {
+  @apply px-3;
 
-  .divider {
-    @apply m-0 text-xs;
+  &[data-auth] {
+    @apply w-full max-w-sm;
+
+    .divider {
+      @apply m-0 text-xs;
+    }
   }
 }
 
@@ -73,7 +77,7 @@ form[data-auth] {
   @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
 
   .fieldset-legend {
-    @apply text-2xl uppercase font-montserrat font-semibold text-rose-700;
+    @apply text-xl uppercase font-geist font-semibold text-rose-700 lg:text-2xl;
   }
 
   .input {
