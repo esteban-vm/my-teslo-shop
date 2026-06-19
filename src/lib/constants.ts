@@ -2,7 +2,7 @@ import type { ThemeTypeWithDefault } from 'rsc-daisyui'
 import type { Gender } from '@/prisma/generated/client'
 
 // UI
-export const DRAWER_ID = 'f16a4b28-58c6-41f1-9204-77a4ca50b77b'
+export const DRAWER_ID = 'app_drawer'
 
 // Pagination
 export const ELLIPSIS_CHAR = '…'
