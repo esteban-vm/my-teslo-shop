@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import type { Gender } from '@/prisma/generated/client'
 import { notFound, redirect } from 'next/navigation'
 import { ProductActions } from '@/actions'
-import { PagePagination, PageTitle } from '@/components/shared'
+import { PagePagination, PageTitle } from '@/components/pages'
 import { ProductGrid } from '@/components/shop'
 import { genderMap } from '@/lib/constants'
 
