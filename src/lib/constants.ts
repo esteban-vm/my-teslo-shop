@@ -19,7 +19,7 @@ export const genderMap: Record<Gender, string> = {
 export const appThemes = ['wireframe', 'night'] as const satisfies ThemeTypeWithDefault[]
 
 // Theme map
-export const themeMap: Record<'light' | 'dark', (typeof appThemes)[number]> = {
+export const themeMap = {
   light: 'wireframe',
   dark: 'night',
-}
+} as const satisfies Record<'light' | 'dark', (typeof appThemes)[number]>
