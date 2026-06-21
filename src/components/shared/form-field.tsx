@@ -21,6 +21,7 @@ export function FormField<T extends FieldValues>({
   label,
   icon,
   inputMode,
+  className,
   type = 'text',
   required = true,
   placeholder = ELLIPSIS_CHAR,
@@ -37,11 +38,12 @@ export function FormField<T extends FieldValues>({
       name={name}
       render={({ field, fieldState }) => {
         const { error, isDirty, invalid } = fieldState
+        const inputStyle = cn(className, isDirty && !invalid && 'border-success outline-success')
 
         return (
           <Label.Floating as='div' className='mt-0 mb-2'>
             <span className='font-semibold'>{label}:</span>
-            <Input as='label' className={cn(isDirty && !invalid && 'border-success outline-success')} validator>
+            <Input as='label' className={inputStyle} validator>
               {icon}
               <input
                 {...rest}
