@@ -22,7 +22,7 @@ export function NewUserForm() {
         <Divider>O</Divider>
         <FormField autoComplete='name' control={control} icon={<Pencil />} label='Nombre completo' name='name' />
         <FormField
-          autoComplete='email'
+          autoComplete='home email'
           control={control}
           icon={<AtSign />}
           label='Correo electrónico'

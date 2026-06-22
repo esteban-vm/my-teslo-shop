@@ -21,7 +21,7 @@ export function LoginForm() {
         <SocialButtons.Google />
         <Divider>O</Divider>
         <FormField
-          autoComplete='email'
+          autoComplete='home email'
           control={control}
           icon={<AtSign />}
           label='Correo electrónico'
