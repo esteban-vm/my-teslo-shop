@@ -1,6 +1,7 @@
 'use client'
 
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
+import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
@@ -27,8 +28,8 @@ export function FormField<T extends FieldValues>({
   placeholder = ELLIPSIS_CHAR,
   ...rest
 }: FormFieldProps<T>) {
-  const fieldId = `${name}-field-id`
-  const errorId = `${name}-error-id`
+  const fieldId = useId()
+  const errorId = useId()
   const isEmail = type === 'email' || inputMode === 'email'
   placeholder = isEmail ? 'correo@ejemplo.com' : type === 'password' ? '********' : placeholder
 
@@ -41,8 +42,10 @@ export function FormField<T extends FieldValues>({
         const inputStyle = cn(className, isDirty && !invalid && 'border-success outline-success')
 
         return (
-          <Label.Floating as='div' className='mt-0 mb-2'>
-            <span className='font-semibold'>{label}:</span>
+          <div>
+            <Label as='label' className='mb-1 cursor-pointer select-none font-semibold' htmlFor={fieldId}>
+              {label}:
+            </Label>
             <Input as='label' className={inputStyle} validator>
               {icon}
               <input
@@ -57,10 +60,10 @@ export function FormField<T extends FieldValues>({
                 {...field}
               />
             </Input>
-            <Validator.Hint as='small' className='mt-1.5 empty:hidden' id={errorId} role='alert'>
+            <Validator.Hint as='small' className='mt-1 empty:hidden' id={errorId} role='alert'>
               {error?.message}
             </Validator.Hint>
-          </Label.Floating>
+          </div>
         )
       }}
     />
