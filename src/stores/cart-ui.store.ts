@@ -11,11 +11,10 @@ interface CartUIActions {
   setCurrentSize: (size: Size | null) => void
   setIsPosted: (posted: boolean) => void
   setIsAdded: (added: boolean) => void
-}
-
-export interface CartUIStore extends CartUIState, CartUIActions {
   reset: () => void
 }
+
+export type CartUIStore = CartUIState & CartUIActions
 
 export const createCartUIStore: StateCreator<CartUIStore> = (set, _, store) => {
   return {
