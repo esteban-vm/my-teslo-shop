@@ -1,7 +1,7 @@
 import type { Prisma } from '../generated/client'
 import { hashSync } from 'bcryptjs'
 
-export const initialUsers: Prisma.UserCreateManyInput[] = [
+export const users: Prisma.UserCreateManyInput[] = [
   {
     email: 'admin@email.com',
     name: 'Test Admin',
