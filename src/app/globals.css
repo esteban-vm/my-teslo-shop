@@ -116,9 +116,7 @@ form {
 .image-gallery-thumbnail {
   @apply cursor-pointer;
 
-  &.active,
-  &:focus,
-  &:hover {
+  &:is(.active, :focus, :hover) {
     @apply border-primary/50!;
   }
 }
