@@ -1,11 +1,11 @@
 import type { CategoryName, Prisma } from '../generated/client'
 
-export interface InitialProduct extends Omit<Prisma.ProductCreateManyInput, 'categoryId'> {
+interface SeedProduct extends Omit<Prisma.ProductCreateManyInput, 'categoryId'> {
   category: CategoryName
   images: [string, string]
 }
 
-export const initialProducts: InitialProduct[] = [
+export const products: SeedProduct[] = [
   {
     title: 'Men’s Chill Crew Neck Sweatshirt',
     description:
