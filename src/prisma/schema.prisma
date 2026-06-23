@@ -79,6 +79,11 @@ model Picture {
   @@map("pictures")
 }
 
+model Country {
+  id   String @id
+  name String
+}
+
 /**
  * Auth.js
  */
