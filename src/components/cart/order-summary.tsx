@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Button, Card, Skeleton } from 'rsc-daisyui'
+import tw from 'tailwind-styled-components'
 import { useShallow } from 'zustand/shallow'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
@@ -17,7 +18,7 @@ export function OrderSummary() {
   const { total, subtotal, tax, totalItems } = info
 
   return (
-    <Card className='mx-auto border border-primary/25 shadow-md xl:w-[90%]'>
+    <Container $as={Card}>
       <Card.Body className='px-4 pt-2 pb-3'>
         <Card.Title>Resumen de orden</Card.Title>
         <div>
@@ -39,6 +40,8 @@ export function OrderSummary() {
           Comprar ahora
         </Button>
       </Card.Body>
-    </Card>
+    </Container>
   )
 }
+
+const Container = tw.div`mx-auto not-lg:max-w-md border border-primary/25 p-2 shadow-md lg:w-full`

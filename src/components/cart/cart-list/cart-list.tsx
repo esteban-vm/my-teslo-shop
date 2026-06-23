@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Button, List, Skeleton } from 'rsc-daisyui'
+import tw from 'tailwind-styled-components'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CartItem } from './cart-item'
 
@@ -14,7 +15,7 @@ export function CartList() {
   }
 
   return (
-    <List className='border border-primary/25'>
+    <Container $as={List}>
       <li className='px-4 pt-2'>
         <h2 className='font-semibold text-lg'>Agregar más artículos</h2>
       </li>
@@ -26,6 +27,8 @@ export function CartList() {
       {cart.map((product) => (
         <CartItem key={`${product.slug}-${product.size}`} product={product} />
       ))}
-    </List>
+    </Container>
   )
 }
+
+const Container = tw.ul`mx-auto not-lg:max-w-xl border border-primary/25 p-2 lg:w-full`
