@@ -7,6 +7,7 @@ datasource db {
   provider = "postgresql"
 }
 
+// ENUMS
 enum Size {
   XS
   S
@@ -44,6 +45,7 @@ enum CategoryName {
   @@map("category_names")
 }
 
+// MODELS
 model Category {
   id       String       @id @default(cuid())
   name     CategoryName @unique
@@ -80,28 +82,45 @@ model Picture {
 }
 
 model Country {
-  id   String @id
-  name String
+  id            String        @id
+  name          String
+  userAddresses UserAddress[]
+
+  @@map("countries")
 }
 
-/**
- * Auth.js
- */
+model UserAddress {
+  id         String  @id @default(cuid())
+  firstName  String  @map("first_name")
+  lastName   String  @map("last_name")
+  address    String
+  address2   String?
+  postalCode String  @map("postal_code")
+  phone      String
+  country    Country @relation(fields: [countryId], references: [id])
+  countryId  String  @map("country_id")
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String  @unique
+
+  @@map("user_addresses")
+}
+
+// AUTH
 model User {
-  id            String          @id @default(uuid())
-  name          String?
-  email         String          @unique
-  emailVerified DateTime?       @map("email_verified")
-  image         String?
-  role          Role?           @default(client)
-  active        Boolean?        @default(true)
-  password      String?
-  accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
-  createdAt     DateTime        @default(now()) @map("created_at")
-  updatedAt     DateTime        @updatedAt @map("updated_at")
+  id             String          @id @default(uuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?       @map("email_verified")
+  image          String?
+  role           Role?           @default(client)
+  active         Boolean?        @default(true)
+  password       String?
+  address        UserAddress?
+  accounts       Account[]
+  sessions       Session[]
+  authenticators Authenticator[]
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
 
   @@map("users")
 }
