@@ -1,20 +1,19 @@
 import { z } from 'zod'
 import { ErrorMap } from '@/lib/constants'
 import { Validations } from '@/lib/validations'
+import { notEmpty } from './shared.schemas'
 
-const notEmpty = z.string().trim().refine(Validations.notEmpty, ErrorMap.notEmpty)
-
-const Email = z.object({
+export const Login = z.object({
   email: notEmpty.superRefine((value, ctx) => {
     if (Validations.notEmail(value)) {
       ctx.addIssue(ErrorMap.notEmail)
     }
   }),
+
+  password: notEmpty,
 })
 
-export const Login = Email.extend({ password: notEmpty })
-
-export const NewUser = Email.extend({
+export const NewUser = Login.extend({
   name: notEmpty,
 
   password: notEmpty.superRefine((value, ctx) => {
