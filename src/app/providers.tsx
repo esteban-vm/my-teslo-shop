@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider } from 'next-themes'
 import { ToastContainer } from 'react-toastify'
-import { appThemes, themeMap } from '@/lib/constants'
+import { themeMap, themes } from '@/lib/constants'
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -12,7 +12,7 @@ export function Providers({ children }: { children: ReactNode }) {
       disableTransitionOnChange
       enableSystem
       storageKey='teslo-shop/current-theme'
-      themes={appThemes}
+      themes={themes}
       value={themeMap}
     >
       <SessionProvider>
