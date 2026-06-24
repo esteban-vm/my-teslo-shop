@@ -1,4 +1,4 @@
-import type { ThemeTypeWithDefault } from 'rsc-daisyui'
+import type { ThemeTypeWithDefault as Theme } from 'rsc-daisyui'
 import type { Gender } from '@/prisma/generated/client'
 
 // UI
@@ -7,7 +7,7 @@ export const DRAWER_ID = 'app_drawer'
 // Pagination
 export const ELLIPSIS_CHAR = '…'
 
-// Gender Map
+// Genders
 export const genderMap: Record<Gender, string> = {
   men: 'hombres',
   women: 'mujeres',
@@ -15,11 +15,28 @@ export const genderMap: Record<Gender, string> = {
   unisex: 'todos',
 }
 
-// App Themes
-export const appThemes = ['wireframe', 'night'] as const satisfies ThemeTypeWithDefault[]
+// Themes
+export const themes = ['wireframe', 'night'] as const satisfies [Theme, Theme]
 
-// Theme map
+// Theme values
 export const themeMap = {
   light: 'wireframe',
   dark: 'night',
-} as const satisfies Record<'light' | 'dark', (typeof appThemes)[number]>
+} as const satisfies Record<'light' | 'dark', (typeof themes)[number]>
+
+// Schema errors
+export const ErrorMap = {
+  notEmpty: {
+    error: 'Este campo no puede quedar vacío',
+  },
+
+  notEmail: {
+    code: 'custom',
+    message: 'El correo electrónico debe ser válido',
+  },
+
+  notPassword: {
+    code: 'custom',
+    message: `La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo`,
+  },
+} as const
