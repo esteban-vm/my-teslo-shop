@@ -1,60 +1,33 @@
 import { z } from 'zod'
+import { ErrorMap } from '@/lib/constants'
 import { Validations } from '@/lib/validations'
 
-export type EmailSchema = z.infer<typeof EmailSchema>
-export type PasswordSchema = z.infer<typeof PasswordSchema>
-export type LoginSchema = z.infer<typeof LoginSchema>
-export type NewUserSchema = z.infer<typeof NewUserSchema>
+const notEmpty = z.string().trim().refine(Validations.notEmpty, ErrorMap.notEmpty)
 
-const password = z.string().trim().refine(Validations.notEmpty, {
-  error: 'La contraseña no puede quedar vacía',
-})
-
-const passwordRefineParams = {
-  path: ['repeatPassword'],
-  error: 'Las contraseñas deben coincidir',
-}
-
-export const EmailSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .refine(Validations.notEmpty, {
-      error: 'El correo electrónico no puede quedar vacío',
-    })
-    .superRefine((value, ctx) => {
-      if (Validations.notEmail(value)) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'El correo electrónico debe ser válido',
-        })
-      }
-    }),
-})
-
-export const PasswordSchema = z
-  .object({
-    password: password.superRefine((value, ctx) => {
-      if (Validations.notPassword(value)) {
-        ctx.addIssue({
-          code: 'custom',
-          message: `La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo`,
-        })
-      }
-    }),
-
-    repeatPassword: z.string().trim().refine(Validations.notEmpty, {
-      error: 'Este campo no puede quedar vacío',
-    }),
-  })
-  .refine((value) => value.password === value.repeatPassword, passwordRefineParams)
-
-export const LoginSchema = EmailSchema.extend({ password })
-
-export const NewUserSchema = EmailSchema.extend({
-  name: z.string().trim().refine(Validations.notEmpty, {
-    error: 'El nombre no puede quedar vacío',
+const Email = z.object({
+  email: notEmpty.superRefine((value, ctx) => {
+    if (Validations.notEmail(value)) {
+      ctx.addIssue(ErrorMap.notEmail)
+    }
   }),
 })
-  .extend(PasswordSchema.shape)
-  .refine((value) => value.password === value.repeatPassword, passwordRefineParams)
+
+export const Login = Email.extend({ password: notEmpty })
+
+export const NewUser = Email.extend({
+  name: notEmpty,
+
+  password: notEmpty.superRefine((value, ctx) => {
+    if (Validations.notPassword(value)) {
+      ctx.addIssue(ErrorMap.notPassword)
+    }
+  }),
+
+  repeatPassword: notEmpty,
+}).refine((value) => value.password === value.repeatPassword, {
+  path: ['repeatPassword'],
+  error: 'Las contraseñas deben coincidir',
+})
+
+export type Login = z.infer<typeof Login>
+export type NewUser = z.infer<typeof NewUser>
