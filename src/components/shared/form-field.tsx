@@ -42,7 +42,7 @@ export function FormField<T extends FieldValues>({
         const inputStyle = cn(className, isDirty && !invalid && 'border-success outline-success')
 
         return (
-          <div>
+          <div className='w-full'>
             <Label as='label' className='mb-1 cursor-pointer select-none font-semibold' htmlFor={fieldId}>
               {label}:
             </Label>
