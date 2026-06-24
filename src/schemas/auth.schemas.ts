@@ -13,7 +13,7 @@ export const Login = z.object({
   password: notEmpty,
 })
 
-export const NewUser = Login.extend({
+export const UserDTO = Login.extend({
   name: notEmpty,
 
   password: notEmpty.superRefine((value, ctx) => {
@@ -29,4 +29,4 @@ export const NewUser = Login.extend({
 })
 
 export type Login = z.infer<typeof Login>
-export type NewUser = z.infer<typeof NewUser>
+export type UserDTO = z.infer<typeof UserDTO>

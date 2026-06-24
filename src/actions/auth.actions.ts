@@ -29,7 +29,7 @@ export const logout = actionClient.action(async () => {
   await signOut({ redirectTo: homePage })
 })
 
-export const createUser = actionClient.inputSchema(AuthSchemas.NewUser).action(async ({ parsedInput }) => {
+export const createUser = actionClient.inputSchema(AuthSchemas.UserDTO).action(async ({ parsedInput }) => {
   await sleepExecution(3)
   const { email, name, password } = parsedInput
   const passwordHash = await hash(password, 10)

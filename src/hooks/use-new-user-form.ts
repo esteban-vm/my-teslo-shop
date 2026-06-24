@@ -8,7 +8,7 @@ import { AuthSchemas } from '@/schemas'
 export function useNewUserForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AuthActions.createUser, zodResolver(AuthSchemas.NewUser), {
+  const methods = useHookFormAction(AuthActions.createUser, zodResolver(AuthSchemas.UserDTO), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
