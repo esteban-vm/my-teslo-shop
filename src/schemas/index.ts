@@ -1,2 +1,2 @@
-export * as AddressSchemas from './address.schemas'
-export * as AuthSchemas from './auth.schemas'
+export * as Address from './address.schemas'
+export * as Auth from './auth.schemas'

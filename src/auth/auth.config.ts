@@ -1,5 +1,5 @@
 import type { NextAuthConfig } from 'next-auth'
-import type { AuthSchemas } from '@/schemas'
+import type { Auth } from '@/schemas'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { compare } from 'bcryptjs'
 import { CredentialsSignin } from 'next-auth'
@@ -26,7 +26,7 @@ export const authConfig: NextAuthConfig = {
 
     Credentials({
       async authorize(credentials) {
-        const { email, password } = credentials as AuthSchemas.LoginSchema
+        const { email, password } = credentials as Auth.LoginSchema
 
         const savedUser = await prisma.user.findUnique({
           where: { email: email.toLowerCase(), active: true },

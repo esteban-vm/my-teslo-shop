@@ -1,4 +1,4 @@
-export * as AddressActions from './address.action'
-export * as AuthActions from './auth.actions'
-export * as CountryActions from './country.actions'
-export * as ProductActions from './product.actions'
+export * as Address from './address.actions'
+export * as Auth from './auth.actions'
+export * as Country from './country.actions'
+export * as Product from './product.actions'

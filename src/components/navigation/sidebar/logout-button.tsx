@@ -2,13 +2,13 @@
 
 import { LogOutIcon } from 'lucide-react'
 import { Menu } from 'rsc-daisyui'
-import { AuthActions } from '@/actions'
+import { Auth } from '@/actions'
 import { closeSidebar } from '@/lib/ui'
 
 export function LogoutButton() {
   const onLogout = () => {
     closeSidebar()
-    AuthActions.logout()
+    Auth.logout()
   }
 
   return (

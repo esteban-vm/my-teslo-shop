@@ -6,7 +6,7 @@ import { signIn, signOut } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { actionClient } from '@/lib/safe-action'
-import { AuthSchemas } from '@/schemas'
+import { Auth } from '@/schemas'
 
 const homePage: Route = '/'
 
@@ -18,13 +18,11 @@ export const loginWithGoogle = actionClient.action(async () => {
   await signIn('google', { redirectTo: homePage })
 })
 
-export const loginWithCredentials = actionClient
-  .inputSchema(AuthSchemas.LoginSchema)
-  .action(async ({ parsedInput }) => {
-    await sleepExecution(5)
-    const { email, password } = parsedInput
-    await signIn('credentials', { email, password, redirectTo: homePage })
-  })
+export const loginWithCredentials = actionClient.inputSchema(Auth.LoginSchema).action(async ({ parsedInput }) => {
+  await sleepExecution(5)
+  const { email, password } = parsedInput
+  await signIn('credentials', { email, password, redirectTo: homePage })
+})
 
 export const logout = actionClient.action(async () => {
   await sleepExecution(1)
@@ -32,7 +30,7 @@ export const logout = actionClient.action(async () => {
 })
 
 export const createUserWithCredentials = actionClient
-  .inputSchema(AuthSchemas.NewUserSchema)
+  .inputSchema(Auth.NewUserSchema)
   .action(async ({ parsedInput }) => {
     await sleepExecution(3)
     const { email, name, password } = parsedInput
