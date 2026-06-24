@@ -6,7 +6,7 @@ import { authClient } from '@/lib/safe-action'
 import { AddressSchemas } from '@/schemas'
 
 export const setAddress = authClient.inputSchema(AddressSchemas.AddressDTO).action(async ({ ctx, parsedInput }) => {
-  await sleepExecution(1)
+  await sleepExecution(3)
 
   const userId = ctx.user.id
   const { remember: _, ...rest } = parsedInput
