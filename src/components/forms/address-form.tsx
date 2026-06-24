@@ -1,12 +1,11 @@
 'use client'
 
-import type { Country } from '@/prisma/generated/client'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useAddressForm } from '@/hooks'
 import { CountrySelector, FormField, SubmitButton } from '../shared'
 
-export function AddressForm({ countries }: { countries: Country[] }) {
+export function AddressForm() {
   const {
     form: { control },
     isDisabled,
@@ -36,7 +35,7 @@ export function AddressForm({ countries }: { countries: Country[] }) {
           <FormField autoComplete='address-level2' control={control} label='Ciudad' name='city' />
         </Row>
         <Row>
-          <CountrySelector countries={countries} />
+          <CountrySelector />
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
         </Row>
         <SubmitButton className='w-fit' control={control}>
