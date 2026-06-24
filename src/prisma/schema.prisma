@@ -97,6 +97,7 @@ model UserAddress {
   address2   String?
   postalCode String  @map("postal_code")
   phone      String
+  city       String
   country    Country @relation(fields: [countryId], references: [id])
   countryId  String  @map("country_id")
   user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
