@@ -1,13 +1,15 @@
 'use client'
 
-import type { Country } from '@/prisma/generated/client'
-import { useId } from 'react'
+import { useAction } from 'next-safe-action/hooks'
+import { useEffect, useId } from 'react'
 import { Label, Select, Validator } from 'rsc-daisyui'
+import { CountryActions } from '@/actions'
 import { useAddressForm } from '@/hooks'
 
-export function CountrySelector({ countries }: { countries: Country[] }) {
+export function CountrySelector() {
   const selectId = useId()
   const errorId = useId()
+  const { execute, result, isExecuting } = useAction(CountryActions.getCountries)
 
   const {
     form: {
@@ -15,6 +17,8 @@ export function CountrySelector({ countries }: { countries: Country[] }) {
       formState: { errors },
     },
   } = useAddressForm()
+
+  useEffect(execute, [execute])
 
   return (
     <div className='w-full'>
@@ -25,13 +29,14 @@ export function CountrySelector({ countries }: { countries: Country[] }) {
         aria-errormessage={errorId}
         aria-invalid={!!errors.countryId?.message}
         className='w-full'
+        disabled={isExecuting}
         id={selectId}
         required
         validator
         {...register('countryId')}
       >
         <option value=''>[Seleccione]</option>
-        {countries.map((country) => (
+        {result.data?.map((country) => (
           <option key={country.id} value={country.id}>
             {country.name}
           </option>
