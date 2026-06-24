@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from 'rsc-daisyui'
-import { Auth } from '@/actions'
+import { AuthActions } from '@/actions'
 
 export function SocialButtons() {}
 
@@ -12,7 +12,7 @@ function GithubButton() {
   return (
     <Button
       className='border-black bg-black text-white disabled:opacity-50'
-      onClick={() => Auth.loginWithGitHub()}
+      onClick={() => AuthActions.loginWithGitHub()}
       type='button'
     >
       <GithubIcon />
@@ -25,7 +25,7 @@ function GoogleButton() {
   return (
     <Button
       className='border-base-300 bg-white text-black disabled:opacity-50'
-      onClick={() => Auth.loginWithGoogle()}
+      onClick={() => AuthActions.loginWithGoogle()}
       type='button'
     >
       <GoogleIcon />

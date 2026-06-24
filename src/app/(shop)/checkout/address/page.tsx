@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Button, Fieldset, Input, Label, Validator } from 'rsc-daisyui'
-import { Country } from '@/actions'
+import { CountryActions } from '@/actions'
 import { AddressForm } from '@/components/forms'
 import { PageTitle } from '@/components/pages'
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function AddressPage() {
-  const countries = await Country.getCountries()
+  const countries = await CountryActions.getCountries()
 
   return (
     <>

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { Skeleton } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
-import { Product } from '@/actions'
+import { ProductActions } from '@/actions'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
 import { ProductInfo, ProductSlider, StockCounter } from '@/components/shop'
 import { formatProductPrice } from '@/lib/helpers'
@@ -14,7 +14,7 @@ type ProductPageProps = PageProps<'/product/[slug]'>
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params
-  const product = await Product.getProductBySlug(slug)
+  const product = await ProductActions.getProductBySlug(slug)
 
   if (!product) {
     return {
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params
 
-  const product = await Product.getProductBySlug(slug)
+  const product = await ProductActions.getProductBySlug(slug)
   if (!product) notFound()
 
   const { title, description, price, sizes, images } = product

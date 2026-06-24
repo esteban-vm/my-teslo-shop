@@ -3,7 +3,7 @@ export const revalidate = 60
 import type { Metadata } from 'next'
 import type { Gender } from '@/prisma/generated/client'
 import { notFound, redirect } from 'next/navigation'
-import { Product } from '@/actions'
+import { ProductActions } from '@/actions'
 import { PagePagination, PageTitle } from '@/components/pages'
 import { ProductGrid } from '@/components/shop'
 import { genderMap } from '@/lib/constants'
@@ -36,7 +36,7 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
 
-  const { products, totalPages } = await Product.getProducts({
+  const { products, totalPages } = await ProductActions.getProducts({
     page: Number.parseInt(page, 10),
     gender: genderDB,
   })
