@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { notEmpty } from './shared.schemas'
 
-export const NewAddress = z.object({
+export const AddressDTO = z.object({
   firstName: notEmpty,
   lastName: notEmpty,
   address: notEmpty,
@@ -9,8 +9,8 @@ export const NewAddress = z.object({
   postalCode: notEmpty,
   phone: notEmpty,
   city: notEmpty,
-  country: notEmpty,
+  countryId: notEmpty,
   remember: z.boolean().optional().default(false),
 })
 
-export type NewAddress = z.infer<typeof NewAddress>
+export type AddressDTO = z.infer<typeof AddressDTO>
