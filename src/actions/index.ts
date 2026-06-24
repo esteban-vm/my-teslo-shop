@@ -1,3 +1,4 @@
+export * as AddressActions from './address.action'
 export * as AuthActions from './auth.actions'
 export * as CountryActions from './country.actions'
 export * as ProductActions from './product.actions'
