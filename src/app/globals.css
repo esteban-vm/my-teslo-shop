@@ -101,8 +101,17 @@ form {
   @apply bg-primary/50;
 }
 
-.label:has(~ .input.validator input:required)::after {
-  @apply font-semibold text-current text-sm content-["*"];
+.label {
+  @apply mb-1 cursor-pointer select-none font-semibold;
+
+  &:has(~ .select.validator:required)::after,
+  &:has(~ .input.validator input:required)::after {
+    @apply font-semibold text-current text-xs content-["*"];
+  }
+}
+
+.validator-hint {
+  @apply mt-1 empty:hidden;
 }
 
 .skeleton-text {
