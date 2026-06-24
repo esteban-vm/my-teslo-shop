@@ -5,7 +5,6 @@ import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
-import { cn } from '@/lib/ui'
 
 export type FormFieldBaseProps = JSX.IntrinsicElements['input']
 
@@ -39,14 +38,13 @@ export function FormField<T extends FieldValues>({
       name={name}
       render={({ field, fieldState }) => {
         const { error, isDirty, invalid } = fieldState
-        const inputStyle = cn(className, isDirty && !invalid && 'border-success outline-success')
 
         return (
           <div className='w-full'>
-            <Label as='label' className='mb-1 cursor-pointer select-none font-semibold' htmlFor={fieldId}>
+            <Label as='label' htmlFor={fieldId}>
               {label}:
             </Label>
-            <Input as='label' className={inputStyle} validator>
+            <Input as='label' color={isDirty && !invalid ? 'success' : undefined} validator>
               {icon}
               <input
                 {...rest}
@@ -60,7 +58,7 @@ export function FormField<T extends FieldValues>({
                 {...field}
               />
             </Input>
-            <Validator.Hint as='small' className='mt-1 empty:hidden' id={errorId} role='alert'>
+            <Validator.Hint as='small' id={errorId} role='alert'>
               {error?.message}
             </Validator.Hint>
           </div>
