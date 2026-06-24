@@ -1,18 +1,23 @@
 import type { Metadata } from 'next'
 import { Button, Fieldset, Input, Label, Validator } from 'rsc-daisyui'
+import { CountryActions } from '@/actions'
+import { AddressForm } from '@/components/forms'
 import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
   title: 'Dirección de entrega',
 }
 
-export default function AddressPage() {
+export default async function AddressPage() {
+  const countries = await CountryActions.getCountries()
+
   return (
     <>
-      <PageTitle subtitle='Dirección de entrega' title='Dirección' />
-      <form className='mx-auto w-full max-w-5xl' noValidate>
+      <PageTitle title='Dirección' />
+      <AddressForm countries={countries} />
+      <form className='mx-auto w-full max-w-5xl px-5' noValidate>
         <Fieldset>
-          <Fieldset.Legend>Datos requeridos</Fieldset.Legend>
+          <Fieldset.Legend className='mb-2'>Dirección de entrega</Fieldset.Legend>
 
           <div className='flex w-full flex-col lg:flex-row lg:gap-5'>
             <Label.Floating as='div' className='w-full'>
@@ -102,7 +107,7 @@ export default function AddressPage() {
             </Label.Floating>
           </div>
 
-          <Button className='btn-sm lg:btn-md -mt-1 w-fit' color='primary' type='submit'>
+          <Button className='-mt-1 w-fit' color='primary' type='submit'>
             Siguiente
           </Button>
         </Fieldset>
