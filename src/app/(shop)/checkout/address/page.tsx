@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Dirección de entrega',
 }
 
-export default async function AddressPage() {
+export default function AddressPage() {
   return (
     <>
       <PageTitle title='Dirección' />
