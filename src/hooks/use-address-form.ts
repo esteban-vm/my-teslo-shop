@@ -1,3 +1,4 @@
+import type { UserAddress } from '@/prisma/generated/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
@@ -6,23 +7,17 @@ import { Toasts } from '@/lib/toasts'
 import { AddressSchemas } from '@/schemas'
 import { useAddressStore } from './use-address-store'
 
-export function useAddressForm() {
+export function useAddressForm({ savedAddress }: { savedAddress?: UserAddress }) {
+  const address = useAddressStore((s) => s.address)
   const setAddress = useAddressStore((s) => s.setAddress)
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AddressActions.setAddress, zodResolver(AddressSchemas.AddressDTO), {
+  const methods = useHookFormAction(AddressActions.manageAddress, zodResolver(AddressSchemas.AddressDTO), {
     formProps: {
       mode: 'all',
       defaultValues: {
-        firstName: '',
-        lastName: '',
-        address: '',
-        address2: '',
-        postalCode: '',
-        phone: '',
-        city: '',
-        countryId: '',
-        remember: false,
+        ...address,
+        ...savedAddress,
       },
     },
     actionProps: {
@@ -35,7 +30,7 @@ export function useAddressForm() {
       },
       onSuccess() {
         setIsServerError(false)
-        Toasts.success('Dirección creada con éxito')
+        Toasts.success('Operación realizada con éxito')
       },
       onError(args) {
         const { serverError } = args.error
