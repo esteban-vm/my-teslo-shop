@@ -1,5 +1,5 @@
 export * from './counter-input'
-export * from './country-selector'
+export * from './country-select'
 export * from './form-field'
 export * from './nav-link'
 export * from './remember-check'
