@@ -12,10 +12,9 @@ export type CountrySelectorBaseProps = Parameters<typeof Select>[0]
 export interface CountrySelectorProps<T extends FieldValues> extends CountrySelectorBaseProps {
   control: Control<T>
   name: FieldPath<T>
-  label: string
 }
 
-export function CountrySelector<T extends FieldValues>({ control, name, label, ...rest }: CountrySelectorProps<T>) {
+export function CountrySelector<T extends FieldValues>({ control, name, ...rest }: CountrySelectorProps<T>) {
   const selectorId = useId()
   const errorId = useId()
 
@@ -35,7 +34,7 @@ export function CountrySelector<T extends FieldValues>({ control, name, label, .
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={selectorId}>
-              {label}:
+              País:
             </Label>
             <Select
               {...rest}
