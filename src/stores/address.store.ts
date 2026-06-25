@@ -24,7 +24,7 @@ export const createAddressStore: StateCreator<AddressStore> = (set) => {
       phone: '',
       city: '',
       countryId: '',
-      remember: false,
+      remember: true,
     },
 
     setAddress(address) {
