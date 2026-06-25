@@ -44,7 +44,7 @@ export function AddressForm() {
           <FormField autoComplete='address-level2' control={control} label='Ciudad' name='city' />
         </Row>
         <Row>
-          <CountrySelector />
+          <CountrySelector control={control} label='País' name='countryId' />
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
         </Row>
         <SubmitButton className='w-fit' control={control}>
