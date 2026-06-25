@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 }
 
 export default async function AddressPage() {
-  const { data } = await AddressActions.getUserAddress()
+  const { data: address } = await AddressActions.getUserAddress()
 
   return (
     <>
       <PageTitle title='Dirección' />
-      <AddressForm savedAddress={data} />
+      <AddressForm savedAddress={address} />
     </>
   )
 }
