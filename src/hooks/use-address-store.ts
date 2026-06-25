@@ -4,5 +4,5 @@ import { devtools, persist } from 'zustand/middleware'
 import { createAddressStore } from '@/stores'
 
 export const useAddressStore = create<AddressStore>()(
-  devtools(persist(createAddressStore, { name: 'teslo-shop/address' }))
+  devtools(persist(createAddressStore, { name: 'teslo-shop/user-address' }))
 )
