@@ -13,7 +13,7 @@ export function RememberCheck<T extends FieldValues>({ control, name, ...rest }:
       render={({ field }) => {
         return (
           <Fieldset.Label className='mt-2 select-none'>
-            <Checkbox {...rest} size='sm' {...field} />
+            <Checkbox {...rest} checked={field.value} size='sm' {...field} />
             ¿Recordar dirección?
           </Fieldset.Label>
         )
