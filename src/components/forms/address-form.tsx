@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useAddressForm, useAddressStore } from '@/hooks'
-import { CountrySelector, FormField, SubmitButton } from '../shared'
+import { CountrySelector, FormField, RememberCheck, SubmitButton } from '../shared'
 
 export function AddressForm() {
   const address = useAddressStore((s) => s.address)
@@ -47,6 +47,7 @@ export function AddressForm() {
           <CountrySelector control={control} name='countryId' />
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
         </Row>
+        <RememberCheck control={control} name='remember' />
         <SubmitButton className='w-fit' control={control}>
           Siguiente
         </SubmitButton>
