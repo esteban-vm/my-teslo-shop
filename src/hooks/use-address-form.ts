@@ -1,4 +1,4 @@
-import type { UserAddress } from '@/prisma/generated/client'
+import type { BillingAddress } from '@/prisma/generated/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
@@ -8,7 +8,7 @@ import { AddressSchemas } from '@/schemas'
 import { useAddressStore } from './use-address-store'
 
 export interface AddressFormProps {
-  savedAddress?: UserAddress
+  savedAddress?: BillingAddress
 }
 
 export function useAddressForm({ savedAddress }: AddressFormProps) {
