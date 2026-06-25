@@ -5,18 +5,35 @@ import { prisma } from '@/lib/prisma'
 import { authClient } from '@/lib/safe-action'
 import { AddressSchemas } from '@/schemas'
 
-export const setAddress = authClient.inputSchema(AddressSchemas.AddressDTO).action(async ({ ctx, parsedInput }) => {
+export const manageAddress = authClient.inputSchema(AddressSchemas.AddressDTO).action(async ({ ctx, parsedInput }) => {
   await sleepExecution(3)
 
   const userId = ctx.user.id
-  const { remember: _, ...rest } = parsedInput
-  const data = { userId, ...rest }
+  const { remember, ...rest } = parsedInput
 
-  const address = await prisma.userAddress.upsert({
-    where: { userId },
-    create: data,
-    update: data,
-  })
+  if (remember) {
+    const data = { userId, ...rest }
 
+    const address = await prisma.userAddress.upsert({
+      where: { userId },
+      create: data,
+      update: data,
+    })
+
+    return address
+  } else {
+    const address = await prisma.userAddress.findUnique({ where: { userId } })
+
+    if (address) {
+      await prisma.userAddress.delete({ where: { id: address.id } })
+    }
+
+    return address
+  }
+})
+
+export const getUserAddress = authClient.action(async ({ ctx }) => {
+  const address = await prisma.userAddress.findUnique({ where: { userId: ctx.user.id } })
+  if (!address) return
   return address
 })
