@@ -36,9 +36,7 @@ export function FormField<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState }) => {
-        const { error, isDirty, invalid } = fieldState
-
+      render={({ field, fieldState: { error, isDirty, invalid } }) => {
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={fieldId}>

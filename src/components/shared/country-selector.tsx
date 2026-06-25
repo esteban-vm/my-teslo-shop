@@ -7,16 +7,23 @@ import { Controller } from 'react-hook-form'
 import { Label, Select, Validator } from 'rsc-daisyui'
 import { CountryActions } from '@/actions'
 
-export interface CountrySelectorProps<T extends FieldValues> {
+export type CountrySelectorBaseProps = Parameters<typeof Select>[0]
+
+export interface CountrySelectorProps<T extends FieldValues> extends CountrySelectorBaseProps {
   control: Control<T>
   name: FieldPath<T>
   label: string
 }
 
-export function CountrySelector<T extends FieldValues>({ control, name, label }: CountrySelectorProps<T>) {
-  const fieldId = useId()
+export function CountrySelector<T extends FieldValues>({ control, name, label, ...rest }: CountrySelectorProps<T>) {
+  const selectorId = useId()
   const errorId = useId()
-  const { execute, result, isExecuting } = useAction(CountryActions.getCountries)
+
+  const {
+    result: { data: countries },
+    execute,
+    isExecuting,
+  } = useAction(CountryActions.getCountries)
 
   useEffect(execute, [execute])
 
@@ -24,31 +31,32 @@ export function CountrySelector<T extends FieldValues>({ control, name, label }:
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState }) => {
-        const { error, isDirty, invalid } = fieldState
-
+      render={({ field, fieldState: { error, isDirty, invalid } }) => {
         return (
           <div className='w-full'>
-            <Label as='label' htmlFor={fieldId}>
+            <Label as='label' htmlFor={selectorId}>
               {label}:
             </Label>
             <Select
+              {...rest}
               aria-errormessage={errorId}
               aria-invalid={invalid}
               className='w-full'
               color={isDirty && !invalid ? 'success' : undefined}
               disabled={isExecuting}
-              id={fieldId}
+              id={selectorId}
               required
               validator
               {...field}
             >
               <option value=''>[Seleccione]</option>
-              {result.data?.map((country) => (
-                <option key={country.id} value={country.id}>
-                  {country.name}
-                </option>
-              ))}
+              {countries?.map(({ id, name }) => {
+                return (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                )
+              })}
             </Select>
             <Validator.Hint as='small' id={errorId} role='alert'>
               {error?.message}
