@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 export default async function AddressPage() {
-  const { data: address } = await AddressActions.getUserAddress()
+  const { data: address } = await AddressActions.getBillingAddress()
 
   return (
     <>
