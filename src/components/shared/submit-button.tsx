@@ -5,7 +5,7 @@ import { useFormState } from 'react-hook-form'
 import { Button } from 'rsc-daisyui'
 import { cn } from '@/lib/ui'
 
-export type SubmitButtonBaseProps = Omit<Parameters<typeof Button>[0], 'type'>
+export type SubmitButtonBaseProps = Parameters<typeof Button>[0]
 
 export interface SubmitButtonProps<T extends FieldValues> extends SubmitButtonBaseProps {
   control: Control<T>
