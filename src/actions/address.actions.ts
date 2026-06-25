@@ -14,7 +14,7 @@ export const manageAddress = authClient.inputSchema(AddressSchemas.AddressDTO).a
   if (remember) {
     const data = { userId, ...rest }
 
-    const address = await prisma.userAddress.upsert({
+    const address = await prisma.billingAddress.upsert({
       where: { userId },
       create: data,
       update: data,
@@ -22,18 +22,18 @@ export const manageAddress = authClient.inputSchema(AddressSchemas.AddressDTO).a
 
     return address
   } else {
-    const address = await prisma.userAddress.findUnique({ where: { userId } })
+    const address = await prisma.billingAddress.findUnique({ where: { userId } })
 
     if (address) {
-      await prisma.userAddress.delete({ where: { id: address.id } })
+      await prisma.billingAddress.delete({ where: { id: address.id } })
     }
 
     return address
   }
 })
 
-export const getUserAddress = authClient.action(async ({ ctx }) => {
-  const address = await prisma.userAddress.findUnique({ where: { userId: ctx.user.id } })
+export const getBillingAddress = authClient.action(async ({ ctx }) => {
+  const address = await prisma.billingAddress.findUnique({ where: { userId: ctx.user.id } })
   if (!address) return
   return address
 })
