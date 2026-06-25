@@ -82,14 +82,14 @@ model Picture {
 }
 
 model Country {
-  id            String        @id
+  id            String           @id
   name          String
-  userAddresses UserAddress[]
+  userAddresses BillingAddress[]
 
   @@map("countries")
 }
 
-model UserAddress {
+model BillingAddress {
   id         String  @id @default(cuid())
   firstName  String  @map("first_name")
   lastName   String  @map("last_name")
@@ -103,7 +103,7 @@ model UserAddress {
   user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String  @unique
 
-  @@map("user_addresses")
+  @@map("billing_addresses")
 }
 
 // AUTH
@@ -116,7 +116,7 @@ model User {
   role           Role?           @default(client)
   active         Boolean?        @default(true)
   password       String?
-  address        UserAddress?
+  address        BillingAddress?
   accounts       Account[]
   sessions       Session[]
   authenticators Authenticator[]
