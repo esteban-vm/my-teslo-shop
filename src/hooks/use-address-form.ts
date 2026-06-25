@@ -7,7 +7,11 @@ import { Toasts } from '@/lib/toasts'
 import { AddressSchemas } from '@/schemas'
 import { useAddressStore } from './use-address-store'
 
-export function useAddressForm({ savedAddress }: { savedAddress?: UserAddress }) {
+export interface AddressFormProps {
+  savedAddress?: UserAddress
+}
+
+export function useAddressForm({ savedAddress }: AddressFormProps) {
   const address = useAddressStore((s) => s.address)
   const setAddress = useAddressStore((s) => s.setAddress)
   const [isServerError, setIsServerError] = useState(false)

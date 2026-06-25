@@ -1,20 +1,20 @@
 'use client'
 
-import type { UserAddress } from '@/prisma/generated/client'
+import type { AddressFormProps } from '@/hooks'
 import { useEffect } from 'react'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useAddressForm, useAddressStore } from '@/hooks'
 import { CountrySelect, FormField, RememberCheck, SubmitButton } from '../shared'
 
-export function AddressForm({ savedAddress }: { savedAddress?: UserAddress }) {
+export function AddressForm(props: AddressFormProps) {
   const address = useAddressStore((s) => s.address)
 
   const {
     form: { control, reset },
     isDisabled,
     handleSubmitWithAction,
-  } = useAddressForm({ savedAddress })
+  } = useAddressForm(props)
 
   useEffect(() => {
     if (address.firstName && !isDisabled) {
