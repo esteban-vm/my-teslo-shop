@@ -25,15 +25,15 @@ export function AddressForm(props: AddressFormProps) {
   return (
     <Container noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
-        <Fieldset.Legend>Dirección de entrega</Fieldset.Legend>
+        <Fieldset.Legend>Dirección de facturación</Fieldset.Legend>
         <Row>
           <FormField autoComplete='given-name' control={control} label='Nombres' name='firstName' />
           <FormField autoComplete='family-name' control={control} label='Apellidos' name='lastName' />
         </Row>
         <Row>
-          <FormField autoComplete='street-address' control={control} label='Dirección' name='address' />
+          <FormField autoComplete='billing street-address' control={control} label='Dirección' name='address' />
           <FormField
-            autoComplete='street-address'
+            autoComplete='billing street-address'
             control={control}
             label='Dirección 2 (opcional)'
             name='address2'
