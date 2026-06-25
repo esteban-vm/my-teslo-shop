@@ -19,12 +19,12 @@ export const createAddressStore: StateCreator<AddressStore> = (set) => {
       firstName: '',
       lastName: '',
       address: '',
-      address2: '',
+      address2: null,
       postalCode: '',
       phone: '',
       city: '',
       countryId: '',
-      remember: true,
+      remember: false,
     },
 
     setAddress(address) {
