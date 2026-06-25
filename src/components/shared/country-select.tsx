@@ -1,20 +1,14 @@
 'use client'
 
-import type { Control, FieldPath, FieldValues } from 'react-hook-form'
+import type { FieldValues } from 'react-hook-form'
+import type { FormControlProps } from '@/types'
 import { useAction } from 'next-safe-action/hooks'
 import { useEffect, useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Label, Select, Validator } from 'rsc-daisyui'
 import { CountryActions } from '@/actions'
 
-export type CountrySelectBaseProps = Parameters<typeof Select>[0]
-
-export interface CountrySelectProps<T extends FieldValues> extends CountrySelectBaseProps {
-  control: Control<T>
-  name: FieldPath<T>
-}
-
-export function CountrySelect<T extends FieldValues>({ control, name, ...rest }: CountrySelectProps<T>) {
+export function CountrySelect<T extends FieldValues>({ control, name, ...rest }: FormControlProps<T>) {
   const selectId = useId()
   const errorId = useId()
 
