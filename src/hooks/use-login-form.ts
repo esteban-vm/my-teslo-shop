@@ -3,12 +3,12 @@ import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hoo
 import { useState } from 'react'
 import { AuthActions } from '@/actions'
 import { Toasts } from '@/lib/toasts'
-import { AuthSchemas } from '@/schemas'
+import { Login } from '@/schemas/auth'
 
 export function useLoginForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AuthActions.login, zodResolver(AuthSchemas.Login), {
+  const methods = useHookFormAction(AuthActions.login, zodResolver(Login), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
