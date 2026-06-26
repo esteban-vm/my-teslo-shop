@@ -3,12 +3,12 @@ import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hoo
 import { useState } from 'react'
 import { AuthActions } from '@/actions'
 import { Toasts } from '@/lib/toasts'
-import { AuthSchemas } from '@/schemas'
+import { UserDTO } from '@/schemas/auth'
 
 export function useNewUserForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AuthActions.createUser, zodResolver(AuthSchemas.UserDTO), {
+  const methods = useHookFormAction(AuthActions.createUser, zodResolver(UserDTO), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
