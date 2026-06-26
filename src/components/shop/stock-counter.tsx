@@ -1,8 +1,8 @@
 import { use } from 'react'
-import { ProductActions } from '@/actions'
+import { getStockBySlug } from '@/actions/product'
 
 export function StockCounter({ slug }: { slug: string }) {
-  const stock = use(ProductActions.getStockBySlug(slug))
+  const stock = use(getStockBySlug(slug))
 
   return (
     <p>
