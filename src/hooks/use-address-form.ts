@@ -2,7 +2,7 @@ import type { BillingAddress } from '@/prisma/generated/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
-import { AddressActions } from '@/actions'
+import { manageAddress } from '@/actions/address'
 import { Toasts } from '@/lib/toasts'
 import { AddressDTO } from '@/schemas/address'
 import { useAddressStore } from './use-address-store'
@@ -16,7 +16,7 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
   const setAddress = useAddressStore((s) => s.setAddress)
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AddressActions.manageAddress, zodResolver(AddressDTO), {
+  const methods = useHookFormAction(manageAddress, zodResolver(AddressDTO), {
     formProps: {
       mode: 'all',
       defaultValues: {

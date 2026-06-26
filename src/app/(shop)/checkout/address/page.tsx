@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { AddressActions } from '@/actions'
+import { getBillingAddress } from '@/actions/address'
 import { AddressForm } from '@/components/forms'
 import { PageTitle } from '@/components/pages'
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 export default async function AddressPage() {
-  const { data: address } = await AddressActions.getBillingAddress()
+  const { data: address } = await getBillingAddress()
 
   return (
     <>
