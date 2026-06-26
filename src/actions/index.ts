@@ -1,1 +1,1 @@
-export * as ProductActions from './product.actions'
+export * as ProductActions2 from './product'
