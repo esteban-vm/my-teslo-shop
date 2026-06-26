@@ -73,6 +73,23 @@ form {
   }
 }
 
+[data-shop] {
+  @apply my-3 grid gap-3 px-4 lg:grid-cols-3;
+
+  .list,
+  .card {
+    @apply mx-auto border border-primary/25 p-2 lg:w-full;
+  }
+
+  .list {
+    @apply not-lg:max-w-xl;
+  }
+
+  .card {
+    @apply not-lg:max-w-md shadow-md;
+  }
+}
+
 .fieldset {
   @apply gap-2 rounded-xl border border-base-300 bg-base-200 pb-4 px-4 shadow-md;
 
