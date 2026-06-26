@@ -1,2 +1,2 @@
-export * as CountryActions from './country.actions'
+export * as CountryActions2 from './country'
 export * as ProductActions from './product.actions'
