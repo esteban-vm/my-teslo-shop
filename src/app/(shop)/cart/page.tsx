@@ -10,14 +10,14 @@ export default function CartPage() {
   return (
     <>
       <PageTitle title='Mi carrito' />
-      <div className='my-3 grid gap-3 px-4 lg:grid-cols-3'>
+      <section data-shop>
         <div className='lg:col-span-2'>
           <CartList />
         </div>
         <div>
           <OrderSummary />
         </div>
-      </div>
+      </section>
     </>
   )
 }
