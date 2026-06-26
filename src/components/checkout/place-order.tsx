@@ -1,7 +1,6 @@
 'use client'
 
 import { Button, Card, Divider, Skeleton } from 'rsc-daisyui'
-import tw from 'tailwind-styled-components'
 import { useShallow } from 'zustand/shallow'
 import { useAddressStore, useMounted, useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
@@ -19,7 +18,7 @@ export function PlaceOrder() {
   const { firstName, lastName, city, countryId, phone, ...rest } = address
 
   return (
-    <Container $as={Card}>
+    <Card>
       <Card.Body className='px-4 pt-2 pb-3'>
         <Card.Title>Dirección de entrega</Card.Title>
         <div>
@@ -55,8 +54,6 @@ export function PlaceOrder() {
           Colocar orden
         </Button>
       </Card.Body>
-    </Container>
+    </Card>
   )
 }
-
-const Container = tw.div`mx-auto not-lg:max-w-md border border-primary/25 p-2 shadow-md lg:w-full`
