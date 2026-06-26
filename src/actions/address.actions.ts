@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from 'next/navigation'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { authClient } from '@/lib/safe-action'
@@ -13,23 +14,16 @@ export const manageAddress = authClient.inputSchema(AddressSchemas.AddressDTO).a
 
   if (remember) {
     const data = { userId, ...rest }
-
-    const address = await prisma.billingAddress.upsert({
-      where: { userId },
-      create: data,
-      update: data,
-    })
-
-    return address
+    await prisma.billingAddress.upsert({ where: { userId }, create: data, update: data })
   } else {
     const address = await prisma.billingAddress.findUnique({ where: { userId } })
 
     if (address) {
       await prisma.billingAddress.delete({ where: { id: address.id } })
     }
-
-    return address
   }
+
+  redirect('/checkout')
 })
 
 export const getBillingAddress = authClient.action(async ({ ctx }) => {
