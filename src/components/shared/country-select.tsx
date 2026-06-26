@@ -6,7 +6,7 @@ import { useAction } from 'next-safe-action/hooks'
 import { useEffect, useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Label, Select, Validator } from 'rsc-daisyui'
-import { CountryActions } from '@/actions'
+import { getCountries } from '@/actions/country'
 
 export function CountrySelect<T extends FieldValues>({ control, name, ...rest }: FormControlProps<T>) {
   const selectId = useId()
@@ -16,7 +16,7 @@ export function CountrySelect<T extends FieldValues>({ control, name, ...rest }:
     result: { data: countries },
     execute,
     isExecuting,
-  } = useAction(CountryActions.getCountries)
+  } = useAction(getCountries)
 
   useEffect(execute, [execute])
 
