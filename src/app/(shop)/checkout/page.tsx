@@ -10,14 +10,14 @@ export default function CheckoutPage() {
   return (
     <>
       <PageTitle title='Verificar orden' />
-      <div className='my-3 grid gap-3 px-4 lg:grid-cols-3' data-shop>
+      <section data-shop>
         <div className='lg:col-span-2'>
           <CheckoutList />
         </div>
         <div>
           <PlaceOrder />
         </div>
-      </div>
+      </section>
     </>
   )
 }
