@@ -18,7 +18,7 @@ export const loginWithGoogle = actionClient.action(async () => {
   await signIn('google', { redirectTo: homePage })
 })
 
-export const login = actionClient.inputSchema(Login).action(async ({ parsedInput }) => {
+export const loginWithCredentials = actionClient.inputSchema(Login).action(async ({ parsedInput }) => {
   await sleepExecution(5)
   const { email, password } = parsedInput
   await signIn('credentials', { email, password, redirectTo: homePage })
