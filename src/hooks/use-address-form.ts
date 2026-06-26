@@ -34,7 +34,6 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
       },
       onSuccess() {
         setIsServerError(false)
-        Toasts.success('Operación realizada con éxito')
       },
       onError(args) {
         const { serverError } = args.error
