@@ -3,7 +3,7 @@ import { CartList, OrderSummary } from '@/components/cart'
 import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
-  title: 'Carrito de compras',
+  title: 'Mi Carrito',
 }
 
 export default function CartPage() {
