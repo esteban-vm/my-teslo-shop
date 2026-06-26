@@ -4,7 +4,7 @@ import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hoo
 import { useState } from 'react'
 import { AddressActions } from '@/actions'
 import { Toasts } from '@/lib/toasts'
-import { AddressSchemas } from '@/schemas'
+import { AddressDTO } from '@/schemas/address'
 import { useAddressStore } from './use-address-store'
 
 export interface AddressFormProps {
@@ -16,7 +16,7 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
   const setAddress = useAddressStore((s) => s.setAddress)
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(AddressActions.manageAddress, zodResolver(AddressSchemas.AddressDTO), {
+  const methods = useHookFormAction(AddressActions.manageAddress, zodResolver(AddressDTO), {
     formProps: {
       mode: 'all',
       defaultValues: {
