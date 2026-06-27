@@ -1,5 +1,6 @@
 'use server'
 
+import type { OrderSummary } from '@/types'
 import z from 'zod'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
@@ -24,7 +25,7 @@ export const placeOrder = authClient
 
     const totalItems = items.reduce((total, p) => total + p.quantity, 0)
 
-    const orderSummary = items.reduce(
+    const info = items.reduce(
       (acc, item) => {
         const product = products.find((product) => product.id === item.productId)
 
@@ -43,7 +44,11 @@ export const placeOrder = authClient
       { total: 0, subtotal: 0, tax: 0 }
     )
 
+    const summary: OrderSummary = {
+      totalItems,
+      ...info,
+    }
+
     console.log({ userId, address })
-    console.log({ totalItems })
-    console.log({ orderSummary })
+    console.log({ summary })
   })

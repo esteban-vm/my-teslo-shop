@@ -8,13 +8,13 @@ import { formatProductPrice } from '@/lib/helpers'
 
 export function OrderSummary() {
   const { mounted } = useMounted(4)
-  const info = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
+  const summary = useShoppingCart(useShallow((s) => s.getOrderSummary()))
 
   if (!mounted) {
     return <Skeleton text>Cargando resumen de orden</Skeleton>
   }
 
-  const { total, subtotal, tax, totalItems } = info
+  const { total, subtotal, tax, totalItems } = summary
 
   return (
     <Card>

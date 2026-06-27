@@ -13,13 +13,13 @@ export function PlaceOrder() {
   const cart = useShoppingCart((s) => s.cart)
   const address = useAddressStore((s) => s.address)
   const { isExecuting, execute } = useAction(placeOrder)
-  const info = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
+  const summary = useShoppingCart(useShallow((s) => s.getOrderSummary()))
 
   if (!mounted) {
     return <Skeleton text>Cargando datos de orden</Skeleton>
   }
 
-  const { total, subtotal, tax, totalItems } = info
+  const { total, subtotal, tax, totalItems } = summary
   const { firstName, lastName, city, countryId, phone, ...rest } = address
 
   const onPlaceOrder = () => {

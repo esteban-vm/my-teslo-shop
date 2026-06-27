@@ -1,13 +1,6 @@
 import type { StateCreator } from 'zustand'
-import type { CartProduct } from '@/types'
+import type { CartProduct, OrderSummary } from '@/types'
 import { isSameProduct } from '@/lib/helpers'
-
-interface SummaryInformation {
-  total: number
-  subtotal: number
-  tax: number
-  totalItems: number
-}
 
 interface ShoppingCartState {
   cart: CartProduct[]
@@ -15,7 +8,7 @@ interface ShoppingCartState {
 
 interface ShoppingCartActions {
   getTotalItems: () => number
-  getSummaryInformation: () => SummaryInformation
+  getOrderSummary: () => OrderSummary
   addToCart: (product: CartProduct) => void
   updateQuantity: (product: CartProduct, quantity: number) => void
   removeFromCart: (product: CartProduct) => void
@@ -32,7 +25,7 @@ export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, ge
       return cart.reduce((total, p) => total + p.quantity, 0)
     },
 
-    getSummaryInformation() {
+    getOrderSummary() {
       const { cart, getTotalItems } = get()
       const subtotal = cart.reduce((st, p) => p.price * p.quantity + st, 0)
       const tax = subtotal * 0.15
