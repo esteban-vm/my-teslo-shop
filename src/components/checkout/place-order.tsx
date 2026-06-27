@@ -1,13 +1,18 @@
 'use client'
 
+import type { OrderItemDTO } from '@/schemas/order'
+import { useAction } from 'next-safe-action/hooks'
 import { Button, Card, Divider, Skeleton } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
+import { placeOrder } from '@/actions/order'
 import { useAddressStore, useMounted, useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function PlaceOrder() {
   const { mounted } = useMounted(4)
+  const cart = useShoppingCart((s) => s.cart)
   const address = useAddressStore((s) => s.address)
+  const { isExecuting, execute } = useAction(placeOrder)
   const info = useShoppingCart(useShallow((s) => s.getSummaryInformation()))
 
   if (!mounted) {
@@ -16,6 +21,18 @@ export function PlaceOrder() {
 
   const { total, subtotal, tax, totalItems } = info
   const { firstName, lastName, city, countryId, phone, ...rest } = address
+
+  const onPlaceOrder = () => {
+    const items: OrderItemDTO[] = cart.map((item) => {
+      return {
+        productId: item.id,
+        quantity: item.quantity,
+        size: item.size,
+      }
+    })
+
+    execute({ items, address })
+  }
 
   return (
     <Card>
@@ -50,7 +67,7 @@ export function PlaceOrder() {
             Total:<span className='float-end'>{formatProductPrice(total)}</span>
           </p>
         </div>
-        <Button className='mx-auto' size='sm' wide>
+        <Button className='mx-auto' disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
           Colocar orden
         </Button>
       </Card.Body>
