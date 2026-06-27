@@ -24,7 +24,7 @@ export const placeOrder = authClient
 
     const totalItems = items.reduce((total, p) => total + p.quantity, 0)
 
-    const summaryInfo = items.reduce(
+    const orderSummary = items.reduce(
       (acc, item) => {
         const product = products.find((product) => product.id === item.productId)
 
@@ -45,5 +45,5 @@ export const placeOrder = authClient
 
     console.log({ userId, address })
     console.log({ totalItems })
-    console.log({ summaryInfo })
+    console.log({ orderSummary })
   })
