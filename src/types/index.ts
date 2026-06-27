@@ -16,6 +16,13 @@ export interface CartProduct {
   image: string
 }
 
+export interface OrderSummary {
+  total: number
+  subtotal: number
+  tax: number
+  totalItems: number
+}
+
 export interface FormControlBaseProps<T extends FieldValues> extends PropsWithChildren {
   control: Control<T>
   className?: string
