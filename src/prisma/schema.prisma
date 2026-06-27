@@ -151,7 +151,7 @@ model ShippingAddress {
   city       String
   country    Country @relation(fields: [countryId], references: [id])
   countryId  String  @map("country_id")
-  order      Order   @relation(fields: [orderId], references: [id])
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId    String  @unique @map("order_id")
 
   @@map("shipping_addresses")
