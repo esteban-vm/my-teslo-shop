@@ -1,6 +1,5 @@
 'use server'
 
-import type { OrderSummary } from '@/types'
 import z from 'zod'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
@@ -12,43 +11,104 @@ export const placeOrder = authClient
   .inputSchema(z.object({ items: z.array(OrderItemDTO), address: AddressDTO }))
   .action(async ({ ctx, parsedInput }) => {
     await sleepExecution(3)
+
     const userId = ctx.user.id
     const { items, address } = parsedInput
 
     const products = await prisma.product.findMany({
       where: {
         id: {
-          in: items.map((item) => item.productId),
+          in: items.map((i) => i.productId),
         },
       },
     })
 
-    const totalItems = items.reduce((total, p) => total + p.quantity, 0)
+    const totalItems = items.reduce((total, i) => total + i.quantity, 0)
 
-    const info = items.reduce(
-      (acc, item) => {
-        const product = products.find((product) => product.id === item.productId)
+    const { total, subtotal, tax } = items.reduce(
+      (acc, i) => {
+        const product = products.find((p) => p.id === i.productId)
 
         if (!product) {
           throw new Error('Producto no encontrado')
         }
 
-        const subtotal = product.price * item.quantity
-
+        const subtotal = product.price * i.quantity
         acc.subtotal += subtotal
         acc.tax += subtotal * 0.15
         acc.total += subtotal * 1.15
-
         return acc
       },
       { total: 0, subtotal: 0, tax: 0 }
     )
 
-    const summary: OrderSummary = {
-      totalItems,
-      ...info,
-    }
+    const prismaTx = await prisma.$transaction(async (tx) => {
+      // 1. Actualizar existencias de producto
+      const productsPromises = products.map((p) => {
+        const quantity = items.filter((i) => i.productId === p.id).reduce((acc, i) => i.quantity + acc, 0)
 
-    console.log({ userId, address })
-    console.log({ summary })
+        if (quantity === 0) {
+          throw new Error('Sin existencias para este producto')
+        }
+
+        return tx.product.update({
+          where: { id: p.id },
+          data: {
+            stock: {
+              decrement: quantity,
+            },
+          },
+        })
+      })
+
+      const updatedProducts = await Promise.all(productsPromises)
+
+      // 4. Verificar valores negativos en las existencias
+      updatedProducts.forEach((p) => {
+        if (p.stock < 0) {
+          throw new Error(`${p.title} no tiene inventario suficiente`)
+        }
+      })
+
+      // 3. Crear la orden
+      const order = await tx.order.create({
+        data: {
+          userId,
+          total,
+          subtotal,
+          tax,
+          totalItems,
+          orderItems: {
+            createMany: {
+              data: items.map((i) => {
+                return {
+                  ...i,
+                  price: products.find((p) => p.id === i.productId)?.price ?? 0,
+                }
+              }),
+            },
+          },
+        },
+      })
+
+      // 4. Crear la dirección de la orden
+      const { remember: _, ...rest } = address
+      const shippingAddress = await tx.shippingAddress.create({
+        data: {
+          ...rest,
+          orderId: order.id,
+        },
+      })
+
+      return {
+        order,
+        shippingAddress,
+        updatedProducts,
+      }
+    })
+
+    return {
+      ok: true,
+      order: prismaTx.order.id,
+    }
   })
