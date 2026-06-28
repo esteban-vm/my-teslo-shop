@@ -28,8 +28,8 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
       onSettled() {
         methods.resetFormAndAction()
       },
-      onExecute({ input }) {
-        setAddress(input)
+      onExecute(args) {
+        setAddress(args.input)
         Toasts.execute('Un momento')
       },
       onSuccess() {
