@@ -21,7 +21,7 @@ const prisma = new PrismaClient({
   omit: omitConfig,
   adapter: pgAdapter,
   errorFormat: 'pretty',
-  log: isNotProduction ? ['query'] : undefined,
+  log: isNotProduction ? ['query', 'error', 'info', 'warn'] : undefined,
 })
 
 const globalForPrisma = global as typeof global & {
