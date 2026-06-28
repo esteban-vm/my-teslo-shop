@@ -5,10 +5,6 @@ import { Prisma } from '@/prisma/generated/client'
 
 export const actionClient = createSafeActionClient({
   handleServerError(error) {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(error.message)
-    }
-
     if (error instanceof CredentialsSignin) {
       const { message } = error
       return message.substring(0, message.indexOf('. Read more'))
@@ -22,7 +18,7 @@ export const actionClient = createSafeActionClient({
       }
     }
 
-    return 'Ha ocurrido un error'
+    return error.message
   },
 })
 
