@@ -7,13 +7,35 @@ import { useShallow } from 'zustand/shallow'
 import { placeOrder } from '@/actions/order'
 import { useAddressStore, useMounted, useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
+import { Toasts } from '@/lib/toasts'
 
 export function PlaceOrder() {
   const { mounted } = useMounted(4)
   const cart = useShoppingCart((s) => s.cart)
   const address = useAddressStore((s) => s.address)
-  const { isExecuting, execute } = useAction(placeOrder)
   const summary = useShoppingCart(useShallow((s) => s.getOrderSummary()))
+
+  const { isExecuting, execute, reset } = useAction(placeOrder, {
+    onSettled() {
+      reset()
+    },
+    onExecute() {
+      Toasts.execute('Colocando orden')
+    },
+    onSuccess(args) {
+      Toasts.success(args.data.order)
+    },
+    onError(args) {
+      const { serverError } = args.error
+
+      if (serverError) {
+        Toasts.error(serverError)
+      }
+    },
+    onNavigation() {
+      Toasts.close()
+    },
+  })
 
   if (!mounted) {
     return <Skeleton text>Cargando datos de orden</Skeleton>
