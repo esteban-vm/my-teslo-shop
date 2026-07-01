@@ -1,6 +1,7 @@
 'use client'
 
 import type { OrderItemDTO } from '@/schemas/order'
+import { useRouter } from 'next/navigation'
 import { useAction } from 'next-safe-action/hooks'
 import { Button, Card, Divider, Skeleton } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
@@ -10,6 +11,7 @@ import { Toasts } from '@/lib/toasts'
 import { OrderSummary, ShippingAddress } from '../shared'
 
 export function PlaceOrder() {
+  const router = useRouter()
   const { mounted } = useMounted(4)
   const cart = useShoppingCart((s) => s.cart)
   const resetCart = useShoppingCart((s) => s.resetCart)
@@ -22,8 +24,10 @@ export function PlaceOrder() {
     onExecute() {
       Toasts.execute('Colocando orden')
     },
-    onSuccess() {
+    onSuccess(args) {
       resetCart()
+      Toasts.close()
+      router.replace(`/orders/${args.data.orderId}`)
     },
     onError(args) {
       const { serverError } = args.error
@@ -31,9 +35,6 @@ export function PlaceOrder() {
       if (serverError) {
         Toasts.error(serverError)
       }
-    },
-    onNavigation() {
-      Toasts.close()
     },
   })
 
