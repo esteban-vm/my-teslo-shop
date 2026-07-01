@@ -12,11 +12,12 @@ interface ShoppingCartActions {
   addToCart: (product: CartProduct) => void
   updateQuantity: (product: CartProduct, quantity: number) => void
   removeFromCart: (product: CartProduct) => void
+  resetCart: () => void
 }
 
 export type ShoppingCartStore = ShoppingCartState & ShoppingCartActions
 
-export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, get) => {
+export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, get, store) => {
   return {
     cart: [],
 
@@ -65,6 +66,10 @@ export const createShoppingCartStore: StateCreator<ShoppingCartStore> = (set, ge
       const { cart } = get()
       const updatedCart = cart.filter((p) => !isSameProduct(p, product))
       set({ cart: updatedCart })
+    },
+
+    resetCart() {
+      set(store.getInitialState())
     },
   }
 }
