@@ -57,5 +57,5 @@ export function AddressForm(props: AddressFormProps) {
   )
 }
 
-const Container = tw.form`mx-auto w-full max-w-5xl px-5`
+const Container = tw.form`mx-auto mb-3 w-full max-w-5xl px-5`
 const Row = tw.div`flex w-full flex-col lg:flex-row lg:gap-5`
