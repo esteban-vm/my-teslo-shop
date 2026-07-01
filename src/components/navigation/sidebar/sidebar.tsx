@@ -28,7 +28,7 @@ export async function Sidebar() {
       {isLoggedIn ? (
         <>
           <NavLink icon={<User />} text='Perfil' to='/profile' />
-          <NavLink icon={<Ticket />} text='Órdenes' to='/' />
+          <NavLink icon={<Ticket />} text='Órdenes' to='/orders' />
           <Divider />
         </>
       ) : (
