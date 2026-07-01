@@ -10,13 +10,13 @@ export function CheckoutList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <Skeleton text>Cargando lista de compra</Skeleton>
+    return <Skeleton text>Cargando lista de artículos</Skeleton>
   }
 
   return (
     <ProductList link='/cart' linkTitle='Editar carrito' title='Ajustar elementos'>
-      {cart.map((product) => (
-        <CheckoutItem key={`${product.slug}-${product.size}`} product={product} />
+      {cart.map((item) => (
+        <CheckoutItem key={`${item.slug}-${item.size}`} product={item} />
       ))}
     </ProductList>
   )

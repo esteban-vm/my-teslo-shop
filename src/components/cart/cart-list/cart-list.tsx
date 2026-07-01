@@ -10,13 +10,13 @@ export function CartList() {
   const cart = useShoppingCart((s) => s.cart)
 
   if (!mounted) {
-    return <Skeleton text>Cargando carrito de compras</Skeleton>
+    return <Skeleton text>Cargando carrito</Skeleton>
   }
 
   return (
     <ProductList link='/' linkTitle='Continuar comprando' title='Agregar más artículos'>
-      {cart.map((product) => (
-        <CartItem key={`${product.slug}-${product.size}`} product={product} />
+      {cart.map((item) => (
+        <CartItem key={`${item.slug}-${item.size}`} product={item} />
       ))}
     </ProductList>
   )
