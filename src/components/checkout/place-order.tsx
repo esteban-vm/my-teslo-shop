@@ -11,8 +11,9 @@ import { Toasts } from '@/lib/toasts'
 
 export function PlaceOrder() {
   const { mounted } = useMounted(4)
-  const cart = useShoppingCart((s) => s.cart)
   const address = useAddressStore((s) => s.address)
+  const cart = useShoppingCart((s) => s.cart)
+  const resetCart = useShoppingCart((s) => s.resetCart)
   const summary = useShoppingCart(useShallow((s) => s.getOrderSummary()))
 
   const { isExecuting, execute, reset } = useAction(placeOrder, {
@@ -22,8 +23,8 @@ export function PlaceOrder() {
     onExecute() {
       Toasts.execute('Colocando orden')
     },
-    onSuccess(args) {
-      Toasts.success(args.data.order)
+    onSuccess() {
+      resetCart()
     },
     onError(args) {
       const { serverError } = args.error
