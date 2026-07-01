@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from 'next/navigation'
 import z from 'zod'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
@@ -42,7 +43,7 @@ export const placeOrder = authClient
       { total: 0, subtotal: 0, tax: 0 }
     )
 
-    const prismaTx = await prisma.$transaction(async (tx) => {
+    const orderId = await prisma.$transaction(async (tx) => {
       // 1. Actualizar existencias de producto
       const productsPromises = products.map((p) => {
         const quantity = items.filter((i) => i.productId === p.id).reduce((acc, i) => i.quantity + acc, 0)
@@ -71,7 +72,7 @@ export const placeOrder = authClient
       })
 
       // 3. Crear la orden
-      const order = await tx.order.create({
+      const { id } = await tx.order.create({
         data: {
           userId,
           total,
@@ -89,26 +90,15 @@ export const placeOrder = authClient
             },
           },
         },
+        select: { id: true },
       })
 
       // 4. Crear la dirección de la orden
       const { remember: _, ...rest } = address
-      const shippingAddress = await tx.shippingAddress.create({
-        data: {
-          ...rest,
-          orderId: order.id,
-        },
-      })
+      await tx.shippingAddress.create({ data: { ...rest, orderId: id } })
 
-      return {
-        order,
-        shippingAddress,
-        updatedProducts,
-      }
+      return id
     })
 
-    return {
-      ok: true,
-      order: prismaTx.order.id,
-    }
+    redirect(`/orders/${orderId}`, 'replace')
   })
