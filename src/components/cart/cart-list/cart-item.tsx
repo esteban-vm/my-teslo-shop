@@ -1,9 +1,8 @@
 import type { CartProduct } from '@/types'
 import { Trash2 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button, List } from 'rsc-daisyui'
-import { CounterInput } from '@/components/shared'
+import { CounterInput, ItemImage } from '@/components/shared'
 import { useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
@@ -21,9 +20,7 @@ export function CartItem({ product }: { product: CartProduct }) {
 
   return (
     <List.Row className='items-center py-2 last:pb-3' id={id}>
-      <div className='relative size-24 overflow-hidden rounded-box'>
-        <Image alt={title} fill src={`/products/${image}`} />
-      </div>
+      <ItemImage image={image} title={title} />
       <List.ColGrow className='space-y-1'>
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
           {title} - {size}

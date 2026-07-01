@@ -1,6 +1,6 @@
 import type { CartProduct } from '@/types'
-import Image from 'next/image'
 import { List } from 'rsc-daisyui'
+import { ItemImage } from '@/components/shared'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function CheckoutItem({ product }: { product: CartProduct }) {
@@ -8,9 +8,7 @@ export function CheckoutItem({ product }: { product: CartProduct }) {
 
   return (
     <List.Row className='items-center py-2 last:pb-3' id={id}>
-      <div className='relative size-24 overflow-hidden rounded-box'>
-        <Image alt={title} fill src={`/products/${image}`} />
-      </div>
+      <ItemImage image={image} title={title} />
       <List.ColGrow className='space-y-1'>
         <p className='font-semibold'>
           {title} - {size}
