@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CartList, BuyNow } from '@/components/cart'
+import { BuyNow, CartList } from '@/components/cart'
 import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
