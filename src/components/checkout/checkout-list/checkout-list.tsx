@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-import { Button, List, Skeleton } from 'rsc-daisyui'
+import { Skeleton } from 'rsc-daisyui'
+import { ProductList } from '@/components/shop'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CheckoutItem } from './checkout-item'
 
@@ -14,18 +14,10 @@ export function CheckoutList() {
   }
 
   return (
-    <List>
-      <li className='px-4 pt-2'>
-        <h2 className='font-semibold text-lg'>Ajustar elementos</h2>
-      </li>
-      <li className='px-4'>
-        <Button as={Link} className='p-0 hover:opacity-75' color='info' href='/cart' link size='sm'>
-          Editar carrito
-        </Button>
-      </li>
+    <ProductList link='/cart' linkTitle='Editar carrito' title='Ajustar elementos'>
       {cart.map((product) => (
         <CheckoutItem key={`${product.slug}-${product.size}`} product={product} />
       ))}
-    </List>
+    </ProductList>
   )
 }
