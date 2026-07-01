@@ -16,6 +16,7 @@ export function PlaceOrder() {
   const cart = useShoppingCart((s) => s.cart)
   const resetCart = useShoppingCart((s) => s.resetCart)
   const address = useAddressStore(useShallow((s) => s.address))
+  const resetAddress = useAddressStore((s) => s.resetAddress)
 
   const { isExecuting, execute, reset } = useAction(placeOrder, {
     onSettled() {
@@ -26,6 +27,7 @@ export function PlaceOrder() {
     },
     onSuccess(args) {
       resetCart()
+      resetAddress()
       Toasts.close()
       router.replace(`/orders/${args.data.orderId}`)
     },
