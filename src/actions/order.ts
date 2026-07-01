@@ -1,6 +1,5 @@
 'use server'
 
-import { redirect } from 'next/navigation'
 import z from 'zod'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
@@ -100,5 +99,5 @@ export const placeOrder = authClient
       return id
     })
 
-    redirect(`/orders/${orderId}`, 'replace')
+    return { orderId }
   })
