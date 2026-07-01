@@ -7,11 +7,12 @@ interface AddressState {
 
 interface AddressActions {
   setAddress: (address: AddressDTO) => void
+  resetAddress: () => void
 }
 
 export type AddressStore = AddressState & AddressActions
 
-export const createAddressStore: StateCreator<AddressStore> = (set) => {
+export const createAddressStore: StateCreator<AddressStore> = (set, _, store) => {
   return {
     address: {
       firstName: '',
@@ -27,6 +28,10 @@ export const createAddressStore: StateCreator<AddressStore> = (set) => {
 
     setAddress(address) {
       set({ address })
+    },
+
+    resetAddress() {
+      set(store.getInitialState())
     },
   }
 }
