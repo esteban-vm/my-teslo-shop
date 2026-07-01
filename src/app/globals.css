@@ -150,3 +150,11 @@ form {
 .Toastify__toast-container {
   @apply font-geist text-sm font-semibold w-full max-w-xs;
 }
+
+.list-row.product-item {
+  @apply items-center py-2 last:pb-3;
+
+  .list-col-grow {
+    @apply space-y-1;
+  }
+}
