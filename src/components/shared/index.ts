@@ -1,6 +1,7 @@
 export * from './counter-input'
 export * from './country-select'
 export * from './form-field'
+export * from './item-image'
 export * from './nav-link'
 export * from './order-summary'
 export * from './remember-check'
