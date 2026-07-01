@@ -11,7 +11,6 @@ export const placeOrder = authClient
   .inputSchema(z.object({ items: z.array(OrderItemDTO), address: AddressDTO }))
   .action(async ({ ctx, parsedInput }) => {
     await sleepExecution(3)
-
     const userId = ctx.user.id
     const { items, address } = parsedInput
 
@@ -37,13 +36,13 @@ export const placeOrder = authClient
         acc.subtotal += subtotal
         acc.tax += subtotal * 0.15
         acc.total += subtotal * 1.15
+
         return acc
       },
       { total: 0, subtotal: 0, tax: 0 }
     )
 
     const orderId = await prisma.$transaction(async (tx) => {
-      // 1. Actualizar existencias de producto
       const productsPromises = products.map((p) => {
         const quantity = items.filter((i) => i.productId === p.id).reduce((acc, i) => i.quantity + acc, 0)
 
@@ -63,14 +62,12 @@ export const placeOrder = authClient
 
       const updatedProducts = await Promise.all(productsPromises)
 
-      // 4. Verificar valores negativos en las existencias
       updatedProducts.forEach((p) => {
         if (p.stock < 0) {
           throw new Error(`${p.title} no tiene inventario suficiente`)
         }
       })
 
-      // 3. Crear la orden
       const { id } = await tx.order.create({
         data: {
           userId,
@@ -92,12 +89,52 @@ export const placeOrder = authClient
         select: { id: true },
       })
 
-      // 4. Crear la dirección de la orden
       const { remember: _, ...rest } = address
       await tx.shippingAddress.create({ data: { ...rest, orderId: id } })
-
       return id
     })
 
     return { orderId }
+  })
+
+export const getOrderById = authClient
+  .inputSchema(z.object({ id: z.string() }))
+  .action(async ({ ctx, parsedInput }) => {
+    const userId = ctx.user.id
+    const isAdmin = ctx.user.role === 'admin'
+
+    const order = await prisma.order.findUnique({
+      where: {
+        id: parsedInput.id,
+        userId: isAdmin ? undefined : userId,
+      },
+      include: {
+        shippingAddress: true,
+        orderItems: {
+          select: {
+            price: true,
+            quantity: true,
+            size: true,
+            product: {
+              select: {
+                title: true,
+                slug: true,
+                images: {
+                  select: {
+                    url: true,
+                  },
+                  take: 1,
+                },
+              },
+            },
+          },
+        },
+      },
+    })
+
+    if (!order) {
+      throw new Error('Orden no encontrada')
+    }
+
+    return order
   })
