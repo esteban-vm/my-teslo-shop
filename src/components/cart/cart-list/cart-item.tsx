@@ -7,7 +7,7 @@ import { useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function CartItem({ product }: { product: CartProduct }) {
-  const { id, title, image, price, size, slug, quantity } = product
+  const { title, image, price, size, slug, quantity } = product
 
   const updateQuantity = useShoppingCart((s) => s.updateQuantity)
   const removeFromCart = useShoppingCart((s) => s.removeFromCart)
@@ -19,7 +19,7 @@ export function CartItem({ product }: { product: CartProduct }) {
   }
 
   return (
-    <List.Row className='items-center py-2 last:pb-3' id={id}>
+    <List.Row className='items-center py-2 last:pb-3'>
       <ItemImage image={image} title={title} />
       <List.ColGrow className='space-y-1'>
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
