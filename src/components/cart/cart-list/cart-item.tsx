@@ -19,9 +19,9 @@ export function CartItem({ product }: { product: CartProduct }) {
   }
 
   return (
-    <List.Row className='items-center py-2 last:pb-3'>
+    <List.Row className='product-item'>
       <ItemImage image={image} title={title} />
-      <List.ColGrow className='space-y-1'>
+      <List.ColGrow>
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
           {title} - {size}
         </Link>

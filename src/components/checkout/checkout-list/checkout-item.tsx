@@ -7,9 +7,9 @@ export function CheckoutItem({ product }: { product: CartProduct }) {
   const { title, image, price, size, quantity } = product
 
   return (
-    <List.Row className='items-center py-2 last:pb-3'>
+    <List.Row className='product-item'>
       <ItemImage image={image} title={title} />
-      <List.ColGrow className='space-y-1'>
+      <List.ColGrow>
         <p className='font-semibold'>
           {title} - {size}
         </p>
