@@ -1,19 +1,23 @@
 import type { Metadata } from 'next'
+import { OrderList } from '@/components/orders'
 import { PageTitle } from '@/components/pages'
 
-type OrderPageProps = PageProps<'/orders/[id]'>
-
 export const metadata: Metadata = {
-  title: 'Mi orden #',
+  title: 'Detalle de orden',
 }
 
-export default async function OrderPage({ params }: OrderPageProps) {
+export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
   const { id } = await params
 
   return (
     <>
-      <PageTitle title={`Orden #${id}`} />
-      <section data-shop></section>
+      <PageTitle subtitle={id} title='Orden #' />
+      <section data-shop>
+        <div className='lg:col-span-2'>
+          <OrderList />
+        </div>
+        <div></div>
+      </section>
     </>
   )
 }
