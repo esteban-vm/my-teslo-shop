@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CartList, OrderSummary } from '@/components/cart'
+import { CartList, BuyNow } from '@/components/cart'
 import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function CartPage() {
           <CartList />
         </div>
         <div>
-          <OrderSummary />
+          <BuyNow />
         </div>
       </section>
     </>
