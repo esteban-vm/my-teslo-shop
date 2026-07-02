@@ -117,6 +117,7 @@ export const getOrderById = authClient
             size: true,
             product: {
               select: {
+                id: true,
                 title: true,
                 slug: true,
                 images: {
