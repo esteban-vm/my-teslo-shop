@@ -5,7 +5,7 @@ import { Card, Divider } from 'rsc-daisyui'
 import { getOrderById } from '@/actions/order'
 import { OrderList } from '@/components/orders'
 import { PageTitle } from '@/components/pages'
-import { OrderSummary, ShippingAddress } from '@/components/shared'
+import { AddressDetails, SummaryDetails } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'Detalle de orden',
@@ -39,9 +39,9 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
         <div>
           <Card>
             <Card.Body>
-              {savedAddress && <ShippingAddress savedAddress={savedAddress} />}
+              {savedAddress && <AddressDetails savedAddress={savedAddress} />}
               <Divider />
-              <OrderSummary savedSummary={savedSummary} />
+              <SummaryDetails savedSummary={savedSummary} />
             </Card.Body>
           </Card>
         </div>

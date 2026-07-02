@@ -8,7 +8,7 @@ import { useShallow } from 'zustand/shallow'
 import { placeOrder } from '@/actions/order'
 import { useAddressStore, useMounted, useShoppingCart } from '@/hooks'
 import { Toasts } from '@/lib/toasts'
-import { OrderSummary, ShippingAddress } from '../shared'
+import { AddressDetails, SummaryDetails } from '../shared'
 
 export function PlaceOrder() {
   const router = useRouter()
@@ -59,9 +59,9 @@ export function PlaceOrder() {
   return (
     <Card>
       <Card.Body>
-        <ShippingAddress />
+        <AddressDetails />
         <Divider />
-        <OrderSummary />
+        <SummaryDetails />
         <Button disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
           Colocar orden
         </Button>

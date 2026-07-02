@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Button, Card, Skeleton } from 'rsc-daisyui'
 import { useMounted } from '@/hooks'
-import { OrderSummary } from '../shared'
+import { SummaryDetails } from '../shared'
 
 export function BuyNow() {
   const { mounted } = useMounted(4)
@@ -15,7 +15,7 @@ export function BuyNow() {
   return (
     <Card>
       <Card.Body>
-        <OrderSummary />
+        <SummaryDetails />
         <Button as={Link} href='/checkout/address' size='sm' wide>
           Comprar ahora
         </Button>
