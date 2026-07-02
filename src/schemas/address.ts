@@ -10,7 +10,7 @@ export const AddressDTO = z.object({
   phone: notEmpty,
   city: notEmpty,
   countryId: notEmpty,
-  remember: z.boolean(),
+  remember: z.boolean().optional(),
 })
 
 export type AddressDTO = z.infer<typeof AddressDTO>
