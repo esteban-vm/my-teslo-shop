@@ -131,6 +131,13 @@ export const getOrderById = authClient
           },
         },
       },
+      omit: {
+        id: true,
+        userId: true,
+        createdAt: true,
+        updatedAt: true,
+        paidAt: true,
+      },
     })
 
     if (!order) {
