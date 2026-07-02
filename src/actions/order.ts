@@ -71,11 +71,11 @@ export const placeOrder = authClient
       const { id } = await tx.order.create({
         data: {
           userId,
+          tax,
           total,
           subtotal,
-          tax,
           totalItems,
-          orderItems: {
+          items: {
             createMany: {
               data: items.map((i) => {
                 return {
@@ -110,7 +110,7 @@ export const getOrderById = authClient
       },
       include: {
         shippingAddress: true,
-        orderItems: {
+        items: {
           select: {
             price: true,
             quantity: true,
