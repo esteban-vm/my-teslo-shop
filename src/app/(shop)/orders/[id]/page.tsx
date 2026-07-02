@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import type { CartProduct } from '@/types'
+import { Banknote, BanknoteX } from 'lucide-react'
 import { notFound } from 'next/navigation'
-import { Card, Divider } from 'rsc-daisyui'
+import { Alert, Card, Divider } from 'rsc-daisyui'
 import { getOrderById } from '@/actions/order'
 import { OrderList } from '@/components/orders'
 import { PageTitle } from '@/components/pages'
@@ -17,7 +18,7 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
   const { data: order } = await getOrderById({ id })
   if (!order) notFound()
 
-  const { items, shippingAddress: savedAddress, ...savedSummary } = order
+  const { items, isPaid, shippingAddress: savedAddress, ...savedSummary } = order
 
   const products: CartProduct[] = items.map(({ product, ...rest }) => {
     return {
@@ -42,6 +43,10 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
               {savedAddress && <AddressDetails savedAddress={savedAddress} />}
               <Divider />
               <SummaryDetails savedSummary={savedSummary} />
+              <Alert className='gap-2 rounded-lg py-2 font-semibold' color={isPaid ? 'success' : 'error'}>
+                {isPaid ? <Banknote /> : <BanknoteX />}
+                <span>{isPaid ? 'Pagada' : 'No pagada'}</span>
+              </Alert>
             </Card.Body>
           </Card>
         </div>
