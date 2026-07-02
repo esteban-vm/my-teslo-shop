@@ -4,10 +4,10 @@ import { ItemImage } from '@/components/shared'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function CheckoutItem({ product }: { product: CartProduct }) {
-  const { title, image, price, size, quantity } = product
+  const { id, title, image, price, size, quantity } = product
 
   return (
-    <List.Row className='product-item'>
+    <List.Row className='product-item' id={id}>
       <ItemImage image={image} title={title} />
       <List.ColGrow>
         <p className='font-semibold'>
