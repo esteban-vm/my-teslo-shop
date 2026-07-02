@@ -7,7 +7,7 @@ import { useShoppingCart } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function CartItem({ product }: { product: CartProduct }) {
-  const { title, image, price, size, slug, quantity } = product
+  const { id, title, image, price, size, quantity, slug } = product
 
   const updateQuantity = useShoppingCart((s) => s.updateQuantity)
   const removeFromCart = useShoppingCart((s) => s.removeFromCart)
@@ -19,7 +19,7 @@ export function CartItem({ product }: { product: CartProduct }) {
   }
 
   return (
-    <List.Row className='product-item'>
+    <List.Row className='product-item' id={id}>
       <ItemImage image={image} title={title} />
       <List.ColGrow>
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
