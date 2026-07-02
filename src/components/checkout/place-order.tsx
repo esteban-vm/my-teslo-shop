@@ -58,11 +58,11 @@ export function PlaceOrder() {
 
   return (
     <Card>
-      <Card.Body className='px-4 pt-2 pb-3'>
+      <Card.Body>
         <ShippingAddress />
-        <Divider className='my-0' />
+        <Divider />
         <OrderSummary />
-        <Button className='mx-auto' disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
+        <Button disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
           Colocar orden
         </Button>
       </Card.Body>

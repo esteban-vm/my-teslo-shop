@@ -14,9 +14,9 @@ export function BuyNow() {
 
   return (
     <Card>
-      <Card.Body className='px-4 pt-2 pb-3'>
+      <Card.Body>
         <OrderSummary />
-        <Button as={Link} className='mx-auto' href='/checkout/address' size='sm' wide>
+        <Button as={Link} href='/checkout/address' size='sm' wide>
           Comprar ahora
         </Button>
       </Card.Body>

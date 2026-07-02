@@ -87,6 +87,18 @@ form {
 
   .card {
     @apply not-lg:max-w-md shadow-md;
+
+    .card-body {
+      @apply px-4 pt-2 pb-3;
+    }
+
+    .divider {
+      @apply my-0;
+    }
+
+    .btn {
+      @apply mx-auto;
+    }
   }
 }
 
