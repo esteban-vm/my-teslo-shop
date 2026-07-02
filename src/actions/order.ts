@@ -146,3 +146,31 @@ export const getOrderById = authClient
 
     return order
   })
+
+export const getOrders = authClient.action(async ({ ctx }) => {
+  const orders = await prisma.order.findMany({
+    where: {
+      userId: ctx.user.id,
+    },
+    include: {
+      shippingAddress: {
+        select: {
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
+    omit: {
+      userId: true,
+      total: true,
+      subtotal: true,
+      tax: true,
+      totalItems: true,
+      createdAt: true,
+      updatedAt: true,
+      paidAt: true,
+    },
+  })
+
+  return orders
+})
