@@ -1,6 +1,12 @@
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 import tw from 'tailwind-styled-components'
+import { auth } from '@/auth'
 
-export default function AuthLayout({ children }: LayoutProps<'/auth'>) {
+export default async function AuthLayout({ children }: LayoutProps<'/auth'>) {
+  const session = await auth.api.getSession({ headers: await headers() })
+  if (session?.user) redirect('/')
+
   return <PageContainer>{children}</PageContainer>
 }
 
