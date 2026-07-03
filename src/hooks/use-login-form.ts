@@ -28,7 +28,6 @@ export function useLoginForm() {
       },
       onError(args) {
         const { serverError } = args.error
-
         if (serverError) {
           setIsServerError(true)
           Toasts.error(serverError)
