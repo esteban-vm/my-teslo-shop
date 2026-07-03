@@ -1,14 +1,23 @@
 'use client'
 
 import { LogOutIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Menu } from 'rsc-daisyui'
-import { logout } from '@/actions/auth'
+import { authClient } from '@/auth-client'
 import { closeSidebar } from '@/lib/ui'
 
 export function LogoutButton() {
+  const router = useRouter()
+
   const onLogout = () => {
-    closeSidebar()
-    logout()
+    authClient.signOut({
+      fetchOptions: {
+        onSuccess() {
+          closeSidebar()
+          router.push('/')
+        },
+      },
+    })
   }
 
   return (
