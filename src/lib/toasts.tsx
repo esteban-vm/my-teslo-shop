@@ -19,7 +19,7 @@ function handleExecute(message: string) {
 function handleSuccess(message: string) {
   toast.update(toastId, {
     type: 'success',
-    autoClose: 4000,
+    autoClose: 4_000,
     isLoading: false,
     render: <p className='line-clamp-2'>{message}</p>,
   })
@@ -28,9 +28,9 @@ function handleSuccess(message: string) {
 function handleError(message: string) {
   toast.update(toastId, {
     type: 'error',
+    autoClose: 10_000,
     isLoading: false,
-    closeButton: true,
-    autoClose: false,
+    pauseOnHover: true,
     render: <p className='line-clamp-2'>{message}</p>,
   })
 }
