@@ -157,7 +157,7 @@ model ShippingAddress {
   @@map("shipping_addresses")
 }
 
-// AUTH
+// BETTER AUTH
 model User {
   id            String          @id @default(uuid())
   name          String
@@ -178,7 +178,7 @@ model User {
 
 model Session {
   id        String   @id
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   token     String   @unique
   expiresAt DateTime @db.Timestamptz(3)
@@ -192,7 +192,7 @@ model Session {
 
 model Account {
   id                    String    @id
-  user                  User      @relation(fields: [userId], references: [id])
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                String
   accountId             String
   providerId            String
