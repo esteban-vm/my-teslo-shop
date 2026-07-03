@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Banknote, BanknoteX } from 'lucide-react'
 import NextLink from 'next/link'
 import { Link, Table } from 'rsc-daisyui'
-import { getOrders } from '@/actions/order'
+import { getMyOrders } from '@/actions/order'
 import { PageTitle } from '@/components/pages'
 import { cn } from '@/lib/ui'
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default async function OrdersPage() {
-  const { data: orders = [] } = await getOrders()
+  const { data: orders = [] } = await getMyOrders()
 
   return (
     <>
@@ -29,9 +29,7 @@ export default async function OrdersPage() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => {
-              const { id, isPaid, shippingAddress } = order
-
+            {orders.map(({ id, isPaid, shippingAddress }) => {
               return (
                 <tr className='text-nowrap hover:bg-base-300' key={id}>
                   <td className='font-semibold'>{id}</td>
