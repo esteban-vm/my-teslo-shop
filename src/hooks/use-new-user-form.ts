@@ -30,7 +30,6 @@ export function useNewUserForm() {
       },
       onError(args) {
         const { serverError } = args.error
-
         if (serverError) {
           setIsServerError(true)
           Toasts.error(serverError)

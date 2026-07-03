@@ -33,10 +33,7 @@ export function PlaceOrder() {
     },
     onError(args) {
       const { serverError } = args.error
-
-      if (serverError) {
-        Toasts.error(serverError)
-      }
+      if (serverError) Toasts.error(serverError)
     },
   })
 
