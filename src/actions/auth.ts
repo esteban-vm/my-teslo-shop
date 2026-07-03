@@ -1,32 +1,28 @@
 'use server'
 
-import type { Route } from 'next'
 import { hash } from 'bcryptjs'
-import { signIn, signOut } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { actionClient } from '@/lib/safe-action'
 import { Login, UserDTO } from '@/schemas/auth'
 
-const homePage: Route = '/'
-
 export const loginWithGitHub = actionClient.action(async () => {
-  await signIn('github', { redirectTo: homePage })
+  console.log('login with GitHub')
 })
 
 export const loginWithGoogle = actionClient.action(async () => {
-  await signIn('google', { redirectTo: homePage })
+  console.log('login with Google')
 })
 
 export const loginWithCredentials = actionClient.inputSchema(Login).action(async ({ parsedInput }) => {
   await sleepExecution(5)
   const { email, password } = parsedInput
-  await signIn('credentials', { email, password, redirectTo: homePage })
+  console.log({ email, password })
 })
 
 export const logout = actionClient.action(async () => {
   await sleepExecution(1)
-  await signOut({ redirectTo: homePage })
+  console.log('logging out')
 })
 
 export const createUser = actionClient.inputSchema(UserDTO).action(async ({ parsedInput }) => {
@@ -43,5 +39,5 @@ export const createUser = actionClient.inputSchema(UserDTO).action(async ({ pars
     select: { email: true },
   })
 
-  await signIn('credentials', { email: createdUser.email, password, redirectTo: homePage })
+  console.log({ createdUser })
 })
