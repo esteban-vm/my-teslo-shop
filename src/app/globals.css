@@ -160,7 +160,7 @@ form {
 }
 
 .Toastify__toast-container {
-  @apply font-geist text-sm font-semibold w-full max-w-xs;
+  @apply font-geist text-xs font-semibold w-full max-w-xs;
 }
 
 .list-row.product-item {
