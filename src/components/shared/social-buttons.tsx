@@ -1,7 +1,8 @@
 'use client'
 
+import type { Route } from 'next'
 import { Button } from 'rsc-daisyui'
-import { loginWithGitHub, loginWithGoogle } from '@/actions/auth'
+import { authClient } from '@/auth-client'
 
 export function SocialButtons() {}
 
@@ -9,10 +10,17 @@ SocialButtons.Github = GithubButton
 SocialButtons.Google = GoogleButton
 
 function GithubButton() {
+  const handleLoginWithGitHub = () => {
+    authClient.signIn.social({
+      provider: 'github',
+      callbackURL: '/' satisfies Route,
+    })
+  }
+
   return (
     <Button
       className='border-black bg-black text-white disabled:opacity-50'
-      onClick={() => loginWithGitHub()}
+      onClick={handleLoginWithGitHub}
       type='button'
     >
       <GithubIcon />
@@ -22,10 +30,17 @@ function GithubButton() {
 }
 
 function GoogleButton() {
+  const handleLoginWithGoogle = () => {
+    authClient.signIn.social({
+      provider: 'google',
+      callbackURL: '/' satisfies Route,
+    })
+  }
+
   return (
     <Button
       className='border-base-300 bg-white text-black disabled:opacity-50'
-      onClick={() => loginWithGoogle()}
+      onClick={handleLoginWithGoogle}
       type='button'
     >
       <GoogleIcon />
