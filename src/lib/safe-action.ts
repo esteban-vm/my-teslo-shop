@@ -1,14 +1,8 @@
-import { CredentialsSignin } from 'next-auth'
 import { createSafeActionClient } from 'next-safe-action'
 import { Prisma } from '@/prisma/generated/client'
 
-export const actionClient = createSafeActionClient({
+export const safeClient = createSafeActionClient({
   handleServerError(error) {
-    if (error instanceof CredentialsSignin) {
-      const { message } = error
-      return message.substring(0, message.indexOf('. Read more'))
-    }
-
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       const { code, meta } = error
 
@@ -21,6 +15,6 @@ export const actionClient = createSafeActionClient({
   },
 })
 
-export const authClient = actionClient.use(({ next }) => {
+export const safeAuthClient = safeClient.use(({ next }) => {
   return next({ ctx: { user: { id: '' } } })
 })
