@@ -10,6 +10,14 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
   },
+  emailVerification: {
+    sendOnSignIn: true,
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    async sendVerificationEmail({ user, url, token }) {
+      console.log('Verification email:', { user, url, token })
+    },
+  },
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID!,
@@ -22,6 +30,14 @@ export const auth = betterAuth({
   },
   user: {
     modelName: 'users',
+    additionalFields: {
+      role: {
+        type: ['client', 'admin'],
+        required: false,
+        defaultValue: 'client',
+        input: false,
+      },
+    },
   },
   session: {
     modelName: 'sessions',
