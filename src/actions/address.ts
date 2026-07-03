@@ -3,10 +3,10 @@
 import { redirect } from 'next/navigation'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
-import { authClient } from '@/lib/safe-action'
+import { safeAuthClient } from '@/lib/safe-action'
 import { AddressDTO } from '@/schemas/address'
 
-export const manageAddress = authClient.inputSchema(AddressDTO).action(async ({ ctx, parsedInput }) => {
+export const manageAddress = safeAuthClient.inputSchema(AddressDTO).action(async ({ ctx, parsedInput }) => {
   await sleepExecution(3)
 
   const userId = ctx.user.id
@@ -26,7 +26,7 @@ export const manageAddress = authClient.inputSchema(AddressDTO).action(async ({ 
   redirect('/checkout')
 })
 
-export const getBillingAddress = authClient.action(async ({ ctx }) => {
+export const getBillingAddress = safeAuthClient.action(async ({ ctx }) => {
   const address = await prisma.billingAddress.findUnique({ where: { userId: ctx.user.id } })
   if (!address) return
   return address

@@ -3,11 +3,11 @@
 import z from 'zod'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
-import { authClient } from '@/lib/safe-action'
+import { safeAuthClient } from '@/lib/safe-action'
 import { AddressDTO } from '@/schemas/address'
 import { OrderItemDTO } from '@/schemas/order'
 
-export const placeOrder = authClient
+export const placeOrder = safeAuthClient
   .inputSchema(z.object({ items: z.array(OrderItemDTO), address: AddressDTO }))
   .action(async ({ ctx, parsedInput }) => {
     await sleepExecution(3)
@@ -97,7 +97,7 @@ export const placeOrder = authClient
     return { orderId }
   })
 
-export const getOrderById = authClient
+export const getOrderById = safeAuthClient
   .inputSchema(z.object({ id: z.string() }))
   .action(async ({ ctx, parsedInput }) => {
     const order = await prisma.order.findUnique({
@@ -144,7 +144,7 @@ export const getOrderById = authClient
     return order
   })
 
-export const getMyOrders = authClient.action(async ({ ctx }) => {
+export const getMyOrders = safeAuthClient.action(async ({ ctx }) => {
   const orders = await prisma.order.findMany({
     where: {
       userId: ctx.user.id,
