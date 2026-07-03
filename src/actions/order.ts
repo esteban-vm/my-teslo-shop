@@ -100,13 +100,10 @@ export const placeOrder = authClient
 export const getOrderById = authClient
   .inputSchema(z.object({ id: z.string() }))
   .action(async ({ ctx, parsedInput }) => {
-    const userId = ctx.user.id
-    const isAdmin = ctx.user.role === 'admin'
-
     const order = await prisma.order.findUnique({
       where: {
         id: parsedInput.id,
-        userId: isAdmin ? undefined : userId,
+        userId: ctx.user.id,
       },
       include: {
         shippingAddress: true,
@@ -147,7 +144,7 @@ export const getOrderById = authClient
     return order
   })
 
-export const getOrders = authClient.action(async ({ ctx }) => {
+export const getMyOrders = authClient.action(async ({ ctx }) => {
   const orders = await prisma.order.findMany({
     where: {
       userId: ctx.user.id,
