@@ -14,7 +14,7 @@ export function LogoutButton() {
       fetchOptions: {
         onSuccess() {
           closeSidebar()
-          router.push('/')
+          router.replace('/')
         },
       },
     })
