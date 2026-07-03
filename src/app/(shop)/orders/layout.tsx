@@ -1,9 +1,3 @@
-import { redirect } from 'next/navigation'
-import { auth } from '@/auth'
-
-export default async function OrdersLayout({ children }: LayoutProps<'/orders'>) {
-  const session = await auth()
-  if (!session?.user) redirect('/auth/login')
-
+export default function OrdersLayout({ children }: LayoutProps<'/orders'>) {
   return <>{children}</>
 }
