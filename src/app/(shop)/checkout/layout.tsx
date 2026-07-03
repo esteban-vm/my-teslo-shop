@@ -1,9 +1,3 @@
-import { redirect } from 'next/navigation'
-import { auth } from '@/auth'
-
-export default async function CheckoutLayout({ children }: LayoutProps<'/checkout'>) {
-  const session = await auth()
-  if (!session?.user) redirect('/auth/login')
-
+export default function CheckoutLayout({ children }: LayoutProps<'/checkout'>) {
   return <>{children}</>
 }
