@@ -1,7 +1,7 @@
 import type { Route } from 'next'
 import type { ReactNode } from 'react'
-import Link from 'next/link'
-import { Button, List } from 'rsc-daisyui'
+import NextLink from 'next/link'
+import { Link, List } from 'rsc-daisyui'
 
 export interface ProductListProps {
   title?: string
@@ -22,9 +22,11 @@ export function ProductList({ title, link, linkTitle, children }: ProductListPro
       )}
       {link && linkTitle && (
         <li className='px-4'>
-          <Button as={Link} className='p-0 hover:opacity-75' color='info' href={link} link size='sm'>
-            {linkTitle}
-          </Button>
+          <NextLink href={link} passHref>
+            <Link as='span' color='info' hover>
+              {linkTitle}
+            </Link>
+          </NextLink>
         </li>
       )}
       {children}
