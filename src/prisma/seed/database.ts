@@ -1,6 +1,6 @@
 import type { CategoryName, Prisma } from '../generated/client'
 import { prisma } from '@/lib/prisma'
-import { countries, products, users } from '../data'
+import { countries, products } from '../data'
 
 async function main() {
   await prisma.user.deleteMany()
@@ -9,7 +9,7 @@ async function main() {
   await prisma.product.deleteMany()
   await prisma.category.deleteMany()
 
-  await prisma.user.createMany({ data: users })
+  // await prisma.user.createMany({ data: users })
   await prisma.country.createMany({ data: countries })
 
   const categories = await prisma.category.createManyAndReturn({
