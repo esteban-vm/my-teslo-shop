@@ -6,7 +6,6 @@ const isNotProduction = process.env.NODE_ENV !== 'production'
 
 const omitConfig = {
   user: {
-    active: true,
     password: true,
     createdAt: true,
     updatedAt: true,
