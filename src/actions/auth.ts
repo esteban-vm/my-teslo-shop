@@ -1,22 +1,28 @@
 'use server'
 
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { auth } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { safeClient } from '@/lib/safe-action'
 import { Login, UserDTO } from '@/schemas/auth'
 
-export const loginWithCredentials = safeClient.inputSchema(Login).action(async ({ parsedInput }) => {
+export const login = safeClient.inputSchema(Login).action(async ({ parsedInput }) => {
   await sleepExecution(5)
   const { email, password } = parsedInput
-  console.log({ email, password })
+  await auth.api.signInEmail({ body: { email, password } })
+  redirect('/')
 })
 
 export const logout = safeClient.action(async () => {
-  await sleepExecution(1)
-  console.log('logging out')
+  await sleepExecution(2)
+  await auth.api.signOut({ headers: await headers() })
+  redirect('/')
 })
 
 export const createUser = safeClient.inputSchema(UserDTO).action(async ({ parsedInput }) => {
   await sleepExecution(3)
   const { email, name, password } = parsedInput
-  console.log({ email, name, password })
+  await auth.api.signUpEmail({ body: { email, name, password } })
+  redirect('/')
 })
