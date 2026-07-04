@@ -12,9 +12,12 @@ export function LogoutButton() {
   const onLogout = () => {
     authClient.signOut({
       fetchOptions: {
-        onSuccess() {
+        onRequest() {
           closeSidebar()
+        },
+        onSuccess() {
           router.replace('/')
+          router.refresh()
         },
       },
     })
