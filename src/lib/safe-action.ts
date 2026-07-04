@@ -1,3 +1,4 @@
+import { APIError } from 'better-auth'
 import { headers } from 'next/headers'
 import { createSafeActionClient } from 'next-safe-action'
 import { auth } from '@/auth'
@@ -5,6 +6,18 @@ import { Prisma } from '@/prisma/generated/client'
 
 export const safeClient = createSafeActionClient({
   handleServerError(error) {
+    if (error instanceof APIError) {
+      const { status, statusCode } = error
+
+      if (status === 'UNAUTHORIZED' && statusCode === 401) {
+        return 'Correo electrónico y/o contraseña inválido(s)'
+      }
+
+      if (status === 'UNPROCESSABLE_ENTITY' && statusCode === 422) {
+        return 'El correo electrónico ya está en uso'
+      }
+    }
+
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       const { code, meta } = error
 
