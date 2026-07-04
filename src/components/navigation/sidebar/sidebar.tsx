@@ -1,12 +1,18 @@
 import { Baby, LogIn, Mars, Shirt, Ticket, User, Users, Venus } from 'lucide-react'
+import { headers } from 'next/headers'
 import { Divider, Menu } from 'rsc-daisyui'
+import { auth } from '@/auth'
 import { NavLink } from '@/components/shared'
 import { CloseButton } from './close-button'
 import { LogoutButton } from './logout-button'
 import { SearchInput } from './search-input'
 import { ThemeSwitch } from './theme-switch'
 
-export function Sidebar() {
+export async function Sidebar() {
+  const session = await auth.api.getSession({ headers: await headers() })
+  const isLoggedIn = !!session?.user
+  const isAdmin = session?.user.role === 'admin'
+
   return (
     <Menu as='menu' className='min-h-full w-fit bg-base-200 p-4' id='app_sidebar' vanilla>
       <Menu.Title className='items-end'>
@@ -20,25 +26,24 @@ export function Sidebar() {
       <NavLink icon={<Baby />} text='Niños' to='/gender/kids' />
       <Divider />
 
-      {/* {isLoggedIn ? ( */}
-      {/* <> */}
-      <NavLink icon={<User />} text='Perfil' to='/profile' />
-      <NavLink icon={<Ticket />} text='Órdenes' to='/orders' />
-      <Divider />
-      {/* </> */}
-      {/* ) : ( */}
-      <NavLink icon={<LogIn />} text='Ingresar' to='/auth/login' />
-      {/* )} */}
+      {isLoggedIn ? (
+        <>
+          <NavLink icon={<User />} text='Perfil' to='/profile' />
+          <NavLink icon={<Ticket />} text='Órdenes' to='/orders' />
+          <Divider />
+        </>
+      ) : (
+        <NavLink icon={<LogIn />} text='Ingresar' to='/auth/login' />
+      )}
 
-      {/* {isAdmin && ( */}
-      {/* <> */}
-      <NavLink icon={<Shirt />} text='Productos' to='/' />
-      <NavLink icon={<Users />} text='Usuarios' to='/' />
-      {/* </> */}
-      {/* )} */}
+      {isAdmin && (
+        <>
+          <NavLink icon={<Shirt />} text='Productos' to='/' />
+          <NavLink icon={<Users />} text='Usuarios' to='/' />
+        </>
+      )}
 
-      {/* {isLoggedIn && <LogoutButton />} */}
-      <LogoutButton />
+      {isLoggedIn && <LogoutButton />}
       <Divider />
       <ThemeSwitch />
     </Menu>
