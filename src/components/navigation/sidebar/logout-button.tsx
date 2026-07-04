@@ -1,30 +1,20 @@
 'use client'
 
 import { LogOutIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useAction } from 'next-safe-action/hooks'
 import { Menu } from 'rsc-daisyui'
-import { authClient } from '@/auth-client'
+import { logout } from '@/actions/auth'
 import { closeSidebar } from '@/lib/ui'
 
 export function LogoutButton() {
-  const router = useRouter()
-
-  const onLogout = () => {
-    authClient.signOut({
-      fetchOptions: {
-        onRequest() {
-          closeSidebar()
-        },
-        onSuccess() {
-          router.replace('/')
-          router.refresh()
-        },
-      },
-    })
-  }
+  const { execute, isExecuting } = useAction(logout, {
+    onNavigation() {
+      closeSidebar()
+    },
+  })
 
   return (
-    <Menu.Item as='button' onClick={onLogout} type='button'>
+    <Menu.Item as='button' disabled={isExecuting} onClick={() => execute()} type='button'>
       <LogOutIcon />
       Salir
     </Menu.Item>
