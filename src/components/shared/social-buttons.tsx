@@ -10,7 +10,7 @@ SocialButtons.Github = GithubButton
 SocialButtons.Google = GoogleButton
 
 function GithubButton() {
-  const handleLoginWithGitHub = () => {
+  const onLoginWithGitHub = () => {
     authClient.signIn.social({
       provider: 'github',
       callbackURL: '/' satisfies Route,
@@ -18,11 +18,7 @@ function GithubButton() {
   }
 
   return (
-    <Button
-      className='border-black bg-black text-white disabled:opacity-50'
-      onClick={handleLoginWithGitHub}
-      type='button'
-    >
+    <Button className='border-black bg-black text-white disabled:opacity-50' onClick={onLoginWithGitHub} type='button'>
       <GithubIcon />
       Continuar con GitHub
     </Button>
@@ -30,7 +26,7 @@ function GithubButton() {
 }
 
 function GoogleButton() {
-  const handleLoginWithGoogle = () => {
+  const onLoginWithGoogle = () => {
     authClient.signIn.social({
       provider: 'google',
       callbackURL: '/' satisfies Route,
@@ -40,7 +36,7 @@ function GoogleButton() {
   return (
     <Button
       className='border-base-300 bg-white text-black disabled:opacity-50'
-      onClick={handleLoginWithGoogle}
+      onClick={onLoginWithGoogle}
       type='button'
     >
       <GoogleIcon />
