@@ -24,7 +24,7 @@ function GithubButton() {
       type='button'
     >
       <GithubIcon />
-      Ingresar con GitHub
+      Continuar con GitHub
     </Button>
   )
 }
@@ -44,7 +44,7 @@ function GoogleButton() {
       type='button'
     >
       <GoogleIcon />
-      Ingresar con Google
+      Continuar con Google
     </Button>
   )
 }
