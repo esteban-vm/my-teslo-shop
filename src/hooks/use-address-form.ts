@@ -37,10 +37,9 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
       },
       onError(args) {
         const { serverError } = args.error
-        if (serverError) {
-          setIsServerError(true)
-          Toasts.error(serverError)
-        }
+        if (!serverError) return
+        setIsServerError(true)
+        Toasts.error(serverError)
       },
       onNavigation() {
         Toasts.close()
