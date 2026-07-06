@@ -2,6 +2,7 @@ import { APIError } from 'better-auth'
 import { headers } from 'next/headers'
 import { createSafeActionClient } from 'next-safe-action'
 import { auth } from '@/auth'
+import { ServerErrorMap } from './constants'
 
 export const safeClient = createSafeActionClient({
   handleServerError(error) {
@@ -13,19 +14,19 @@ export const safeClient = createSafeActionClient({
       const { status, statusCode } = error
 
       if (status === 'UNAUTHORIZED' && statusCode === 401) {
-        return 'Correo electrónico y/o contraseña inválido(s)'
+        return ServerErrorMap.invalidEmailOrPassword
       }
 
       if (status === 'FORBIDDEN' && statusCode === 403) {
-        return 'Correo electrónico no verificado'
+        return ServerErrorMap.unverifiedEmail
       }
 
       if (status === 'UNPROCESSABLE_ENTITY' && statusCode === 422) {
-        return 'El correo electrónico ya está en uso'
+        return ServerErrorMap.emailAlreadyInUse
       }
     }
 
-    return 'Ha ocurrido un error'
+    return ServerErrorMap.default
   },
 })
 

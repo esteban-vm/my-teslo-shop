@@ -40,3 +40,11 @@ export const ValidationErrorMap = {
     message: `La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo`,
   },
 } as const
+
+// Server errors
+export const ServerErrorMap = {
+  invalidEmailOrPassword: 'Correo electrónico y/o contraseña inválido(s)',
+  unverifiedEmail: 'Correo electrónico no verificado',
+  emailAlreadyInUse: 'El correo electrónico ya está en uso',
+  default: 'Ha ocurrido un error',
+} as const
