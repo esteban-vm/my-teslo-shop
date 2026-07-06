@@ -1,12 +1,12 @@
 import { z } from 'zod'
-import { ErrorMap } from '@/lib/constants'
+import { ValidationErrorMap } from '@/lib/constants'
 import { Validations } from '@/lib/validations'
 import { notEmpty } from './shared'
 
 export const Login = z.object({
   email: notEmpty.superRefine((value, ctx) => {
     if (Validations.notEmail(value)) {
-      ctx.addIssue(ErrorMap.notEmail)
+      ctx.addIssue(ValidationErrorMap.notEmail)
     }
   }),
 
@@ -18,7 +18,7 @@ export const UserDTO = Login.extend({
 
   password: notEmpty.superRefine((value, ctx) => {
     if (Validations.notPassword(value)) {
-      ctx.addIssue(ErrorMap.notPassword)
+      ctx.addIssue(ValidationErrorMap.notPassword)
     }
   }),
 

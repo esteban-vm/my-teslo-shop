@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react'
 import { ThemeProvider } from 'next-themes'
 import { ToastContainer } from 'react-toastify'
-import { themeMap, themes } from '@/lib/constants'
+import { ThemeMap, themes } from '@/lib/constants'
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
@@ -12,7 +12,7 @@ export function Providers({ children }: { children: ReactNode }) {
       enableSystem
       storageKey='teslo-shop/current-theme'
       themes={themes}
-      value={themeMap}
+      value={ThemeMap}
     >
       {children}
       <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />

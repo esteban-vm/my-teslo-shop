@@ -19,13 +19,13 @@ export const genderMap: Record<Gender, string> = {
 export const themes = ['wireframe', 'night'] as const satisfies [Theme, Theme]
 
 // Theme values
-export const themeMap = {
+export const ThemeMap = {
   light: 'wireframe',
   dark: 'night',
 } as const satisfies Record<'light' | 'dark', (typeof themes)[number]>
 
-// Schema errors
-export const ErrorMap = {
+// Validation errors
+export const ValidationErrorMap = {
   notEmpty: {
     error: 'Este campo no puede quedar vacío',
   },
