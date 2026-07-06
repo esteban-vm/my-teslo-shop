@@ -29,15 +29,13 @@ export function useNewUserForm() {
       },
       onSuccess(args) {
         setIsServerError(false)
-        const message = `Hemos enviado un correo de verificación a ${args.data.email}. Por favor, revíselo.`
-        Toasts.success(message, () => router.push('/'))
+        Toasts.success(args.data.message, () => router.push('/'))
       },
       onError(args) {
         const { serverError } = args.error
-        if (serverError) {
-          setIsServerError(true)
-          Toasts.error(serverError)
-        }
+        if (!serverError) return
+        setIsServerError(true)
+        Toasts.error(serverError)
       },
       onNavigation() {
         Toasts.close()
