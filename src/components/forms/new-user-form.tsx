@@ -1,10 +1,9 @@
 'use client'
 
 import { AtSign, LockKeyhole, Pencil } from 'lucide-react'
-import Link from 'next/link'
-import { Button, Divider, Fieldset } from 'rsc-daisyui'
+import { Divider, Fieldset } from 'rsc-daisyui'
 import { useNewUserForm } from '@/hooks'
-import { FormField, SocialButtons, SubmitButton } from '../shared'
+import { FormButton, FormField } from '../shared'
 
 export function NewUserForm() {
   const {
@@ -17,8 +16,7 @@ export function NewUserForm() {
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Registrarse</Fieldset.Legend>
-        <SocialButtons.Github />
-        <SocialButtons.Google />
+        <FormButton.Socials />
         <Divider>O</Divider>
         <FormField autoComplete='name' control={control} icon={<Pencil />} label='Nombre completo' name='name' />
         <FormField
@@ -37,11 +35,11 @@ export function NewUserForm() {
           name='repeatPassword'
           type='password'
         />
-        <SubmitButton control={control}>Registrarse</SubmitButton>
+        <FormButton.Submit control={control}>Registrarse</FormButton.Submit>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' disabled={isDisabled} href='/auth/login'>
+        <FormButton.Link disabled={isDisabled} to='/auth/login'>
           Iniciar sesión
-        </Button>
+        </FormButton.Link>
       </Fieldset>
     </form>
   )
