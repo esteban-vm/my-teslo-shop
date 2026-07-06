@@ -165,7 +165,6 @@ model User {
   emailVerified Boolean         @map("email_verified")
   image         String?
   role          Role?           @default(client)
-  password      String?
   address       BillingAddress?
   orders        Order[]
   accounts      Account[]
