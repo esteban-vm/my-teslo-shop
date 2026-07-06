@@ -8,7 +8,7 @@ export const DRAWER_ID = 'app_drawer'
 export const ELLIPSIS_CHAR = '…'
 
 // Genders
-export const genderMap: Record<Gender, string> = {
+export const GenderMap: Record<Gender, string> = {
   men: 'hombres',
   women: 'mujeres',
   kids: 'niños',

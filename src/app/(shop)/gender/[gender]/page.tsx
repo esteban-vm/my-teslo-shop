@@ -6,14 +6,14 @@ import { notFound, redirect } from 'next/navigation'
 import { getProducts } from '@/actions/product'
 import { PagePagination, PageTitle } from '@/components/pages'
 import { ProductGrid } from '@/components/shop'
-import { genderMap } from '@/lib/constants'
+import { GenderMap } from '@/lib/constants'
 
 type GenderPageProps = PageProps<'/gender/[gender]'>
 
 export async function generateMetadata({ params }: GenderPageProps): Promise<Metadata> {
   const { gender } = await params
   const genderDB = gender as Gender
-  const currentGender = genderMap[genderDB]
+  const currentGender = GenderMap[genderDB]
 
   if (!currentGender) {
     return {
@@ -30,7 +30,7 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
   const { gender } = await params
   const genderDB = gender as Gender
 
-  const currentGender = genderMap[genderDB]
+  const currentGender = GenderMap[genderDB]
   if (!currentGender) notFound()
 
   let { page = '1' } = await searchParams
