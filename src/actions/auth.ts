@@ -24,5 +24,5 @@ export const createUser = safeClient.inputSchema(UserDTO).action(async ({ parsed
   await sleepExecution(3)
   const { email, name, password } = parsedInput
   const { user } = await auth.api.signUpEmail({ body: { email, name, password } })
-  return { email: user.email }
+  return { message: `Correo de verificación enviado a ${user.email}. Por favor, revíselo.` }
 })
