@@ -15,7 +15,7 @@ export function Providers({ children }: { children: ReactNode }) {
       value={themeMap}
     >
       {children}
-      <ToastContainer pauseOnHover={false} position='bottom-center' theme='colored' />
+      <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />
     </ThemeProvider>
   )
 }
