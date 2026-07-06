@@ -1,10 +1,9 @@
 'use client'
 
 import { AtSign, LockKeyhole } from 'lucide-react'
-import Link from 'next/link'
-import { Button, Divider, Fieldset } from 'rsc-daisyui'
+import { Divider, Fieldset } from 'rsc-daisyui'
 import { useLoginForm } from '@/hooks'
-import { FormField, SocialButtons, SubmitButton } from '../shared'
+import { FormButton, FormField } from '../shared'
 
 export function LoginForm() {
   const {
@@ -17,8 +16,7 @@ export function LoginForm() {
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Iniciar sesión</Fieldset.Legend>
-        <SocialButtons.Github />
-        <SocialButtons.Google />
+        <FormButton.Socials />
         <Divider>O</Divider>
         <FormField
           autoComplete='home email'
@@ -29,11 +27,15 @@ export function LoginForm() {
           type='email'
         />
         <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
-        <SubmitButton control={control}>Iniciar sesión</SubmitButton>
+        <FormButton.Submit control={control}>Iniciar sesión</FormButton.Submit>
         <Divider>O</Divider>
-        <Button as={Link} color='secondary' disabled={isDisabled} href='/auth/new-user'>
+        <FormButton.Link disabled={isDisabled} to='/auth/new-user'>
           Registrarse
-        </Button>
+        </FormButton.Link>
+        <Divider>O</Divider>
+        <FormButton.Link disabled={isDisabled} to='/auth/new-user'>
+          Recuperar contraseña
+        </FormButton.Link>
       </Fieldset>
     </form>
   )
