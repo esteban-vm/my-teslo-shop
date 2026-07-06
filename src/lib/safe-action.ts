@@ -2,10 +2,13 @@ import { APIError } from 'better-auth'
 import { headers } from 'next/headers'
 import { createSafeActionClient } from 'next-safe-action'
 import { auth } from '@/auth'
-import { Prisma } from '@/prisma/generated/client'
 
 export const safeClient = createSafeActionClient({
   handleServerError(error) {
+    if (process.env.NODE_ENV === 'development') {
+      console.log({ error: error.message })
+    }
+
     if (error instanceof APIError) {
       const { status, statusCode } = error
 
@@ -22,15 +25,7 @@ export const safeClient = createSafeActionClient({
       }
     }
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      const { code, meta } = error
-
-      if (code === 'P2002' && meta?.modelName === 'User') {
-        return 'Correo electrónico en uso'
-      }
-    }
-
-    return error.message
+    return 'Ha ocurrido un error'
   },
 })
 
