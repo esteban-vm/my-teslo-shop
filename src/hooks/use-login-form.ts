@@ -2,6 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
 import { login } from '@/actions/auth'
+import { authClient } from '@/auth-client'
+import { ServerErrorMap } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
 import { Login } from '@/schemas/auth'
 
@@ -28,9 +30,13 @@ export function useLoginForm() {
       },
       onError(args) {
         const { serverError } = args.error
-        if (serverError) {
-          setIsServerError(true)
-          Toasts.error(serverError)
+        if (!serverError) return
+
+        setIsServerError(true)
+        Toasts.error(serverError)
+
+        if (serverError === ServerErrorMap.unverifiedEmail) {
+          authClient.sendVerificationEmail({ email: args.input.email })
         }
       },
       onNavigation() {
