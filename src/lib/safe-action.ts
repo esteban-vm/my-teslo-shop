@@ -13,6 +13,10 @@ export const safeClient = createSafeActionClient({
         return 'Correo electrónico y/o contraseña inválido(s)'
       }
 
+      if (status === 'FORBIDDEN' && statusCode === 403) {
+        return 'Correo electrónico no verificado'
+      }
+
       if (status === 'UNPROCESSABLE_ENTITY' && statusCode === 422) {
         return 'El correo electrónico ya está en uso'
       }
