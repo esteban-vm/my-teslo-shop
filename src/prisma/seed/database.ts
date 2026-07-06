@@ -4,12 +4,12 @@ import { countries, products } from '../data'
 
 async function main() {
   await prisma.user.deleteMany()
+  await prisma.verification.deleteMany()
   await prisma.country.deleteMany()
   await prisma.picture.deleteMany()
   await prisma.product.deleteMany()
   await prisma.category.deleteMany()
 
-  // await prisma.user.createMany({ data: users })
   await prisma.country.createMany({ data: countries })
 
   const categories = await prisma.category.createManyAndReturn({
