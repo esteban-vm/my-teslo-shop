@@ -23,6 +23,6 @@ export const logout = safeClient.action(async () => {
 export const createUser = safeClient.inputSchema(UserDTO).action(async ({ parsedInput }) => {
   await sleepExecution(3)
   const { email, name, password } = parsedInput
-  await auth.api.signUpEmail({ body: { email, name, password } })
-  redirect('/')
+  const { user } = await auth.api.signUpEmail({ body: { email, name, password } })
+  return { email: user.email }
 })
