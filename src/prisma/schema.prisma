@@ -119,6 +119,7 @@ model Order {
   paidAt          DateTime?        @map("paid_at")
   user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          String           @map("user_id")
+  transactionId   String?          @map("transaction_id")
   items           OrderItem[]
   createdAt       DateTime         @default(now()) @map("created_at")
   updatedAt       DateTime         @updatedAt @map("updated_at")
