@@ -32,7 +32,7 @@ function handleError(message: string) {
     autoClose: 10_000,
     isLoading: false,
     pauseOnHover: true,
-    render: <p className='line-clamp-2'>{message}</p>,
+    render: <p className='line-clamp-3'>{message}</p>,
   })
 }
 
