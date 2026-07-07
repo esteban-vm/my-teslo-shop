@@ -41,8 +41,8 @@ export const ValidationErrorMap = {
   },
 } as const
 
-// Server errors
-export const ServerErrorMap = {
+// Api errors
+export const ApiErrorMap = {
   invalidEmailOrPassword: 'Correo electrónico y/o contraseña inválido(s)',
   unverifiedEmail: 'Correo electrónico no verificado',
   emailAlreadyInUse: 'El correo electrónico ya está en uso',
