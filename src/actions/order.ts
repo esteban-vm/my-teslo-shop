@@ -1,6 +1,7 @@
 'use server'
 
 import z from 'zod'
+import { ServerError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
@@ -29,7 +30,7 @@ export const placeOrder = safeAuthClient
         const product = products.find((p) => p.id === i.productId)
 
         if (!product) {
-          throw new Error('Producto no encontrado')
+          throw new ServerError('Producto no encontrado')
         }
 
         const subtotal = product.price * i.quantity
@@ -47,7 +48,7 @@ export const placeOrder = safeAuthClient
         const quantity = items.filter((i) => i.productId === p.id).reduce((acc, i) => i.quantity + acc, 0)
 
         if (quantity === 0) {
-          throw new Error('Sin existencias para este producto')
+          throw new ServerError('Producto sin existencias')
         }
 
         return tx.product.update({
@@ -64,7 +65,7 @@ export const placeOrder = safeAuthClient
 
       updatedProducts.forEach((p) => {
         if (p.stock < 0) {
-          throw new Error(`${p.title} no tiene inventario suficiente`)
+          throw new ServerError(`${p.title} no tiene inventario suficiente`)
         }
       })
 
@@ -138,7 +139,7 @@ export const getOrderById = safeAuthClient
     })
 
     if (!order) {
-      throw new Error('Orden no encontrada')
+      throw new ServerError('Orden no encontrada')
     }
 
     return order
