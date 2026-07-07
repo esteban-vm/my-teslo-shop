@@ -2,7 +2,8 @@ import { APIError } from 'better-auth'
 import { headers } from 'next/headers'
 import { createSafeActionClient } from 'next-safe-action'
 import { auth } from '@/auth'
-import { ServerErrorMap } from './constants'
+import { ApiErrorMap } from './constants'
+import { ServerError } from './errors'
 
 export const safeClient = createSafeActionClient({
   handleServerError(error) {
@@ -10,23 +11,27 @@ export const safeClient = createSafeActionClient({
       console.log({ error: error.message })
     }
 
+    if (error instanceof ServerError) {
+      return error.message
+    }
+
     if (error instanceof APIError) {
       const { status, statusCode } = error
 
       if (status === 'UNAUTHORIZED' && statusCode === 401) {
-        return ServerErrorMap.invalidEmailOrPassword
+        return ApiErrorMap.invalidEmailOrPassword
       }
 
       if (status === 'FORBIDDEN' && statusCode === 403) {
-        return ServerErrorMap.unverifiedEmail
+        return ApiErrorMap.unverifiedEmail
       }
 
       if (status === 'UNPROCESSABLE_ENTITY' && statusCode === 422) {
-        return ServerErrorMap.emailAlreadyInUse
+        return ApiErrorMap.emailAlreadyInUse
       }
     }
 
-    return ServerErrorMap.default
+    return ApiErrorMap.default
   },
 })
 
