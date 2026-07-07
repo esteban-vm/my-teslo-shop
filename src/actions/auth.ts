@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { safeClient } from '@/lib/safe-action'
-import { Login, UserDTO } from '@/schemas/auth'
+import { LoginDTO, NewUserDTO } from '@/schemas/auth'
 
-export const login = safeClient.inputSchema(Login).action(async ({ parsedInput }) => {
+export const login = safeClient.inputSchema(LoginDTO).action(async ({ parsedInput }) => {
   await sleepExecution(5)
   const { email, password } = parsedInput
   await auth.api.signInEmail({ body: { email, password } })
@@ -20,7 +20,7 @@ export const logout = safeClient.action(async () => {
   redirect('/')
 })
 
-export const createUser = safeClient.inputSchema(UserDTO).action(async ({ parsedInput }) => {
+export const createUser = safeClient.inputSchema(NewUserDTO).action(async ({ parsedInput }) => {
   await sleepExecution(3)
   const { email, name, password } = parsedInput
   const { user } = await auth.api.signUpEmail({ body: { email, name, password } })

@@ -3,7 +3,7 @@ import { ValidationErrorMap } from '@/lib/constants'
 import { Validations } from '@/lib/validations'
 import { notEmpty } from './shared'
 
-export const Login = z.object({
+export const LoginDTO = z.object({
   email: notEmpty.superRefine((value, ctx) => {
     if (Validations.notEmail(value)) {
       ctx.addIssue(ValidationErrorMap.notEmail)
@@ -13,7 +13,7 @@ export const Login = z.object({
   password: notEmpty,
 })
 
-export const UserDTO = Login.extend({
+export const NewUserDTO = LoginDTO.extend({
   name: notEmpty,
 
   password: notEmpty.superRefine((value, ctx) => {
@@ -28,5 +28,5 @@ export const UserDTO = Login.extend({
   error: 'Las contraseñas deben coincidir',
 })
 
-export type Login = z.infer<typeof Login>
-export type UserDTO = z.infer<typeof UserDTO>
+export type LoginDTO = z.infer<typeof LoginDTO>
+export type NewUserDTO = z.infer<typeof NewUserDTO>

@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { login } from '@/actions/auth'
 import { ApiErrorMap } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
-import { Login } from '@/schemas/auth'
+import { LoginDTO } from '@/schemas/auth'
 
 export function useLoginForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(login, zodResolver(Login), {
+  const methods = useHookFormAction(login, zodResolver(LoginDTO), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
