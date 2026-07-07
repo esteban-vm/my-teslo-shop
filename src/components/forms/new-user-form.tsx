@@ -37,9 +37,7 @@ export function NewUserForm() {
         />
         <FormButton.Submit control={control}>Registrarse</FormButton.Submit>
         <Divider>O</Divider>
-        <FormButton.Link disabled={isDisabled} to='/auth/login'>
-          Iniciar sesión
-        </FormButton.Link>
+        <FormButton.Link to='/auth/login'>Iniciar sesión</FormButton.Link>
       </Fieldset>
     </form>
   )

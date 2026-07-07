@@ -29,13 +29,9 @@ export function LoginForm() {
         <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
         <FormButton.Submit control={control}>Iniciar sesión</FormButton.Submit>
         <Divider>O</Divider>
-        <FormButton.Link disabled={isDisabled} to='/auth/new-user'>
-          Registrarse
-        </FormButton.Link>
+        <FormButton.Link to='/auth/new-user'>Registrarse</FormButton.Link>
         <Divider>O</Divider>
-        <FormButton.Link disabled={isDisabled} to='/auth/new-user'>
-          Recuperar contraseña
-        </FormButton.Link>
+        <FormButton.Link to='/auth/new-user'>Recuperar contraseña</FormButton.Link>
       </Fieldset>
     </form>
   )
