@@ -4,7 +4,7 @@ import { Banknote, BanknoteX } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { Alert, Card, Divider } from 'rsc-daisyui'
 import { getOrderById } from '@/actions/order'
-import { OrderList } from '@/components/orders'
+import { OrderList, PaymentButton } from '@/components/orders'
 import { PageTitle } from '@/components/pages'
 import { AddressDetails, SummaryDetails } from '@/components/shared'
 
@@ -32,9 +32,16 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
 
   return (
     <>
-      <PageTitle subtitle={id} title='Orden ID:' />
+      <PageTitle subtitle={id} title='ID de orden:' />
       <section data-shop>
         <div className='lg:col-span-2'>
+          <Alert
+            className='not-lg:mx-auto mb-2 max-w-md gap-2 rounded-lg py-2 font-semibold'
+            color={isPaid ? 'success' : 'error'}
+          >
+            {isPaid ? <Banknote /> : <BanknoteX />}
+            <span>{isPaid ? 'Pagada' : 'No pagada'}</span>
+          </Alert>
           <OrderList products={products} />
         </div>
         <div>
@@ -43,10 +50,11 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
               {savedAddress && <AddressDetails savedAddress={savedAddress} />}
               <Divider />
               <SummaryDetails savedSummary={savedSummary} />
-              <Alert className='gap-2 rounded-lg py-2 font-semibold' color={isPaid ? 'success' : 'error'}>
+              {/* <Alert className='gap-2 rounded-lg py-2 font-semibold' color={isPaid ? 'success' : 'error'}>
                 {isPaid ? <Banknote /> : <BanknoteX />}
                 <span>{isPaid ? 'Pagada' : 'No pagada'}</span>
-              </Alert>
+              </Alert> */}
+              <PaymentButton />
             </Card.Body>
           </Card>
         </div>
