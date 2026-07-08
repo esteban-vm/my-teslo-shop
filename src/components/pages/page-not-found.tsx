@@ -1,7 +1,7 @@
 import { Frown } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from 'rsc-daisyui'
+import NextLink from 'next/link'
+import { Link } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
 export function PageNotFound({ title = 'Página no encontrada' }: { title?: string }) {
@@ -11,17 +11,19 @@ export function PageNotFound({ title = 'Página no encontrada' }: { title?: stri
         <Image alt={title} fill src='/imgs/not-found.png' />
       </ImageContainer>
       <div className='text-center font-montserrat text-error'>
-        <h1 className='font-bold text-5xl'>
+        <h1 className='font-bold text-4xl'>
           404 <Frown className='inline size-12 fill-current/25 align-bottom' />
         </h1>
-        <h2 className='font-semibold text-2xl'>{title}</h2>
-        <Button as={Link} className='hover:opacity-75' color='info' href='/' link>
-          Regresar al inicio
-        </Button>
+        <h2 className='font-semibold text-xl'>{title}</h2>
+        <NextLink href='/' passHref>
+          <Link as='span' className='font-geist font-semibold' color='info'>
+            Regresar al inicio
+          </Link>
+        </NextLink>
       </div>
     </Container>
   )
 }
 
-const Container = tw.div`-translate-1/2 absolute top-1/2 left-1/2 flex w-full flex-col items-center justify-evenly md:flex-row-reverse md:justify-center md:gap-4`
+const Container = tw.div`flex h-full min-h-144 flex-col items-center justify-evenly md:flex-row-reverse md:justify-center md:gap-4`
 const ImageContainer = tw.div`relative aspect-square w-full max-w-md`

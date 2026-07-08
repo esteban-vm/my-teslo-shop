@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ShoppingCart } from 'lucide-react'
-import Link from 'next/link'
-import { Button } from 'rsc-daisyui'
+import NextLink from 'next/link'
+import { Link } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
 export const metadata: Metadata = {
@@ -13,15 +13,18 @@ export default function EmptyPage() {
     <PageContainer>
       <CartIcon $as={ShoppingCart} />
       <InnerContainer>
-        <h1 className='font-semibold text-lg text-warning'>Carrito de compras vacío</h1>
-        <Button as={Link} className='p-0 hover:opacity-75' color='info' href='/' link size='sm'>
-          Ir a comprar ahora
-        </Button>
+        <PageTitle>Carrito de compras vacío</PageTitle>
+        <NextLink href='/' passHref>
+          <Link as='span' className='font-geist font-semibold text-sm' color='info' hover>
+            Ir a comprar ahora
+          </Link>
+        </NextLink>
       </InnerContainer>
     </PageContainer>
   )
 }
 
-const PageContainer = tw.div`-translate-1/2 absolute top-1/2 left-1/2 flex flex-col items-center md:flex-row md:gap-4`
+const PageContainer = tw.div`flex h-full min-h-144 flex-col items-center justify-center md:flex-row md:gap-4`
 const InnerContainer = tw.div`flex flex-col items-center text-center font-montserrat md:items-start`
-const CartIcon = tw.svg`size-14 fill-error/25 stroke-error motion-safe:animate-bounce`
+const PageTitle = tw.h1`font-semibold text-lg text-warning`
+const CartIcon = tw.svg`size-12 fill-error/25 stroke-error motion-safe:animate-bounce md:size-14`
