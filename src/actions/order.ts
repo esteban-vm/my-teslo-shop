@@ -130,7 +130,6 @@ export const getOrderById = safeAuthClient
         },
       },
       omit: {
-        id: true,
         userId: true,
         createdAt: true,
         updatedAt: true,
