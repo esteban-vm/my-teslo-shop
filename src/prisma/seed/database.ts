@@ -1,6 +1,7 @@
 import type { CategoryName, Prisma } from '../generated/client'
+import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
-import { countries, products } from '../data'
+import { countries, products, users } from '../data'
 
 async function main() {
   await prisma.user.deleteMany()
@@ -11,6 +12,12 @@ async function main() {
   await prisma.category.deleteMany()
 
   await prisma.country.createMany({ data: countries })
+
+  for (const seedUser of users) {
+    const { email, name, role } = seedUser
+    await auth.api.signUpEmail({ body: { email, name, password: 'Abcd123*' } })
+    await prisma.user.update({ where: { email }, data: { role, emailVerified: true } })
+  }
 
   const categories = await prisma.category.createManyAndReturn({
     data: [{ name: 'Shirts' }, { name: 'Pants' }, { name: 'Hoodies' }, { name: 'Hats' }],
@@ -24,8 +31,8 @@ async function main() {
     {} as Record<CategoryName, string>
   )
 
-  for (const initialProduct of products) {
-    const { images, category, ...rest } = initialProduct
+  for (const seedProduct of products) {
+    const { images, category, ...rest } = seedProduct
 
     const product = await prisma.product.create({
       data: { ...rest, categoryId: categoryMap[category] },
