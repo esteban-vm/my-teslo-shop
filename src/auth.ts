@@ -3,6 +3,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { nextCookies } from 'better-auth/next-js'
 import { sendEmail } from '@/lib/emails'
 import { prisma } from '@/lib/prisma'
+import { users } from '@/prisma/data'
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
@@ -24,6 +25,9 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     async sendVerificationEmail({ user, url }) {
+      const isTestUser = users.some((u) => u.email === user.email)
+      if (isTestUser) return
+
       await sendEmail({
         to: {
           name: user.name,
