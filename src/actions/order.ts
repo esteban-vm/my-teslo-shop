@@ -134,6 +134,7 @@ export const getOrderById = safeAuthClient
         createdAt: true,
         updatedAt: true,
         paidAt: true,
+        transactionId: true,
       },
     })
 
