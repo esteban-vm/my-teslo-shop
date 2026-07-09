@@ -7,9 +7,7 @@ import { ServerError } from './errors'
 
 export const safeClient = createSafeActionClient({
   handleServerError(error) {
-    if (process.env.NODE_ENV === 'development') {
-      console.log({ error: error.message })
-    }
+    console.log({ error: error.message })
 
     if (error instanceof ServerError) {
       return error.message
