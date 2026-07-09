@@ -13,5 +13,11 @@ export const OrderDTO = z.object({
   address: AddressDTO,
 })
 
+export const TransactionDTO = z.object({
+  orderId: z.string(),
+  transactionId: z.string(),
+})
+
 export type OrderItemDTO = z.infer<typeof OrderItemDTO>
 export type OrderDTO = z.infer<typeof OrderDTO>
+export type TransactionDTO = z.infer<typeof TransactionDTO>
