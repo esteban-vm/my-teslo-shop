@@ -37,10 +37,3 @@ export function sleepExecution(seconds = 1) {
 export function isSameProduct(product1: CartProduct, product2: CartProduct) {
   return product1.id === product2.id && product1.size === product2.size
 }
-
-export function getPayPalToken() {
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
-  const secret = process.env.PAYPAL_SECRET
-  const base64 = Buffer.from(`${clientId}:${secret}`, 'utf-8').toString('base64')
-  return base64
-}
