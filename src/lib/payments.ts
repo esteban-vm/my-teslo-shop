@@ -1,6 +1,6 @@
 import type { PayPalOrderStatusResponse } from '@/types/paypal'
 
-export async function getPayPalToken(): Promise<string | null> {
+export async function getToken(): Promise<string | null> {
   const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!
   const secret = process.env.PAYPAL_SECRET!
   const token = Buffer.from(`${clientId}:${secret}`, 'utf-8').toString('base64')
@@ -24,7 +24,7 @@ export async function getPayPalToken(): Promise<string | null> {
   return result.access_token
 }
 
-export async function verifyPayPalPayment(id: string, token: string): Promise<PayPalOrderStatusResponse | null> {
+export async function verifyPayment(id: string, token: string): Promise<PayPalOrderStatusResponse | null> {
   const myHeaders = new Headers()
   myHeaders.append('Authorization', `Bearer ${token}`)
 
