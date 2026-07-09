@@ -56,6 +56,9 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
+  logger: {
+    disabled: process.env.NODE_ENV === 'production',
+  },
   user: {
     additionalFields: {
       role: {
