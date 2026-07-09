@@ -17,10 +17,8 @@ export function Providers({ children }: { children: ReactNode }) {
     >
       <PayPalScriptProvider
         options={{
-          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
           environment: 'sandbox',
-          intent: 'capture',
-          currency: 'USD',
+          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
         }}
       >
         {children}
