@@ -4,7 +4,7 @@ import { ServerError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
-import { OrderDTO } from '@/schemas/order'
+import { OrderDTO, TransactionDTO } from '@/schemas/order'
 import { WithID } from '@/schemas/shared'
 
 export const placeOrder = safeAuthClient.inputSchema(OrderDTO).action(async ({ ctx, parsedInput }) => {
@@ -166,4 +166,16 @@ export const getMyOrders = safeAuthClient.action(async ({ ctx }) => {
   })
 
   return orders
+})
+
+export const setTransactionId = safeAuthClient.inputSchema(TransactionDTO).action(async ({ ctx, parsedInput }) => {
+  const { orderId, transactionId } = parsedInput
+
+  await prisma.order.update({
+    where: {
+      id: orderId,
+      userId: ctx.user.id,
+    },
+    data: { transactionId },
+  })
 })
