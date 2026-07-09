@@ -5,7 +5,7 @@ import { Card } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useAddressStore } from '@/hooks'
 
-export function AddressDetails({ savedAddress }: { savedAddress?: AddressDTO }) {
+export function AddressDetails({ savedAddress }: { savedAddress?: AddressDTO | null }) {
   const storedAddress = useAddressStore(useShallow((s) => s.address))
   const addressDetails = savedAddress ?? storedAddress
   const { firstName, lastName, city, countryId, phone, address, address2, postalCode } = addressDetails
