@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   experimental: {
     typedEnv: true,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
