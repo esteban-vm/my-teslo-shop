@@ -20,9 +20,6 @@ export async function sendEmail(args: SendEmailArgs) {
     },
   })
 
-  if (process.env.NODE_ENV === 'development') {
-    console.table(info)
-  }
-
+  console.table(info)
   transporter.close()
 }
