@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getBillingAddress } from '@/actions/address'
-import { AddressForm } from '@/components/forms'
+import { AddressForm } from '@/components/checkout'
 import { PageTitle } from '@/components/pages'
 
 export const metadata: Metadata = {
