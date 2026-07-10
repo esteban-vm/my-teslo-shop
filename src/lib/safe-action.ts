@@ -37,8 +37,16 @@ export const safeAuthClient = safeClient.use(async ({ next }) => {
   const session = await auth.api.getSession({ headers: await headers() })
 
   if (!session?.user) {
-    throw new Error('Acceso no autorizado')
+    throw new ServerError('No autenticado')
   }
 
   return next({ ctx: { user: session.user } })
+})
+
+export const safeAdminClient = safeAuthClient.use(async ({ ctx, next }) => {
+  if (ctx.user.role === 'user') {
+    throw new ServerError('No autorizado')
+  }
+
+  return next({ ctx: { user: ctx.user } })
 })
