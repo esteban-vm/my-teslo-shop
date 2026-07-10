@@ -1,5 +1,5 @@
 import { Navigation } from '@/components/navigation'
-import { PageFooter } from '@/components/pages'
+import { PageFooter } from '@/components/shared'
 
 export default function ShopLayout({ children }: LayoutProps<'/'>) {
   return (

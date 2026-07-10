@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { CheckoutList, PlaceOrder } from '@/components/checkout'
-import { PageTitle } from '@/components/pages'
+import { PageTitle } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'Verificar orden',

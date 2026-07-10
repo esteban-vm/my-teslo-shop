@@ -5,7 +5,7 @@ import { Banknote, BanknoteX } from 'lucide-react'
 import NextLink from 'next/link'
 import { Link, Table } from 'rsc-daisyui'
 import { getMyOrders } from '@/actions/order'
-import { PageTitle } from '@/components/pages'
+import { PageTitle } from '@/components/shared'
 import { cn } from '@/lib/ui'
 
 export const metadata: Metadata = {

@@ -4,8 +4,7 @@ import { notFound } from 'next/navigation'
 import { Card, Divider } from 'rsc-daisyui'
 import { getOrderById } from '@/actions/order'
 import { OrderList, PaymentAlert } from '@/components/orders'
-import { PageTitle } from '@/components/pages'
-import { AddressDetails, SummaryDetails } from '@/components/shared'
+import { AddressDetails, PageTitle, SummaryDetails } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'Detalle de orden',

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { BuyNow, CartList } from '@/components/cart'
-import { PageTitle } from '@/components/pages'
+import { PageTitle } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'Mi Carrito',

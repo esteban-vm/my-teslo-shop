@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
-import { PageTitle } from '@/components/pages'
+import { PageTitle } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'Mi perfil',
