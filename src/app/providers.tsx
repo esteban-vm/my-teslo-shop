@@ -1,7 +1,6 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { ThemeProvider } from 'next-themes'
 import { ToastContainer } from 'react-toastify'
 import { ThemeMap, themes } from '@/lib/constants'
@@ -15,14 +14,14 @@ export function Providers({ children }: { children: ReactNode }) {
       themes={themes}
       value={ThemeMap}
     >
-      <PayPalScriptProvider
+      {/* <PayPalScriptProvider
         options={{
           environment: 'sandbox',
           clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
         }}
-      >
-        {children}
-      </PayPalScriptProvider>
+      > */}
+      {children}
+      {/* </PayPalScriptProvider> */}
       <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />
     </ThemeProvider>
   )
