@@ -46,7 +46,6 @@ export const ApiErrorMap = {
   invalidEmailOrPassword: 'Correo electrónico y/o contraseña inválido(s)',
   unverifiedEmail: 'Correo electrónico no verificado',
   emailAlreadyInUse: 'El correo electrónico ya está en uso',
-  default: 'Ha ocurrido un error',
 } as const
 
 // User roles
