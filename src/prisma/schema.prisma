@@ -30,7 +30,7 @@ enum Gender {
 }
 
 enum Role {
-  client
+  user
   admin
 
   @@map("user_roles")
@@ -165,7 +165,7 @@ model User {
   email         String          @unique
   emailVerified Boolean         @map("email_verified")
   image         String?
-  role          Role?           @default(client)
+  role          Role?           @default(user)
   address       BillingAddress?
   orders        Order[]
   accounts      Account[]
