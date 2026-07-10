@@ -1,9 +1,10 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { nextCookies } from 'better-auth/next-js'
-import { sendEmail } from '@/lib/emails'
-import { prisma } from '@/lib/prisma'
-import { users } from '@/prisma/data'
+import { userRoles } from './lib/constants'
+import { sendEmail } from './lib/emails'
+import { prisma } from './lib/prisma'
+import { users } from './prisma/data'
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
@@ -62,9 +63,9 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       role: {
-        type: ['client', 'admin'],
+        type: userRoles,
         required: false,
-        defaultValue: 'client',
+        defaultValue: userRoles[0],
         input: false,
       },
     },
