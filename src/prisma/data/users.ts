@@ -6,12 +6,12 @@ export const users: SeedUser[] = [
   {
     email: 'user1@example.com',
     name: 'Test User',
-    role: 'client',
+    role: 'user',
   },
   {
     email: 'user2@example.com',
     name: 'Test User 2',
-    role: 'client',
+    role: 'user',
   },
   {
     email: 'admin@example.com',
