@@ -1,5 +1,5 @@
 import type { ThemeTypeWithDefault as Theme } from 'rsc-daisyui'
-import type { Gender } from '@/prisma/generated/client'
+import type { Gender, Role } from '@/prisma/generated/client'
 
 // UI
 export const DRAWER_ID = 'app_drawer'
@@ -48,3 +48,6 @@ export const ApiErrorMap = {
   emailAlreadyInUse: 'El correo electrónico ya está en uso',
   default: 'Ha ocurrido un error',
 } as const
+
+// User roles
+export const userRoles = ['user', 'admin'] as const satisfies [Role, Role]
