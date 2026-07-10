@@ -3,7 +3,7 @@ export const revalidate = 60
 import { redirect } from 'next/navigation'
 import { getProducts } from '@/actions/product'
 import { PagePagination, PageTitle } from '@/components/pages'
-import { ProductGrid } from '@/components/shop'
+import { ProductGrid } from '@/components/product'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
   let { page = '1' } = await searchParams
