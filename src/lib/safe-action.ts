@@ -29,7 +29,7 @@ export const safeClient = createSafeActionClient({
       }
     }
 
-    return ApiErrorMap.default
+    return 'Ha ocurrido un error'
   },
 })
 
