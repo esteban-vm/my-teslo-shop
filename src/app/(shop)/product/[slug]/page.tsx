@@ -4,10 +4,9 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { Skeleton } from 'rsc-daisyui'
-import tw from 'tailwind-styled-components'
 import { getProductBySlug } from '@/actions/product'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
-import { ProductInfo, ProductSlider, StockCounter } from '@/components/shop'
+import { ProductInfo, ProductSlider, StockCounter } from '@/components/product'
 import { formatProductPrice } from '@/lib/helpers'
 
 type ProductPageProps = PageProps<'/product/[slug]'>
@@ -44,10 +43,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { title, description, price, sizes, images } = product
 
   return (
-    <PageContainer>
+    <div className='my-3 grid gap-3 lg:grid-cols-3'>
       <ProductSlider images={images} />
-      <ProductDetails>
-        <ProductTitle>{title}</ProductTitle>
+      <div className='space-y-1 px-3 py-1.5'>
+        <h1 className='font-bold font-montserrat text-rose-700 text-xl'>{title}</h1>
         <Suspense fallback={<Skeleton className='h-6 w-full rounded-box' />}>
           <StockCounter slug={slug} />
         </Suspense>
@@ -59,11 +58,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <QuantitySelector product={product} />
         <p className='font-semibold'>Descripción:</p>
         <ProductInfo info={description} />
-      </ProductDetails>
-    </PageContainer>
+      </div>
+    </div>
   )
 }
-
-const PageContainer = tw.div`my-3 grid gap-3 lg:grid-cols-3`
-const ProductDetails = tw.div`space-y-1 px-3 py-1.5`
-const ProductTitle = tw.h1`font-bold font-montserrat text-rose-700 text-xl`
