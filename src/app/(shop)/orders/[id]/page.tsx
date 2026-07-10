@@ -3,7 +3,7 @@ import type { CartProduct } from '@/types'
 import { notFound } from 'next/navigation'
 import { Card, Divider } from 'rsc-daisyui'
 import { getOrderById } from '@/actions/order'
-import { OrderList, PaymentAlert, PaymentButton } from '@/components/orders'
+import { OrderList, PaymentAlert } from '@/components/orders'
 import { PageTitle } from '@/components/pages'
 import { AddressDetails, SummaryDetails } from '@/components/shared'
 
@@ -43,7 +43,7 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
               <AddressDetails savedAddress={savedAddress} />
               <Divider />
               <SummaryDetails savedSummary={savedSummary} />
-              {!isPaid && <PaymentButton amount={savedSummary.total} orderId={order.id} />}
+              {/* {!isPaid && <PaymentButton amount={savedSummary.total} orderId={order.id} />} */}
             </Card.Body>
           </Card>
         </div>
