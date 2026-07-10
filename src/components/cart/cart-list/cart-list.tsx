@@ -1,7 +1,7 @@
 'use client'
 
 import { Skeleton } from 'rsc-daisyui'
-import { ProductList } from '@/components/shop'
+import { ItemList } from '@/components/shared'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CartItem } from './cart-item'
 
@@ -14,10 +14,10 @@ export function CartList() {
   }
 
   return (
-    <ProductList link='/' linkTitle='Continuar comprando' title='Agregar más artículos'>
+    <ItemList link='/' linkTitle='Continuar comprando' title='Agregar más artículos'>
       {cart.map((item) => (
         <CartItem key={`${item.slug}-${item.size}`} product={item} />
       ))}
-    </ProductList>
+    </ItemList>
   )
 }
