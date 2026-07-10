@@ -1,7 +1,7 @@
 'use client'
 
 import { Skeleton } from 'rsc-daisyui'
-import { ProductList } from '@/components/shop'
+import { ItemList } from '@/components/shared'
 import { useMounted, useShoppingCart } from '@/hooks'
 import { CheckoutItem } from './checkout-item'
 
@@ -14,10 +14,10 @@ export function CheckoutList() {
   }
 
   return (
-    <ProductList link='/cart' linkTitle='Editar carrito' title='Ajustar elementos'>
+    <ItemList link='/cart' linkTitle='Editar carrito' title='Ajustar elementos'>
       {cart.map((item) => (
         <CheckoutItem key={`${item.slug}-${item.size}`} product={item} />
       ))}
-    </ProductList>
+    </ItemList>
   )
 }
