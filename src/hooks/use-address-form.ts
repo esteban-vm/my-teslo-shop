@@ -16,7 +16,7 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
   const setAddress = useAddressStore((s) => s.setAddress)
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(manageAddress, zodResolver(AddressDTO), {
+  const hookReturn = useHookFormAction(manageAddress, zodResolver(AddressDTO), {
     formProps: {
       mode: 'all',
       defaultValues: {
@@ -26,7 +26,7 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
     },
     actionProps: {
       onSettled() {
-        methods.resetFormAndAction()
+        hookReturn.resetFormAndAction()
       },
       onExecute(args) {
         setAddress(args.input)
@@ -47,8 +47,8 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
     },
   })
 
-  const { reset } = methods.form
-  const { isSubmitting, isSubmitSuccessful } = methods.form.formState
+  const { reset } = hookReturn.form
+  const { isSubmitting, isSubmitSuccessful } = hookReturn.form.formState
   const isDisabled = isSubmitting || (!isServerError && isSubmitSuccessful)
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
   }, [address, reset, isDisabled])
 
   return {
-    ...methods,
+    ...hookReturn,
     isDisabled,
   }
 }

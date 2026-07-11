@@ -10,7 +10,7 @@ export function useNewUserForm() {
   const router = useRouter()
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(createUser, zodResolver(NewUserDTO), {
+  const hookReturn = useHookFormAction(createUser, zodResolver(NewUserDTO), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
@@ -22,7 +22,7 @@ export function useNewUserForm() {
     },
     actionProps: {
       onSettled() {
-        methods.resetFormAndAction()
+        hookReturn.resetFormAndAction()
       },
       onExecute() {
         Toasts.execute('Registrando')
@@ -43,10 +43,11 @@ export function useNewUserForm() {
     },
   })
 
-  const { isSubmitting, isSubmitSuccessful } = methods.form.formState
+  const { isSubmitting, isSubmitSuccessful } = hookReturn.form.formState
+  const isDisabled = isSubmitting || (!isServerError && isSubmitSuccessful)
 
   return {
-    ...methods,
-    isDisabled: isSubmitting || (!isServerError && isSubmitSuccessful),
+    ...hookReturn,
+    isDisabled,
   }
 }

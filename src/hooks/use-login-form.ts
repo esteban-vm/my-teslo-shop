@@ -9,7 +9,7 @@ import { LoginDTO } from '@/schemas/auth'
 export function useLoginForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const methods = useHookFormAction(login, zodResolver(LoginDTO), {
+  const hookReturn = useHookFormAction(login, zodResolver(LoginDTO), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
@@ -19,7 +19,7 @@ export function useLoginForm() {
     },
     actionProps: {
       onSettled() {
-        methods.resetFormAndAction()
+        hookReturn.resetFormAndAction()
       },
       onExecute() {
         Toasts.execute('Ingresando')
@@ -45,10 +45,11 @@ export function useLoginForm() {
     },
   })
 
-  const { isSubmitting, isSubmitSuccessful } = methods.form.formState
+  const { isSubmitting, isSubmitSuccessful } = hookReturn.form.formState
+  const isDisabled = isSubmitting || (!isServerError && isSubmitSuccessful)
 
   return {
-    ...methods,
-    isDisabled: isSubmitting || (!isServerError && isSubmitSuccessful),
+    ...hookReturn,
+    isDisabled,
   }
 }
