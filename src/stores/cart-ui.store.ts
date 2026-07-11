@@ -11,7 +11,7 @@ interface CartUIActions {
   setCurrentSize: (size: Size | null) => void
   setIsPosted: (posted: boolean) => void
   setIsAdded: (added: boolean) => void
-  reset: () => void
+  resetCartUI: () => void
 }
 
 export type CartUIStore = CartUIState & CartUIActions
@@ -33,7 +33,7 @@ export const createCartUIStore: StateCreator<CartUIStore> = (set, _, store) => {
       set({ isAdded: added })
     },
 
-    reset() {
+    resetCartUI() {
       set(store.getInitialState())
     },
   }
