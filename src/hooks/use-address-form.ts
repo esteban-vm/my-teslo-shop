@@ -1,7 +1,7 @@
 import type { BillingAddress } from '@/prisma/generated/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { manageAddress } from '@/actions/address'
 import { Toasts } from '@/lib/toasts'
 import { AddressDTO } from '@/schemas/address'
@@ -47,10 +47,18 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
     },
   })
 
+  const { reset } = methods.form
   const { isSubmitting, isSubmitSuccessful } = methods.form.formState
+  const isDisabled = isSubmitting || (!isServerError && isSubmitSuccessful)
+
+  useEffect(() => {
+    if (address.firstName && !isDisabled) {
+      reset(address)
+    }
+  }, [address, reset, isDisabled])
 
   return {
     ...methods,
-    isDisabled: isSubmitting || (!isServerError && isSubmitSuccessful),
+    isDisabled,
   }
 }
