@@ -47,8 +47,8 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
     },
   })
 
-  const { reset } = hookReturn.form
-  const { isSubmitting, isSubmitSuccessful } = hookReturn.form.formState
+  const { reset, formState } = hookReturn.form
+  const { isSubmitting, isSubmitSuccessful } = formState
   const isDisabled = isSubmitting || (!isServerError && isSubmitSuccessful)
 
   useEffect(() => {
