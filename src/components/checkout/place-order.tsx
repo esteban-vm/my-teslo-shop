@@ -26,10 +26,10 @@ export function PlaceOrder() {
       Toasts.execute('Colocando orden')
     },
     onSuccess(args) {
-      resetCart()
-      resetAddress()
       Toasts.close()
       router.replace(`/orders/${args.data.orderId}`)
+      resetCart()
+      resetAddress()
     },
     onError(args) {
       const { serverError } = args.error
