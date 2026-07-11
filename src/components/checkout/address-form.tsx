@@ -4,7 +4,7 @@ import type { AddressFormProps } from '@/hooks'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useAddressForm } from '@/hooks'
-import { CountrySelect, FormButton, FormField, RememberCheck } from '../shared'
+import { CountrySelect, FormButtons, FormField, RememberCheck } from '../shared'
 
 export function AddressForm(props: AddressFormProps) {
   const {
@@ -40,9 +40,9 @@ export function AddressForm(props: AddressFormProps) {
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
         </Row>
         <RememberCheck control={control} name='remember' />
-        <FormButton.Submit className='w-fit' control={control}>
+        <FormButtons.Submit className='w-fit' control={control}>
           Siguiente
-        </FormButton.Submit>
+        </FormButtons.Submit>
       </Fieldset>
     </Container>
   )
