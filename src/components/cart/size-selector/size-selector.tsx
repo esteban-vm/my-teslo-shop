@@ -3,18 +3,18 @@
 import type { Size } from '@/prisma/generated/client'
 import { useEffect } from 'react'
 import { Join } from 'rsc-daisyui'
-import { useCartUI } from '@/hooks'
+import { useCartUIStore } from '@/hooks'
 import { ErrorAlert } from './error-alert'
 import { SuccessAlert } from './success-alert'
 
 export function SizeSelector({ sizes }: { sizes: Size[] }) {
-  const isAdded = useCartUI((s) => s.isAdded)
-  const isPosted = useCartUI((s) => s.isPosted)
-  const currentSize = useCartUI((s) => s.currentSize)
+  const isAdded = useCartUIStore((s) => s.isAdded)
+  const isPosted = useCartUIStore((s) => s.isPosted)
+  const currentSize = useCartUIStore((s) => s.currentSize)
 
-  const setIsAdded = useCartUI((s) => s.setIsAdded)
-  const setCurrentSize = useCartUI((s) => s.setCurrentSize)
-  const resetCartUI = useCartUI((s) => s.resetCartUI)
+  const setIsAdded = useCartUIStore((s) => s.setIsAdded)
+  const setCurrentSize = useCartUIStore((s) => s.setCurrentSize)
+  const resetCartUI = useCartUIStore((s) => s.resetCartUI)
 
   useEffect(resetCartUI, [resetCartUI])
 
