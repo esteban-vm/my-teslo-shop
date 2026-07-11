@@ -3,12 +3,12 @@
 import type { CartProduct, Product } from '@/types'
 import { useState } from 'react'
 import { Button } from 'rsc-daisyui'
-import { useCartUI, useShoppingCart } from '@/hooks'
+import { useCartStore, useCartUI } from '@/hooks'
 import { CounterInput } from '../shared'
 
 export function QuantitySelector({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
-  const addToCart = useShoppingCart((s) => s.addToCart)
+  const addToCart = useCartStore((s) => s.addToCart)
 
   const currentSize = useCartUI((s) => s.currentSize)
   const setIsAdded = useCartUI((s) => s.setIsAdded)

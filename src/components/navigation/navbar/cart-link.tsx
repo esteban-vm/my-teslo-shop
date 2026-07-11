@@ -3,11 +3,11 @@
 import { ShoppingCartIcon } from 'lucide-react'
 import Link from 'next/link'
 import { Button, Indicator, Skeleton } from 'rsc-daisyui'
-import { useMounted, useShoppingCart } from '@/hooks'
+import { useCartStore, useMounted } from '@/hooks'
 
 export function CartLink() {
   const { mounted } = useMounted(2)
-  const totalItems = useShoppingCart((s) => s.getTotalItems())
+  const totalItems = useCartStore((s) => s.getTotalItems())
 
   if (!mounted) {
     return <Skeleton className='h-7 w-8 rounded-box' />

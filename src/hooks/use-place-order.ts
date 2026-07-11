@@ -3,11 +3,11 @@ import { useAction } from 'next-safe-action/hooks'
 import { placeOrder } from '@/actions/order'
 import { Toasts } from '@/lib/toasts'
 import { useAddressStore } from './use-address-store'
-import { useShoppingCart } from './use-shopping-cart'
+import { useCartStore } from './use-cart-store'
 
 export function usePlaceOrder() {
   const router = useRouter()
-  const resetCart = useShoppingCart((s) => s.resetCart)
+  const resetCart = useCartStore((s) => s.resetCart)
   const resetAddress = useAddressStore((s) => s.resetAddress)
 
   const hookReturn = useAction(placeOrder, {

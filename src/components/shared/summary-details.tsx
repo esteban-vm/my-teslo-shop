@@ -3,11 +3,11 @@
 import type { OrderSummary } from '@/types'
 import { Card } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
-import { useShoppingCart } from '@/hooks'
+import { useCartStore } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function SummaryDetails({ savedSummary }: { savedSummary?: OrderSummary }) {
-  const storedSummary = useShoppingCart(useShallow((s) => s.getOrderSummary()))
+  const storedSummary = useCartStore(useShallow((s) => s.getOrderSummary()))
   const summaryDetails = savedSummary ?? storedSummary
   const { total, subtotal, tax, totalItems } = summaryDetails
 
