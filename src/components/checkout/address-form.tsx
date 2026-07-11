@@ -1,26 +1,17 @@
 'use client'
 
 import type { AddressFormProps } from '@/hooks'
-import { useEffect } from 'react'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
-import { useAddressForm, useAddressStore } from '@/hooks'
+import { useAddressForm } from '@/hooks'
 import { CountrySelect, FormButton, FormField, RememberCheck } from '../shared'
 
 export function AddressForm(props: AddressFormProps) {
-  const address = useAddressStore((s) => s.address)
-
   const {
-    form: { control, reset },
+    form: { control },
     isDisabled,
     handleSubmitWithAction,
   } = useAddressForm(props)
-
-  useEffect(() => {
-    if (address.firstName && !isDisabled) {
-      reset(address)
-    }
-  }, [address, reset, isDisabled])
 
   return (
     <Container noValidate onSubmit={handleSubmitWithAction}>
