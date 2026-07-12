@@ -1,4 +1,4 @@
-import type { BillingAddress } from '@/prisma/generated/client'
+import type { AddressFormProps } from '@/components/checkout'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useEffect, useState } from 'react'
@@ -6,10 +6,6 @@ import { manageAddress } from '@/actions/address'
 import { Toasts } from '@/lib/toasts'
 import { AddressDTO } from '@/schemas/address'
 import { useAddressStore } from './use-address-store'
-
-export interface AddressFormProps {
-  savedAddress?: BillingAddress
-}
 
 export function useAddressForm({ savedAddress }: AddressFormProps) {
   const address = useAddressStore((s) => s.address)

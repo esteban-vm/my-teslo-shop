@@ -1,10 +1,14 @@
 'use client'
 
-import type { AddressFormProps } from '@/hooks'
+import type { BillingAddress } from '@/prisma/generated/client'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useAddressForm } from '@/hooks'
 import { CountrySelect, FormButtons, FormField, RememberCheck } from '../shared'
+
+export interface AddressFormProps {
+  savedAddress?: BillingAddress
+}
 
 export function AddressForm(props: AddressFormProps) {
   const {
