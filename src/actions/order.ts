@@ -1,7 +1,7 @@
 'use server'
 
 import type { Route } from 'next'
-import type { Order } from '@/types'
+import type { OrderResult } from '@/types'
 import { revalidatePath } from 'next/cache'
 import { ServerError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
@@ -144,7 +144,7 @@ export const getOrderById = safeAuthClient.inputSchema(WithID).action(async ({ c
   return order
 })
 
-export const getMyOrders = safeAuthClient.action(async ({ ctx }): Promise<Order[]> => {
+export const getMyOrders = safeAuthClient.action(async ({ ctx }): Promise<OrderResult[]> => {
   const orders = await prisma.order.findMany({
     where: {
       userId: ctx.user.id,
@@ -173,7 +173,7 @@ export const getMyOrders = safeAuthClient.action(async ({ ctx }): Promise<Order[
   return orders
 })
 
-export const getAllOrders = safeAdminClient.action(async (): Promise<Order[]> => {
+export const getAllOrders = safeAdminClient.action(async (): Promise<OrderResult[]> => {
   const orders = await prisma.order.findMany({
     include: {
       shippingAddress: {

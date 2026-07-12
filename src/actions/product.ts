@@ -1,7 +1,7 @@
 'use server'
 
 import type { Gender } from '@/prisma/generated/client'
-import type { Product } from '@/types'
+import type { ProductResult } from '@/types'
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 
@@ -14,7 +14,7 @@ interface GetProductsParams {
 interface GetProductsResult {
   currentPage: number
   totalPages: number
-  products: Product[]
+  products: ProductResult[]
 }
 
 export async function getProducts({
@@ -51,7 +51,7 @@ export async function getProducts({
   }
 }
 
-export async function getProductBySlug(slug: string): Promise<Product | null> {
+export async function getProductBySlug(slug: string): Promise<ProductResult | null> {
   const product = await prisma.product.findFirst({
     where: { slug },
     include: {

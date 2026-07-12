@@ -1,8 +1,8 @@
-import type { Order } from '@/types'
+import type { OrderResult } from '@/types'
 import { Table } from 'rsc-daisyui'
 import { OrderRow } from './order-row'
 
-export function OrderTable({ orders }: { orders: Order[] }) {
+export function OrderTable({ orders }: { orders: OrderResult[] }) {
   return (
     <section className='mb-3 w-full overflow-x-auto'>
       <Table>

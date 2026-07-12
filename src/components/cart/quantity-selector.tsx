@@ -1,12 +1,12 @@
 'use client'
 
-import type { CartProduct, Product } from '@/types'
+import type { CartProduct, ProductResult } from '@/types'
 import { useState } from 'react'
 import { Button } from 'rsc-daisyui'
 import { useCartStore, useCartUIStore } from '@/hooks'
 import { CounterInput } from '../shared'
 
-export function QuantitySelector({ product }: { product: Product }) {
+export function QuantitySelector({ product }: { product: ProductResult }) {
   const [quantity, setQuantity] = useState(1)
   const addToCart = useCartStore((s) => s.addToCart)
 
