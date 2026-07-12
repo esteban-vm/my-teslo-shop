@@ -1,12 +1,13 @@
 'use server'
 
 import type { Route } from 'next'
+import type { Order } from '@/types'
 import { revalidatePath } from 'next/cache'
 import { ServerError } from '@/lib/errors'
 import { sleepExecution } from '@/lib/helpers'
 import { getToken, verifyPayment } from '@/lib/payments'
 import { prisma } from '@/lib/prisma'
-import { safeAuthClient } from '@/lib/safe-action'
+import { safeAdminClient, safeAuthClient } from '@/lib/safe-action'
 import { OrderDTO, TransactionDTO } from '@/schemas/order'
 import { WithID } from '@/schemas/shared'
 
@@ -143,7 +144,7 @@ export const getOrderById = safeAuthClient.inputSchema(WithID).action(async ({ c
   return order
 })
 
-export const getMyOrders = safeAuthClient.action(async ({ ctx }) => {
+export const getMyOrders = safeAuthClient.action(async ({ ctx }): Promise<Order[]> => {
   const orders = await prisma.order.findMany({
     where: {
       userId: ctx.user.id,
@@ -165,6 +166,36 @@ export const getMyOrders = safeAuthClient.action(async ({ ctx }) => {
       createdAt: true,
       updatedAt: true,
       paidAt: true,
+      transactionId: true,
+    },
+  })
+
+  return orders
+})
+
+export const getAllOrders = safeAdminClient.action(async (): Promise<Order[]> => {
+  const orders = await prisma.order.findMany({
+    include: {
+      shippingAddress: {
+        select: {
+          firstName: true,
+          lastName: true,
+        },
+      },
+    },
+    omit: {
+      userId: true,
+      total: true,
+      subtotal: true,
+      tax: true,
+      totalItems: true,
+      createdAt: true,
+      updatedAt: true,
+      paidAt: true,
+      transactionId: true,
+    },
+    orderBy: {
+      createdAt: 'asc',
     },
   })
 
