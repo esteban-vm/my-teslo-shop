@@ -16,6 +16,15 @@ export interface CartProduct {
   image: string
 }
 
+export interface Order {
+  id: string
+  isPaid: boolean | null
+  shippingAddress: {
+    firstName: string
+    lastName: string
+  } | null
+}
+
 export interface OrderSummary {
   total: number
   subtotal: number
