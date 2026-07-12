@@ -4,12 +4,13 @@ import { prisma } from '@/lib/prisma'
 import { countries, products, users } from '../data'
 
 async function main() {
-  await prisma.user.deleteMany()
-  await prisma.verification.deleteMany()
-  await prisma.country.deleteMany()
-  await prisma.picture.deleteMany()
-  await prisma.product.deleteMany()
-  await prisma.category.deleteMany()
+  await Promise.all([
+    prisma.user.deleteMany(),
+    prisma.verification.deleteMany(),
+    prisma.country.deleteMany(),
+    prisma.product.deleteMany(),
+    prisma.category.deleteMany(),
+  ])
 
   await prisma.country.createMany({ data: countries })
 
