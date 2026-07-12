@@ -195,7 +195,7 @@ export const getAllOrders = safeAdminClient.action(async (): Promise<OrderResult
       transactionId: true,
     },
     orderBy: {
-      createdAt: 'asc',
+      createdAt: 'desc',
     },
   })
 
