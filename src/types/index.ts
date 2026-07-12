@@ -40,3 +40,8 @@ export interface FormControlBaseProps<T extends FieldValues> extends PropsWithCh
 export interface FormControlProps<T extends FieldValues> extends FormControlBaseProps<T> {
   name: FieldPath<T>
 }
+
+export type PaginatedResult<T> = T & {
+  currentPage: number
+  totalPages: number
+}
