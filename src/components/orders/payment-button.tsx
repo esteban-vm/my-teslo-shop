@@ -3,7 +3,7 @@
 import type { PayPalButtonCreateOrder, PayPalButtonOnApprove } from '@paypal/paypal-js'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import { Skeleton } from 'rsc-daisyui'
-import { checkPayment, setTransactionId } from '@/actions/order'
+import { checkPayment, setTransactionId } from '@/actions/payment'
 
 export interface PaymentButtonProps {
   orderId: string
