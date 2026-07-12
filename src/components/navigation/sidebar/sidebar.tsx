@@ -28,8 +28,8 @@ export async function Sidebar() {
 
       {isLoggedIn ? (
         <>
-          <NavLink icon={<User />} text='Perfil' to='/profile' />
-          <NavLink icon={<Ticket />} text='Órdenes' to='/orders' />
+          <NavLink icon={<User />} text='Mi perfil' to='/profile' />
+          <NavLink icon={<Ticket />} text='Mis órdenes' to='/orders' />
           <Divider />
         </>
       ) : (
@@ -39,6 +39,7 @@ export async function Sidebar() {
       {isAdmin && (
         <>
           <NavLink icon={<Shirt />} text='Productos' to='/' />
+          <NavLink icon={<Ticket />} text='Órdenes' to='/orders' />
           <NavLink icon={<Users />} text='Usuarios' to='/' />
         </>
       )}
