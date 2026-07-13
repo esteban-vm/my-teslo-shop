@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { getTheme, getThemeScript } from '@teispace/next-themes/server'
 import { mainFont, titleFont } from '@/fonts'
 import { Providers } from './providers'
 import '@/app/globals.css'
@@ -23,13 +24,24 @@ export const viewport: Viewport = {
   interactiveWidget: 'overlays-content',
 }
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
+  const initialTheme = await getTheme()
+
+  const themeScript = getThemeScript({
+    attribute: 'data-theme',
+    initialTheme: initialTheme ?? undefined,
+  })
+
   return (
     <html
       className={`${mainFont.variable} ${titleFont.variable} bg-base-200 antialiased`}
       lang='es'
       suppressHydrationWarning
     >
+      <head>
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: anti-FOUC */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className='bg-linear-to-t from-base-200 to-base-100 font-geist'>
         <Providers>{children}</Providers>
       </body>
