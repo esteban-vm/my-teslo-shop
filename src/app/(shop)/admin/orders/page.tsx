@@ -6,7 +6,7 @@ import { OrderTable } from '@/components/orders'
 import { PageTitle } from '@/components/shared'
 
 export const metadata: Metadata = {
-  title: 'Todas las órdenes',
+  title: 'Mantenimiento de órdenes',
 }
 
 export default async function AllOrdersPage() {
@@ -14,7 +14,7 @@ export default async function AllOrdersPage() {
 
   return (
     <>
-      <PageTitle title='Todas las órdenes' />
+      <PageTitle title='Mantenimiento de órdenes' />
       <OrderTable orders={orders} />
     </>
   )
