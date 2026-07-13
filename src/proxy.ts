@@ -1,11 +1,10 @@
 import type { Route } from 'next'
 import type { NextProxy } from 'next/server'
-import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { auth } from './auth'
+import { getSession } from './lib/auth'
 
 export const proxy: NextProxy = async (request) => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await getSession()
 
   if (!session) {
     return NextResponse.redirect(new URL('/auth/login' satisfies Route, request.url))
@@ -15,5 +14,5 @@ export const proxy: NextProxy = async (request) => {
 }
 
 export const config = {
-  matcher: ['/checkout/:path*', '/orders/:path*'],
+  matcher: ['/checkout/:path*', '/orders/:path*', '/profile/:path*', '/admin/:path*'],
 }
