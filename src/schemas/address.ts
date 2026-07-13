@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { notEmpty } from './shared'
 
-export const AddressDTO = z.object({
+export const AddressInput = z.object({
   firstName: notEmpty,
   lastName: notEmpty,
   address: notEmpty,
@@ -13,4 +13,4 @@ export const AddressDTO = z.object({
   remember: z.boolean().optional(),
 })
 
-export type AddressDTO = z.infer<typeof AddressDTO>
+export type AddressInput = z.infer<typeof AddressInput>

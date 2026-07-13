@@ -1,11 +1,11 @@
 'use client'
 
-import type { AddressDTO } from '@/schemas/address'
+import type { AddressInput } from '@/schemas/address'
 import { Card } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useAddressStore } from '@/hooks'
 
-export function AddressDetails({ savedAddress }: { savedAddress?: AddressDTO | null }) {
+export function AddressDetails({ savedAddress }: { savedAddress?: AddressInput | null }) {
   const storedAddress = useAddressStore(useShallow((s) => s.address))
   const addressDetails = savedAddress ?? storedAddress
   const { firstName, lastName, city, countryId, phone, address, address2, postalCode } = addressDetails
