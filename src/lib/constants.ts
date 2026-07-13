@@ -16,13 +16,13 @@ export const GenderMap: Record<Gender, string> = {
 }
 
 // Themes
-export const themes = ['wireframe', 'night'] as const satisfies [Theme, Theme]
+export const themes = ['light', 'dark'] as const satisfies string[]
 
 // Theme values
 export const ThemeMap = {
   light: 'wireframe',
   dark: 'night',
-} as const satisfies Record<'light' | 'dark', (typeof themes)[number]>
+} as const satisfies Record<(typeof themes)[number], Theme>
 
 // Validation errors
 export const ValidationErrorMap = {
