@@ -1,7 +1,6 @@
 import { APIError } from 'better-auth'
-import { headers } from 'next/headers'
 import { createSafeActionClient } from 'next-safe-action'
-import { auth } from '@/auth'
+import { getSession } from './auth'
 import { ApiErrorMap } from './constants'
 import { ServerError } from './errors'
 
@@ -34,7 +33,7 @@ export const safeClient = createSafeActionClient({
 })
 
 export const safeAuthClient = safeClient.use(async ({ next }) => {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await getSession()
 
   if (!session?.user) {
     throw new ServerError('No autenticado')
