@@ -2,22 +2,22 @@ import { z } from 'zod'
 import { Size } from '@/prisma/generated/client'
 import { Address } from './address'
 
-export const OrderItemDTO = z.object({
+export const OrderItem = z.object({
   productId: z.string(),
   quantity: z.int(),
   size: z.enum(Size),
 })
 
-export const OrderDTO = z.object({
-  items: z.array(OrderItemDTO),
+export const Order = z.object({
+  items: z.array(OrderItem),
   address: Address,
 })
 
-export const TransactionDTO = z.object({
+export const Transaction = z.object({
   orderId: z.string(),
   transactionId: z.string(),
 })
 
-export type OrderItemDTO = z.infer<typeof OrderItemDTO>
-export type OrderDTO = z.infer<typeof OrderDTO>
-export type TransactionDTO = z.infer<typeof TransactionDTO>
+export type OrderItem = z.infer<typeof OrderItem>
+export type Order = z.infer<typeof Order>
+export type Transaction = z.infer<typeof Transaction>
