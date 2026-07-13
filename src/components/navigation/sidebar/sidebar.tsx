@@ -1,15 +1,14 @@
 import { Baby, LogIn, Mars, Shirt, Ticket, User, Users, Venus } from 'lucide-react'
-import { headers } from 'next/headers'
 import { Divider, Menu } from 'rsc-daisyui'
-import { auth } from '@/auth'
 import { NavLink } from '@/components/shared'
+import { getSession } from '@/lib/auth'
 import { CloseButton } from './close-button'
 import { LogoutButton } from './logout-button'
 import { SearchInput } from './search-input'
 import { ThemeSwitch } from './theme-switch'
 
 export async function Sidebar() {
-  const session = await auth.api.getSession({ headers: await headers() })
+  const session = await getSession()
   const isLoggedIn = !!session?.user
   const isAdmin = session?.user.role === 'admin'
 
