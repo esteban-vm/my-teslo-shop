@@ -1,12 +1,12 @@
 import type { StateCreator } from 'zustand'
-import type { AddressInput } from '@/schemas/address'
+import type { Address } from '@/schemas/address'
 
 interface AddressState {
-  address: AddressInput
+  address: Address
 }
 
 interface AddressActions {
-  setAddress: (address: AddressInput) => void
+  setAddress: (address: Address) => void
   resetAddress: () => void
 }
 
