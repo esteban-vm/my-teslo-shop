@@ -1,16 +1,17 @@
-'use client'
-
 import type { ReactNode } from 'react'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@teispace/next-themes'
+import { getTheme } from '@teispace/next-themes/server'
 import { ToastContainer } from 'react-toastify'
 import { ThemeMap, themes } from '@/lib/constants'
 
-export function Providers({ children }: { children: ReactNode }) {
+export async function Providers({ children }: { children: ReactNode }) {
+  const initialTheme = await getTheme()
+
   return (
     <ThemeProvider
+      defaultTheme={themes[1]}
       disableTransitionOnChange
-      enableSystem
-      storageKey='teslo-shop/current-theme'
+      initialTheme={initialTheme ?? undefined}
       themes={themes}
       value={ThemeMap}
     >
