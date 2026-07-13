@@ -40,7 +40,7 @@ export async function Sidebar() {
         <>
           <NavLink icon={<Shirt />} text='Productos' to='/' />
           <NavLink icon={<Ticket />} text='Órdenes' to='/admin/orders' />
-          <NavLink icon={<Users />} text='Usuarios' to='/' />
+          <NavLink icon={<Users />} text='Usuarios' to='/admin/users' />
         </>
       )}
 
