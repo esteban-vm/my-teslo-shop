@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
-import type { Product, Size } from '@/prisma/generated/client'
+import type { Product, Role, Size } from '@/prisma/generated/client'
 
 export interface ProductResult extends Product {
   images: string[]
@@ -30,6 +30,13 @@ export interface OrderSummary {
   subtotal: number
   tax: number
   totalItems: number
+}
+
+export interface UserResult {
+  id: string
+  email: string
+  name: string
+  role: Role | null
 }
 
 export interface FormControlBaseProps<T extends FieldValues> extends PropsWithChildren {
