@@ -48,7 +48,7 @@ export interface FormControlProps<T extends FieldValues> extends FormControlBase
   name: FieldPath<T>
 }
 
-export type PaginatedResult<T> = T & {
+export type Paginated<T> = T & {
   currentPage: number
   totalPages: number
 }
