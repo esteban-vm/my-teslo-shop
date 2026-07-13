@@ -1,21 +1,21 @@
 'use client'
 
+import { useTheme } from '@teispace/next-themes'
 import { MoonStar, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
 import { Menu, Skeleton } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { useMounted } from '@/hooks'
 
 export function ThemeSwitch() {
   const { mounted } = useMounted(5)
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme()
 
   if (!mounted) {
     return <Skeleton className='mx-auto h-8 w-16 rounded-full' />
   }
 
   const onThemeChange = () => {
-    setTheme((value) => (value === 'light' ? 'dark' : 'light'))
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   return (
