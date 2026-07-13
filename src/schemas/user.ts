@@ -1,9 +1,9 @@
 import { z } from 'zod'
 import { Role } from '@/prisma/generated/client'
 
-export const ChangeUserRole = z.object({
+export const UserRole = z.object({
   role: z.enum(Role).nullable(),
   userId: z.string(),
 })
 
-export type ChangeUserRole = z.infer<typeof ChangeUserRole>
+export type UserRole = z.infer<typeof UserRole>
