@@ -3,7 +3,7 @@ import { ValidationErrorMap } from '@/lib/constants'
 import { Validations } from '@/lib/validations'
 import { notEmpty, passwordParams } from './shared'
 
-export const EmailDTO = z.object({
+export const Email = z.object({
   email: notEmpty.superRefine((value, ctx) => {
     if (Validations.notEmail(value)) {
       ctx.addIssue(ValidationErrorMap.notEmail)
@@ -11,7 +11,7 @@ export const EmailDTO = z.object({
   }),
 })
 
-export const PasswordDTO = z
+export const Password = z
   .object({
     password: notEmpty.superRefine((value, ctx) => {
       if (Validations.notPassword(value)) {
@@ -23,13 +23,13 @@ export const PasswordDTO = z
   })
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
-export const LoginDTO = EmailDTO.extend({ password: notEmpty })
+export const Login = Email.extend({ password: notEmpty })
 
-export const NewUserDTO = EmailDTO.extend({ name: notEmpty })
-  .extend(PasswordDTO.shape)
+export const CreateUser = Email.extend({ name: notEmpty })
+  .extend(Password.shape)
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
-export type EmailDTO = z.infer<typeof EmailDTO>
-export type PasswordDTO = z.infer<typeof PasswordDTO>
-export type LoginDTO = z.infer<typeof LoginDTO>
-export type NewUserDTO = z.infer<typeof NewUserDTO>
+export type Email = z.infer<typeof Email>
+export type Password = z.infer<typeof Password>
+export type Login = z.infer<typeof Login>
+export type CreateUser = z.infer<typeof CreateUser>

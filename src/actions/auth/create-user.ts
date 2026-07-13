@@ -3,9 +3,9 @@
 import { auth } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { safeClient } from '@/lib/safe-action'
-import { NewUserDTO } from '@/schemas/auth'
+import { CreateUser } from '@/schemas/auth'
 
-export const createUser = safeClient.inputSchema(NewUserDTO).action(async ({ parsedInput }) => {
+export const createUser = safeClient.inputSchema(CreateUser).action(async ({ parsedInput }) => {
   await sleepExecution(3)
   const { email, name, password } = parsedInput
   const { user } = await auth.api.signUpEmail({ body: { email, name, password } })
