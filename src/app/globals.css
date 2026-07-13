@@ -1,12 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@teispace/next-themes/tailwind.css";
 @import "react-image-gallery/styles/image-gallery.css";
 
 @plugin "daisyui" {
   logs: false;
-  themes:
-    wireframe --default,
-    night --prefersdark;
+  themes: wireframe, night;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";
@@ -15,8 +14,6 @@
   --font-geist: var(--font-geist-variable);
   --font-montserrat: var(--font-montserrat-alternates);
 }
-
-@custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
 
 :root {
   --toastify-color-info: var(--color-info);
