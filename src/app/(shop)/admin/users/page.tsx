@@ -1,5 +1,3 @@
-export const revalidate = 0
-
 import type { Metadata } from 'next'
 import { getUsers } from '@/actions/user'
 import { UserTable } from '@/components/admin'
