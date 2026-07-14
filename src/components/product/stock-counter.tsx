@@ -1,8 +1,8 @@
 import { use } from 'react'
 import { getStockBySlug } from '@/actions/product'
 
-export function StockCounter({ slug }: { slug: string }) {
-  const stock = use(getStockBySlug(slug))
+export function StockCounter(props: { slug: string }) {
+  const { data: stock = 0 } = use(getStockBySlug(props))
 
   return (
     <p>
