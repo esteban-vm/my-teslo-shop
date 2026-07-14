@@ -4,7 +4,7 @@ import { OrderRow } from './order-row'
 
 export function OrderTable({ orders }: { orders: OrderResult[] }) {
   return (
-    <section className='mb-3 w-full overflow-x-auto'>
+    <section className='data-table'>
       <Table>
         <thead>
           <tr>
