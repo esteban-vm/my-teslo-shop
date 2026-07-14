@@ -2,13 +2,15 @@
 
 import { sleepExecution } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
+import { safeClient } from '@/lib/safe-action'
+import { WithSlug } from '@/schemas/shared'
 
-export async function getStockBySlug(slug: string): Promise<number> {
+export const getStockBySlug = safeClient.inputSchema(WithSlug).action(async ({ parsedInput }): Promise<number> => {
   try {
     await sleepExecution(3)
 
     const { stock } = await prisma.product.findFirstOrThrow({
-      where: { slug },
+      where: { slug: parsedInput.slug },
       select: { stock: true },
     })
 
@@ -16,4 +18,4 @@ export async function getStockBySlug(slug: string): Promise<number> {
   } catch {
     return 0
   }
-}
+})
