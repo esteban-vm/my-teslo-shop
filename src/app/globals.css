@@ -167,3 +167,7 @@ form {
     @apply space-y-1;
   }
 }
+
+.data-table {
+  @apply mb-3 w-full overflow-x-auto;
+}
