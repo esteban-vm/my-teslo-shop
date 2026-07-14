@@ -170,4 +170,12 @@ form {
 
 .data-table {
   @apply mb-3 w-full overflow-x-auto;
+
+  tr {
+    @apply text-nowrap hover:bg-base-300;
+
+    td:first-of-type {
+      @apply max-w-30 truncate;
+    }
+  }
 }

@@ -8,8 +8,8 @@ export function OrderRow({ order }: { order: OrderResult }) {
   const { id, isPaid, shippingAddress } = order
 
   return (
-    <tr className='text-nowrap hover:bg-base-300'>
-      <td className='font-semibold'>{id}</td>
+    <tr>
+      <td title={id}>{id}</td>
       <td>
         {shippingAddress?.firstName} {shippingAddress?.lastName}
       </td>

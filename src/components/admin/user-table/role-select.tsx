@@ -19,7 +19,7 @@ export function RoleSelect({ userId, role }: UserRole) {
   const isDisabled = isExecuting || isPending || userId === session?.user.id
 
   return (
-    <Select disabled={isDisabled} onChange={onRoleChange} value={role ?? ''}>
+    <Select className='w-30' disabled={isDisabled} onChange={onRoleChange} value={role ?? ''}>
       {userRoles.map((r) => (
         <option key={r} value={r}>
           {r}

@@ -5,11 +5,11 @@ export function UserRow({ user }: { user: UserResult }) {
   const { id, name, email, role } = user
 
   return (
-    <tr className='text-nowrap hover:bg-base-300'>
-      <td className='font-semibold'>{id}</td>
+    <tr>
+      <td title={id}>{id}</td>
       <td>{name}</td>
       <td>{email}</td>
-      <td>
+      <td className='w-40 py-0'>
         <RoleSelect role={role} userId={id} />
       </td>
     </tr>
