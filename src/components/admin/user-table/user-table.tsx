@@ -4,7 +4,7 @@ import { UserRow } from './user-row'
 
 export function UserTable({ users }: { users: UserResult[] }) {
   return (
-    <section className='mb-3 w-full overflow-x-auto'>
+    <section className='data-table'>
       <Table>
         <thead>
           <tr>
