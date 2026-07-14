@@ -3,16 +3,16 @@ import { getUsers } from '@/actions/user'
 import { UserTable } from '@/components/admin'
 import { PageTitle } from '@/components/shared'
 
-export const metadata: Metadata = {
-  title: 'Mantenimiento de usuarios',
-}
+const title = 'Mantenimiento de usuarios'
+
+export const metadata: Metadata = { title }
 
 export default async function UsersPage() {
   const { data: users = [] } = await getUsers()
 
   return (
     <>
-      <PageTitle title='Mantenimiento de usuarios' />
+      <PageTitle title={title} />
       <UserTable users={users} />
     </>
   )

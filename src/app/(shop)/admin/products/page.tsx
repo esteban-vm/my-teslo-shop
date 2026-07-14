@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import { PageTitle } from '@/components/shared'
 
-export const metadata: Metadata = {
-  title: 'Mantenimiento de productos',
-}
+const title = 'Mantenimiento de productos'
+
+export const metadata: Metadata = { title }
 
 export default function ProductsPage() {
   return (
     <>
-      <PageTitle title='Mantenimiento de productos' />
+      <PageTitle title={title} />
       <section></section>
     </>
   )
