@@ -37,9 +37,10 @@ interface GetPageUrlParams extends GetCurrentPageParams, PagePaginationProps {
 function getPageUrl({ page, searchParams, totalPages, pathname }: GetPageUrlParams): Route {
   const params = new URLSearchParams(searchParams)
   const pageNumber = Number(page)
+  const pageUrl = `${pathname}?${params.toString()}` as Route
 
   if (page === ELLIPSIS_CHAR || pageNumber > totalPages) {
-    return `${pathname}?${params.toString()}` as Route
+    return pageUrl
   }
 
   if (pageNumber <= 0) {
@@ -47,7 +48,7 @@ function getPageUrl({ page, searchParams, totalPages, pathname }: GetPageUrlPara
   }
 
   params.set('page', page.toString())
-  return `${pathname}?${params.toString()}` as Route
+  return pageUrl
 }
 
 interface GetCurrentPageParams {
