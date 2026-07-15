@@ -6,7 +6,11 @@ import { Join } from 'rsc-daisyui'
 import { Pagination } from '@/lib/pagination'
 import { PaginationButton } from './pagination-button'
 
-export function PagePagination({ totalPages }: { totalPages: number }) {
+export interface PagePaginationProps {
+  totalPages: number
+}
+
+export function PagePagination({ totalPages }: PagePaginationProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const currentPage = Pagination.getCurrentPage({ searchParams })

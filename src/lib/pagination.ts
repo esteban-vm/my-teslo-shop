@@ -1,5 +1,6 @@
 import type { Route } from 'next'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
+import type { PagePaginationProps } from '@/components/shared'
 import { ELLIPSIS_CHAR } from './constants'
 
 export function Pagination() {}
@@ -8,9 +9,8 @@ Pagination.getPageNumbers = getPageNumbers
 Pagination.getPageUrl = getPageUrl
 Pagination.getCurrentPage = getCurrentPage
 
-interface GetPageNumbersParams {
+interface GetPageNumbersParams extends PagePaginationProps {
   currentPage: number
-  totalPages: number
 }
 
 function getPageNumbers({ currentPage, totalPages }: GetPageNumbersParams) {
@@ -29,15 +29,14 @@ function getPageNumbers({ currentPage, totalPages }: GetPageNumbersParams) {
   return [1, ELLIPSIS_CHAR, currentPage - 1, currentPage, currentPage + 1, ELLIPSIS_CHAR, totalPages]
 }
 
-interface GetPageUrlParams extends GetCurrentPageParams {
+interface GetPageUrlParams extends GetCurrentPageParams, PagePaginationProps {
   page: number | string
-  totalPages: number
   pathname: string
 }
 
 function getPageUrl({ page, searchParams, totalPages, pathname }: GetPageUrlParams): Route {
   const params = new URLSearchParams(searchParams)
-  const pageNumber = +page
+  const pageNumber = Number(page)
 
   if (page === ELLIPSIS_CHAR || pageNumber > totalPages) {
     return `${pathname}?${params.toString()}` as Route
