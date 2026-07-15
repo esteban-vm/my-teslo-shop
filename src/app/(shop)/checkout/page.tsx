@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { CheckoutList, PlaceOrder } from '@/components/checkout'
 import { PageTitle } from '@/components/shared'
 
-export const metadata: Metadata = {
-  title: 'Verificar orden',
-}
+const title = 'Verificar orden'
+
+export const metadata: Metadata = { title }
 
 export default function CheckoutPage() {
   return (
     <>
-      <PageTitle title='Verificar orden' />
+      <PageTitle title={title} />
       <section data-shop>
         <div className='lg:col-span-2'>
           <CheckoutList />

@@ -5,16 +5,16 @@ import { getMyOrders } from '@/actions/order'
 import { OrderTable } from '@/components/orders'
 import { PageTitle } from '@/components/shared'
 
-export const metadata: Metadata = {
-  title: 'Mis órdenes',
-}
+const title = 'Mis órdenes'
+
+export const metadata: Metadata = { title }
 
 export default async function MyOrdersPage() {
   const { data: orders = [] } = await getMyOrders()
 
   return (
     <>
-      <PageTitle title='Mis órdenes' />
+      <PageTitle title={title} />
       <OrderTable orders={orders} />
     </>
   )

@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { BuyNow, CartList } from '@/components/cart'
 import { PageTitle } from '@/components/shared'
 
-export const metadata: Metadata = {
-  title: 'Mi Carrito',
-}
+const title = 'Mi carrito'
+
+export const metadata: Metadata = { title }
 
 export default function CartPage() {
   return (
     <>
-      <PageTitle title='Mi carrito' />
+      <PageTitle title={title} />
       <section data-shop>
         <div className='lg:col-span-2'>
           <CartList />

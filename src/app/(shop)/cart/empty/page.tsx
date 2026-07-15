@@ -4,16 +4,16 @@ import NextLink from 'next/link'
 import { Link } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 
-export const metadata: Metadata = {
-  title: 'Carrito vacío',
-}
+const title = 'Carrito vacío'
+
+export const metadata: Metadata = { title }
 
 export default function EmptyPage() {
   return (
     <PageContainer>
       <CartIcon $as={ShoppingCart} />
       <InnerContainer>
-        <PageTitle>Carrito de compras vacío</PageTitle>
+        <PageTitle>{title}</PageTitle>
         <NextLink href='/' passHref>
           <Link as='span' className='font-geist font-semibold text-sm' color='info' hover>
             Ir a comprar ahora
