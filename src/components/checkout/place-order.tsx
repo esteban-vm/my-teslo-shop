@@ -30,7 +30,7 @@ export function PlaceOrder() {
   return (
     <Card>
       <Card.Body>
-        <AddressDetails />
+        <AddressDetails address={address} />
         <Divider />
         <SummaryDetails />
         <Button disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
