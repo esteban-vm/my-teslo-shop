@@ -1,9 +1,23 @@
 import { z } from 'zod'
-import { Gender } from '@/prisma/generated/client'
-import { WithPagination } from './shared'
+import { Gender, Size } from '@/prisma/generated/client'
+import { PaginatedResults, WithID } from './shared'
 
-export const Products = WithPagination.extend({
-  gender: z.enum(Gender).optional(),
+export const ProductResult = WithID.extend({
+  title: z.string(),
+  description: z.string(),
+  price: z.number(),
+  stock: z.number(),
+  sizes: z.array(z.enum(Size)),
+  gender: z.enum(Gender),
+  slug: z.string(),
+  tags: z.array(z.string()),
+  categoryId: z.string(),
+  images: z.array(z.string()),
 })
 
-export type Products = z.infer<typeof Products>
+export const ProductResults = z.array(ProductResult)
+export const PaginatedProducts = PaginatedResults.extend({ products: ProductResults })
+
+export type ProductResult = z.infer<typeof ProductResult>
+export type ProductResults = z.infer<typeof ProductResults>
+export type PaginatedProducts = z.infer<typeof PaginatedProducts>
