@@ -1,8 +1,8 @@
-import type { ProductResult } from '@/types'
+import type { ProductResults } from '@/schemas/product'
 import tw from 'tailwind-styled-components'
 import { ProductCard } from './product-card'
 
-export function ProductGrid({ products }: { products: ProductResult[] }) {
+export function ProductGrid({ products }: { products: ProductResults }) {
   return (
     <GridContainer>
       {products.map((product) => (
@@ -13,4 +13,3 @@ export function ProductGrid({ products }: { products: ProductResult[] }) {
 }
 
 const GridContainer = tw.main`grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`
-// const GridContainer = tw.main`grid place-content-center gap-4 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`
