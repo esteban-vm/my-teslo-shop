@@ -1,14 +1,14 @@
 'use client'
 
 import type { ChangeEventHandler } from 'react'
-import type { UserRole } from '@/schemas/user'
+import type { UserRoleDTO } from '@/schemas/user'
 import { useAction } from 'next-safe-action/hooks'
 import { Select } from 'rsc-daisyui'
 import { changeUserRole } from '@/actions/user'
 import { authClient } from '@/auth-client'
 import { userRoles } from '@/lib/constants'
 
-export function RoleSelect({ userId, role }: UserRole) {
+export function RoleSelect({ userId, role }: UserRoleDTO) {
   const { data: session, isPending } = authClient.useSession()
   const { execute, isExecuting } = useAction(changeUserRole)
 
