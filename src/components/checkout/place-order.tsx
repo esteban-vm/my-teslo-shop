@@ -10,6 +10,7 @@ export function PlaceOrder() {
   const { isExecuting, execute } = usePlaceOrder()
   const cart = useCartStore((s) => s.cart)
   const address = useAddressStore((s) => s.address)
+  const summary = useCartStore((s) => s.getOrderSummary())
 
   if (!mounted) {
     return <Skeleton text>Cargando datos de orden</Skeleton>
@@ -32,7 +33,7 @@ export function PlaceOrder() {
       <Card.Body>
         <AddressDetails address={address} />
         <Divider />
-        <SummaryDetails />
+        <SummaryDetails summary={summary} />
         <Button disabled={isExecuting} onClick={onPlaceOrder} size='sm' wide>
           Colocar orden
         </Button>
