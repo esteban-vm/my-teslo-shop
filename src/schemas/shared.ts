@@ -10,6 +10,11 @@ export const WithPagination = z.object({
   take: z.number().optional(),
 })
 
+export const PaginatedResults = z.object({
+  totalPages: z.number(),
+  currentPage: z.number(),
+})
+
 export const notEmpty = z.string().trim().refine(Validations.notEmpty, ValidationErrorMap.notEmpty)
 
 export const passwordParams = {
