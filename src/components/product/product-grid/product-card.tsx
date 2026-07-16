@@ -1,5 +1,5 @@
 import type { Route } from 'next'
-import type { ProductResult } from '@/types'
+import type { ProductResult } from '@/schemas/product'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
