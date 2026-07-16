@@ -1,4 +1,4 @@
-import type { UserResult } from '@/types'
+import type { UserResult } from '@/schemas/user'
 import { RoleSelect } from './role-select'
 
 export function UserRow({ user }: { user: UserResult }) {
