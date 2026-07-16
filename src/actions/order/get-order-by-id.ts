@@ -35,6 +35,7 @@ export const getOrderById = safeAuthClient.inputSchema(WithID).action(async ({ c
       },
     },
     omit: {
+      id: true,
       userId: true,
       createdAt: true,
       updatedAt: true,
