@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
-import type { Role, Size } from '@/prisma/generated/client'
+import type { Size } from '@/prisma/generated/client'
 
 export interface CartProduct {
   id: string
@@ -19,13 +19,6 @@ export interface OrderSummary {
   totalItems: number
 }
 
-export interface UserResult {
-  id: string
-  email: string
-  name: string
-  role: Role | null
-}
-
 export interface FormControlBaseProps<T extends FieldValues> extends PropsWithChildren {
   control: Control<T>
   className?: string
@@ -33,9 +26,4 @@ export interface FormControlBaseProps<T extends FieldValues> extends PropsWithCh
 
 export interface FormControlProps<T extends FieldValues> extends FormControlBaseProps<T> {
   name: FieldPath<T>
-}
-
-export type Paginated<T> = T & {
-  currentPage: number
-  totalPages: number
 }
