@@ -13,6 +13,8 @@ export const getUsers = safeAdminClient
     if (Number.isNaN(page) || page < 1) page = 1
 
     const users = await prisma.user.findMany({
+      take,
+      skip: (page - 1) * take,
       select: {
         id: true,
         email: true,
