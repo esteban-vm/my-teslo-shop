@@ -1,15 +1,9 @@
-'use client'
-
 import type { OrderSummary } from '@/types'
 import { Card } from 'rsc-daisyui'
-import { useShallow } from 'zustand/shallow'
-import { useCartStore } from '@/hooks'
 import { formatProductPrice } from '@/lib/helpers'
 
-export function SummaryDetails({ savedSummary }: { savedSummary?: OrderSummary }) {
-  const storedSummary = useCartStore(useShallow((s) => s.getOrderSummary()))
-  const summaryDetails = savedSummary ?? storedSummary
-  const { total, subtotal, tax, totalItems } = summaryDetails
+export function SummaryDetails({ summary }: { summary: OrderSummary }) {
+  const { total, subtotal, tax, totalItems } = summary
 
   return (
     <>
