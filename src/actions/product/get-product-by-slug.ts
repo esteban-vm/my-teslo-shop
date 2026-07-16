@@ -1,15 +1,18 @@
 'use server'
 
-import type { ProductResult } from '@/types'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
+import { ProductResult } from '@/schemas/product'
 import { WithSlug } from '@/schemas/shared'
 
 export const getProductBySlug = safeClient
   .inputSchema(WithSlug)
-  .action(async ({ parsedInput }): Promise<ProductResult | null> => {
+  .outputSchema(ProductResult.nullable())
+  .action(async ({ parsedInput }) => {
     const product = await prisma.product.findFirst({
-      where: { slug: parsedInput.slug },
+      where: {
+        slug: parsedInput.slug,
+      },
       include: {
         images: {
           take: 2,
