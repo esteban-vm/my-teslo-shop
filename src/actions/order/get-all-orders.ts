@@ -1,13 +1,14 @@
 'use server'
 
-import type { OrderResult, Paginated } from '@/types'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
+import { PaginatedOrders } from '@/schemas/order'
 import { WithPagination } from '@/schemas/shared'
 
 export const getAllOrders = safeAdminClient
   .inputSchema(WithPagination)
-  .action(async ({ parsedInput }): Promise<Paginated<{ orders: OrderResult[] }>> => {
+  .outputSchema(PaginatedOrders)
+  .action(async ({ parsedInput }) => {
     let { page = 1, take = 12 } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
 
