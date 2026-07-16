@@ -8,7 +8,7 @@ export const OrderItem = z.object({
   size: z.enum(Size),
 })
 
-export const Order = z.object({
+export const OrderDTO = z.object({
   items: z.array(OrderItem),
   address: AddressDTO,
 })
@@ -19,5 +19,5 @@ export const Transaction = z.object({
 })
 
 export type OrderItem = z.infer<typeof OrderItem>
-export type Order = z.infer<typeof Order>
+export type OrderDTO = z.infer<typeof OrderDTO>
 export type Transaction = z.infer<typeof Transaction>
