@@ -1,8 +1,8 @@
-import type { OrderResult } from '@/types'
+import type { OrderDAO } from '@/schemas/order'
 import { Table } from 'rsc-daisyui'
 import { OrderRow } from './order-row'
 
-export function OrderTable({ orders }: { orders: OrderResult[] }) {
+export function OrderTable({ orders }: { orders: OrderDAO[] }) {
   return (
     <section className='data-table'>
       <Table>
