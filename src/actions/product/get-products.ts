@@ -1,13 +1,14 @@
 'use server'
 
-import type { Paginated, ProductResult } from '@/types'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
-import { Products } from '@/schemas/product'
+import { PaginatedProducts } from '@/schemas/product'
+import { WithPaginationAndGender } from '@/schemas/shared'
 
 export const getProducts = safeClient
-  .inputSchema(Products)
-  .action(async ({ parsedInput }): Promise<Paginated<{ products: ProductResult[] }>> => {
+  .inputSchema(WithPaginationAndGender)
+  .outputSchema(PaginatedProducts)
+  .action(async ({ parsedInput }) => {
     let { page = 1, take = 12, gender } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
 
