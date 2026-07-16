@@ -1,10 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
-import type { Product, Role, Size } from '@/prisma/generated/client'
-
-export interface ProductResult extends Product {
-  images: string[]
-}
+import type { Role, Size } from '@/prisma/generated/client'
 
 export interface CartProduct {
   id: string
