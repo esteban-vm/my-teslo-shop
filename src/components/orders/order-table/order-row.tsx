@@ -1,10 +1,10 @@
-import type { OrderResult } from '@/types'
+import type { OrderDAO } from '@/schemas/order'
 import { Banknote, BanknoteX } from 'lucide-react'
 import NextLink from 'next/link'
 import { Link } from 'rsc-daisyui'
 import { cn } from '@/lib/ui'
 
-export function OrderRow({ order }: { order: OrderResult }) {
+export function OrderRow({ order }: { order: OrderDAO }) {
   const { id, isPaid, shippingAddress } = order
 
   return (
