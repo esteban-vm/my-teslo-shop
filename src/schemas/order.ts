@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Size } from '@/prisma/generated/client'
-import { Address } from './address'
+import { AddressDTO } from './address'
 
 export const OrderItem = z.object({
   productId: z.string(),
@@ -10,7 +10,7 @@ export const OrderItem = z.object({
 
 export const Order = z.object({
   items: z.array(OrderItem),
-  address: Address,
+  address: AddressDTO,
 })
 
 export const Transaction = z.object({
