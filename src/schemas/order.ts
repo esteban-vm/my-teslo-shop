@@ -1,6 +1,20 @@
 import { z } from 'zod'
 import { Size } from '@/prisma/generated/client'
 import { AddressDTO } from './address'
+import { PaginatedResults, WithID } from './shared'
+
+export const OrderDAO = WithID.extend({
+  isPaid: z.boolean().nullable(),
+  shippingAddress: z
+    .object({
+      firstName: z.string(),
+      lastName: z.string(),
+    })
+    .nullable(),
+})
+
+export const OrderResults = z.array(OrderDAO)
+export const PaginatedOrders = PaginatedResults.extend({ orders: OrderResults })
 
 export const OrderItemDTO = z.object({
   productId: z.string(),
@@ -18,6 +32,9 @@ export const Transaction = z.object({
   transactionId: z.string(),
 })
 
+export type OrderDAO = z.infer<typeof OrderDAO>
+export type OrderResults = z.infer<typeof OrderResults>
+export type PaginatedOrders = z.infer<typeof PaginatedOrders>
 export type OrderItemDTO = z.infer<typeof OrderItemDTO>
 export type OrderDTO = z.infer<typeof OrderDTO>
 export type Transaction = z.infer<typeof Transaction>
