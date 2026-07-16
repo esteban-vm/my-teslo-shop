@@ -18,7 +18,7 @@ export default async function OrdersPage({ searchParams }: PageProps<'/orders'>)
   if (!data) notFound()
 
   const { orders, totalPages } = data
-  if (orders.length === 0) redirect('/')
+  if (orders.length === 0) redirect('/orders')
 
   return (
     <>
