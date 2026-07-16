@@ -16,7 +16,7 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
   const { data: order } = await getOrderById({ id })
   if (!order) notFound()
 
-  const { items, isPaid, shippingAddress: savedAddress, ...savedSummary } = order
+  const { items, isPaid, shippingAddress: address, ...savedSummary } = order
 
   const products: CartProduct[] = items.map(({ product, ...rest }) => {
     return {
@@ -39,7 +39,7 @@ export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
           <Card>
             <Card.Body>
               <PaymentAlert isPaid={isPaid} />
-              <AddressDetails savedAddress={savedAddress} />
+              {address && <AddressDetails address={address} />}
               <Divider />
               <SummaryDetails savedSummary={savedSummary} />
               {/* {!isPaid && <PaymentButton amount={savedSummary.total} orderId={order.id} />} */}
