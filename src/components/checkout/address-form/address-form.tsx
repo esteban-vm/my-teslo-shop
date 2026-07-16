@@ -1,6 +1,6 @@
 'use client'
 
-import type { AddressDAO } from '@/schemas/address'
+import type { AddressResult } from '@/schemas/address'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { FormButtons, FormField } from '@/components/shared'
@@ -9,7 +9,7 @@ import { CountrySelect } from './country-select'
 import { RememberCheck } from './remember-check'
 
 export interface AddressFormProps {
-  savedAddress?: AddressDAO | null
+  savedAddress?: AddressResult | null
 }
 
 export function AddressForm(props: AddressFormProps) {

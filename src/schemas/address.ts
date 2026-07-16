@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { notEmpty, WithID } from './shared'
 
-export const AddressDAO = WithID.extend({
+export const AddressResult = WithID.extend({
   userId: z.string(),
   firstName: z.string(),
   lastName: z.string(),
@@ -25,5 +25,5 @@ export const AddressDTO = z.object({
   remember: z.boolean().optional(),
 })
 
-export type AddressDAO = z.infer<typeof AddressDAO>
+export type AddressResult = z.infer<typeof AddressResult>
 export type AddressDTO = z.infer<typeof AddressDTO>
