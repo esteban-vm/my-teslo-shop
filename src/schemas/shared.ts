@@ -6,8 +6,8 @@ export const WithID = z.object({ id: z.string() })
 export const WithSlug = z.object({ slug: z.string() })
 
 export const WithPagination = z.object({
-  page: z.number().optional(),
-  take: z.number().optional(),
+  page: z.number().optional().default(1),
+  take: z.number().optional().default(12),
 })
 
 export const PaginatedResults = z.object({
@@ -21,3 +21,8 @@ export const passwordParams = {
   path: ['repeatPassword'],
   error: 'Las contraseñas deben coincidir',
 }
+
+export type WithID = z.infer<typeof WithID>
+export type WithSlug = z.infer<typeof WithSlug>
+export type WithPagination = z.infer<typeof WithPagination>
+export type PaginatedResults = z.infer<typeof PaginatedResults>
