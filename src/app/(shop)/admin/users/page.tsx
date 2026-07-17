@@ -3,16 +3,16 @@ import { notFound, redirect } from 'next/navigation'
 import { getUsers } from '@/actions/user'
 import { UserTable } from '@/components/admin'
 import { PagePagination, PageTitle } from '@/components/shared'
+import { getPageNumber } from '@/lib/helpers'
 
 const title = 'Mantenimiento de usuarios'
 
 export const metadata: Metadata = { title }
 
 export default async function UsersPage({ searchParams }: PageProps<'/admin/users'>) {
-  let { page = '1' } = await searchParams
-  if (Array.isArray(page)) page = '1'
+  const page = await getPageNumber(searchParams)
 
-  const { data } = await getUsers({ page: Number.parseInt(page, 10) })
+  const { data } = await getUsers({ page })
   if (!data) notFound()
 
   const { users, totalPages } = data
