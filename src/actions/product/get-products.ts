@@ -2,8 +2,7 @@
 
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
-import { PaginatedProducts } from '@/schemas/product'
-import { WithPaginationAndGender } from '@/schemas/shared'
+import { PaginatedProducts, WithPaginationAndGender } from '@/schemas/product'
 
 export const getProducts = safeClient
   .inputSchema(WithPaginationAndGender)
