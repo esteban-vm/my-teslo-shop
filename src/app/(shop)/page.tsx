@@ -4,12 +4,12 @@ import { notFound, redirect } from 'next/navigation'
 import { getProducts } from '@/actions/product'
 import { ProductGrid } from '@/components/product'
 import { PagePagination, PageTitle } from '@/components/shared'
+import { getPageNumber } from '@/lib/helpers'
 
 export default async function ShopPage({ searchParams }: PageProps<'/'>) {
-  let { page = '1' } = await searchParams
-  if (Array.isArray(page)) page = '1'
+  const page = await getPageNumber(searchParams)
 
-  const { data } = await getProducts({ page: Number.parseInt(page, 10) })
+  const { data } = await getProducts({ page })
   if (!data) notFound()
 
   const { products, totalPages } = data
