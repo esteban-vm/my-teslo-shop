@@ -7,6 +7,7 @@ import { getProducts } from '@/actions/product'
 import { ProductGrid } from '@/components/product'
 import { PagePagination, PageTitle } from '@/components/shared'
 import { GenderMap } from '@/lib/constants'
+import { getPageNumber } from '@/lib/helpers'
 
 type GenderPageProps = PageProps<'/gender/[gender]'>
 
@@ -33,10 +34,8 @@ export default async function GenderPage({ params, searchParams }: GenderPagePro
   const currentGender = GenderMap[genderDB]
   if (!currentGender) notFound()
 
-  let { page = '1' } = await searchParams
-  if (Array.isArray(page)) page = '1'
-
-  const { data } = await getProducts({ page: Number.parseInt(page, 10), gender: genderDB })
+  const page = await getPageNumber(searchParams)
+  const { data } = await getProducts({ page, gender: genderDB })
   if (!data) notFound()
 
   const { products, totalPages } = data
