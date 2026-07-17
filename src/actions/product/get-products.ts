@@ -8,7 +8,7 @@ export const getProducts = safeClient
   .inputSchema(WithPaginationAndGender)
   .outputSchema(PaginatedProducts)
   .action(async ({ parsedInput }) => {
-    let { page = 1, take = 12, gender } = parsedInput
+    let { page, take, gender } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
 
     const products = await prisma.product.findMany({

@@ -9,7 +9,7 @@ export const getMyOrders = safeAuthClient
   .inputSchema(WithPagination)
   .outputSchema(PaginatedOrders)
   .action(async ({ ctx, parsedInput }) => {
-    let { page = 1, take = 12 } = parsedInput
+    let { page, take } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
 
     const orders = await prisma.order.findMany({

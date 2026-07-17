@@ -9,7 +9,7 @@ export const getUsers = safeAdminClient
   .inputSchema(WithPagination)
   .outputSchema(PaginatedUsers)
   .action(async ({ parsedInput }) => {
-    let { page = 1, take = 12 } = parsedInput
+    let { page, take } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
 
     const users = await prisma.user.findMany({
