@@ -2,6 +2,7 @@
 
 import type { OrderItemDTO } from '@/schemas/order'
 import { Button, Card, Divider, Skeleton } from 'rsc-daisyui'
+import { useShallow } from 'zustand/shallow'
 import { useAddressStore, useCartStore, useMounted, usePlaceOrder } from '@/hooks'
 import { AddressDetails, SummaryDetails } from '../shared'
 
@@ -10,7 +11,7 @@ export function PlaceOrder() {
   const { isExecuting, execute } = usePlaceOrder()
   const cart = useCartStore((s) => s.cart)
   const address = useAddressStore((s) => s.address)
-  const summary = useCartStore((s) => s.getOrderSummary())
+  const summary = useCartStore(useShallow((s) => s.getOrderSummary()))
 
   if (!mounted) {
     return <Skeleton text>Cargando datos de orden</Skeleton>
