@@ -1,7 +1,7 @@
 export const revalidate = 0
 
 import type { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { getMyOrders } from '@/actions/order'
 import { OrderTable } from '@/components/orders'
 import { PagePagination, PageTitle } from '@/components/shared'
@@ -18,7 +18,6 @@ export default async function OrdersPage({ searchParams }: PageProps<'/orders'>)
   if (!data) notFound()
 
   const { orders, totalPages } = data
-  if (orders.length === 0) redirect('/orders')
 
   return (
     <>
