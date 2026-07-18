@@ -11,13 +11,12 @@ export const getMyOrders = safeAuthClient
   .action(async ({ ctx, parsedInput }) => {
     let { page, take } = parsedInput
     if (Number.isNaN(page) || page < 1) page = 1
+    const userId = ctx.user.id
 
     const orders = await prisma.order.findMany({
       take,
       skip: (page - 1) * take,
-      where: {
-        userId: ctx.user.id,
-      },
+      where: { userId },
       include: {
         shippingAddress: {
           select: {
@@ -42,7 +41,7 @@ export const getMyOrders = safeAuthClient
       },
     })
 
-    const totalOrders = await prisma.order.count()
+    const totalOrders = await prisma.order.count({ where: { userId } })
     const totalPages = Math.ceil(totalOrders / take)
 
     return {
