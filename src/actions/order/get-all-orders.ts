@@ -1,5 +1,6 @@
 'use server'
 
+import { getPagination } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
 import { PaginatedOrders } from '@/schemas/order'
@@ -9,8 +10,7 @@ export const getAllOrders = safeAdminClient
   .inputSchema(WithPagination)
   .outputSchema(PaginatedOrders)
   .action(async ({ parsedInput }) => {
-    let { page, take } = parsedInput
-    if (Number.isNaN(page) || page < 1) page = 1
+    const { page, take } = getPagination(parsedInput)
 
     const orders = await prisma.order.findMany({
       take,
