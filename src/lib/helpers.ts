@@ -1,3 +1,4 @@
+import type { WithPagination } from '@/schemas/shared'
 import type { CartProduct } from '@/types'
 
 export function formatProductPrice(price: number) {
@@ -25,4 +26,16 @@ export async function getPageNumber(searchParams: Promise<Record<string, string 
   let { page = '1' } = await searchParams
   if (Array.isArray(page)) page = '1'
   return Number.parseInt(page, 10)
+}
+
+export function getPagination(input: WithPagination) {
+  const { page, take } = input
+
+  let pageNumber = Number(page)
+  let takeNumber = Number(take)
+
+  if (Number.isNaN(pageNumber) || pageNumber < 1) pageNumber = 1
+  if (Number.isNaN(takeNumber) || takeNumber < 1) takeNumber = 12
+
+  return { page: pageNumber, take: takeNumber }
 }
