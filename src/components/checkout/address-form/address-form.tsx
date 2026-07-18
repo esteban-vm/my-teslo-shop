@@ -21,8 +21,7 @@ export function AddressForm(props: AddressFormProps) {
 
   return (
     <Container noValidate onSubmit={handleSubmitWithAction}>
-      <Fieldset disabled={isDisabled}>
-        <Fieldset.Legend>Dirección de facturación</Fieldset.Legend>
+      <Fieldset className='pt-3.5' disabled={isDisabled}>
         <Row>
           <FormField autoComplete='given-name' control={control} label='Nombres' name='firstName' />
           <FormField autoComplete='family-name' control={control} label='Apellidos' name='lastName' />
@@ -54,5 +53,5 @@ export function AddressForm(props: AddressFormProps) {
   )
 }
 
-const Container = tw.form`mx-auto mb-3 w-full max-w-5xl px-5`
+const Container = tw.form`mx-auto my-3 w-full max-w-5xl px-5`
 const Row = tw.div`flex w-full flex-col lg:flex-row lg:gap-5`
