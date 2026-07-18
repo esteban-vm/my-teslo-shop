@@ -1,5 +1,6 @@
 'use server'
 
+import { getPagination } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
 import { WithPagination } from '@/schemas/shared'
@@ -9,8 +10,7 @@ export const getUsers = safeAdminClient
   .inputSchema(WithPagination)
   .outputSchema(PaginatedUsers)
   .action(async ({ parsedInput }) => {
-    let { page, take } = parsedInput
-    if (Number.isNaN(page) || page < 1) page = 1
+    const { page, take } = getPagination(parsedInput)
 
     const users = await prisma.user.findMany({
       take,
