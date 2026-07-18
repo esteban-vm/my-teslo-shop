@@ -22,3 +22,4 @@ export const WithPaginationAndGender = WithPagination.extend({ gender: z.enum(Ge
 export type ProductResult = z.infer<typeof ProductResult>
 export type ProductResults = z.infer<typeof ProductResults>
 export type PaginatedProducts = z.infer<typeof PaginatedProducts>
+export type WithPaginationAndGender = z.infer<typeof WithPaginationAndGender>
