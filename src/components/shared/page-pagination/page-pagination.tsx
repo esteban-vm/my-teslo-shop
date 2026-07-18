@@ -35,7 +35,7 @@ export function PagePagination({ totalPages }: PagePaginationProps) {
           )
         })}
 
-        <PaginationButton isDisabled={totalPages === currentPage} to={getPageUrl(currentPage + 1)}>
+        <PaginationButton isDisabled={totalPages === currentPage || totalPages === 0} to={getPageUrl(currentPage + 1)}>
           <ChevronRight />
         </PaginationButton>
       </Join>
