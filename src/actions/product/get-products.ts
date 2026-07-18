@@ -1,5 +1,6 @@
 'use server'
 
+import { getPagination } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
 import { PaginatedProducts, WithPaginationAndGender } from '@/schemas/product'
@@ -8,8 +9,8 @@ export const getProducts = safeClient
   .inputSchema(WithPaginationAndGender)
   .outputSchema(PaginatedProducts)
   .action(async ({ parsedInput }) => {
-    let { page, take, gender } = parsedInput
-    if (Number.isNaN(page) || page < 1) page = 1
+    const { gender, ...rest } = parsedInput
+    const { page, take } = getPagination(rest)
 
     const products = await prisma.product.findMany({
       take,
