@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { getUsers } from '@/actions/user'
 import { UserTable } from '@/components/admin'
 import { PagePagination, PageTitle } from '@/components/shared'
@@ -16,7 +16,6 @@ export default async function UsersPage({ searchParams }: PageProps<'/admin/user
   if (!data) notFound()
 
   const { users, totalPages } = data
-  if (users.length === 0) redirect('/admin/users')
 
   return (
     <>
