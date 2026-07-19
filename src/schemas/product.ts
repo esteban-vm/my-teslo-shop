@@ -1,9 +1,9 @@
 import { z } from 'zod'
 import { Gender, Size } from '@/prisma/generated/client'
-import { PaginatedResults, WithID, WithPagination } from './shared'
+import { PaginatedResults, WithPagination } from './shared'
 
-export const ProductResult = WithID.extend({
-  title: z.string(),
+export const ProductResult = z.object({
+  id: z.string(),
   description: z.string(),
   price: z.number(),
   stock: z.number(),

@@ -1,8 +1,9 @@
 import { z } from 'zod'
 import { Role } from '@/prisma/generated/client'
-import { PaginatedResults, WithID } from './shared'
+import { PaginatedResults } from './shared'
 
-export const UserResult = WithID.extend({
+export const UserResult = z.object({
+  id: z.string(),
   email: z.email(),
   name: z.string(),
   role: z.enum(Role).nullable(),

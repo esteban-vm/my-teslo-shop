@@ -1,7 +1,8 @@
 import { z } from 'zod'
-import { notEmpty, WithID } from './shared'
+import { notEmpty } from './shared'
 
-export const AddressResult = WithID.extend({
+export const AddressResult = z.object({
+  id: z.string(),
   userId: z.string(),
   firstName: z.string(),
   lastName: z.string(),
