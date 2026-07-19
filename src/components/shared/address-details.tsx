@@ -1,7 +1,7 @@
-import type { AddressDTO } from '@/schemas/address'
+import type { AddressResult } from '@/schemas/address'
 import { Card } from 'rsc-daisyui'
 
-export function AddressDetails({ address: a }: { address: AddressDTO }) {
+export function AddressDetails({ address: a }: { address: AddressResult }) {
   const { firstName, lastName, city, countryId, phone, address, address2, postalCode } = a
 
   return (
