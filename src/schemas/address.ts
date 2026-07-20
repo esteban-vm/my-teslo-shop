@@ -2,12 +2,10 @@ import { z } from 'zod'
 import { notEmpty } from './shared'
 
 export const AddressResult = z.object({
-  id: z.string(),
-  userId: z.string(),
   firstName: z.string(),
   lastName: z.string(),
   address: z.string(),
-  address2: z.string().nullable(),
+  address2: z.string().nullable().optional(),
   postalCode: z.string(),
   phone: z.string(),
   city: z.string(),
