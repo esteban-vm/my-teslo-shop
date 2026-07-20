@@ -1,4 +1,4 @@
-import type { OrderSummary } from '@/types'
+import type { OrderSummary } from '@/schemas/order'
 import { Card } from 'rsc-daisyui'
 import { formatProductPrice } from '@/lib/helpers'
 
