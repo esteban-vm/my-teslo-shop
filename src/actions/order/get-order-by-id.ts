@@ -9,10 +9,12 @@ export const getOrderById = safeAuthClient
   .inputSchema(WithID)
   .outputSchema(OrderByIdResult.nullable())
   .action(async ({ ctx, parsedInput }) => {
+    const { id, role } = ctx.user
+
     const order = await prisma.order.findUnique({
       where: {
         id: parsedInput.id,
-        userId: ctx.user.id,
+        userId: role === 'admin' ? undefined : id,
       },
       include: {
         shippingAddress: {
