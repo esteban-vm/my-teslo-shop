@@ -4,6 +4,7 @@ import { PaginatedResults, WithPagination } from './shared'
 
 export const ProductResult = z.object({
   id: z.string(),
+  title: z.string(),
   description: z.string(),
   price: z.number(),
   stock: z.number(),
