@@ -4,7 +4,8 @@ import { cache } from 'react'
 import { getPagination } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
-import { PaginatedProducts, WithPaginationAndGender } from '@/schemas/product'
+import { PaginatedProducts } from '@/schemas/product'
+import { WithPaginationAndGender } from '@/schemas/shared'
 
 export const getProducts = safeClient
   .inputSchema(WithPaginationAndGender)
