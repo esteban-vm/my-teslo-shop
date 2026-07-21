@@ -1,3 +1,5 @@
+export const revalidate = 0
+
 import type { Metadata } from 'next'
 import { PageTitle } from '@/components/shared'
 

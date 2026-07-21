@@ -1,4 +1,4 @@
-export const revalidate = 60
+export const revalidate = 60 // 1 minuto
 
 import { notFound, redirect } from 'next/navigation'
 import { getProducts } from '@/actions/product'

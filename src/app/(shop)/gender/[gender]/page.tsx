@@ -1,4 +1,4 @@
-export const revalidate = 60
+export const revalidate = 60 // 1 minuto
 
 import type { Metadata } from 'next'
 import type { Gender } from '@/prisma/generated/client'
