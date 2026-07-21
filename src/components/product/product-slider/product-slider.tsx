@@ -1,44 +1,16 @@
 'use client'
 
-import type { GalleryItem, ImageGalleryRef } from 'react-image-gallery'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef } from 'react'
 import ImageGallery from 'react-image-gallery'
+import { useProductSlider } from '@/hooks'
 import { SliderButton } from './slider-button'
 
-export function ProductSlider({ images }: { images: string[] }) {
-  const galleryRef = useRef<ImageGalleryRef>(null)
+export interface ProductSliderProps {
+  images: string[]
+}
 
-  const onPlay = () => galleryRef.current?.play()
-  const onPause = () => galleryRef.current?.pause()
-
-  const onSlide = () => {
-    onPause()
-    const gallery = galleryRef.current
-
-    if (gallery) {
-      const currentIndex = gallery.getCurrentIndex()
-
-      if (currentIndex === 0) {
-        gallery.slideToIndex(1)
-      } else {
-        gallery.slideToIndex(0)
-      }
-    }
-
-    onPlay()
-  }
-
-  const galleryItems = images.map((image): GalleryItem => {
-    const productUrl = `/products/${image}`
-
-    return {
-      original: productUrl,
-      originalAlt: 'Imagen del producto',
-      thumbnail: productUrl,
-      thumbnailAlt: 'Miniatura del producto',
-    }
-  })
+export function ProductSlider(props: ProductSliderProps) {
+  const { galleryRef, galleryItems, onPlay, onPause, onSlide } = useProductSlider(props)
 
   return (
     <ImageGallery
