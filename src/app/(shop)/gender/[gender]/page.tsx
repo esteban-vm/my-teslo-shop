@@ -9,9 +9,9 @@ import { PagePagination, PageTitle } from '@/components/shared'
 import { GenderMap } from '@/lib/constants'
 import { getPageNumber } from '@/lib/helpers'
 
-type GenderPageProps = PageProps<'/gender/[gender]'>
+export type Props = PageProps<'/gender/[gender]'>
 
-export async function generateMetadata({ params }: GenderPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { gender } = await params
   const genderDB = gender as Gender
   const currentGender = GenderMap[genderDB]
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: GenderPageProps): Promise<Met
   }
 }
 
-export default async function GenderPage({ params, searchParams }: GenderPageProps) {
+export default async function Page({ params, searchParams }: Props) {
   const { gender } = await params
   const genderDB = gender as Gender
 

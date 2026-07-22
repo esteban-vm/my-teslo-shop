@@ -24,7 +24,9 @@ export const viewport: Viewport = {
   interactiveWidget: 'overlays-content',
 }
 
-export default async function RootLayout({ children }: LayoutProps<'/'>) {
+export type Props = LayoutProps<'/'>
+
+export default async function Layout({ children }: Props) {
   const initialTheme = await getTheme()
 
   const themeScript = getThemeScript({

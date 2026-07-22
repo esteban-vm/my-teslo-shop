@@ -7,7 +7,9 @@ const title = 'Dirección de entrega'
 
 export const metadata: Metadata = { title }
 
-export default async function AddressPage() {
+export type Props = PageProps<'/checkout/address'>
+
+export default async function Page() {
   const { data: address } = await getBillingAddress()
 
   return (

@@ -9,9 +9,9 @@ import { QuantitySelector, SizeSelector } from '@/components/cart'
 import { ProductInfo, ProductSlider, StockCounter } from '@/components/product'
 import { formatProductPrice } from '@/lib/helpers'
 
-type ProductPageProps = PageProps<'/product/[slug]'>
+export type Props = PageProps<'/product/[slug]'>
 
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const { data: product } = await getProductBySlug({ slug })
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function Page({ params }: Props) {
   const { slug } = await params
 
   const { data: product } = await getProductBySlug({ slug })

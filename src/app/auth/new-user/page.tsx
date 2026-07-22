@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: 'Registrarse',
 }
 
-export default function NewUserPage() {
+export type Props = PageProps<'/auth/new-user'>
+
+export default function Page() {
   return <NewUserForm />
 }

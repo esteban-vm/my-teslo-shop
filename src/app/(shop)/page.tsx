@@ -6,7 +6,9 @@ import { ProductGrid } from '@/components/product'
 import { PagePagination, PageTitle } from '@/components/shared'
 import { getPageNumber } from '@/lib/helpers'
 
-export default async function ShopPage({ searchParams }: PageProps<'/'>) {
+export type Props = PageProps<'/'>
+
+export default async function Page({ searchParams }: Props) {
   const page = await getPageNumber(searchParams)
 
   const { data } = await getProducts({ page })

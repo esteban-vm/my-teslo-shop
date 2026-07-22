@@ -6,7 +6,9 @@ const title = 'Verificar orden'
 
 export const metadata: Metadata = { title }
 
-export default function CheckoutPage() {
+export type Props = PageProps<'/checkout'>
+
+export default function Page() {
   return (
     <>
       <PageTitle title={title} />

@@ -6,7 +6,9 @@ const title = 'Mi carrito'
 
 export const metadata: Metadata = { title }
 
-export default function CartPage() {
+export type Props = PageProps<'/cart'>
+
+export default function Page() {
   return (
     <>
       <PageTitle title={title} />

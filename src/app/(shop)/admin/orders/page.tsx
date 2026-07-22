@@ -11,7 +11,9 @@ const title = 'Mantenimiento de órdenes'
 
 export const metadata: Metadata = { title }
 
-export default async function OrdersPage({ searchParams }: PageProps<'/admin/orders'>) {
+export type Props = PageProps<'/admin/orders'>
+
+export default async function Page({ searchParams }: Props) {
   const page = await getPageNumber(searchParams)
 
   const { data } = await getAllOrders({ page })

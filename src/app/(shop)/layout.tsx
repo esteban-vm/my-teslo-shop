@@ -1,7 +1,9 @@
 import { Navigation } from '@/components/navigation'
 import { PageFooter } from '@/components/shared'
 
-export default function ShopLayout({ children }: LayoutProps<'/'>) {
+export type Props = LayoutProps<'/'>
+
+export default function Layout({ children }: Props) {
   return (
     <Navigation>
       <div className='container mx-auto'>{children}</div>

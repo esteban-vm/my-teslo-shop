@@ -11,7 +11,9 @@ const title = 'Mantenimiento de usuarios'
 
 export const metadata: Metadata = { title }
 
-export default async function UsersPage({ searchParams }: PageProps<'/admin/users'>) {
+export type Props = PageProps<'/admin/users'>
+
+export default async function Page({ searchParams }: Props) {
   const page = await getPageNumber(searchParams)
 
   const { data } = await getUsers({ page })

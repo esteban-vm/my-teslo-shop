@@ -6,7 +6,9 @@ const title = 'Mi perfil'
 
 export const metadata: Metadata = { title }
 
-export default async function ProfilePage() {
+export type Props = PageProps<'/profile'>
+
+export default async function Page() {
   const session = await getSession()
 
   return (

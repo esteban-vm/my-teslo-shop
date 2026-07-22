@@ -11,7 +11,9 @@ const title = 'Mantenimiento de productos'
 
 export const metadata: Metadata = { title }
 
-export default async function ProductsPage({ searchParams }: PageProps<'/admin/products'>) {
+export type Props = PageProps<'/admin/products'>
+
+export default async function Page({ searchParams }: Props) {
   const page = await getPageNumber(searchParams)
 
   const { data } = await getProducts({ page, take: 5 })

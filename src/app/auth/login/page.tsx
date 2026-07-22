@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: 'Iniciar sesión',
 }
 
-export default function LoginPage() {
+export type Props = PageProps<'/auth/login'>
+
+export default function Page() {
   return <LoginForm />
 }

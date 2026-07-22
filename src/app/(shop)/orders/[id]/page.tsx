@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   title: 'Detalle de orden',
 }
 
-export default async function OrderPage({ params }: PageProps<'/orders/[id]'>) {
+export type Props = PageProps<'/orders/[id]'>
+
+export default async function Page({ params }: Props) {
   const { id } = await params
 
   const { data: order } = await getOrderById({ id })

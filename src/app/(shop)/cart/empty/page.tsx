@@ -8,12 +8,14 @@ const title = 'Carrito vacío'
 
 export const metadata: Metadata = { title }
 
-export default function EmptyPage() {
+export type Props = PageProps<'/cart/empty'>
+
+export default function Page() {
   return (
     <PageContainer>
       <CartIcon $as={ShoppingCart} />
       <InnerContainer>
-        <PageTitle>{title}</PageTitle>
+        <h1 className='font-semibold text-lg text-warning'>{title}</h1>
         <NextLink href='/' passHref>
           <Link as='span' className='font-geist font-semibold text-sm' color='info' hover>
             Ir a comprar ahora
@@ -26,5 +28,4 @@ export default function EmptyPage() {
 
 const PageContainer = tw.div`flex h-full min-h-144 flex-col items-center justify-center md:flex-row md:gap-4`
 const InnerContainer = tw.div`flex flex-col items-center text-center font-montserrat md:items-start`
-const PageTitle = tw.h1`font-semibold text-lg text-warning`
 const CartIcon = tw.svg`size-12 fill-error/25 stroke-error motion-safe:animate-bounce md:size-14`
