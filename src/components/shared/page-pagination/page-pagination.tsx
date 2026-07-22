@@ -29,7 +29,7 @@ export function PagePagination({ totalPages }: PagePaginationProps) {
 
         {pageNumbers.map((page) => {
           return (
-            <PaginationButton isActive={currentPage === page} key={page} to={getPageUrl(page)}>
+            <PaginationButton isActive={currentPage === page} key={crypto.randomUUID()} to={getPageUrl(page)}>
               {page}
             </PaginationButton>
           )
