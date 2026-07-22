@@ -1,5 +1,6 @@
 import type { ProductResult } from '@/schemas/product'
-import Link from 'next/link'
+import NextLink from 'next/link'
+import { Link } from 'rsc-daisyui'
 import { ItemImage } from '@/components/shared'
 import { formatProductPrice } from '@/lib/helpers'
 
@@ -9,11 +10,17 @@ export function ProductRow({ product }: { product: ProductResult }) {
   return (
     <tr>
       <td>
-        <Link href={`/product/${slug}`}>
-          <ItemImage className='size-16' image={images[0]} title={title} />
-        </Link>
+        <NextLink href={`/product/${slug}`}>
+          <ItemImage className='size-16 border-2 border-info' image={images[0]} title={title} />
+        </NextLink>
       </td>
-      <td className='w-full text-left font-semibold'>{title}</td>
+      <td className='w-full text-left'>
+        <NextLink href={`/admin/product/${slug}`} passHref>
+          <Link as='span' className='font-semibold' color='info' hover>
+            {title}
+          </Link>
+        </NextLink>
+      </td>
       <td>{formatProductPrice(price)}</td>
       <td className='uppercase'>{gender}</td>
       <td>{stock}</td>
