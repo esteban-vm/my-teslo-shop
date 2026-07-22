@@ -5,11 +5,11 @@ import { ProductRow } from './product-row'
 export function ProductTable({ products }: { products: ProductResults }) {
   return (
     <section className='data-table'>
-      <Table>
+      <Table className='text-center'>
         <thead>
           <tr>
             <th>Imagen</th>
-            <th>Título</th>
+            <th className='text-left'>Título</th>
             <th>Precio</th>
             <th>Género</th>
             <th>Inventario</th>
