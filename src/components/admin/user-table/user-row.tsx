@@ -6,7 +6,9 @@ export function UserRow({ user }: { user: UserResult }) {
 
   return (
     <tr>
-      <td title={id}>{id}</td>
+      <td className='max-w-30 truncate' title={id}>
+        {id}
+      </td>
       <td>{name}</td>
       <td>{email}</td>
       <td className='w-40 py-0'>

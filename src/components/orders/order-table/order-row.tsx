@@ -9,7 +9,9 @@ export function OrderRow({ order }: { order: OrderResult }) {
 
   return (
     <tr>
-      <td title={id}>{id}</td>
+      <td className='max-w-30 truncate' title={id}>
+        {id}
+      </td>
       <td>
         {shippingAddress?.firstName} {shippingAddress?.lastName}
       </td>
