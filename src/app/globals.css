@@ -171,9 +171,7 @@ form {
 .data-table {
   @apply mb-3 w-full overflow-x-auto;
 
-  .table {
-    tr {
-      @apply text-nowrap hover:bg-base-300;
-    }
+  .table tbody tr {
+    @apply text-nowrap hover:bg-base-300;
   }
 }
