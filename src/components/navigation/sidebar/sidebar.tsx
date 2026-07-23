@@ -37,7 +37,7 @@ export async function Sidebar() {
 
       {isAdmin && (
         <>
-          <NavLink icon={<Shirt />} text='Productos' to='/admin/products' />
+          <NavLink icon={<Shirt />} text='Productos' to='/admin/products?take=5' />
           <NavLink icon={<Ticket />} text='Órdenes' to='/admin/orders' />
           <NavLink icon={<Users />} text='Usuarios' to='/admin/users' />
         </>
