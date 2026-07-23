@@ -22,7 +22,7 @@ export function LinkButton({ to, ...rest }: LinkButtonProps) {
   return (
     <Link
       as='button'
-      className='font-semibold disabled:cursor-not-allowed disabled:opacity-50'
+      className='mx-auto w-fit font-semibold disabled:cursor-not-allowed disabled:opacity-50'
       color='info'
       hover
       onClick={onNavigate}
