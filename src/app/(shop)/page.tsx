@@ -4,12 +4,12 @@ import { notFound, redirect } from 'next/navigation'
 import { getProducts } from '@/actions/product'
 import { ProductGrid } from '@/components/product'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { getPageNumber } from '@/lib/helpers'
+import { getSearchParams } from '@/lib/helpers'
 
 export type Props = PageProps<'/'>
 
 export default async function Page({ searchParams }: Props) {
-  const page = await getPageNumber(searchParams)
+  const { page } = await getSearchParams(searchParams)
 
   const { data } = await getProducts({ page })
   if (!data) notFound()
