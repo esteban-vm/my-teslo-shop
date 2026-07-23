@@ -7,8 +7,8 @@ export const WithID = z.object({ id: z.string() })
 export const WithSlug = z.object({ slug: z.string() })
 
 export const WithPagination = z.object({
-  page: z.any().optional().default(1),
-  take: z.any().optional().default(12),
+  page: z.any().optional(),
+  take: z.any().optional(),
 })
 
 export const WithPaginationAndGender = WithPagination.extend({
