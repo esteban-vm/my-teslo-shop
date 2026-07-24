@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Gender, Size } from '@/prisma/generated/enums'
-import { PaginatedResults } from './shared'
+import { notEmpty, PaginatedResults } from './shared'
 
 export const ProductResult = z.object({
   id: z.string(),
@@ -19,6 +19,26 @@ export const ProductResult = z.object({
 export const ProductResults = z.array(ProductResult)
 export const PaginatedProducts = PaginatedResults.extend({ products: ProductResults })
 
+export const ProductDTO = z.object({
+  id: z.cuid2().nullable().optional(),
+  title: notEmpty.min(3).max(255),
+  description: z.string().trim().min(1),
+  price: z.coerce
+    .number()
+    .min(0, 'El precio no puede ser menor a cero')
+    .transform((value) => Number(value).toFixed(2)),
+  stock: z.coerce
+    .number()
+    .min(0, 'La cantidad no puede ser menor a cero')
+    .transform((value) => Number(value).toFixed(2)),
+  sizes: z.array(z.enum(Size)),
+  gender: z.enum(Gender),
+  slug: notEmpty.min(3).max(255),
+  tags: notEmpty,
+  categoryId: z.cuid2(),
+})
+
 export type ProductResult = z.infer<typeof ProductResult>
 export type ProductResults = z.infer<typeof ProductResults>
 export type PaginatedProducts = z.infer<typeof PaginatedProducts>
+export type ProductDTO = z.infer<typeof ProductDTO>
