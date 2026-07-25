@@ -7,7 +7,7 @@ export const proxy: NextProxy = async (request) => {
   const session = await getSession()
 
   if (!session) {
-    return NextResponse.redirect(new URL('/auth/login' satisfies Route, request.url))
+    return NextResponse.redirect(new URL('/auth/sign-in' satisfies Route, request.url))
   }
 
   return NextResponse.next()
