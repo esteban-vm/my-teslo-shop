@@ -1,16 +1,16 @@
 import { z } from 'zod'
 import './config'
 
-const passwordParams = {
+const pswdParams = {
   path: ['repeatPassword'],
   error: 'Las contraseñas deben coincidir',
 }
 
-export const Email = z.object({
+export const WithEmail = z.object({
   email: z.email('Dirección de correo electrónico inválida').lowercase(),
 })
 
-export const Password = z
+export const WithPassword = z
   .object({
     password: z
       .string()
@@ -23,19 +23,19 @@ export const Password = z
 
     repeatPassword: z.string().trim().nonempty(),
   })
-  .refine((value) => value.password === value.repeatPassword, passwordParams)
+  .refine((value) => value.password === value.repeatPassword, pswdParams)
 
-export const SignIn = Email.extend({
+export const SignIn = WithEmail.extend({
   password: z.string().trim().nonempty(),
 })
 
-export const SignUp = Email.extend({
+export const SignUp = WithEmail.extend({
   name: z.string().trim().nonempty().min(5).max(255),
 })
-  .safeExtend(Password.shape)
-  .refine((value) => value.password === value.repeatPassword, passwordParams)
+  .safeExtend(WithPassword.shape)
+  .refine((value) => value.password === value.repeatPassword, pswdParams)
 
-export type Email = z.infer<typeof Email>
-export type Password = z.infer<typeof Password>
+export type WithEmail = z.infer<typeof WithEmail>
+export type WithPassword = z.infer<typeof WithPassword>
 export type SignIn = z.infer<typeof SignIn>
 export type SignUp = z.infer<typeof SignUp>
