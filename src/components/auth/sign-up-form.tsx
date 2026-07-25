@@ -5,7 +5,7 @@ import { Divider, Fieldset } from 'rsc-daisyui'
 import { useSignUpForm } from '@/hooks'
 import { FormButtons, FormField } from '../shared'
 
-export function NewUserForm() {
+export function SignUpForm() {
   const {
     form: { control },
     isDisabled,

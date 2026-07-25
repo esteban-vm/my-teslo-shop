@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { NewUserForm } from '@/components/auth'
+import { SignUpForm } from '@/components/auth'
 
 export const metadata: Metadata = {
   title: 'Registrarse',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 export type Props = PageProps<'/auth/new-user'>
 
 export default function Page() {
-  return <NewUserForm />
+  return <SignUpForm />
 }
