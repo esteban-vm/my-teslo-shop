@@ -29,7 +29,7 @@ export const SignIn = Email.extend({
   password: z.string().trim().nonempty(),
 })
 
-export const CreateUser = Email.extend({
+export const SignUp = Email.extend({
   name: z.string().trim().nonempty().min(5).max(255),
 })
   .safeExtend(Password.shape)
@@ -38,4 +38,4 @@ export const CreateUser = Email.extend({
 export type Email = z.infer<typeof Email>
 export type Password = z.infer<typeof Password>
 export type SignIn = z.infer<typeof SignIn>
-export type CreateUser = z.infer<typeof CreateUser>
+export type SignUp = z.infer<typeof SignUp>

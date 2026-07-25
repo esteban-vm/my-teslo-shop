@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { createUser } from '@/actions/auth'
 import { Toasts } from '@/lib/toasts'
-import { CreateUser } from '@/schemas/auth'
+import { SignUp } from '@/schemas/auth'
 
 export function useNewUserForm() {
   const router = useRouter()
   const [isServerError, setIsServerError] = useState(false)
 
-  const hookReturn = useHookFormAction(createUser, zodResolver(CreateUser), {
+  const hookReturn = useHookFormAction(createUser, zodResolver(SignUp), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
