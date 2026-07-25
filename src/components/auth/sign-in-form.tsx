@@ -36,9 +36,9 @@ export function SignInForm() {
         />
         <FormButtons.Submit control={control}>Iniciar sesión</FormButtons.Submit>
         <Divider>O</Divider>
-        <FormButtons.Link to='/auth/new-user'>Registrarse</FormButtons.Link>
+        <FormButtons.Link to='/auth/sign-up'>Registrarse</FormButtons.Link>
         <Divider>O</Divider>
-        <FormButtons.Link to='/auth/new-user'>Recuperar contraseña</FormButtons.Link>
+        <FormButtons.Link to='/auth/sign-up'>Recuperar contraseña</FormButtons.Link>
       </Fieldset>
     </form>
   )
