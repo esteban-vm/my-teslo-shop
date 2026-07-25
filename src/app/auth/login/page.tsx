@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { LoginForm } from '@/components/auth'
+import { SignInForm } from '@/components/auth'
 
 export const metadata: Metadata = {
   title: 'Iniciar sesión',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 export type Props = PageProps<'/auth/login'>
 
 export default function Page() {
-  return <LoginForm />
+  return <SignInForm />
 }
