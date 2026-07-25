@@ -6,7 +6,7 @@ import { signUp } from '@/actions/auth'
 import { Toasts } from '@/lib/toasts'
 import { SignUp } from '@/schemas/auth'
 
-export function useNewUserForm() {
+export function useSignUpForm() {
   const router = useRouter()
   const [isServerError, setIsServerError] = useState(false)
 

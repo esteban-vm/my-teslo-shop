@@ -2,7 +2,7 @@
 
 import { AtSign, LockKeyhole, Pencil } from 'lucide-react'
 import { Divider, Fieldset } from 'rsc-daisyui'
-import { useNewUserForm } from '@/hooks'
+import { useSignUpForm } from '@/hooks'
 import { FormButtons, FormField } from '../shared'
 
 export function NewUserForm() {
@@ -10,7 +10,7 @@ export function NewUserForm() {
     form: { control },
     isDisabled,
     handleSubmitWithAction,
-  } = useNewUserForm()
+  } = useSignUpForm()
 
   return (
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
