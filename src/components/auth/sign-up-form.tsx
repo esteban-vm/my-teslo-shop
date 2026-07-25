@@ -45,7 +45,7 @@ export function SignUpForm() {
         />
         <FormButtons.Submit control={control}>Registrarse</FormButtons.Submit>
         <Divider>O</Divider>
-        <FormButtons.Link to='/auth/login'>Iniciar sesión</FormButtons.Link>
+        <FormButtons.Link to='/auth/sign-in'>Iniciar sesión</FormButtons.Link>
       </Fieldset>
     </form>
   )
