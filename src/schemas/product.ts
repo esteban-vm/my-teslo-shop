@@ -21,8 +21,8 @@ export const PaginatedProducts = PaginatedResults.extend({ products: ProductResu
 
 export const ProductDTO = z.object({
   id: z.cuid2().nullable().optional(),
-  title: z.string().trim().min(3).max(255),
-  description: z.string().trim().min(1),
+  title: z.string().trim().nonempty().min(3).max(255),
+  description: z.string().trim().nonempty().min(5),
   price: z.coerce
     .number()
     .min(0)
@@ -33,8 +33,8 @@ export const ProductDTO = z.object({
     .transform((value) => Number(value).toFixed(2)),
   sizes: z.array(z.enum(Size)),
   gender: z.enum(Gender),
-  slug: z.string().trim().min(3).max(255),
-  tags: z.string().trim(),
+  slug: z.string().trim().nonempty().min(3).max(255),
+  tags: z.string().trim().nonempty(),
   categoryId: z.cuid2(),
 })
 
