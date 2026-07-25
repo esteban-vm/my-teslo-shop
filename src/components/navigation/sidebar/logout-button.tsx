@@ -3,11 +3,11 @@
 import { LogOutIcon } from 'lucide-react'
 import { useAction } from 'next-safe-action/hooks'
 import { Menu } from 'rsc-daisyui'
-import { logout } from '@/actions/auth'
+import { signOut } from '@/actions/auth'
 import { closeSidebar } from '@/lib/ui'
 
 export function LogoutButton() {
-  const { execute, isExecuting } = useAction(logout, {
+  const { execute, isExecuting } = useAction(signOut, {
     onNavigation() {
       closeSidebar()
     },

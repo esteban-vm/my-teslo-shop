@@ -6,7 +6,7 @@ import { auth } from '@/auth'
 import { sleepExecution } from '@/lib/helpers'
 import { safeClient } from '@/lib/safe-action'
 
-export const logout = safeClient.action(async () => {
+export const signOut = safeClient.action(async () => {
   await sleepExecution(2)
   await auth.api.signOut({ headers: await headers() })
   redirect('/')
