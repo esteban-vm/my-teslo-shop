@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { createUser } from '@/actions/auth'
+import { signUp } from '@/actions/auth'
 import { Toasts } from '@/lib/toasts'
 import { SignUp } from '@/schemas/auth'
 
@@ -10,7 +10,7 @@ export function useNewUserForm() {
   const router = useRouter()
   const [isServerError, setIsServerError] = useState(false)
 
-  const hookReturn = useHookFormAction(createUser, zodResolver(SignUp), {
+  const hookReturn = useHookFormAction(signUp, zodResolver(SignUp), {
     formProps: {
       mode: 'onChange',
       defaultValues: {
