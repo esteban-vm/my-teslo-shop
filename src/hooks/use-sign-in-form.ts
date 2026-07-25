@@ -1,15 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
-import { login } from '@/actions/auth'
+import { signIn } from '@/actions/auth'
 import { ApiErrorMap } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
 import { SignIn } from '@/schemas/auth'
 
-export function useLoginForm() {
+export function useSignInForm() {
   const [isServerError, setIsServerError] = useState(false)
 
-  const hookReturn = useHookFormAction(login, zodResolver(SignIn), {
+  const hookReturn = useHookFormAction(signIn, zodResolver(SignIn), {
     formProps: {
       mode: 'onChange',
       defaultValues: {

@@ -2,7 +2,7 @@
 
 import { AtSign, LockKeyhole } from 'lucide-react'
 import { Divider, Fieldset } from 'rsc-daisyui'
-import { useLoginForm } from '@/hooks'
+import { useSignInForm } from '@/hooks'
 import { FormButtons, FormField } from '../shared'
 
 export function LoginForm() {
@@ -10,7 +10,7 @@ export function LoginForm() {
     form: { control },
     isDisabled,
     handleSubmitWithAction,
-  } = useLoginForm()
+  } = useSignInForm()
 
   return (
     <form data-auth noValidate onSubmit={handleSubmitWithAction}>
