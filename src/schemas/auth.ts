@@ -25,7 +25,7 @@ export const Password = z
   })
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
-export const Login = Email.extend({
+export const SignIn = Email.extend({
   password: z.string().trim().nonempty(),
 })
 
@@ -37,5 +37,5 @@ export const CreateUser = Email.extend({
 
 export type Email = z.infer<typeof Email>
 export type Password = z.infer<typeof Password>
-export type Login = z.infer<typeof Login>
+export type SignIn = z.infer<typeof SignIn>
 export type CreateUser = z.infer<typeof CreateUser>
