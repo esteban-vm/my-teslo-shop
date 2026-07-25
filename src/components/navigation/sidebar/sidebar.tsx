@@ -32,7 +32,7 @@ export async function Sidebar() {
           <Divider />
         </>
       ) : (
-        <NavLink icon={<LogIn />} text='Ingresar' to='/auth/login' />
+        <NavLink icon={<LogIn />} text='Ingresar' to='/auth/sign-in' />
       )}
 
       {isAdmin && (
