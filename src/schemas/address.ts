@@ -1,11 +1,10 @@
 import { z } from 'zod'
-import { notEmpty } from './shared'
 
 export const AddressResult = z.object({
   firstName: z.string(),
   lastName: z.string(),
   address: z.string(),
-  address2: z.string().nullable().optional(),
+  address2: z.string().optional().nullable(),
   postalCode: z.string(),
   phone: z.string(),
   city: z.string(),
@@ -13,14 +12,14 @@ export const AddressResult = z.object({
 })
 
 export const AddressDTO = z.object({
-  firstName: notEmpty,
-  lastName: notEmpty,
-  address: notEmpty,
-  address2: z.string().nullable().optional(),
-  postalCode: notEmpty,
-  phone: notEmpty,
-  city: notEmpty,
-  countryId: notEmpty,
+  firstName: z.string().trim().min(3),
+  lastName: z.string().trim().min(3),
+  address: z.string().trim().min(5),
+  address2: z.string().optional().nullable(),
+  postalCode: z.string().trim().min(4),
+  phone: z.string().trim().min(4),
+  city: z.string().trim().min(5),
+  countryId: z.string().length(2, 'Selecciona un país'),
   remember: z.boolean().optional(),
 })
 
