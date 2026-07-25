@@ -26,7 +26,14 @@ export function LoginForm() {
           name='email'
           type='email'
         />
-        <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
+        <FormField
+          control={control}
+          icon={<LockKeyhole />}
+          label='Contraseña'
+          maxLength={20}
+          name='password'
+          type='password'
+        />
         <FormButtons.Submit control={control}>Iniciar sesión</FormButtons.Submit>
         <Divider>O</Divider>
         <FormButtons.Link to='/auth/new-user'>Registrarse</FormButtons.Link>
