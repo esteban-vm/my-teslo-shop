@@ -12,13 +12,13 @@ export const AddressResult = z.object({
 })
 
 export const AddressDTO = z.object({
-  firstName: z.string().trim().min(3),
-  lastName: z.string().trim().min(3),
-  address: z.string().trim().min(5),
+  firstName: z.string().trim().nonempty().min(3),
+  lastName: z.string().trim().nonempty().min(3),
+  address: z.string().trim().nonempty().min(5),
   address2: z.string().optional().nullable(),
-  postalCode: z.string().trim().min(4),
-  phone: z.string().trim().min(4),
-  city: z.string().trim().min(5),
+  postalCode: z.string().trim().nonempty().min(4),
+  phone: z.string().trim().nonempty().min(4),
+  city: z.string().trim().nonempty().min(5),
   countryId: z.string().length(2, 'Selecciona un país'),
   remember: z.boolean().optional(),
 })
