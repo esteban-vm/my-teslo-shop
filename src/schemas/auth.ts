@@ -1,31 +1,36 @@
 import { z } from 'zod'
-import { ValidationErrorMap } from '@/lib/constants'
-import { Validations } from '@/lib/validations'
-import { notEmpty, passwordParams } from './shared'
+
+const passwordParams = {
+  path: ['repeatPassword'],
+  error: 'Las contraseñas deben coincidir',
+}
 
 export const Email = z.object({
-  email: notEmpty.superRefine((value, ctx) => {
-    if (Validations.notEmail(value)) {
-      ctx.addIssue(ValidationErrorMap.notEmail)
-    }
-  }),
+  email: z.email('Dirección de correo electrónico inválida').lowercase(),
 })
 
 export const Password = z
   .object({
-    password: notEmpty.superRefine((value, ctx) => {
-      if (Validations.notPassword(value)) {
-        ctx.addIssue(ValidationErrorMap.notPassword)
-      }
-    }),
+    password: z
+      .string()
+      .trim()
+      .nonempty()
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9])[A-Za-z\d\W]{8,20}$/,
+        'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo'
+      ),
 
-    repeatPassword: notEmpty,
+    repeatPassword: z.string().trim().nonempty(),
   })
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
-export const Login = Email.extend({ password: notEmpty })
+export const Login = Email.extend({
+  password: z.string().trim().nonempty(),
+})
 
-export const CreateUser = Email.extend({ name: notEmpty })
+export const CreateUser = Email.extend({
+  name: z.string().trim().nonempty().min(5).max(255),
+})
   .extend(Password.shape)
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
