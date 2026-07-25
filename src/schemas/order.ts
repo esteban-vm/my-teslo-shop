@@ -6,12 +6,7 @@ import { PaginatedResults } from './shared'
 export const OrderResult = z.object({
   id: z.string(),
   isPaid: z.boolean().nullable(),
-  shippingAddress: z
-    .object({
-      firstName: z.string(),
-      lastName: z.string(),
-    })
-    .nullable(),
+  shippingAddress: z.object({ firstName: z.string(), lastName: z.string() }).nullable(),
 })
 
 export const OrderResults = z.array(OrderResult)
