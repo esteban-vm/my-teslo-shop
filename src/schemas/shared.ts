@@ -1,27 +1,6 @@
 import { z } from 'zod'
 import { Gender } from '@/prisma/generated/enums'
-
-z.config({
-  ...z.locales.es(),
-
-  customError(iss) {
-    const { code, maximum, minimum } = iss
-
-    if (code === 'too_small') {
-      if (minimum > 1) {
-        return `Ingresa por lo menos ${minimum} caracteres`
-      }
-
-      return 'Este campo no puede quedar vacío'
-    }
-
-    if (code === 'too_big') {
-      return `Ingresa como máximo ${maximum} caracteres`
-    }
-  },
-})
-
-export { z }
+import './config'
 
 export const WithID = z.object({ id: z.string() })
 export const WithSlug = z.object({ slug: z.string() })

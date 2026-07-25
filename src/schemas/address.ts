@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import './config'
 
 export const AddressResult = z.object({
   firstName: z.string(),

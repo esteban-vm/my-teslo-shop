@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { Size } from '@/prisma/generated/client'
 import { AddressDTO, AddressResult } from './address'
 import { PaginatedResults } from './shared'
+import './config'
 
 export const OrderResult = z.object({
   id: z.string(),

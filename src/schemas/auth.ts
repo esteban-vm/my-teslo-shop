@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import './config'
 
 const passwordParams = {
   path: ['repeatPassword'],

@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { Gender, Size } from '@/prisma/generated/enums'
 import { PaginatedResults } from './shared'
+import './config'
 
 export const ProductResult = z.object({
   id: z.string(),
