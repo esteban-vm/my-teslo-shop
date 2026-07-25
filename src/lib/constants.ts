@@ -24,23 +24,6 @@ export const ThemeMap = {
   dark: 'night',
 } as const satisfies Record<(typeof themes)[number], Theme>
 
-// Validation errors
-export const ValidationErrorMap = {
-  notEmpty: {
-    error: 'Este campo no puede quedar vacío',
-  },
-
-  notEmail: {
-    code: 'custom',
-    message: 'El correo electrónico debe ser válido',
-  },
-
-  notPassword: {
-    code: 'custom',
-    message: `La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo`,
-  },
-} as const
-
 // Api errors
 export const ApiErrorMap = {
   invalidEmailOrPassword: 'Correo electrónico y/o contraseña inválido(s)',
