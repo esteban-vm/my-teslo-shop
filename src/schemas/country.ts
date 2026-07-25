@@ -1,4 +1,4 @@
-import z from 'zod'
+import { z } from 'zod'
 
 export const CountryResult = z.object({ id: z.string(), name: z.string() })
 export const CountryResults = z.array(CountryResult)
