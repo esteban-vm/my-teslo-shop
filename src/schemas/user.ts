@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Role } from '@/prisma/generated/client'
+import { Role } from '@/prisma/generated/enums'
 import { PaginatedResults } from './shared'
 
 export const UserResult = z.object({
