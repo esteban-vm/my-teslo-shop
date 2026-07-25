@@ -31,7 +31,7 @@ export const Login = Email.extend({
 export const CreateUser = Email.extend({
   name: z.string().trim().nonempty().min(5).max(255),
 })
-  .extend(Password.shape)
+  .safeExtend(Password.shape)
   .refine((value) => value.password === value.repeatPassword, passwordParams)
 
 export type Email = z.infer<typeof Email>
