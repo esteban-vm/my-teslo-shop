@@ -27,19 +27,11 @@ export function SignUpForm() {
           name='email'
           type='email'
         />
-        <FormField
-          control={control}
-          icon={<LockKeyhole />}
-          label='Contraseña'
-          maxLength={20}
-          name='password'
-          type='password'
-        />
+        <FormField control={control} icon={<LockKeyhole />} label='Contraseña' name='password' type='password' />
         <FormField
           control={control}
           icon={<LockKeyhole />}
           label='Repetir contraseña'
-          maxLength={20}
           name='repeatPassword'
           type='password'
         />

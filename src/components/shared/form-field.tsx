@@ -21,6 +21,7 @@ export function FormField<T extends FieldValues>({
   icon,
   inputMode,
   className,
+  maxLength,
   type = 'text',
   required = true,
   placeholder = ELLIPSIS_CHAR,
@@ -28,8 +29,12 @@ export function FormField<T extends FieldValues>({
 }: FormFieldProps<T>) {
   const fieldId = useId()
   const errorId = useId()
+
+  const isPassword = type === 'password'
   const isEmail = type === 'email' || inputMode === 'email'
-  placeholder = isEmail ? 'correo@ejemplo.com' : type === 'password' ? '********' : placeholder
+
+  maxLength = isPassword ? 20 : maxLength
+  placeholder = isEmail ? 'correo@ejemplo.com' : isPassword ? '********' : placeholder
 
   return (
     <Controller
@@ -49,6 +54,7 @@ export function FormField<T extends FieldValues>({
                 aria-invalid={invalid}
                 id={fieldId}
                 inputMode={inputMode}
+                maxLength={maxLength}
                 placeholder={placeholder}
                 required={required}
                 type={type}
