@@ -7,9 +7,9 @@ import { Controller } from 'react-hook-form'
 import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 
-type FormFieldBaseProps = Omit<JSX.IntrinsicElements['input'], 'name'>
+export type FormFieldBaseProps = Omit<JSX.IntrinsicElements['input'], 'name'>
 
-interface FormFieldProps<T extends FieldValues> extends FormControlProps<T>, FormFieldBaseProps {
+export interface FormFieldProps<T extends FieldValues> extends FormControlProps<T>, FormFieldBaseProps {
   label: string
   icon?: JSX.Element
 }
