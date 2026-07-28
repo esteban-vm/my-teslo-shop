@@ -1,5 +1,6 @@
 export * from './address-details'
 export * from './counter-input'
+export * from './data-select'
 export * from './form-buttons'
 export * from './form-field'
 export * from './item-image'
