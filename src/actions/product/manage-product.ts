@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
 import { ProductDTO } from '@/schemas/product'
 
-export const manageAddress = safeAdminClient.inputSchema(ProductDTO).action(async ({ parsedInput }) => {
+export const manageProduct = safeAdminClient.inputSchema(ProductDTO).action(async ({ parsedInput }) => {
   await sleepExecution(3)
 
   await prisma.$transaction(async (_tx) => {
