@@ -20,7 +20,6 @@ export function FormField<T extends FieldValues>({
   label,
   icon,
   inputMode,
-  className,
   maxLength,
   type = 'text',
   required = true,
