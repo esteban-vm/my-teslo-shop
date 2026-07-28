@@ -21,18 +21,18 @@ export const ProductResults = z.array(ProductResult)
 export const PaginatedProducts = PaginatedResults.extend({ products: ProductResults })
 
 export const ProductDTO = z.object({
-  id: z.cuid2().nullable().optional(),
+  id: z.cuid2().optional().nullable(),
   title: z.string().trim().nonempty().min(3).max(255),
   description: z.string().trim().nonempty().min(5),
   price: z.coerce
     .number()
     .min(0)
-    .transform((value) => Number(value).toFixed(2)),
+    .transform((value) => Number(value.toFixed(2))),
   stock: z.coerce
     .number()
     .min(0)
-    .transform((value) => Number(value).toFixed(2)),
-  sizes: z.array(z.enum(Size)),
+    .transform((value) => Number(value.toFixed(0))),
+  sizes: z.coerce.string().transform((value) => value.split(',')),
   gender: z.enum(Gender),
   slug: z.string().trim().nonempty().min(3).max(255),
   tags: z.string().trim().nonempty(),
