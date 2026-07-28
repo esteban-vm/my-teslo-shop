@@ -21,7 +21,7 @@ export const ProductResults = z.array(ProductResult)
 export const PaginatedProducts = PaginatedResults.extend({ products: ProductResults })
 
 export const ProductDTO = z.object({
-  id: z.cuid2().optional().nullable(),
+  id: z.cuid2().optional(),
   title: z.string().trim().nonempty().min(3).max(255),
   description: z.string().trim().nonempty().min(5),
   price: z.coerce
@@ -42,7 +42,12 @@ export const ProductDTO = z.object({
     .max(255)
     .lowercase()
     .transform((value) => value.replace(/\s+|\W/g, '_')),
-  tags: z.string().trim().nonempty(),
+  tags: z
+    .string()
+    .trim()
+    .nonempty()
+    .lowercase()
+    .transform((value) => value.split(',')),
   categoryId: z.cuid2(),
 })
 
