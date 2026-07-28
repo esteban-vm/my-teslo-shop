@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+import { getCategories } from '@/actions/category'
 import { getProductById } from '@/actions/product'
 import { ProductForm } from '@/components/admin'
 import { PageTitle } from '@/components/shared'
@@ -26,17 +27,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { id } = await params
-  const isNewProduct = id === 'new'
 
-  const { data: product } = await getProductById({ id })
-  if (!product && !isNewProduct) redirect('/admin/products')
+  const [{ data: product }, { data: categories }] = await Promise.all([getProductById({ id }), getCategories()])
 
-  const title = isNewProduct ? 'Nuevo producto' : 'Editar producto'
+  if (!product && !(id === 'new')) redirect('/admin/products')
 
   return (
     <>
-      <PageTitle title={title} />
-      <ProductForm savedProduct={product} />
+      <PageTitle title={id === 'new' ? 'Nuevo producto' : 'Editar producto'} />
+      <ProductForm savedCategories={categories} savedProduct={product} />
     </>
   )
 }
