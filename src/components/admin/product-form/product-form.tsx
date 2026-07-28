@@ -6,7 +6,7 @@ import tw from 'tailwind-styled-components'
 import { useProductForm } from '@/hooks'
 
 export interface ProductFormProps {
-  savedProduct: ProductResult
+  savedProduct?: ProductResult | null
 }
 
 export function ProductForm(props: ProductFormProps) {
