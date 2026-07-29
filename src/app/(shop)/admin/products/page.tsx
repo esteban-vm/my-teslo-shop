@@ -26,7 +26,7 @@ export default async function Page({ searchParams }: Props) {
   return (
     <>
       <PageTitle title={title} />
-      <Button as={Link} className='float-end' color='info' href='/admin/product/new' outline size='sm'>
+      <Button as={Link} className='float-end' color='info' href='/' outline size='sm'>
         Nuevo producto
       </Button>
       <ProductTable products={products} />
