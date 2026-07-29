@@ -16,15 +16,5 @@ export function CountrySelect<T extends FieldValues>(props: LabeledFormControlPr
 
   useEffect(execute, [execute])
 
-  return (
-    <DataSelect disabled={isExecuting} {...props}>
-      {countries?.map(({ id, name }) => {
-        return (
-          <option key={id} value={id}>
-            {name}
-          </option>
-        )
-      })}
-    </DataSelect>
-  )
+  return <DataSelect data={countries} disabled={isExecuting} {...props} />
 }
