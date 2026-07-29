@@ -8,9 +8,11 @@ import { Label, Select, Validator } from 'rsc-daisyui'
 
 export type BaseDataSelectProps = Omit<JSX.IntrinsicElements['select'], 'name' | 'size'>
 
-export interface DataSelectProps<T extends FieldValues> extends LabeledFormControlProps<T>, BaseDataSelectProps {}
+export interface DataSelectProps<T extends FieldValues> extends LabeledFormControlProps<T>, BaseDataSelectProps {
+  data?: { id: string; name: string }[]
+}
 
-export function DataSelect<T extends FieldValues>({ control, name, label, children, ...rest }: DataSelectProps<T>) {
+export function DataSelect<T extends FieldValues>({ control, name, label, data, ...rest }: DataSelectProps<T>) {
   const selectId = useId()
   const errorId = useId()
 
@@ -36,7 +38,13 @@ export function DataSelect<T extends FieldValues>({ control, name, label, childr
               {...field}
             >
               <option value=''>[Seleccione]</option>
-              {children}
+              {data?.map(({ id, name }) => {
+                return (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                )
+              })}
             </Select>
             <Validator.Hint as='small' id={errorId} role='alert'>
               {error?.message}
