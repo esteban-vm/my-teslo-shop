@@ -1,6 +1,5 @@
 'use client'
 
-import type { CategoryResults } from '@/schemas/category'
 import type { ProductResult } from '@/schemas/product'
 import { Fieldset } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
@@ -8,7 +7,6 @@ import { useProductForm } from '@/hooks'
 
 export interface ProductFormProps {
   savedProduct?: ProductResult | null
-  savedCategories?: CategoryResults
 }
 
 export function ProductForm(props: ProductFormProps) {
