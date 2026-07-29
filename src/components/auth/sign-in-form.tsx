@@ -13,7 +13,7 @@ export function SignInForm() {
   } = useSignInForm()
 
   return (
-    <form data-auth noValidate onSubmit={handleSubmitWithAction}>
+    <form className='auth-form' noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Iniciar sesión</Fieldset.Legend>
         <FormButtons.Socials />

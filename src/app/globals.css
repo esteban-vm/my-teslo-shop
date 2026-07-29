@@ -49,11 +49,23 @@ svg {
 form {
   @apply px-3;
 
-  &[data-auth] {
+  &.auth-form {
     @apply w-full max-w-sm;
 
     .divider {
       @apply m-0 text-xs;
+    }
+  }
+
+  &.data-form {
+    @apply mx-auto my-3 w-full max-w-5xl px-5;
+
+    fieldset.fieldset {
+      @apply pt-3.5;
+    }
+
+    .form-row {
+      @apply flex w-full flex-col lg:flex-row lg:gap-5;
     }
   }
 }

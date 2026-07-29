@@ -13,7 +13,7 @@ export function SignUpForm() {
   } = useSignUpForm()
 
   return (
-    <form data-auth noValidate onSubmit={handleSubmitWithAction}>
+    <form className='auth-form' noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
         <Fieldset.Legend>Registrarse</Fieldset.Legend>
         <FormButtons.Socials />

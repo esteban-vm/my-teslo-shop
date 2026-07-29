@@ -2,7 +2,6 @@
 
 import type { AddressResult } from '@/schemas/address'
 import { Fieldset } from 'rsc-daisyui'
-import tw from 'tailwind-styled-components'
 import { FormButtons, FormField } from '@/components/shared'
 import { useAddressForm } from '@/hooks'
 import { CountrySelect } from './country-select'
@@ -20,13 +19,13 @@ export function AddressForm(props: AddressFormProps) {
   } = useAddressForm(props)
 
   return (
-    <Container noValidate onSubmit={handleSubmitWithAction}>
-      <Fieldset className='pt-3.5' disabled={isDisabled}>
-        <Row>
+    <form className='data-form' noValidate onSubmit={handleSubmitWithAction}>
+      <Fieldset disabled={isDisabled}>
+        <div className='form-row'>
           <FormField autoComplete='given-name' control={control} label='Nombres' name='firstName' />
           <FormField autoComplete='family-name' control={control} label='Apellidos' name='lastName' />
-        </Row>
-        <Row>
+        </div>
+        <div className='form-row'>
           <FormField autoComplete='billing street-address' control={control} label='Dirección' name='address' />
           <FormField
             autoComplete='billing street-address'
@@ -35,23 +34,20 @@ export function AddressForm(props: AddressFormProps) {
             name='address2'
             required={false}
           />
-        </Row>
-        <Row>
+        </div>
+        <div className='form-row'>
           <FormField autoComplete='postal-code' control={control} label='Código postal' name='postalCode' />
           <FormField autoComplete='address-level2' control={control} label='Ciudad' name='city' />
-        </Row>
-        <Row>
+        </div>
+        <div className='form-row'>
           <CountrySelect control={control} label='País' name='countryId' />
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
-        </Row>
+        </div>
         <RememberCheck control={control} name='remember' />
         <FormButtons.Submit className='w-fit' control={control}>
           Siguiente
         </FormButtons.Submit>
       </Fieldset>
-    </Container>
+    </form>
   )
 }
-
-const Container = tw.form`mx-auto my-3 w-full max-w-5xl px-5`
-const Row = tw.div`flex w-full flex-col lg:flex-row lg:gap-5`
