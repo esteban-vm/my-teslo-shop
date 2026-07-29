@@ -1,16 +1,14 @@
 'use client'
 
 import type { FieldValues } from 'react-hook-form'
-import type { FormControlProps } from '@/types'
+import type { LabeledFormControlProps } from '@/types'
 import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Label, Select, Validator } from 'rsc-daisyui'
 
-export type DataSelectBaseProps = Omit<JSX.IntrinsicElements['select'], 'name' | 'size'>
+export type BaseDataSelectProps = Omit<JSX.IntrinsicElements['select'], 'name' | 'size'>
 
-export interface DataSelectProps<T extends FieldValues> extends FormControlProps<T>, DataSelectBaseProps {
-  label: string
-}
+export interface DataSelectProps<T extends FieldValues> extends LabeledFormControlProps<T>, BaseDataSelectProps {}
 
 export function DataSelect<T extends FieldValues>({ control, name, label, children, ...rest }: DataSelectProps<T>) {
   const selectId = useId()

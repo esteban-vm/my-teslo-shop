@@ -12,11 +12,15 @@ export interface CartProduct {
   image: string
 }
 
-export interface FormControlBaseProps<T extends FieldValues> extends PropsWithChildren {
+export interface BaseFormControlProps<T extends FieldValues> extends PropsWithChildren {
   control: Control<T>
   className?: string
 }
 
-export interface FormControlProps<T extends FieldValues> extends FormControlBaseProps<T> {
+export interface NamedFormControlProps<T extends FieldValues> extends BaseFormControlProps<T> {
   name: FieldPath<T>
+}
+
+export interface LabeledFormControlProps<T extends FieldValues> extends NamedFormControlProps<T> {
+  label: string
 }

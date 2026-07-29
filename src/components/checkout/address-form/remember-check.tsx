@@ -1,11 +1,11 @@
 'use client'
 
 import type { FieldValues } from 'react-hook-form'
-import type { FormControlProps } from '@/types'
+import type { NamedFormControlProps } from '@/types'
 import { Controller } from 'react-hook-form'
 import { Checkbox, Fieldset } from 'rsc-daisyui'
 
-export function RememberCheck<T extends FieldValues>({ control, name, ...rest }: FormControlProps<T>) {
+export function RememberCheck<T extends FieldValues>({ control, name, ...rest }: NamedFormControlProps<T>) {
   return (
     <Controller
       control={control}
