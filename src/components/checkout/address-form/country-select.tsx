@@ -3,15 +3,11 @@
 import type { FieldValues } from 'react-hook-form'
 import type { FormControlProps } from '@/types'
 import { useAction } from 'next-safe-action/hooks'
-import { useEffect, useId } from 'react'
-import { Controller } from 'react-hook-form'
-import { Label, Select, Validator } from 'rsc-daisyui'
+import { useEffect } from 'react'
 import { getCountries } from '@/actions/country'
+import { DataSelect } from '@/components/shared'
 
-export function CountrySelect<T extends FieldValues>({ control, name, ...rest }: FormControlProps<T>) {
-  const selectId = useId()
-  const errorId = useId()
-
+export function CountrySelect<T extends FieldValues>(props: FormControlProps<T>) {
   const {
     result: { data: countries },
     execute,
@@ -21,42 +17,14 @@ export function CountrySelect<T extends FieldValues>({ control, name, ...rest }:
   useEffect(execute, [execute])
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field, fieldState: { error, isDirty, invalid } }) => {
+    <DataSelect disabled={isExecuting} label='País' {...props}>
+      {countries?.map(({ id, name }) => {
         return (
-          <div className='w-full'>
-            <Label as='label' htmlFor={selectId}>
-              País:
-            </Label>
-            <Select
-              {...rest}
-              aria-errormessage={errorId}
-              aria-invalid={invalid}
-              className='w-full'
-              color={isDirty && !invalid ? 'success' : undefined}
-              disabled={isExecuting}
-              id={selectId}
-              required
-              validator
-              {...field}
-            >
-              <option value=''>[Seleccione]</option>
-              {countries?.map(({ id, name }) => {
-                return (
-                  <option key={id} value={id}>
-                    {name}
-                  </option>
-                )
-              })}
-            </Select>
-            <Validator.Hint as='small' id={errorId} role='alert'>
-              {error?.message}
-            </Validator.Hint>
-          </div>
+          <option key={id} value={id}>
+            {name}
+          </option>
         )
-      }}
-    />
+      })}
+    </DataSelect>
   )
 }
