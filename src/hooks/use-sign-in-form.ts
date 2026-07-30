@@ -35,7 +35,7 @@ export function useSignInForm() {
 
         if (serverError === ApiErrorMap.unverifiedEmail) {
           const { authClient } = await import('@/auth-client')
-          authClient.sendVerificationEmail({ email: args.input.email })
+          void authClient.sendVerificationEmail({ email: args.input.email })
         }
       },
       onNavigation() {
