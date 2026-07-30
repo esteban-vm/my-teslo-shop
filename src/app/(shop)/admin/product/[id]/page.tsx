@@ -26,14 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { id } = await params
+  const isNew = id === 'new'
 
   const { data: product } = await getProductById({ id })
-
-  if (!product && !(id === 'new')) redirect('/admin/products')
+  if (!product && !isNew) redirect('/admin/products')
 
   return (
     <>
-      <PageTitle title={id === 'new' ? 'Nuevo producto' : 'Editar producto'} />
+      <PageTitle title={isNew ? 'Nuevo producto' : 'Editar producto'} />
       <ProductForm savedProduct={product} />
     </>
   )
