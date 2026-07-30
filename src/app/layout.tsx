@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { ThemeProvider } from '@teispace/next-themes'
 import { getTheme, getThemeScript } from '@teispace/next-themes/server'
 import { ToastContainer } from 'react-toastify'
-import { mainFont, titleFont } from '@/fonts'
 import { ThemeMap, themes } from '@/lib/constants'
+import { mainFont, titleFont } from '@/lib/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
