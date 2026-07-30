@@ -5,18 +5,18 @@ import { ItemImage } from '@/components/shared'
 import { formatProductPrice } from '@/lib/helpers'
 
 export function ProductRow({ product }: { product: ProductResult }) {
-  const { images, title, price, gender, stock, sizes, slug } = product
+  const { id, images, title, price, gender, stock, sizes, slug } = product
 
   return (
     <tr>
       <td>
-        <NextLink href={`/product/${slug}`}>
+        <NextLink href={`/product/${slug}`} title='Detalle de este producto'>
           <ItemImage className='size-16 border-2 border-info' image={images[0]} title={title} />
         </NextLink>
       </td>
       <td className='w-full text-left'>
-        <NextLink href={`/admin/product/${slug}`} passHref>
-          <Link as='span' className='font-semibold' color='info' hover>
+        <NextLink href={`/admin/product/${id}`} passHref>
+          <Link as='span' className='font-semibold' color='info' hover title='Editar este producto'>
             {title}
           </Link>
         </NextLink>
