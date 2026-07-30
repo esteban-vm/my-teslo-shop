@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next'
+import { ThemeProvider } from '@teispace/next-themes'
 import { getTheme, getThemeScript } from '@teispace/next-themes/server'
+import { ToastContainer } from 'react-toastify'
 import { mainFont, titleFont } from '@/fonts'
-import { Providers } from './providers'
-import '@/app/globals.css'
+import { ThemeMap, themes } from '@/lib/constants'
+import './globals.css'
 
 export const metadata: Metadata = {
   applicationName: 'Teslo Shop',
@@ -27,12 +29,8 @@ export const viewport: Viewport = {
 export type Props = LayoutProps<'/'>
 
 export default async function Layout({ children }: Props) {
-  const initialTheme = await getTheme()
-
-  const themeScript = getThemeScript({
-    attribute: 'data-theme',
-    initialTheme: initialTheme ?? undefined,
-  })
+  const initialTheme = (await getTheme()) ?? undefined
+  const themeScript = getThemeScript({ attribute: 'data-theme', initialTheme })
 
   return (
     <html
@@ -45,7 +43,16 @@ export default async function Layout({ children }: Props) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className='bg-linear-to-t from-base-200 to-base-100 font-geist'>
-        <Providers>{children}</Providers>
+        <ThemeProvider
+          defaultTheme={themes[1]}
+          disableTransitionOnChange
+          initialTheme={initialTheme}
+          themes={themes}
+          value={ThemeMap}
+        >
+          {children}
+          <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />
+        </ThemeProvider>
       </body>
     </html>
   )
