@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ResetPasswordForm } from '@/components/auth'
 
 export const metadata: Metadata = {
   title: 'Restablecer contraseña',
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 export type Props = PageProps<'/auth/password/reset'>
 
 export default function Page() {
-  return <div>Restablecer contraseña</div>
+  return <ResetPasswordForm />
 }
