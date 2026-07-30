@@ -18,6 +18,7 @@ export const auth = betterAuth({
     minPasswordLength: 8,
     maxPasswordLength: 20,
     requireEmailVerification: true,
+    revokeSessionsOnPasswordReset: true,
     async sendResetPassword({ user, url }) {
       const isTestUser = users.some((u) => u.email === user.email)
       if (isTestUser) return
