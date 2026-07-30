@@ -1,11 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { recoveryPassword } from '@/actions/auth'
 import { Toasts } from '@/lib/toasts'
 import { WithEmail } from '@/schemas/auth'
 
 export function useRecoveryPasswordForm() {
+  const router = useRouter()
   const [isServerError, setIsServerError] = useState(false)
 
   const hookReturn = useHookFormAction(recoveryPassword, zodResolver(WithEmail), {
@@ -24,7 +26,7 @@ export function useRecoveryPasswordForm() {
       },
       onSuccess(args) {
         setIsServerError(false)
-        Toasts.success(args.data.message, () => {})
+        Toasts.success(args.data.message, () => router.push('/'))
       },
       onError(args) {
         const { serverError } = args.error
