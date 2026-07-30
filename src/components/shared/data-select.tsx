@@ -37,7 +37,7 @@ export function DataSelect<T extends FieldValues>({ control, name, label, data, 
               validator
               {...field}
             >
-              <option value=''>[Seleccione]</option>
+              <option value=''>[Selecciona]</option>
               {data?.map(({ id, name }) => {
                 return (
                   <option key={id} value={id}>
