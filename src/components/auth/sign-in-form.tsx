@@ -31,7 +31,7 @@ export function SignInForm() {
         <Divider>O</Divider>
         <FormButtons.Link to='/auth/sign-up'>Registrarse</FormButtons.Link>
         <Divider>O</Divider>
-        <FormButtons.Link to='/auth/recovery-password'>Recuperar contraseña</FormButtons.Link>
+        <FormButtons.Link to='/auth/password/recovery'>Recuperar contraseña</FormButtons.Link>
       </Fieldset>
     </form>
   )
