@@ -18,7 +18,7 @@ export const recoveryPassword = safeClient.inputSchema(WithEmail).action(async (
   const { email } = user
   const myHeaders = await headers()
   const origin = myHeaders.get('origin')
-  const route: Route = '/auth/password/recovery'
+  const route: Route = '/auth/password/reset'
 
   await auth.api.requestPasswordReset({ body: { email, redirectTo: origin + route } })
   return { message: `Correo de recuperación enviado a ${email}. Por favor, revísalo.` }
