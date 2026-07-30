@@ -26,9 +26,11 @@ export default async function Page({ searchParams }: Props) {
   return (
     <>
       <PageTitle title={title} />
-      <Button as={Link} className='float-end' color='info' href='/' outline size='sm'>
-        Nuevo producto
-      </Button>
+      <Link href='/admin/product/new' passHref>
+        <Button as='span' className='float-end' color='info' outline size='sm'>
+          Nuevo producto
+        </Button>
+      </Link>
       <ProductTable products={products} />
       <PagePagination totalPages={totalPages} />
     </>
