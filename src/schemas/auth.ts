@@ -12,6 +12,8 @@ export const WithEmail = z.object({
 
 export const WithPassword = z
   .object({
+    token: z.string(),
+
     password: z
       .string()
       .trim()
@@ -32,7 +34,7 @@ export const SignIn = WithEmail.extend({
 export const SignUp = WithEmail.extend({
   name: z.string().trim().nonempty().min(5).max(255),
 })
-  .safeExtend(WithPassword.shape)
+  .safeExtend(WithPassword.omit({ token: true }).shape)
   .refine((value) => value.password === value.repeatPassword, pswdParams)
 
 export type WithEmail = z.infer<typeof WithEmail>
