@@ -18,8 +18,26 @@ export const auth = betterAuth({
     minPasswordLength: 8,
     maxPasswordLength: 20,
     requireEmailVerification: true,
-    async sendResetPassword({ user, url, token }) {
-      console.log({ user, url, token })
+    async sendResetPassword({ user, url }) {
+      const isTestUser = users.some((u) => u.email === user.email)
+      if (isTestUser) return
+
+      void sendEmail({
+        to: {
+          name: user.name,
+          address: user.email,
+        },
+        priority: 'high',
+        subject: 'Recuperación de contraseña',
+        html: `
+          <p>Recupera tu contraseña clicando el siguiente enlace:</p>
+          <p>
+            <a href="${url}" target="_blank" rel="noopener noreferrer">
+              <b>Recuperar contraseña</b>
+            </a>
+          </p>
+        `,
+      })
     },
   },
   emailVerification: {
@@ -30,7 +48,7 @@ export const auth = betterAuth({
       const isTestUser = users.some((u) => u.email === user.email)
       if (isTestUser) return
 
-      await sendEmail({
+      void sendEmail({
         to: {
           name: user.name,
           address: user.email,
