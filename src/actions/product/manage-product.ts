@@ -11,14 +11,18 @@ export const manageProduct = safeAdminClient.inputSchema(ProductDTO).action(asyn
   await sleepExecution(3)
 
   await prisma.$transaction(async (_tx) => {
-    const { id, ...rest } = parsedInput
+    const { id, slug, tags, sizes, ...rest } = parsedInput
 
     await prisma.product.upsert({
       where: { id },
       create: {} as Product,
       update: {
         ...rest,
-        sizes: { set: rest.sizes as Size[] },
+        slug: slug.replace(/\s+|\W/g, '_'),
+        tags: tags.split(', '),
+        sizes: {
+          set: sizes as Size[],
+        },
       },
     })
   })
