@@ -7,7 +7,7 @@ const pswdParams = {
 }
 
 export const WithEmail = z.object({
-  email: z.email('Dirección de correo electrónico inválida').lowercase(),
+  email: z.email('Dirección de correo electrónico inválida').trim().lowercase(),
 })
 
 export const WithPassword = z
