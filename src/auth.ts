@@ -20,15 +20,11 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     revokeSessionsOnPasswordReset: true,
     async sendResetPassword({ user, url }) {
-      const isTestUser = users.some((u) => u.email === user.email)
-      if (isTestUser) return
-
       void sendEmail({
         to: {
           name: user.name,
           address: user.email,
         },
-        priority: 'high',
         subject: 'Recuperación de contraseña',
         html: `
           <p>Recupera tu contraseña clicando el siguiente enlace:</p>
@@ -38,6 +34,16 @@ export const auth = betterAuth({
             </a>
           </p>
         `,
+      })
+    },
+    async onExistingUserSignUp({ user }) {
+      void sendEmail({
+        to: {
+          name: user.name,
+          address: user.email,
+        },
+        subject: 'Intento de registro con tu correo',
+        text: 'Alguien trató de crear una cuenta con tu correo electrónico. Si fuiste tú, trata de iniciar sesión. Si no, ignora este correo',
       })
     },
   },
@@ -54,7 +60,6 @@ export const auth = betterAuth({
           name: user.name,
           address: user.email,
         },
-        priority: 'high',
         subject: 'Verificación de correo electrónico',
         html: `
           <p>Verifica tu correo electrónico clicando el siguiente enlace:</p>
