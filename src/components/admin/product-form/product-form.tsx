@@ -2,6 +2,7 @@
 
 import type { ProductResult } from '@/schemas/product'
 import { Fieldset } from 'rsc-daisyui'
+import { FormField } from '@/components/shared'
 import { useProductForm } from '@/hooks'
 
 export interface ProductFormProps {
@@ -9,12 +10,19 @@ export interface ProductFormProps {
 }
 
 export function ProductForm(props: ProductFormProps) {
-  const { handleSubmitWithAction, isDisabled } = useProductForm(props)
+  const {
+    form: { control },
+    handleSubmitWithAction,
+    isDisabled,
+  } = useProductForm(props)
 
   return (
     <form className='data-form' noValidate onSubmit={handleSubmitWithAction}>
       <Fieldset disabled={isDisabled}>
-        <div className='form-row'></div>
+        <div className='form-row'>
+          <FormField control={control} label='Título' name='title' />
+          <FormField control={control} label='Título' name='slug' />
+        </div>
       </Fieldset>
     </form>
   )
