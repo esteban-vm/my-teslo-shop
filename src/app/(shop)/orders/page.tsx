@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { getMyOrders } from '@/actions/order'
 import { OrderTable } from '@/components/orders'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { getSearchParams } from '@/lib/helpers'
+import { getParams } from '@/lib/helpers'
 
 const title = 'Mis órdenes'
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = { title }
 export type Props = PageProps<'/orders'>
 
 export default async function Page({ searchParams }: Props) {
-  const { page } = await getSearchParams(searchParams)
+  const { page } = await getParams(searchParams)
 
   const { data } = await getMyOrders({ page })
   if (!data) notFound()

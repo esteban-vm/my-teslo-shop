@@ -7,7 +7,7 @@ import { Button } from 'rsc-daisyui'
 import { getProducts } from '@/actions/product'
 import { ProductTable } from '@/components/admin'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { getSearchParams } from '@/lib/helpers'
+import { getParams } from '@/lib/helpers'
 
 const title = 'Mantenimiento de productos'
 
@@ -16,7 +16,7 @@ export const metadata: Metadata = { title }
 export type Props = PageProps<'/admin/products'>
 
 export default async function Page({ searchParams }: Props) {
-  const { page, take } = await getSearchParams(searchParams)
+  const { page, take } = await getParams(searchParams)
 
   const { data } = await getProducts({ page, take })
   if (!data) notFound()

@@ -7,7 +7,7 @@ import { getProducts } from '@/actions/product'
 import { ProductGrid } from '@/components/product'
 import { PagePagination, PageTitle } from '@/components/shared'
 import { GenderMap } from '@/lib/constants'
-import { getSearchParams } from '@/lib/helpers'
+import { getParams } from '@/lib/helpers'
 
 export type Props = PageProps<'/gender/[gender]'>
 
@@ -34,7 +34,7 @@ export default async function Page({ params, searchParams }: Props) {
   const currentGender = GenderMap[genderDB]
   if (!currentGender) notFound()
 
-  const { page } = await getSearchParams(searchParams)
+  const { page } = await getParams(searchParams)
   const { data } = await getProducts({ page, gender: genderDB })
   if (!data) notFound()
 

@@ -4,13 +4,13 @@ import type { Route } from 'next'
 import { headers } from 'next/headers'
 import { auth } from '@/auth'
 import { ServerError } from '@/lib/errors'
-import { sleepExecution } from '@/lib/helpers'
+import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
 import { WithEmail } from '@/schemas/auth'
 
 export const recoveryPassword = safeClient.inputSchema(WithEmail).action(async ({ parsedInput }) => {
-  await sleepExecution(5)
+  await sleep(5)
 
   const user = await prisma.user.findFirst({ where: { email: parsedInput.email }, select: { email: true } })
   if (!user) throw new ServerError('Correo electrónico no registrado')

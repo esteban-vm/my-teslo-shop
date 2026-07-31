@@ -1,6 +1,6 @@
 import type { OrderSummary } from '@/schemas/order'
 import { Card } from 'rsc-daisyui'
-import { formatProductPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/helpers'
 
 export function SummaryDetails({ summary }: { summary: OrderSummary }) {
   const { total, subtotal, tax, totalItems } = summary
@@ -14,13 +14,13 @@ export function SummaryDetails({ summary }: { summary: OrderSummary }) {
           <span className='float-end'>{totalItems}</span>
         </p>
         <p>
-          Subtotal:<span className='float-end'>{formatProductPrice(subtotal)}</span>
+          Subtotal:<span className='float-end'>{formatPrice(subtotal)}</span>
         </p>
         <p>
-          Impuestos (15%):<span className='float-end'>{formatProductPrice(tax)}</span>
+          Impuestos (15%):<span className='float-end'>{formatPrice(tax)}</span>
         </p>
         <p className='mt-1 font-semibold text-base'>
-          Total:<span className='float-end'>{formatProductPrice(total)}</span>
+          Total:<span className='float-end'>{formatPrice(total)}</span>
         </p>
       </div>
     </>

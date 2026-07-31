@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button, List } from 'rsc-daisyui'
 import { CounterInput, ItemImage } from '@/components/shared'
 import { useCartStore } from '@/hooks'
-import { formatProductPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/helpers'
 
 export function CartItem({ product }: { product: CartProduct }) {
   const { id, title, image, price, size, quantity, slug } = product
@@ -25,7 +25,7 @@ export function CartItem({ product }: { product: CartProduct }) {
         <Link className='font-semibold hover:opacity-75' href={`/product/${slug}`}>
           {title} - {size}
         </Link>
-        <p className='text-sm'>{formatProductPrice(price)}</p>
+        <p className='text-sm'>{formatPrice(price)}</p>
         <CounterInput
           onDecrease={() => onQuantityChange(-1)}
           onIncrease={() => onQuantityChange(1)}

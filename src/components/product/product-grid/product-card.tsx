@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
-import { formatProductPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/helpers'
 
 export function ProductCard({ product }: { product: ProductResult }) {
   const { id, title, price, slug, images } = product
@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: ProductResult }) {
         <Link href={productRoute} title={title}>
           <Card.Title className='line-clamp-1 text-sm hover:opacity-75 xl:text-base'>{title}</Card.Title>
         </Link>
-        <p className='text-sm'>{formatProductPrice(price)}</p>
+        <p className='text-sm'>{formatPrice(price)}</p>
       </Card.Body>
     </CardContainer>
   )

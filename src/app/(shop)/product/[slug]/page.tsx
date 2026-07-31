@@ -7,7 +7,7 @@ import { Skeleton } from 'rsc-daisyui'
 import { getProductBySlug } from '@/actions/product'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
 import { ProductInfo, ProductSlider, StockCounter } from '@/components/product'
-import { formatProductPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/helpers'
 
 export type Props = PageProps<'/product/[slug]'>
 
@@ -52,7 +52,7 @@ export default async function Page({ params }: Props) {
         </Suspense>
         <p>
           <span className='font-semibold'>Precio:&nbsp;</span>
-          {formatProductPrice(price)}
+          {formatPrice(price)}
         </p>
         <SizeSelector sizes={sizes} />
         <QuantitySelector product={product} />

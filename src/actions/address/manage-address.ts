@@ -1,13 +1,13 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { sleepExecution } from '@/lib/helpers'
+import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
 import { AddressDTO } from '@/schemas/address'
 
 export const manageAddress = safeAuthClient.inputSchema(AddressDTO).action(async ({ ctx, parsedInput }) => {
-  await sleepExecution(3)
+  await sleep(3)
 
   const userId = ctx.user.id
   const { remember, ...rest } = parsedInput

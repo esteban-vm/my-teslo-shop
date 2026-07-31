@@ -1,7 +1,7 @@
 import type { WithPagination } from '@/schemas/shared'
 import type { CartProduct } from '@/types'
 
-export function formatProductPrice(price: number) {
+export function formatPrice(price: number) {
   return price.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -10,7 +10,7 @@ export function formatProductPrice(price: number) {
   })
 }
 
-export function sleepExecution(seconds = 1) {
+export function sleep(seconds = 1) {
   if (process.env.NODE_ENV !== 'development') return
 
   return new Promise((resolve) => {
@@ -22,7 +22,7 @@ export function isSameProduct(product1: CartProduct, product2: CartProduct) {
   return product1.id === product2.id && product1.size === product2.size
 }
 
-export async function getSearchParams(searchParams: Promise<Record<string, string | string[] | undefined>>) {
+export async function getParams(searchParams: Promise<Record<string, string | string[] | undefined>>) {
   let { page = '1', take = '12' } = await searchParams
 
   if (Array.isArray(page)) page = '1'
@@ -49,7 +49,7 @@ export function getPagination(input: WithPagination) {
   }
 }
 
-export function capitalizeName(value: string) {
+export function capitalize(value: string) {
   return value
     .toLowerCase()
     .split(' ')

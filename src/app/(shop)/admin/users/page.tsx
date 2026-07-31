@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { getUsers } from '@/actions/user'
 import { UserTable } from '@/components/admin'
 import { PagePagination, PageTitle } from '@/components/shared'
-import { getSearchParams } from '@/lib/helpers'
+import { getParams } from '@/lib/helpers'
 
 const title = 'Mantenimiento de usuarios'
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = { title }
 export type Props = PageProps<'/admin/users'>
 
 export default async function Page({ searchParams }: Props) {
-  const { page } = await getSearchParams(searchParams)
+  const { page } = await getParams(searchParams)
 
   const { data } = await getUsers({ page })
   if (!data) notFound()

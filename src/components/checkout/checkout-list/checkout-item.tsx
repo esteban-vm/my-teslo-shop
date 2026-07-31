@@ -1,7 +1,7 @@
 import type { CartProduct } from '@/types'
 import { List } from 'rsc-daisyui'
 import { ItemImage } from '@/components/shared'
-import { formatProductPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/helpers'
 
 export function CheckoutItem({ product }: { product: CartProduct }) {
   const { id, title, image, price, size, quantity } = product
@@ -14,9 +14,9 @@ export function CheckoutItem({ product }: { product: CartProduct }) {
           {title} - {size}
         </p>
         <p>
-          {formatProductPrice(price)} × {quantity} {quantity > 1 ? 'unidades' : 'unidad'}
+          {formatPrice(price)} × {quantity} {quantity > 1 ? 'unidades' : 'unidad'}
         </p>
-        <p>Subtotal: {formatProductPrice(price * quantity)}</p>
+        <p>Subtotal: {formatPrice(price * quantity)}</p>
       </List.ColGrow>
     </List.Row>
   )
