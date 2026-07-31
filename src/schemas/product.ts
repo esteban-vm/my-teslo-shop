@@ -34,20 +34,8 @@ export const ProductDTO = z.object({
     .transform((value) => Number(value.toFixed(0))),
   sizes: z.coerce.string().transform((value) => value.split(',')),
   gender: z.enum(Gender),
-  slug: z
-    .string()
-    .trim()
-    .nonempty()
-    .min(3)
-    .max(255)
-    .lowercase()
-    .transform((value) => value.replace(/\s+|\W/g, '_')),
-  tags: z
-    .string()
-    .trim()
-    .nonempty()
-    .lowercase()
-    .transform((value) => value.split(',')),
+  slug: z.string().trim().nonempty().min(3).max(255).lowercase(),
+  tags: z.string().trim().nonempty().lowercase(),
   categoryId: z.cuid2(),
 })
 
