@@ -48,3 +48,19 @@ export function getPagination(input: WithPagination) {
     take: takeNumber,
   }
 }
+
+export function capitalizeName(value: string) {
+  return value
+    .toLowerCase()
+    .split(' ')
+    .filter((p) => p.trim() !== '')
+    .map((p) => {
+      return p
+        .split(/([-'])/)
+        .map((part) => {
+          return part.match(/[-']/) ? part : part[0]?.toUpperCase() + part.slice(1)
+        })
+        .join('')
+    })
+    .join(' ')
+}
