@@ -21,7 +21,7 @@ export function ProductForm(props: ProductFormProps) {
       <Fieldset disabled={isDisabled}>
         <div className='form-row'>
           <FormField control={control} label='Título' name='title' />
-          <FormField control={control} label='Título' name='slug' />
+          <FormField control={control} label='Slug' name='slug' spellCheck={false} />
         </div>
       </Fieldset>
     </form>
