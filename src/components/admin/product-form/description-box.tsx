@@ -6,6 +6,7 @@ import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Label, Textarea, Validator } from 'rsc-daisyui'
+import { ELLIPSIS_CHAR } from '@/lib/constants'
 
 export type BaseDescriptionBox = Omit<JSX.IntrinsicElements['textarea'], 'name' | 'color' | 'style'>
 
@@ -30,10 +31,11 @@ export function DescriptionBox<T extends FieldValues>({ control, name, label, ..
               aria-errormessage={errorId}
               aria-invalid={invalid}
               as={TextareaAutosize}
-              className='w-full resize-none'
+              className='w-full resize-none text-sm'
               color={isDirty && !invalid ? 'success' : undefined}
               id={boxId}
               minRows={3}
+              placeholder={ELLIPSIS_CHAR}
               required
               validator
               {...field}
