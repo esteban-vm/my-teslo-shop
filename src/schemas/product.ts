@@ -36,7 +36,7 @@ export const ProductDTO = z.object({
   gender: z.enum(Gender),
   slug: z.string().trim().nonempty().min(3).max(255).lowercase(),
   tags: z.string().trim().nonempty().lowercase(),
-  categoryId: z.cuid2(),
+  categoryId: z.cuid2('Selecciona una categoría'),
 })
 
 export type ProductResult = z.infer<typeof ProductResult>
