@@ -12,7 +12,7 @@ export type BaseDescriptionBox = Omit<JSX.IntrinsicElements['textarea'], 'name' 
 export interface DescriptionBox<T extends FieldValues> extends LabeledFormControlProps<T>, BaseDescriptionBox {}
 
 export function DescriptionBox<T extends FieldValues>({ control, name, label, ...rest }: DescriptionBox<T>) {
-  const areaId = useId()
+  const boxId = useId()
   const errorId = useId()
 
   return (
@@ -22,7 +22,7 @@ export function DescriptionBox<T extends FieldValues>({ control, name, label, ..
       render={({ field, fieldState: { error, isDirty, invalid } }) => {
         return (
           <div className='w-full'>
-            <Label as='label' htmlFor={areaId}>
+            <Label as='label' htmlFor={boxId}>
               {label}
             </Label>
             <Textarea
@@ -32,7 +32,7 @@ export function DescriptionBox<T extends FieldValues>({ control, name, label, ..
               as={TextareaAutosize}
               className='w-full resize-none'
               color={isDirty && !invalid ? 'success' : undefined}
-              id={areaId}
+              id={boxId}
               minRows={3}
               required
               validator
