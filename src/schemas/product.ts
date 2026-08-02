@@ -26,11 +26,11 @@ export const ProductDTO = z.object({
   description: z.string().trim().nonempty().min(5),
   price: z.coerce
     .number()
-    .min(0)
+    .min(0, 'Ingresa un precio válido')
     .transform((value) => Number(value.toFixed(2))),
   stock: z.coerce
     .number()
-    .min(0)
+    .min(0, 'Ingresa una cantidad válida')
     .transform((value) => Number(value.toFixed(0))),
   sizes: z.coerce.string().transform((value) => value.split(',')),
   gender: z.enum(Gender),
