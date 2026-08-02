@@ -6,6 +6,19 @@ import { manageProduct } from '@/actions/product'
 import { Toasts } from '@/lib/toasts'
 import { ProductDTO } from '@/schemas/product'
 
+const initialProduct: ProductDTO = {
+  id: '',
+  title: '',
+  description: '',
+  price: 0,
+  stock: 0,
+  sizes: [],
+  gender: 'unisex',
+  slug: '',
+  tags: '',
+  categoryId: '',
+}
+
 export function useProductForm({ savedProduct }: ProductFormProps) {
   const [isServerError, setIsServerError] = useState(false)
 
@@ -13,8 +26,9 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
     formProps: {
       mode: 'all',
       defaultValues: {
+        ...initialProduct,
         ...savedProduct,
-        tags: savedProduct?.tags.join(', '),
+        tags: savedProduct?.tags.join(', ') ?? initialProduct.tags,
       },
     },
     actionProps: {
