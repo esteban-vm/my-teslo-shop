@@ -16,5 +16,15 @@ export function CategorySelect<T extends FieldValues>(props: LabeledFormControlP
 
   useEffect(execute, [execute])
 
-  return <DataSelect data={categories} disabled={isExecuting} {...props} />
+  return (
+    <DataSelect disabled={isExecuting} {...props}>
+      {categories?.map(({ id, name }) => {
+        return (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        )
+      })}
+    </DataSelect>
+  )
 }
