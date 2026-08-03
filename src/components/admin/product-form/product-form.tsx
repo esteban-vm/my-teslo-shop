@@ -6,6 +6,7 @@ import { FormField } from '@/components/shared'
 import { useProductForm } from '@/hooks'
 import { CategorySelect } from './category-select'
 import { DescriptionBox } from './description-box'
+import { GenderSelect } from './gender-select'
 
 export interface ProductFormProps {
   savedProduct?: ProductResult | null
@@ -26,11 +27,12 @@ export function ProductForm(props: ProductFormProps) {
           <FormField control={control} label='Slug' name='slug' spellCheck={false} />
         </div>
         <div className='form-row'>
+          <FormField control={control} label='Etiquetas' name='tags' />
           <FormField control={control} label='Precio' min={0} name='price' type='number' />
         </div>
         <div className='form-row'>
-          <FormField control={control} label='Etiquetas' name='tags' />
           <CategorySelect control={control} label='Categoría' name='categoryId' />
+          <GenderSelect control={control} label='Género' name='gender' />
         </div>
         <div className='form-row'>
           <DescriptionBox control={control} label='Descripción' name='description' />
