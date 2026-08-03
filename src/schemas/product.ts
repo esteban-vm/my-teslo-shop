@@ -33,7 +33,7 @@ export const ProductDTO = z.object({
     .min(0, 'Ingresa una cantidad válida')
     .transform((value) => Number(value.toFixed(0))),
   sizes: z.coerce.string().transform((value) => value.split(',')),
-  gender: z.enum(Gender),
+  gender: z.enum(Gender, 'Selecciona un género'),
   slug: z.string().trim().nonempty().min(3).max(255).lowercase(),
   tags: z.string().trim().nonempty().lowercase(),
   categoryId: z.cuid2('Selecciona una categoría'),
