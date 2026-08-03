@@ -6,23 +6,36 @@ import { Button } from 'rsc-daisyui'
 
 export function ProductInfo({ info }: { info: string }) {
   const translator = useRef<Translator>(null)
+  const detector = useRef<LanguageDetector>(null)
   const [productInfo, setProductInfo] = useState(info)
   const [canTranslate, setCanTranslate] = useState(false)
 
   useEffect(() => {
     const initTranslator = async () => {
-      if (!('Translator' in self)) return
+      if (!('Translator' in self) || !('LanguageDetector' in self)) return
 
-      const options: TranslatorCreateCoreOptions = {
-        sourceLanguage: 'en',
-        targetLanguage: 'es',
-      }
+      try {
+        const detectorOptions: LanguageDetectorCreateCoreOptions = { expectedInputLanguages: ['en'] }
+        const detectorAvailability = await LanguageDetector.availability(detectorOptions)
 
-      const capabilities = await Translator.availability(options)
+        if (detectorAvailability === 'available') {
+          detector.current = await LanguageDetector.create(detectorOptions)
 
-      if (capabilities === 'available') {
-        translator.current = await Translator.create(options)
-        setCanTranslate(true)
+          const results = await detector.current.detect(info)
+          const language = results[0].detectedLanguage ?? 'en'
+
+          if (language.startsWith('es')) return
+
+          const translatorOptions: TranslatorCreateCoreOptions = { sourceLanguage: language, targetLanguage: 'es' }
+          const translatorAvailability = await Translator.availability(translatorOptions)
+
+          if (translatorAvailability === 'available') {
+            translator.current = await Translator.create(translatorOptions)
+            setCanTranslate(true)
+          }
+        }
+      } catch {
+        setCanTranslate(false)
       }
     }
 
@@ -30,8 +43,9 @@ export function ProductInfo({ info }: { info: string }) {
 
     return () => {
       translator.current?.destroy()
+      detector.current?.destroy()
     }
-  }, [])
+  }, [info])
 
   const onTranslate = async () => {
     if (!translator.current) return
