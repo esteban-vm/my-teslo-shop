@@ -7,6 +7,7 @@ import { useProductForm } from '@/hooks'
 import { CategorySelect } from './category-select'
 import { DescriptionBox } from './description-box'
 import { GenderSelect } from './gender-select'
+import { SizeChecker } from './size-checker'
 
 export interface ProductFormProps {
   savedProduct?: ProductResult | null
@@ -36,6 +37,9 @@ export function ProductForm(props: ProductFormProps) {
         </div>
         <div className='form-row'>
           <DescriptionBox control={control} label='Descripción' name='description' />
+        </div>
+        <div className='form-row'>
+          <SizeChecker control={control} name='sizes' />
         </div>
       </Fieldset>
     </form>
