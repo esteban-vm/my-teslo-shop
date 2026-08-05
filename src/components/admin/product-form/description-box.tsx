@@ -24,7 +24,7 @@ export function DescriptionBox<T extends FieldValues>({ control, name, label, ..
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={boxId}>
-              {label}
+              {label}:
             </Label>
             <Textarea
               {...rest}
