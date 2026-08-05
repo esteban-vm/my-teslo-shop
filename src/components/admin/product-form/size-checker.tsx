@@ -25,7 +25,7 @@ export function SizeChecker<T extends FieldValues>({ control, name, ...rest }: S
         return (
           <div className='w-full'>
             <Label className='size-checker-label'>Tallas:</Label>
-            <div className='my-1 flex items-center gap-3.5'>
+            <div className='mx-0.5 my-1 flex items-center gap-3.5'>
               {allSizes.map((size) => {
                 const isChecked = productSizes.includes(size)
 
@@ -51,7 +51,7 @@ export function SizeChecker<T extends FieldValues>({ control, name, ...rest }: S
                 )
               })}
             </div>
-            <small className='text-error text-xs empty:hidden' id={errorId} role='alert'>
+            <small className='mx-0.5 text-error text-xs empty:hidden' id={errorId} role='alert'>
               {error?.message}
             </small>
           </div>

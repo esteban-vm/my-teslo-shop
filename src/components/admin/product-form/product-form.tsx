@@ -35,12 +35,8 @@ export function ProductForm(props: ProductFormProps) {
           <CategorySelect control={control} label='Categoría' name='categoryId' />
           <GenderSelect control={control} label='Género' name='gender' />
         </div>
-        <div className='form-row'>
-          <DescriptionBox control={control} label='Descripción' name='description' />
-        </div>
-        <div className='form-row'>
-          <SizeChecker control={control} name='sizes' />
-        </div>
+        <DescriptionBox control={control} label='Descripción' name='description' />
+        <SizeChecker control={control} name='sizes' />
       </Fieldset>
     </form>
   )
