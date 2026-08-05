@@ -143,7 +143,8 @@ form {
   @apply mb-1 cursor-pointer select-none font-semibold;
 
   &:has(~ .select.validator:required)::after,
-  &:has(~ .input.validator input:required)::after {
+  &:has(~ .input.validator input:required)::after,
+  &:has(~ .textarea.validator:required)::after {
     @apply font-semibold text-current text-xs content-["*"];
   }
 }
