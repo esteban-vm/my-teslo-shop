@@ -22,7 +22,7 @@ export function DataSelect<T extends FieldValues>({ control, name, label, childr
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={selectId}>
-              {label}
+              {label}:
             </Label>
             <Select
               {...rest}
