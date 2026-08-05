@@ -32,10 +32,10 @@ export function ProductForm(props: ProductFormProps) {
           <FormField control={control} label='Precio' min={0} name='price' type='number' />
         </div>
         <div className='form-row'>
-          <CategorySelect control={control} label='Categoría' name='categoryId' />
-          <GenderSelect control={control} label='Género' name='gender' />
+          <CategorySelect control={control} name='categoryId' />
+          <GenderSelect control={control} name='gender' />
         </div>
-        <DescriptionBox control={control} label='Descripción' name='description' />
+        <DescriptionBox control={control} name='description' />
         <SizeChecker control={control} name='sizes' />
       </Fieldset>
     </form>

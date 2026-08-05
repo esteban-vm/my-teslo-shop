@@ -1,7 +1,7 @@
 'use client'
 
 import type { FieldValues } from 'react-hook-form'
-import type { LabeledFormControlProps } from '@/types'
+import type { NamedFormControlProps } from '@/types'
 import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -10,9 +10,9 @@ import { ELLIPSIS_CHAR } from '@/lib/constants'
 
 export type BaseDescriptionBox = Omit<JSX.IntrinsicElements['textarea'], 'name' | 'color' | 'style'>
 
-export interface DescriptionBox<T extends FieldValues> extends LabeledFormControlProps<T>, BaseDescriptionBox {}
+export interface DescriptionBox<T extends FieldValues> extends NamedFormControlProps<T>, BaseDescriptionBox {}
 
-export function DescriptionBox<T extends FieldValues>({ control, name, label, ...rest }: DescriptionBox<T>) {
+export function DescriptionBox<T extends FieldValues>({ control, name, ...rest }: DescriptionBox<T>) {
   const boxId = useId()
   const errorId = useId()
 
@@ -24,7 +24,7 @@ export function DescriptionBox<T extends FieldValues>({ control, name, label, ..
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={boxId}>
-              {label}:
+              Descripción:
             </Label>
             <Textarea
               {...rest}

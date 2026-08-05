@@ -40,7 +40,7 @@ export function AddressForm(props: AddressFormProps) {
           <FormField autoComplete='address-level2' control={control} label='Ciudad' name='city' />
         </div>
         <div className='form-row'>
-          <CountrySelect control={control} label='País' name='countryId' />
+          <CountrySelect control={control} name='countryId' />
           <FormField autoComplete='tel' control={control} label='Teléfono' name='phone' type='tel' />
         </div>
         <RememberCheck control={control} name='remember' />
