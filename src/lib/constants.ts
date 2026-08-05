@@ -1,5 +1,5 @@
 import type { ThemeTypeWithDefault as Theme } from 'rsc-daisyui'
-import type { Gender, Role } from '@/prisma/generated/client'
+import type { Gender, Role } from '@/prisma/generated/enums'
 
 // UI
 export const DRAWER_ID = 'app_drawer'
