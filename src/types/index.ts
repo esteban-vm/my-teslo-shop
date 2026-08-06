@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { Control, FieldPath, FieldValues } from 'react-hook-form'
-import type { Size } from '@/prisma/generated/client'
+import type { Size } from '@/prisma/generated/enums'
 
 export interface CartProduct {
   id: string
@@ -17,7 +17,7 @@ export interface BaseFormControlProps<T extends FieldValues> extends PropsWithCh
   className?: string
 }
 
-export interface NamedFormControlProps<T extends FieldValues> extends BaseFormControlProps<T> {
+export interface NamedFormControlProps<T extends FieldValues> extends Pick<BaseFormControlProps<T>, 'control'> {
   name: FieldPath<T>
 }
 

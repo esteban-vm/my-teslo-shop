@@ -7,11 +7,7 @@ import { Controller } from 'react-hook-form'
 import { Checkbox, Fieldset, Label } from 'rsc-daisyui'
 import { Size } from '@/prisma/generated/enums'
 
-export type BaseSizeCheckerProps = Omit<JSX.IntrinsicElements['input'], 'name' | 'color' | 'size'>
-
-export interface SizeCheckerProps<T extends FieldValues> extends NamedFormControlProps<T>, BaseSizeCheckerProps {}
-
-export function SizeChecker<T extends FieldValues>({ control, name, ...rest }: SizeCheckerProps<T>) {
+export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormControlProps<T>) {
   const errorId = useId()
 
   return (
@@ -37,7 +33,6 @@ export function SizeChecker<T extends FieldValues>({ control, name, ...rest }: S
                 return (
                   <Fieldset.Label className='select-none font-semibold' key={size}>
                     <Checkbox
-                      {...rest}
                       aria-errormessage={errorId}
                       aria-invalid={invalid}
                       checked={isChecked}

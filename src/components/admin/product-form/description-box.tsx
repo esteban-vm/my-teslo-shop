@@ -8,11 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { Label, Textarea, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 
-export type BaseDescriptionBox = Omit<JSX.IntrinsicElements['textarea'], 'name' | 'color' | 'style'>
-
-export interface DescriptionBox<T extends FieldValues> extends NamedFormControlProps<T>, BaseDescriptionBox {}
-
-export function DescriptionBox<T extends FieldValues>({ control, name, ...rest }: DescriptionBox<T>) {
+export function DescriptionBox<T extends FieldValues>({ control, name }: NamedFormControlProps<T>) {
   const boxId = useId()
   const errorId = useId()
 
@@ -27,7 +23,6 @@ export function DescriptionBox<T extends FieldValues>({ control, name, ...rest }
               Descripción:
             </Label>
             <Textarea
-              {...rest}
               aria-errormessage={errorId}
               aria-invalid={invalid}
               as={TextareaAutosize}
