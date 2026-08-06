@@ -142,7 +142,7 @@ form {
 .label {
   @apply mb-1 cursor-pointer select-none font-semibold;
 
-  &.size-checker-label::after,
+  &.required-label::after,
   &:has(~ .validator:required)::after,
   &:has(~ .validator input:required)::after {
     @apply font-semibold text-current text-xs content-["*"];
