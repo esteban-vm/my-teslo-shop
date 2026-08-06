@@ -2,11 +2,12 @@
 
 import type { ProductResult } from '@/schemas/product'
 import { Fieldset } from 'rsc-daisyui'
-import { FormField } from '@/components/shared'
+import { FormButtons, FormField } from '@/components/shared'
 import { useProductForm } from '@/hooks'
 import { CategorySelect } from './category-select'
 import { DescriptionBox } from './description-box'
 import { GenderSelect } from './gender-select'
+import { ImageInput } from './image-input'
 import { SizeChecker } from './size-checker'
 
 export interface ProductFormProps {
@@ -36,7 +37,13 @@ export function ProductForm(props: ProductFormProps) {
           <GenderSelect control={control} name='gender' />
         </div>
         <DescriptionBox control={control} name='description' />
-        <SizeChecker control={control} name='sizes' />
+        <div className='form-row'>
+          <SizeChecker control={control} name='sizes' />
+          <ImageInput />
+        </div>
+        <FormButtons.Submit className='w-fit' control={control}>
+          Guardar
+        </FormButtons.Submit>
       </Fieldset>
     </form>
   )
