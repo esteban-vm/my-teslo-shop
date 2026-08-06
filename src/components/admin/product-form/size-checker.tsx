@@ -14,7 +14,7 @@ export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormC
     <Controller
       control={control}
       name={name}
-      render={({ field: { value, onChange }, fieldState: { error, invalid } }) => {
+      render={({ field: { value, disabled, onChange }, fieldState: { error, invalid } }) => {
         const allSizes = Object.values(Size)
         const productSizes = value as typeof allSizes
 
@@ -37,6 +37,7 @@ export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormC
                       aria-invalid={invalid}
                       checked={isChecked}
                       color={!invalid ? 'success' : undefined}
+                      disabled={disabled}
                       onChange={onSizeChange}
                       size='sm'
                       validator
