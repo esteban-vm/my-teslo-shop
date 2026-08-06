@@ -20,7 +20,7 @@ export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormC
 
         return (
           <div className='w-full'>
-            <Label className='size-checker-label'>Tallas:</Label>
+            <Label className='required-label'>Tallas:</Label>
             <div className='mx-0.5 my-1 flex items-center gap-3.5'>
               {allSizes.map((size) => {
                 const isChecked = productSizes.includes(size)
@@ -39,7 +39,6 @@ export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormC
                       color={!invalid ? 'success' : undefined}
                       disabled={disabled}
                       onChange={onSizeChange}
-                      size='sm'
                       validator
                     />
                     {size}
