@@ -22,7 +22,10 @@ export const getProducts = safeClient
         include: {
           images: {
             take: 2,
-            select: { url: true },
+            select: {
+              id: true,
+              url: true,
+            },
           },
         },
       })
@@ -33,12 +36,7 @@ export const getProducts = safeClient
       return {
         totalPages,
         currentPage: page,
-        products: products.map((product) => {
-          return {
-            ...product,
-            images: product.images.map((image) => image.url),
-          }
-        }),
+        products,
       }
     })
   )

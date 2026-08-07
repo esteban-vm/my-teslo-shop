@@ -31,9 +31,6 @@ export const getProductBySlug = safeClient
         throw new ServerError('Producto no encontrado')
       }
 
-      return {
-        ...product,
-        images: product.images.map((image) => image.url),
-      }
+      return product
     })
   )
