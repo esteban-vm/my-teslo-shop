@@ -1,6 +1,6 @@
 'use client'
 
-import type { OrderItemDTO } from '@/schemas/order'
+import type { OrderItem } from '@/schemas/order'
 import { Button, Card, Divider, Skeleton } from 'rsc-daisyui'
 import { useShallow } from 'zustand/shallow'
 import { useAddressStore, useCartStore, useMounted, usePlaceOrder } from '@/hooks'
@@ -18,7 +18,7 @@ export function PlaceOrder() {
   }
 
   const onPlaceOrder = () => {
-    const items: OrderItemDTO[] = cart.map((item) => {
+    const items: OrderItem[] = cart.map((item) => {
       return {
         productId: item.id,
         quantity: item.quantity,

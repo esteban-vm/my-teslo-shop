@@ -3,12 +3,12 @@
 import { cache } from 'react'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
-import { OrderByIdResult } from '@/schemas/order'
+import { OrderById } from '@/schemas/order'
 import { WithID } from '@/schemas/shared'
 
 export const getOrderById = safeAuthClient
   .inputSchema(WithID)
-  .outputSchema(OrderByIdResult.nullable())
+  .outputSchema(OrderById.nullable())
   .action(
     cache(async ({ ctx, parsedInput }) => {
       const { id, role } = ctx.user

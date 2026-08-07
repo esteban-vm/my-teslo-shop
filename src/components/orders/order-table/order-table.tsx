@@ -1,8 +1,8 @@
-import type { OrderResults } from '@/schemas/order'
+import type { OrdersDB } from '@/schemas/order'
 import { Table } from 'rsc-daisyui'
 import { OrderRow } from './order-row'
 
-export function OrderTable({ orders }: { orders: OrderResults }) {
+export function OrderTable({ orders }: { orders: OrdersDB }) {
   return (
     <section className='data-table'>
       <Table>
