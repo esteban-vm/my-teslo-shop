@@ -1,6 +1,7 @@
 'use server'
 
 import { cache } from 'react'
+import { ServerError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
 import { ProductResult } from '@/schemas/product'
@@ -8,7 +9,7 @@ import { WithSlug } from '@/schemas/shared'
 
 export const getProductBySlug = safeClient
   .inputSchema(WithSlug)
-  .outputSchema(ProductResult.nullable())
+  .outputSchema(ProductResult)
   .action(
     cache(async ({ parsedInput }) => {
       const product = await prisma.product.findFirst({
@@ -18,12 +19,17 @@ export const getProductBySlug = safeClient
         include: {
           images: {
             take: 2,
-            select: { url: true },
+            select: {
+              id: true,
+              url: true,
+            },
           },
         },
       })
 
-      if (!product) return null
+      if (!product) {
+        throw new ServerError('Producto no encontrado')
+      }
 
       return {
         ...product,
