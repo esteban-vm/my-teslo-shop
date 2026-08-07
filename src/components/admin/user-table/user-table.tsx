@@ -1,8 +1,8 @@
-import type { UserResults } from '@/schemas/user'
+import type { UsersDB } from '@/schemas/user'
 import { Table } from 'rsc-daisyui'
 import { UserRow } from './user-row'
 
-export function UserTable({ users }: { users: UserResults }) {
+export function UserTable({ users }: { users: UsersDB }) {
   return (
     <section className='data-table'>
       <Table>

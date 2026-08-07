@@ -1,7 +1,7 @@
-import type { UserResult } from '@/schemas/user'
+import type { UserDB } from '@/schemas/user'
 import { RoleSelect } from './role-select'
 
-export function UserRow({ user }: { user: UserResult }) {
+export function UserRow({ user }: { user: UserDB }) {
   const { id, name, email, role } = user
 
   return (

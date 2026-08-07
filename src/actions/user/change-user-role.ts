@@ -5,11 +5,11 @@ import { revalidatePath } from 'next/cache'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
-import { UserResult, UserRoleDTO } from '@/schemas/user'
+import { UserDB, UserRoleDTO } from '@/schemas/user'
 
 export const changeUserRole = safeAdminClient
   .inputSchema(UserRoleDTO)
-  .outputSchema(UserResult.nullable())
+  .outputSchema(UserDB.nullable())
   .action(async ({ ctx, parsedInput }) => {
     await sleep(3)
 
