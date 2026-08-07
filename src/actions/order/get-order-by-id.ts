@@ -1,6 +1,7 @@
 'use server'
 
 import { cache } from 'react'
+import { ServerError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
 import { OrderById } from '@/schemas/order'
@@ -8,7 +9,7 @@ import { WithID } from '@/schemas/shared'
 
 export const getOrderById = safeAuthClient
   .inputSchema(WithID)
-  .outputSchema(OrderById.nullable())
+  .outputSchema(OrderById)
   .action(
     cache(async ({ ctx, parsedInput }) => {
       const { id, role } = ctx.user
@@ -20,7 +21,10 @@ export const getOrderById = safeAuthClient
         },
         include: {
           shippingAddress: {
-            omit: { id: true, orderId: true },
+            omit: {
+              id: true,
+              orderId: true,
+            },
           },
           items: {
             select: {
@@ -52,6 +56,10 @@ export const getOrderById = safeAuthClient
           transactionId: true,
         },
       })
+
+      if (!order) {
+        throw new ServerError('Orden no encontrada')
+      }
 
       return order
     })
