@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: ProductDB }) {
       <Link href={productRoute}>
         <figure className='hover-gallery relative aspect-square'>
           {images.map((image) => (
-            <Image alt={title} fill key={image} src={`/products/${image}`} />
+            <Image alt={title} fill key={image.id} src={`/products/${image.url}`} />
           ))}
         </figure>
       </Link>
