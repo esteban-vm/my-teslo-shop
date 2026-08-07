@@ -1,10 +1,10 @@
-import type { ProductResult } from '@/schemas/product'
+import type { ProductDB } from '@/schemas/product'
 import NextLink from 'next/link'
 import { Link } from 'rsc-daisyui'
 import { ItemImage } from '@/components/shared'
 import { formatPrice } from '@/lib/helpers'
 
-export function ProductRow({ product }: { product: ProductResult }) {
+export function ProductRow({ product }: { product: ProductDB }) {
   const { id, images, title, price, gender, stock, sizes, slug } = product
 
   return (

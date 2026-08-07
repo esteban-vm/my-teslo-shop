@@ -4,9 +4,9 @@ import type { Product } from '@/prisma/generated/client'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
-import { ProductDTO } from '@/schemas/product'
+import { ProductForm } from '@/schemas/product'
 
-export const manageProduct = safeAdminClient.inputSchema(ProductDTO).action(async ({ parsedInput }) => {
+export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(async ({ parsedInput }) => {
   await sleep(3)
 
   await prisma.$transaction(async (_tx) => {

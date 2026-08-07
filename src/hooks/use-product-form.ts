@@ -4,9 +4,9 @@ import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hoo
 import { useState } from 'react'
 import { manageProduct } from '@/actions/product'
 import { Toasts } from '@/lib/toasts'
-import { ProductDTO } from '@/schemas/product'
+import { ProductForm } from '@/schemas/product'
 
-const initialProduct: ProductDTO = {
+const initialProduct: ProductForm = {
   id: '',
   title: '',
   description: '',
@@ -22,7 +22,7 @@ const initialProduct: ProductDTO = {
 export function useProductForm({ savedProduct }: ProductFormProps) {
   const [isServerError, setIsServerError] = useState(false)
 
-  const hookReturn = useHookFormAction(manageProduct, zodResolver(ProductDTO), {
+  const hookReturn = useHookFormAction(manageProduct, zodResolver(ProductForm), {
     formProps: {
       mode: 'all',
       defaultValues: {

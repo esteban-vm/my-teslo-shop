@@ -1,8 +1,8 @@
-import type { ProductResults } from '@/schemas/product'
+import type { ProductsDB } from '@/schemas/product'
 import tw from 'tailwind-styled-components'
 import { ProductCard } from './product-card'
 
-export function ProductGrid({ products }: { products: ProductResults }) {
+export function ProductGrid({ products }: { products: ProductsDB }) {
   return (
     <GridContainer>
       {products.map((product) => (

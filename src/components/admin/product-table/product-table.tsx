@@ -1,8 +1,8 @@
-import type { ProductResults } from '@/schemas/product'
+import type { ProductsDB } from '@/schemas/product'
 import { Table } from 'rsc-daisyui'
 import { ProductRow } from './product-row'
 
-export function ProductTable({ products }: { products: ProductResults }) {
+export function ProductTable({ products }: { products: ProductsDB }) {
   return (
     <section className='data-table'>
       <Table className='text-center'>

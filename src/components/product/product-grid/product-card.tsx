@@ -1,12 +1,12 @@
 import type { Route } from 'next'
-import type { ProductResult } from '@/schemas/product'
+import type { ProductDB } from '@/schemas/product'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { formatPrice } from '@/lib/helpers'
 
-export function ProductCard({ product }: { product: ProductResult }) {
+export function ProductCard({ product }: { product: ProductDB }) {
   const { id, title, price, slug, images } = product
   const productRoute: Route<`/product/${string}`> = `/product/${slug}`
 

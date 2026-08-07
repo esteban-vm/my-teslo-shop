@@ -1,6 +1,6 @@
 'use client'
 
-import type { ProductResult } from '@/schemas/product'
+import type { ProductDB } from '@/schemas/product'
 import { Fieldset } from 'rsc-daisyui'
 import { FormButtons, FormField } from '@/components/shared'
 import { useProductForm } from '@/hooks'
@@ -11,7 +11,7 @@ import { ImageInput } from './image-input'
 import { SizeChecker } from './size-checker'
 
 export interface ProductFormProps {
-  savedProduct?: ProductResult | null
+  savedProduct?: ProductDB | null
 }
 
 export function ProductForm(props: ProductFormProps) {

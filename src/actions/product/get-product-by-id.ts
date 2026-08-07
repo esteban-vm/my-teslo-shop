@@ -4,12 +4,12 @@ import { cache } from 'react'
 import { ServerError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
-import { ProductResult } from '@/schemas/product'
+import { ProductDB } from '@/schemas/product'
 import { WithID } from '@/schemas/shared'
 
 export const getProductById = safeAdminClient
   .inputSchema(WithID)
-  .outputSchema(ProductResult)
+  .outputSchema(ProductDB)
   .action(
     cache(async ({ parsedInput }) => {
       const product = await prisma.product.findFirst({
