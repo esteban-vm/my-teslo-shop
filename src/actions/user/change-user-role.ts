@@ -5,32 +5,14 @@ import { revalidatePath } from 'next/cache'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
-import { ChangeUserRole, UserDB } from '@/schemas/user'
+import { ChangeUserRole } from '@/schemas/user'
 
-export const changeUserRole = safeAdminClient
-  .inputSchema(ChangeUserRole)
-  .outputSchema(UserDB.nullable())
-  .action(async ({ ctx, parsedInput }) => {
-    await sleep(3)
+export const changeUserRole = safeAdminClient.inputSchema(ChangeUserRole).action(async ({ ctx, parsedInput }) => {
+  await sleep(3)
 
-    const { userId, role } = parsedInput
-    if (userId === ctx.user.id) return null
+  const { userId, role } = parsedInput
+  if (userId === ctx.user.id) return null
 
-    const user = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        role,
-      },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        role: true,
-      },
-    })
-
-    revalidatePath('/admin/users' satisfies Route)
-    return user
-  })
+  await prisma.user.update({ where: { id: userId }, data: { role } })
+  revalidatePath('/admin/users' satisfies Route)
+})
