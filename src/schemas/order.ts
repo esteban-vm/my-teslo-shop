@@ -24,7 +24,7 @@ export const OrderItem = z.object({
   size: z.enum(Size),
 })
 
-export const OrderDTO = z.object({
+export const PlaceOrder = z.object({
   items: z.array(OrderItem),
   address: AddressForm,
 })
@@ -60,6 +60,6 @@ export type OrderDB = z.infer<typeof OrderDB>
 export type OrdersDB = z.infer<typeof OrdersDB>
 export type PaginatedOrders = z.infer<typeof PaginatedOrders>
 export type OrderItem = z.infer<typeof OrderItem>
-export type OrderDTO = z.infer<typeof OrderDTO>
+export type PlaceOrder = z.infer<typeof PlaceOrder>
 export type OrderSummary = z.infer<typeof OrderSummary>
 export type OrderById = z.infer<typeof OrderById>

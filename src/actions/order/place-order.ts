@@ -4,9 +4,9 @@ import { ServerError } from '@/lib/errors'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
-import { OrderDTO } from '@/schemas/order'
+import { PlaceOrder } from '@/schemas/order'
 
-export const placeOrder = safeAuthClient.inputSchema(OrderDTO).action(async ({ ctx, parsedInput }) => {
+export const placeOrder = safeAuthClient.inputSchema(PlaceOrder).action(async ({ ctx, parsedInput }) => {
   await sleep(3)
   const userId = ctx.user.id
   const { items, address } = parsedInput
