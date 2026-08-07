@@ -4,9 +4,9 @@ import { redirect } from 'next/navigation'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
-import { AddressDTO } from '@/schemas/address'
+import { AddressForm } from '@/schemas/address'
 
-export const manageAddress = safeAuthClient.inputSchema(AddressDTO).action(async ({ ctx, parsedInput }) => {
+export const manageAddress = safeAuthClient.inputSchema(AddressForm).action(async ({ ctx, parsedInput }) => {
   await sleep(3)
 
   const userId = ctx.user.id

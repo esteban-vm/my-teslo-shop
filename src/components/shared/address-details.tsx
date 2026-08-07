@@ -1,7 +1,7 @@
-import type { AddressResult } from '@/schemas/address'
+import type { AddressDB } from '@/schemas/address'
 import { Card } from 'rsc-daisyui'
 
-export function AddressDetails({ address: a }: { address: AddressResult }) {
+export function AddressDetails({ address: a }: { address: AddressDB }) {
   const { firstName, lastName, city, countryId, phone, address, address2, postalCode } = a
 
   return (

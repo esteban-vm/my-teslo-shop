@@ -1,18 +1,7 @@
 import { z } from 'zod'
 import './config'
 
-export const AddressResult = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  address: z.string(),
-  address2: z.string().optional().nullable(),
-  postalCode: z.string(),
-  phone: z.string(),
-  city: z.string(),
-  countryId: z.string(),
-})
-
-export const AddressDTO = z.object({
+export const AddressForm = z.object({
   firstName: z.string().trim().nonempty().min(3),
   lastName: z.string().trim().nonempty().min(3),
   address: z.string().trim().nonempty().min(5),
@@ -24,5 +13,16 @@ export const AddressDTO = z.object({
   remember: z.boolean().optional(),
 })
 
-export type AddressResult = z.infer<typeof AddressResult>
-export type AddressDTO = z.infer<typeof AddressDTO>
+export const AddressDB = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  address: z.string(),
+  address2: z.string().optional().nullable(),
+  postalCode: z.string(),
+  phone: z.string(),
+  city: z.string(),
+  countryId: z.string(),
+})
+
+export type AddressForm = z.infer<typeof AddressForm>
+export type AddressDB = z.infer<typeof AddressDB>

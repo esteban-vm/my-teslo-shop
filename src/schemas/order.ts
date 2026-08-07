@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Size } from '@/prisma/generated/client'
-import { AddressDTO, AddressResult } from './address'
+import { AddressDB, AddressForm } from './address'
 import { PaginatedResults } from './shared'
 import './config'
 
@@ -21,7 +21,7 @@ export const OrderItemDTO = z.object({
 
 export const OrderDTO = z.object({
   items: z.array(OrderItemDTO),
-  address: AddressDTO,
+  address: AddressForm,
 })
 
 export const OrderSummary = z.object({
@@ -34,7 +34,7 @@ export const OrderSummary = z.object({
 export const OrderByIdResult = z
   .object({
     isPaid: z.boolean().nullable(),
-    shippingAddress: AddressResult.nullable(),
+    shippingAddress: AddressDB.nullable(),
     items: z.array(
       z.object({
         quantity: z.number(),

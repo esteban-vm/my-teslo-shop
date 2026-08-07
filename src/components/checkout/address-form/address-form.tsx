@@ -1,6 +1,6 @@
 'use client'
 
-import type { AddressResult } from '@/schemas/address'
+import type { AddressDB } from '@/schemas/address'
 import { Fieldset } from 'rsc-daisyui'
 import { FormButtons, FormField } from '@/components/shared'
 import { useAddressForm } from '@/hooks'
@@ -8,7 +8,7 @@ import { CountrySelect } from './country-select'
 import { RememberCheck } from './remember-check'
 
 export interface AddressFormProps {
-  savedAddress?: AddressResult | null
+  savedAddress?: AddressDB | null
 }
 
 export function AddressForm(props: AddressFormProps) {
