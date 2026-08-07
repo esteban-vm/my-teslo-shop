@@ -22,6 +22,11 @@ export const ProductForm = z.object({
   categoryId: z.cuid2('Selecciona una categoría'),
 })
 
+export const ProductImage = z.object({
+  id: z.number(),
+  url: z.string(),
+})
+
 export const ProductDB = z.object({
   id: z.string(),
   title: z.string(),
@@ -33,13 +38,14 @@ export const ProductDB = z.object({
   slug: z.string(),
   tags: z.array(z.string()),
   categoryId: z.string(),
-  images: z.array(z.string()),
+  images: z.array(ProductImage),
 })
 
 export const ProductsDB = z.array(ProductDB)
 export const PaginatedProducts = PaginatedResults.extend({ products: ProductsDB })
 
 export type ProductForm = z.infer<typeof ProductForm>
+export type ProductImage = z.infer<typeof ProductImage>
 export type ProductDB = z.infer<typeof ProductDB>
 export type ProductsDB = z.infer<typeof ProductsDB>
 export type PaginatedProducts = z.infer<typeof PaginatedProducts>
