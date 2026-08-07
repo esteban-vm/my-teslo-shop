@@ -26,7 +26,7 @@ export function useProductSlider({ images }: ProductSliderProps) {
   }
 
   const galleryItems = images.map((image): GalleryItem => {
-    const productUrl = `/products/${image}`
+    const productUrl = `/products/${image.url}`
 
     return {
       original: productUrl,
