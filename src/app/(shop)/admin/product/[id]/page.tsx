@@ -29,7 +29,7 @@ export default async function Page({ params }: Props) {
   const isNew = id === 'new'
 
   const { data: product } = await getProductById({ id })
-  if (!product && !isNew) redirect('/admin/products')
+  if (!product && !isNew) redirect('/admin/products?take=5')
 
   return (
     <>
