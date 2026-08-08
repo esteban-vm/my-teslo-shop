@@ -8,6 +8,7 @@ import { CategorySelect } from './category-select'
 import { DescriptionBox } from './description-box'
 import { GenderSelect } from './gender-select'
 import { ImageInput } from './image-input'
+import { ImageViewer } from './image-viewer'
 import { SizeChecker } from './size-checker'
 
 export interface ProductFormProps {
@@ -20,6 +21,8 @@ export function ProductForm(props: ProductFormProps) {
     handleSubmitWithAction,
     isDisabled,
   } = useProductForm(props)
+
+  const images = props.savedProduct?.images
 
   return (
     <form className='data-form' noValidate onSubmit={handleSubmitWithAction}>
@@ -41,6 +44,7 @@ export function ProductForm(props: ProductFormProps) {
           <SizeChecker control={control} name='sizes' />
           <ImageInput />
         </div>
+        {images && <ImageViewer images={images} />}
         <FormButtons.Submit className='w-fit' control={control}>
           Guardar
         </FormButtons.Submit>
