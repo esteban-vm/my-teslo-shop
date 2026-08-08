@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: ProductDB }) {
   const productRoute: Route<`/product/${string}`> = `/product/${slug}`
 
   return (
-    <CardContainer $as={Card} border id={id}>
+    <Container border id={id}>
       <Link href={productRoute}>
         <figure className='hover-gallery relative aspect-square'>
           {images.map((image) => (
@@ -21,12 +21,13 @@ export function ProductCard({ product }: { product: ProductDB }) {
       </Link>
       <Card.Body className='gap-1 px-3 py-2.5'>
         <Link href={productRoute} title={title}>
-          <Card.Title className='line-clamp-1 text-sm hover:opacity-75 xl:text-base'>{title}</Card.Title>
+          <Title>{title}</Title>
         </Link>
         <p className='text-sm'>{formatPrice(price)}</p>
       </Card.Body>
-    </CardContainer>
+    </Container>
   )
 }
 
-const CardContainer = tw.div`fade-in mx-auto w-full max-w-96 animate-in overflow-hidden rounded-md shadow-md`
+const Container = tw(Card)`fade-in mx-auto w-full max-w-96 animate-in overflow-hidden rounded-md shadow-md`
+const Title = tw(Card.Title)`line-clamp-1 text-sm hover:opacity-75 xl:text-base`
