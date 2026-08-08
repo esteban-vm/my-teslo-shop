@@ -1,13 +1,13 @@
 'use client'
 
-import type { ProductImage } from '@/schemas/product'
+import type { ProductImages } from '@/schemas/product'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import ImageGallery from 'react-image-gallery'
 import { useProductSlider } from '@/hooks'
 import { SliderButton } from './slider-button'
 
 export interface ProductSliderProps {
-  images: ProductImage[]
+  images: ProductImages
 }
 
 export function ProductSlider(props: ProductSliderProps) {
