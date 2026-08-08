@@ -36,9 +36,12 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
         hookReturn.resetFormAndAction()
       },
       onExecute() {
-        Toasts.execute('Un momento')
+        if (savedProduct) Toasts.execute('Actualizando producto')
+        else Toasts.execute('Creando producto')
       },
       onSuccess() {
+        if (savedProduct) Toasts.success('Producto actualizado')
+        else Toasts.success('Producto creado')
         setIsServerError(false)
       },
       onError(args) {
