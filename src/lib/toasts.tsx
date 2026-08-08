@@ -16,7 +16,7 @@ function handleExecute(message: string) {
   toastId = toast.loading(message + ELLIPSIS_CHAR)
 }
 
-function handleSuccess(message: string, onClose: () => void) {
+function handleSuccess(message: string, onClose?: () => void) {
   toast.update(toastId, {
     type: 'success',
     closeButton: true,
