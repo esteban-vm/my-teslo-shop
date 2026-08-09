@@ -37,4 +37,4 @@ export function ImageViewer({ images }: ImageViewerProps) {
   )
 }
 
-const Container = tw.div`flex w-full flex-wrap items-center justify-center gap-2 lg:justify-start`
+const Container = tw.div`mt-3 flex w-full flex-wrap items-center justify-center gap-2`
