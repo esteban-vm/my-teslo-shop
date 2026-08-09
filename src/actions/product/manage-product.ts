@@ -1,5 +1,7 @@
 'use server'
 
+import type { Route } from 'next'
+import { revalidatePath } from 'next/cache'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
@@ -8,7 +10,7 @@ import { ProductForm } from '@/schemas/product'
 export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(async ({ parsedInput }) => {
   await sleep(3)
 
-  const { id: productId } = await prisma.$transaction(async (tx) => {
+  const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
     const { id, slug, tags, ...rest } = parsedInput
 
     const data = {
@@ -21,9 +23,13 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
       where: { id },
       create: data,
       update: data,
-      select: { id: true },
+      select: { id: true, slug: true },
     })
   })
 
-  return { productId }
+  revalidatePath('/admin/products' satisfies Route)
+  revalidatePath(`/admin/product/${productId}` satisfies Route<`/admin/product/${string}`>)
+  revalidatePath(`/product/${productSlug}` satisfies Route<`/product/${string}`>)
+
+  return { productId, productSlug }
 })
