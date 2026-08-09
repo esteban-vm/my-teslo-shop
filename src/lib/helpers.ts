@@ -1,3 +1,4 @@
+import type { ParamValue } from 'next/dist/server/request/params'
 import type { WithPagination } from '@/schemas/shared'
 import type { CartProduct } from '@/types'
 
@@ -22,7 +23,7 @@ export function isSameProduct(product1: CartProduct, product2: CartProduct) {
   return product1.id === product2.id && product1.size === product2.size
 }
 
-export async function getParams(searchParams: Promise<Record<string, string | string[] | undefined>>) {
+export async function getParams(searchParams: Promise<Record<string, ParamValue>>) {
   let { page = '1', take = '12' } = await searchParams
 
   if (Array.isArray(page)) page = '1'
