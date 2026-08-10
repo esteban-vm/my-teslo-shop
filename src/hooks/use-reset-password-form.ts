@@ -26,7 +26,8 @@ export function useResetPasswordForm() {
       },
       onSuccess(args) {
         setIsServerError(false)
-        Toasts.success(args.data.message, () => router.push('/auth/sign-in'))
+        Toasts.success(args.data.message)
+        router.push('/auth/sign-in')
       },
       onError(args) {
         const { serverError } = args.error
