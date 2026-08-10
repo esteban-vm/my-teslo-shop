@@ -18,9 +18,6 @@ export function useRecoveryPasswordForm() {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute() {
         Toasts.execute('Enviando correo')
       },

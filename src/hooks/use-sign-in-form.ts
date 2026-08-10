@@ -18,9 +18,6 @@ export function useSignInForm() {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute() {
         Toasts.execute('Ingresando')
       },

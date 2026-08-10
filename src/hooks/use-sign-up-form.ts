@@ -21,9 +21,6 @@ export function useSignUpForm() {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute() {
         Toasts.execute('Registrando')
       },

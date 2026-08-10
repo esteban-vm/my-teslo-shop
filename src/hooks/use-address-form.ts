@@ -21,9 +21,6 @@ export function useAddressForm({ savedAddress }: AddressFormProps) {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute(args) {
         setAddress(args.input)
         Toasts.execute('Un momento')

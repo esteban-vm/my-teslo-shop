@@ -21,9 +21,6 @@ export function useResetPasswordForm() {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute() {
         Toasts.execute('Restableciendo contraseña')
       },

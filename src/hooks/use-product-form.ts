@@ -35,20 +35,13 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
       },
     },
     actionProps: {
-      onSettled() {
-        hookReturn.resetFormAndAction()
-      },
       onExecute() {
         if (savedProduct) Toasts.execute('Actualizando producto')
         else Toasts.execute('Creando producto')
       },
       onSuccess(args) {
-        if (savedProduct) {
-          Toasts.success('Producto actualizado')
-        } else {
-          Toasts.success('Producto creado')
-        }
-
+        if (savedProduct) Toasts.success('Producto actualizado')
+        else Toasts.success('Producto creado')
         router.replace(`/product/${args.data.productSlug}`)
       },
       onError(args) {
