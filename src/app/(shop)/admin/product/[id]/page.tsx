@@ -8,19 +8,15 @@ export type Props = PageProps<'/admin/product/[id]'>
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const { data: product } = await getProductById({ id })
 
-  if (!product) {
+  if (id === 'new') {
     return {
-      title: 'Producto no encontrado',
+      title: 'Nuevo producto',
     }
   }
 
-  const { title, description } = product
-
   return {
-    title,
-    description,
+    title: 'Editar producto',
   }
 }
 
