@@ -21,7 +21,7 @@ export function PagePagination({ totalPages }: PagePaginationProps) {
   }
 
   return (
-    <div className='mb-4 text-center'>
+    <div className='mb-2 text-center'>
       <Join>
         <PaginationButton isDisabled={currentPage === 1} to={getPageUrl(currentPage - 1)}>
           <ChevronLeft />

@@ -15,7 +15,7 @@ export function ProductSlider(props: ProductSliderProps) {
 
   return (
     <ImageGallery
-      additionalClass='col-span-1 mx-auto px-3 py-1.5 lg:col-span-2 lg:w-[75%]'
+      additionalClass='col-span-1 mx-auto px-3 lg:col-span-2 lg:w-[75%]'
       autoPlay
       disableThumbnailScroll
       disableThumbnailSwipe
