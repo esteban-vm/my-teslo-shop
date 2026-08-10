@@ -11,7 +11,7 @@ export function ImageInput() {
       <Label as='label' className='required-label' htmlFor={inputId}>
         Fotos:
       </Label>
-      <FileInput accept='image/png, image/jpeg' className='w-full' id={inputId} multiple required validator />
+      <FileInput accept='image/png, image/jpeg' className='w-full' id={inputId} multiple />
     </div>
   )
 }
