@@ -6,6 +6,7 @@ import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
+import { cn } from '@/lib/ui'
 
 export type BaseFormFieldProps = Omit<JSX.IntrinsicElements['input'], 'name'>
 
@@ -18,6 +19,7 @@ export function FormField<T extends FieldValues>({
   name,
   label,
   icon,
+  className,
   inputMode,
   maxLength,
   type = 'text',
@@ -40,7 +42,7 @@ export function FormField<T extends FieldValues>({
       name={name}
       render={({ field, fieldState: { error, isDirty, invalid } }) => {
         return (
-          <div className='w-full'>
+          <div className={cn('w-full', className)}>
             <Label as='label' htmlFor={fieldId}>
               {label}:
             </Label>
