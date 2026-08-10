@@ -2,7 +2,7 @@
 
 import type { Route } from 'next'
 import { revalidatePath } from 'next/cache'
-import { sleep } from '@/lib/helpers'
+import { capitalize, sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
 import { ProductForm } from '@/schemas/product'
@@ -11,10 +11,11 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
   await sleep(3)
 
   const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
-    const { id = '', slug, tags, ...rest } = parsedInput
+    const { id = '', title, slug, tags, ...rest } = parsedInput
 
     const data = {
       ...rest,
+      title: capitalize(title),
       slug: slug.replace(/\s+|\W/g, '_'),
       tags: tags.split(', '),
     }
