@@ -11,7 +11,7 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
   await sleep(3)
 
   const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
-    const { id, slug, tags, ...rest } = parsedInput
+    const { id = '', slug, tags, ...rest } = parsedInput
 
     const data = {
       ...rest,
