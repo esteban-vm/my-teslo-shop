@@ -1,6 +1,6 @@
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client'
 import { APIError } from 'better-auth'
 import { createSafeActionClient } from 'next-safe-action'
-import { Prisma } from '@/prisma/generated/client'
 import { getSession } from './auth'
 import { ApiErrorMap } from './constants'
 import { ServerError } from './errors'
@@ -9,7 +9,7 @@ export const safeClient = createSafeActionClient({
   handleServerError(error) {
     console.log({ error: error.message })
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error instanceof PrismaClientKnownRequestError) {
       const { code, meta } = error
 
       if (code === 'P2002' && meta?.modelName === 'Product') {
