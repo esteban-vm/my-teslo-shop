@@ -23,7 +23,8 @@ export function useRecoveryPasswordForm() {
       },
       onSuccess(args) {
         setIsServerError(false)
-        Toasts.success(args.data.message, () => router.push('/'))
+        Toasts.success(args.data.message)
+        router.push('/')
       },
       onError(args) {
         const { serverError } = args.error
