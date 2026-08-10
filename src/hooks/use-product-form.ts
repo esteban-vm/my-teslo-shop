@@ -1,20 +1,19 @@
 import type { ProductFormProps } from '@/components/admin'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { manageProduct } from '@/actions/product'
 import { Toasts } from '@/lib/toasts'
 import { ProductForm } from '@/schemas/product'
 
 const initialProduct: ProductForm = {
-  id: '',
   title: '',
   description: '',
   price: 0,
   stock: 0,
   sizes: [],
-  gender: 'unisex',
+  gender: 'men',
   slug: '',
   tags: '',
   categoryId: '',
@@ -22,7 +21,6 @@ const initialProduct: ProductForm = {
 
 export function useProductForm({ savedProduct }: ProductFormProps) {
   const router = useRouter()
-  const { id } = useParams()
   const [isServerError, setIsServerError] = useState(false)
 
   const hookReturn = useHookFormAction(manageProduct, zodResolver(ProductForm), {
@@ -46,7 +44,7 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
       },
       onError(args) {
         const { serverError } = args.error
-        if (!serverError || id === 'new') return
+        if (!serverError) return
         setIsServerError(true)
         Toasts.error(serverError)
       },
