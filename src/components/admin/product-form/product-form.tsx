@@ -33,7 +33,10 @@ export function ProductForm(props: ProductFormProps) {
         </div>
         <div className='form-row'>
           <FormField control={control} label='Etiquetas' name='tags' />
-          <FormField control={control} label='Precio' min={0} name='price' type='number' />
+          <div className='flex w-full gap-5'>
+            <FormField className='w-1/2' control={control} label='Precio' min={0} name='price' type='number' />
+            <FormField className='w-1/2' control={control} label='Cantidad' min={0} name='stock' type='number' />
+          </div>
         </div>
         <div className='form-row'>
           <CategorySelect control={control} name='categoryId' />
