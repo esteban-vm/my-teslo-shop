@@ -10,9 +10,10 @@ import { ProductForm } from '@/schemas/product'
 export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(async ({ parsedInput }) => {
   await sleep(3)
 
-  const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
-    const { id = '', title, slug, tags, price, ...rest } = parsedInput
+  const { id = '', title, slug, tags, price, uploads, ...rest } = parsedInput
+  console.log({ uploads })
 
+  const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
     const data = {
       ...rest,
       title: capitalize(title),
