@@ -17,6 +17,7 @@ const initialProduct: ProductForm = {
   slug: '',
   tags: '',
   categoryId: '',
+  uploads: null,
 }
 
 export function useProductForm({ savedProduct }: ProductFormProps) {
