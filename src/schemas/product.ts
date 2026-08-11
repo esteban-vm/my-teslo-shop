@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/lib/constants'
 import { Gender, Size } from '@/prisma/generated/enums'
 import { PaginatedResults } from './shared'
 import './config'
@@ -14,6 +15,20 @@ export const ProductForm = z.object({
   slug: z.string().trim().nonempty().min(3).max(255),
   tags: z.string().trim().nonempty(),
   categoryId: z.cuid2('Selecciona una categoría'),
+  uploads: z
+    .custom<FileList>()
+    .refine((files) => files.length > 0, 'Selecciona al menos una foto')
+    .refine((files) => files.length <= 3, 'Selecciona como máximo 3 fotos')
+    .refine(
+      (files) => Array.from(files).reduce((total, file) => total + file.size, 0) <= MAX_FILE_SIZE,
+      'El tamaño máximo de carga es de 5MB'
+    )
+    .refine(
+      (files) => Array.from(files).every((file) => ACCEPTED_IMAGE_TYPES.includes(file.type)),
+      'Solo se admiten los formatos: .png, .jpeg, .jpg, y .avif'
+    )
+    .nullable()
+    .optional(),
 })
 
 export const ProductImage = z.object({
