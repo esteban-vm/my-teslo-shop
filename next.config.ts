@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     typedEnv: true,
+    serverActions: {
+      bodySizeLimit: '5.5mb',
+    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
