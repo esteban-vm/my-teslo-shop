@@ -17,8 +17,8 @@ export const ProductForm = z.object({
   categoryId: z.cuid2('Selecciona una categoría'),
   uploads: z
     .custom<FileList>()
-    .refine((files) => files.length > 0, 'Selecciona al menos una foto')
-    .refine((files) => files.length <= 3, 'Selecciona como máximo 3 fotos')
+    .refine((files) => files.length > 0, 'Selecciona al menos una imagen')
+    .refine((files) => files.length <= 3, 'Selecciona como máximo 3 imágenes')
     .refine(
       (files) => Array.from(files).reduce((total, file) => total + file.size, 0) <= MAX_FILE_SIZE,
       'El tamaño máximo de carga es de 5MB'
