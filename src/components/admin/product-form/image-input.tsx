@@ -19,7 +19,7 @@ export function ImageInput<T extends FieldValues>({ control, name }: NamedFormCo
         return (
           <div className='w-full'>
             <Label as='label' className='required-label' htmlFor={inputId}>
-              Fotos:
+              Imágenes:
             </Label>
             <FileInput
               accept={ACCEPTED_IMAGE_TYPES.join(', ')}
