@@ -7,18 +7,12 @@ export const ProductForm = z.object({
   id: z.cuid2().optional(),
   title: z.string().trim().nonempty().min(3).max(255),
   description: z.string().trim().nonempty().min(5),
-  price: z.coerce
-    .number()
-    .min(0, 'Ingresa un precio válido')
-    .transform((value) => Number(value.toFixed(2))),
-  stock: z.coerce
-    .number()
-    .min(0, 'Ingresa una cantidad válida')
-    .transform((value) => Number(value.toFixed(0))),
+  price: z.coerce.number().min(0, 'Ingresa un precio válido'),
+  stock: z.coerce.number().int('Ingresa una cantidad entera').min(0, 'Ingresa una cantidad válida'),
   sizes: z.array(z.enum(Size)).min(1, 'Elige al menos una talla'),
   gender: z.enum(Gender, 'Selecciona un género'),
-  slug: z.string().trim().nonempty().min(3).max(255).lowercase(),
-  tags: z.string().trim().nonempty().lowercase(),
+  slug: z.string().trim().nonempty().min(3).max(255),
+  tags: z.string().trim().nonempty(),
   categoryId: z.cuid2('Selecciona una categoría'),
 })
 
