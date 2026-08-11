@@ -53,7 +53,7 @@ export function ProductForm(props: ProductFormProps) {
         <DescriptionBox control={control} name='description' />
         <div className='form-row'>
           <SizeChecker control={control} name='sizes' />
-          <ImageInput />
+          <ImageInput control={control} name='uploads' />
         </div>
         {images && <ImageViewer images={images} />}
         <FormButtons.Submit className='w-fit' control={control}>
