@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { ThemeProvider } from '@teispace/next-themes'
 import { getTheme, getThemeScript } from '@teispace/next-themes/server'
 import { ToastContainer } from 'react-toastify'
-import { THEMES, ThemeMap } from '@/lib/constants'
+import { THEME_MAP, THEMES } from '@/lib/constants'
 import { mainFont, titleFont } from '@/lib/fonts'
 import './globals.css'
 
@@ -48,7 +48,7 @@ export default async function Layout({ children }: Props) {
           disableTransitionOnChange
           initialTheme={initialTheme}
           themes={THEMES}
-          value={ThemeMap}
+          value={THEME_MAP}
         >
           {children}
           <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />

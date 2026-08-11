@@ -8,7 +8,7 @@ export const DRAWER_ID = 'app_drawer'
 export const ELLIPSIS_CHAR = '…'
 
 // Genders
-export const GenderMap: Record<Gender, string> = {
+export const GENDER_MAP: Record<Gender, string> = {
   men: 'hombres',
   women: 'mujeres',
   kids: 'niños',
@@ -19,7 +19,7 @@ export const GenderMap: Record<Gender, string> = {
 export const THEMES = ['light', 'dark'] as const satisfies string[]
 
 // Theme values
-export const ThemeMap = {
+export const THEME_MAP = {
   light: 'wireframe',
   dark: 'night',
 } as const satisfies Record<(typeof THEMES)[number], Theme>
