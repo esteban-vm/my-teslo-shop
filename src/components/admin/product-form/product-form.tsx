@@ -34,7 +34,15 @@ export function ProductForm(props: ProductFormProps) {
         <div className='form-row'>
           <FormField control={control} label='Etiquetas' name='tags' />
           <div className='flex w-full gap-5'>
-            <FormField className='w-1/2' control={control} label='Precio' min={0} name='price' type='number' />
+            <FormField
+              className='w-1/2'
+              control={control}
+              label='Precio'
+              min={0}
+              name='price'
+              step={0.5}
+              type='number'
+            />
             <FormField className='w-1/2' control={control} label='Cantidad' min={0} name='stock' type='number' />
           </div>
         </div>
