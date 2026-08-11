@@ -18,14 +18,13 @@ export const GENDER_MAP: Record<Gender, string> = {
 // Themes
 export const THEMES = ['light', 'dark'] as const satisfies string[]
 
-// Theme values
 export const THEME_MAP = {
   light: 'wireframe',
   dark: 'night',
 } as const satisfies Record<(typeof THEMES)[number], Theme>
 
 // Api errors
-export const ApiErrorMap = {
+export const API_ERROR_MAP = {
   invalidEmailOrPassword: 'Correo electrónico y/o contraseña inválido(s)',
   unverifiedEmail: 'Correo electrónico no verificado',
   emailAlreadyInUse: 'El correo electrónico ya está en uso',

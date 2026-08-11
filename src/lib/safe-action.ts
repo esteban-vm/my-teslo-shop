@@ -2,7 +2,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client'
 import { APIError } from 'better-auth'
 import { createSafeActionClient } from 'next-safe-action'
 import { getSession } from './auth'
-import { ApiErrorMap } from './constants'
+import { API_ERROR_MAP } from './constants'
 import { ServerError } from './errors'
 
 export const safeClient = createSafeActionClient({
@@ -25,15 +25,15 @@ export const safeClient = createSafeActionClient({
       const { status, statusCode } = error
 
       if (status === 'UNAUTHORIZED' && statusCode === 401) {
-        return ApiErrorMap.invalidEmailOrPassword
+        return API_ERROR_MAP.invalidEmailOrPassword
       }
 
       if (status === 'FORBIDDEN' && statusCode === 403) {
-        return ApiErrorMap.unverifiedEmail
+        return API_ERROR_MAP.unverifiedEmail
       }
 
       if (status === 'UNPROCESSABLE_ENTITY' && statusCode === 422) {
-        return ApiErrorMap.emailAlreadyInUse
+        return API_ERROR_MAP.emailAlreadyInUse
       }
     }
 

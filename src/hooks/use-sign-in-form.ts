@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useState } from 'react'
 import { signIn } from '@/actions/auth'
-import { ApiErrorMap } from '@/lib/constants'
+import { API_ERROR_MAP } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
 import { SignIn } from '@/schemas/auth'
 
@@ -30,7 +30,7 @@ export function useSignInForm() {
         setIsServerError(true)
         Toasts.error(serverError)
 
-        if (serverError === ApiErrorMap.unverifiedEmail) {
+        if (serverError === API_ERROR_MAP.unverifiedEmail) {
           const { authClient } = await import('@/auth-client')
           void authClient.sendVerificationEmail({ email: args.input.email })
         }
