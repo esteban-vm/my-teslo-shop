@@ -6,7 +6,7 @@ import { useAction } from 'next-safe-action/hooks'
 import { Select } from 'rsc-daisyui'
 import { changeUserRole } from '@/actions/user'
 import { authClient } from '@/auth-client'
-import { userRoles } from '@/lib/constants'
+import { USER_ROLES } from '@/lib/constants'
 
 export function RoleSelect({ userId, role }: ChangeUserRole) {
   const { data: session, isPending } = authClient.useSession()
@@ -20,7 +20,7 @@ export function RoleSelect({ userId, role }: ChangeUserRole) {
 
   return (
     <Select className='w-30' disabled={isDisabled} onChange={onRoleChange} value={role ?? ''}>
-      {userRoles.map((r) => (
+      {USER_ROLES.map((r) => (
         <option key={r} value={r}>
           {r}
         </option>

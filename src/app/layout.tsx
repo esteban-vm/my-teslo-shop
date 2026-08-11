@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { ThemeProvider } from '@teispace/next-themes'
 import { getTheme, getThemeScript } from '@teispace/next-themes/server'
 import { ToastContainer } from 'react-toastify'
-import { ThemeMap, themes } from '@/lib/constants'
+import { THEMES, ThemeMap } from '@/lib/constants'
 import { mainFont, titleFont } from '@/lib/fonts'
 import './globals.css'
 
@@ -44,10 +44,10 @@ export default async function Layout({ children }: Props) {
       </head>
       <body className='bg-linear-to-t from-base-200 to-base-100 font-geist'>
         <ThemeProvider
-          defaultTheme={themes[1]}
+          defaultTheme={THEMES[1]}
           disableTransitionOnChange
           initialTheme={initialTheme}
-          themes={themes}
+          themes={THEMES}
           value={ThemeMap}
         >
           {children}

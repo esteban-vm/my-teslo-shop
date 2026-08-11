@@ -16,13 +16,13 @@ export const GenderMap: Record<Gender, string> = {
 }
 
 // Themes
-export const themes = ['light', 'dark'] as const satisfies string[]
+export const THEMES = ['light', 'dark'] as const satisfies string[]
 
 // Theme values
 export const ThemeMap = {
   light: 'wireframe',
   dark: 'night',
-} as const satisfies Record<(typeof themes)[number], Theme>
+} as const satisfies Record<(typeof THEMES)[number], Theme>
 
 // Api errors
 export const ApiErrorMap = {
@@ -32,7 +32,7 @@ export const ApiErrorMap = {
 } as const
 
 // User roles
-export const userRoles = ['user', 'admin'] as const satisfies [Role, Role]
+export const USER_ROLES = ['user', 'admin'] as const satisfies [Role, Role]
 
 // Image uploads
 export const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
