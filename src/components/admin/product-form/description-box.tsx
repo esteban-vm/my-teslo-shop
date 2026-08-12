@@ -16,7 +16,7 @@ export function DescriptionBox<T extends FieldValues>({ control, name }: NamedFo
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState: { error, isDirty, invalid } }) => {
+      render={({ field, fieldState: { error, invalid } }) => {
         return (
           <div className='w-full'>
             <Label as='label' htmlFor={boxId}>
@@ -27,7 +27,6 @@ export function DescriptionBox<T extends FieldValues>({ control, name }: NamedFo
               aria-invalid={invalid}
               as={TextareaAutosize}
               className='w-full resize-none text-sm'
-              color={isDirty && !invalid ? 'success' : undefined}
               id={boxId}
               minRows={3}
               placeholder={ELLIPSIS_CHAR}
