@@ -27,6 +27,12 @@ export const getProducts = safeClient
               url: true,
             },
           },
+          category: {
+            select: { name: true },
+          },
+        },
+        omit: {
+          categoryId: true,
         },
       })
 
