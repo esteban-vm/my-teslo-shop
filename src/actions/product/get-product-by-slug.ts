@@ -24,6 +24,12 @@ export const getProductBySlug = safeClient
               url: true,
             },
           },
+          category: {
+            select: { name: true },
+          },
+        },
+        omit: {
+          categoryId: true,
         },
       })
 
