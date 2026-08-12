@@ -47,7 +47,7 @@ export function ProductForm(props: ProductFormProps) {
           </div>
         </div>
         <div className='form-row'>
-          <CategorySelect control={control} name='categoryId' />
+          <CategorySelect control={control} name='category' />
           <GenderSelect control={control} name='gender' />
         </div>
         <DescriptionBox control={control} name='description' />
