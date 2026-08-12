@@ -15,7 +15,7 @@ export function ImageInput<T extends FieldValues>({ control, name }: NamedFormCo
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value: _, ...rest }, fieldState: { error, invalid } }) => {
+      render={({ field: { onChange, value: _, ...rest }, fieldState: { error, isDirty, invalid } }) => {
         return (
           <div className='w-full'>
             <Label as='label' className='required-label' htmlFor={inputId}>
@@ -26,6 +26,7 @@ export function ImageInput<T extends FieldValues>({ control, name }: NamedFormCo
               aria-errormessage={errorId}
               aria-invalid={invalid}
               className='w-full'
+              color={!invalid && isDirty ? 'success' : undefined}
               id={inputId}
               multiple
               onChange={(e) => onChange(e.target.files)}
