@@ -1,6 +1,7 @@
 import type { GalleryItem, ImageGalleryRef } from 'react-image-gallery'
 import type { ProductSliderProps } from '@/components/product'
 import { useRef } from 'react'
+import { getProductImage } from '@/lib/helpers'
 
 export function useProductSlider({ images }: ProductSliderProps) {
   const galleryRef = useRef<ImageGalleryRef>(null)
@@ -25,13 +26,16 @@ export function useProductSlider({ images }: ProductSliderProps) {
     onPlay()
   }
 
-  const galleryItems = images.map((image): GalleryItem => {
-    const productUrl = `/products/${image.url}`
+  const items: typeof images =
+    images.length > 0
+      ? images.map((image) => ({ id: image.id, url: getProductImage(image.url) as string }))
+      : [{ url: getProductImage() as string }, { url: getProductImage() as string }]
 
+  const galleryItems = items.map((image): GalleryItem => {
     return {
-      original: productUrl,
+      original: image.url!,
       originalAlt: 'Imagen del producto',
-      thumbnail: productUrl,
+      thumbnail: image.url,
       thumbnailAlt: 'Miniatura del producto',
     }
   })
