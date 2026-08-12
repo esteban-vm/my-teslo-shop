@@ -1,27 +1,15 @@
-'use client'
-
 import type { FieldValues } from 'react-hook-form'
 import type { NamedFormControlProps } from '@/types'
-import { useAction } from 'next-safe-action/hooks'
-import { useEffect } from 'react'
-import { getCategories } from '@/actions/category'
 import { DataSelect } from '@/components/shared'
+import { CategoryName } from '@/prisma/generated/enums'
 
 export function CategorySelect<T extends FieldValues>(props: NamedFormControlProps<T>) {
-  const {
-    result: { data: categories },
-    execute,
-    isExecuting,
-  } = useAction(getCategories)
-
-  useEffect(execute, [execute])
-
   return (
-    <DataSelect disabled={isExecuting} label='Categoría' {...props}>
-      {categories?.map(({ id, name }) => {
+    <DataSelect label='Categoría' {...props}>
+      {Object.values(CategoryName).map((category) => {
         return (
-          <option key={id} value={id}>
-            {name}
+          <option key={category} value={category}>
+            {category}
           </option>
         )
       })}
