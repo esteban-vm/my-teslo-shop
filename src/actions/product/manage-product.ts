@@ -10,24 +10,35 @@ import { ProductForm } from '@/schemas/product'
 export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(async ({ parsedInput }) => {
   await sleep(3)
 
-  const { id = '', title, slug, tags, price, category, uploads, ...rest } = parsedInput
-  console.log({ uploads })
+  const { productId, productSlug } = await prisma.$transaction(async (tx) => {
+    const { id = '', title, slug, tags, price, category, uploads, ...rest } = parsedInput
 
-  const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
+    const { id: categoryId } = await tx.category.findUniqueOrThrow({
+      where: { name: category },
+      select: { id: true },
+    })
+
     const data = {
       ...rest,
+      categoryId,
       title: capitalize(title),
       price: Number(price.toFixed(2)),
       slug: slug.toLowerCase().replace(/\s+|\W/g, '_'),
       tags: tags.toLowerCase().split(', '),
     }
 
-    return await tx.product.upsert({
+    const { id: productId, slug: productSlug } = await tx.product.upsert({
       where: { id },
-      create: { ...data, category: { create: { name: category } } },
-      update: { ...data, category: { update: { name: category } } },
+      create: data,
+      update: data,
       select: { id: true, slug: true },
     })
+
+    if (!id && !uploads) {
+      await tx.picture.create({ data: { url: '/imgs/placeholder.jpg', productId } })
+    }
+
+    return { productId, productSlug }
   })
 
   revalidatePath('/admin/products' satisfies Route)
