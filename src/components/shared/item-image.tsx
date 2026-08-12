@@ -1,16 +1,16 @@
-import Image from 'next/image'
 import { cn } from '@/lib/ui'
+import { ProductImage } from './product-image'
 
 export interface ItemImageProps {
   title: string
-  image: string
+  image?: string
   className?: string
 }
 
 export function ItemImage({ title, image, className }: ItemImageProps) {
   return (
     <div className={cn('relative size-24 overflow-hidden', className)}>
-      <Image alt={title} fill src={`/products/${image}`} />
+      <ProductImage alt={title} fill src={image} />
     </div>
   )
 }
