@@ -16,7 +16,7 @@ const initialProduct: ProductForm = {
   gender: 'men',
   slug: '',
   tags: '',
-  categoryId: '',
+  category: 'Hats',
   uploads: null,
 }
 
@@ -30,6 +30,7 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
       defaultValues: {
         ...initialProduct,
         ...savedProduct,
+        category: savedProduct?.category.name ?? initialProduct.category,
         tags: savedProduct?.tags.join(', ') ?? initialProduct.tags,
       },
     },
