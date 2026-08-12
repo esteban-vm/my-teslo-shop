@@ -31,8 +31,8 @@ export const ProductForm = z.object({
 })
 
 export const ProductImage = z.object({
-  id: z.number(),
-  url: z.string(),
+  id: z.number().optional(),
+  url: z.string().optional(),
 })
 
 export const ProductImages = z.array(ProductImage)
