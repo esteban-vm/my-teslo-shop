@@ -8,7 +8,7 @@ import { Input, Label, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 import { cn } from '@/lib/ui'
 
-export type BaseFormFieldProps = Omit<JSX.IntrinsicElements['input'], 'name'>
+export type BaseFormFieldProps = Omit<JSX.IntrinsicElements['input'], 'name' | 'color'>
 
 export interface FormFieldProps<T extends FieldValues> extends LabeledFormControlProps<T>, BaseFormFieldProps {
   icon?: JSX.Element
@@ -40,13 +40,13 @@ export function FormField<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState: { error, isDirty, invalid } }) => {
+      render={({ field, fieldState: { error, invalid } }) => {
         return (
           <div className={cn('w-full', className)}>
             <Label as='label' htmlFor={fieldId}>
               {label}:
             </Label>
-            <Input as='label' color={isDirty && !invalid ? 'success' : undefined} validator>
+            <Input as='label' validator>
               {icon}
               <input
                 {...rest}
