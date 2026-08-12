@@ -11,7 +11,7 @@ export function ProductRow({ product }: { product: ProductDB }) {
     <tr>
       <td>
         <NextLink href={`/product/${slug}`} title='Detalle de este producto'>
-          <ItemImage className='size-16 border-2 border-info' image={images[0].url} title={title} />
+          <ItemImage className='size-16 border-2 border-info' image={images[0]?.url} title={title} />
         </NextLink>
       </td>
       <td className='w-full text-left'>
