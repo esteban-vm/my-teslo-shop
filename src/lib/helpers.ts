@@ -1,4 +1,5 @@
 import type { ParamValue } from 'next/dist/server/request/params'
+import type { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import type { WithPagination } from '@/schemas/shared'
 import type { CartProduct } from '@/types'
 
@@ -64,4 +65,19 @@ export function capitalize(value: string) {
         .join('')
     })
     .join(' ')
+}
+
+export function getProductImage(src?: string | StaticImport) {
+  let imageSrc: string | StaticImport
+
+  if (typeof src === 'string') {
+    if (src.startsWith('http')) imageSrc = src
+    else imageSrc = `/products/${src}`
+  } else if (src === undefined) {
+    imageSrc = '/imgs/placeholder.jpg'
+  } else {
+    imageSrc = src
+  }
+
+  return imageSrc
 }
