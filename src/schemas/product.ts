@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@/lib/constants'
-import { Gender, Size } from '@/prisma/generated/enums'
+import { CategoryName, Gender, Size } from '@/prisma/generated/enums'
 import { PaginatedResults } from './shared'
 import './config'
 
@@ -14,7 +14,7 @@ export const ProductForm = z.object({
   gender: z.enum(Gender, 'Selecciona un género'),
   slug: z.string().trim().nonempty().min(3).max(255),
   tags: z.string().trim().nonempty(),
-  categoryId: z.cuid2('Selecciona una categoría'),
+  category: z.enum(CategoryName, 'Selecciona una categoría'),
   uploads: z
     .custom<FileList>()
     .refine((files) => files.length > 0, 'Selecciona al menos una imagen')
@@ -48,8 +48,8 @@ export const ProductDB = z.object({
   gender: z.enum(Gender),
   slug: z.string(),
   tags: z.array(z.string()),
-  categoryId: z.string(),
   images: ProductImages,
+  category: z.object({ name: z.enum(CategoryName) }),
 })
 
 export const ProductsDB = z.array(ProductDB)
