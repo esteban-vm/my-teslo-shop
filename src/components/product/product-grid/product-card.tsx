@@ -1,9 +1,9 @@
 import type { Route } from 'next'
 import type { ProductDB } from '@/schemas/product'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { ProductImage } from '@/components/shared'
 import { formatPrice } from '@/lib/helpers'
 
 export function ProductCard({ product }: { product: ProductDB }) {
@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: ProductDB }) {
       <Link href={productRoute}>
         <figure className='hover-gallery relative aspect-square'>
           {images.map((image) => (
-            <Image alt={title} fill key={image.id} src={`/products/${image.url}`} />
+            <ProductImage alt={title} fill key={image.id} src={image.url} />
           ))}
         </figure>
       </Link>
