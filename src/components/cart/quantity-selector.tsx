@@ -35,7 +35,7 @@ export function QuantitySelector({ product }: { product: ProductDB }) {
       price: product.price,
       quantity,
       size: currentSize,
-      image: product.images[0].url,
+      image: product.images[0]?.url,
     }
 
     addToCart(cartProduct)
