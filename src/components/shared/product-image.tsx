@@ -1,20 +1,9 @@
 import type { ImageProps } from 'next/image'
 import Image from 'next/image'
+import { getProductImage } from '@/lib/helpers'
 
-export interface ProductImageProps extends Omit<ImageProps, 'src' | 'alt'> {
-  src?: string
-  alt?: string
-}
-
-export function ProductImage({ src, alt = '', ...rest }: ProductImageProps) {
-  let imageSrc: string
-
-  if (src) {
-    if (src.startsWith('http')) imageSrc = src
-    else imageSrc = `/products/${src}`
-  } else {
-    imageSrc = 'imgs/placeholder.jpg'
-  }
+export function ProductImage({ src, alt = '', ...rest }: Partial<ImageProps>) {
+  const imageSrc = getProductImage(src)
 
   return <Image alt={alt} src={imageSrc} {...rest} />
 }
