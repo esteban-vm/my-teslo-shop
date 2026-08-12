@@ -73,7 +73,7 @@ export function getProductImage(src?: string | StaticImport) {
   if (typeof src === 'string') {
     if (src.startsWith('http')) imageSrc = src
     else imageSrc = `/products/${src}`
-  } else if (src === undefined) {
+  } else if (typeof src === 'undefined') {
     imageSrc = '/imgs/placeholder.jpg'
   } else {
     imageSrc = src
