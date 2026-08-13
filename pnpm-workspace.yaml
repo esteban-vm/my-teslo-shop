@@ -11,3 +11,6 @@ publicHoistPattern:
   - '*biome*'
 fetchTimeout: 300000
 fetchRetries: 3
+minimumReleaseAgeExclude:
+  - rsc-daisyui@2.4.1
+  - zustand@5.0.15
