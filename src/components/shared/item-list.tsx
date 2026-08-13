@@ -21,7 +21,7 @@ export function ItemList({ title, link, linkTitle, children }: ItemListProps) {
         </li>
       )}
       {link && linkTitle && (
-        <li className='px-4'>
+        <li className='px-4 pb-2'>
           <NextLink href={link} passHref prefetch={false}>
             <Link as='span' color='info' hover>
               {linkTitle}
