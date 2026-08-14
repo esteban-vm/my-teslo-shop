@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     typedEnv: true,
+    authInterrupts: true,
     serverActions: {
       bodySizeLimit: '5.5mb',
     },
