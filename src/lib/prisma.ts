@@ -1,6 +1,8 @@
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '@/prisma/generated/client'
 
+const notProduction = process.env.NODE_ENV !== 'production'
+
 const pgAdapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
 })
@@ -8,14 +10,14 @@ const pgAdapter = new PrismaPg({
 const prisma = new PrismaClient({
   adapter: pgAdapter,
   errorFormat: 'pretty',
-  log: ['query', 'error'],
+  log: notProduction ? ['query', 'error'] : undefined,
 })
 
 const globalForPrisma = global as typeof global & {
   prisma: typeof prisma
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (notProduction) {
   globalForPrisma.prisma = prisma
 }
 
