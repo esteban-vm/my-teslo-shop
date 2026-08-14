@@ -11,7 +11,7 @@ export const getOrderById = safeAuthClient
   .outputSchema(OrderById)
   .action(
     cache(async ({ ctx, parsedInput }) => {
-      const { id, role } = ctx.user
+      const { id, role } = ctx.auth.user
 
       const order = await prisma.order.findUniqueOrThrow({
         where: {
