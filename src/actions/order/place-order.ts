@@ -8,7 +8,7 @@ import { PlaceOrder } from '@/schemas/order'
 
 export const placeOrder = safeAuthClient.inputSchema(PlaceOrder).action(async ({ ctx, parsedInput }) => {
   await sleep(3)
-  const userId = ctx.user.id
+
   const { items, address } = parsedInput
 
   const products = await prisma.product.findMany({
@@ -67,7 +67,7 @@ export const placeOrder = safeAuthClient.inputSchema(PlaceOrder).action(async ({
 
     const { id } = await tx.order.create({
       data: {
-        userId,
+        userId: ctx.auth.user.id,
         tax,
         total,
         subtotal,
