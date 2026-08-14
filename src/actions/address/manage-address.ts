@@ -9,7 +9,7 @@ import { AddressForm } from '@/schemas/address'
 export const manageAddress = safeAuthClient.inputSchema(AddressForm).action(async ({ ctx, parsedInput }) => {
   await sleep(3)
 
-  const userId = ctx.user.id
+  const userId = ctx.auth.user.id
   const { remember, ...rest } = parsedInput
 
   if (remember) {
