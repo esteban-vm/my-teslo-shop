@@ -15,19 +15,19 @@ export function SizeChecker<T extends FieldValues>({ control, name }: NamedFormC
       control={control}
       name={name}
       render={({ field: { value, disabled, onChange, onBlur }, fieldState: { error, invalid } }) => {
-        const allSizes = Object.values(Size)
-        const productSizes = value as typeof allSizes
+        const availableSizes = Object.values(Size)
+        const selectedSizes = value as typeof availableSizes
 
         return (
           <div className='w-full'>
             <Label className='required-label'>Tallas:</Label>
             <div className='my-1 flex flex-wrap items-center justify-center gap-3.5'>
-              {allSizes.map((size) => {
-                const isChecked = productSizes.includes(size)
+              {availableSizes.map((size) => {
+                const isChecked = selectedSizes.includes(size)
 
                 const onSizeChange = () => {
-                  if (isChecked) onChange(productSizes.filter((s) => s !== size))
-                  else onChange([...productSizes, size])
+                  if (isChecked) onChange(selectedSizes.filter((s) => s !== size))
+                  else onChange([...selectedSizes, size])
                 }
 
                 return (
