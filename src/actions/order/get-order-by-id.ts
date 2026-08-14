@@ -1,7 +1,6 @@
 'use server'
 
 import { cache } from 'react'
-import { ServerError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 import { safeAuthClient } from '@/lib/safe-action'
 import { OrderById } from '@/schemas/order'
@@ -14,7 +13,7 @@ export const getOrderById = safeAuthClient
     cache(async ({ ctx, parsedInput }) => {
       const { id, role } = ctx.user
 
-      const order = await prisma.order.findUnique({
+      const order = await prisma.order.findUniqueOrThrow({
         where: {
           id: parsedInput.id,
           userId: role === 'admin' ? undefined : id,
@@ -56,10 +55,6 @@ export const getOrderById = safeAuthClient
           transactionId: true,
         },
       })
-
-      if (!order) {
-        throw new ServerError('Orden no encontrada')
-      }
 
       return order
     })
