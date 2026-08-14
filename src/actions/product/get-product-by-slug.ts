@@ -1,7 +1,6 @@
 'use server'
 
 import { cache } from 'react'
-import { ServerError } from '@/lib/errors'
 import { prisma } from '@/lib/prisma'
 import { safeClient } from '@/lib/safe-action'
 import { ProductDB } from '@/schemas/product'
@@ -12,7 +11,7 @@ export const getProductBySlug = safeClient
   .outputSchema(ProductDB)
   .action(
     cache(async ({ parsedInput }) => {
-      const product = await prisma.product.findFirst({
+      const product = await prisma.product.findFirstOrThrow({
         where: {
           slug: parsedInput.slug,
         },
@@ -32,10 +31,6 @@ export const getProductBySlug = safeClient
           categoryId: true,
         },
       })
-
-      if (!product) {
-        throw new ServerError('Producto no encontrado')
-      }
 
       return product
     })
