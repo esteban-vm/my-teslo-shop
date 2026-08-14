@@ -66,8 +66,8 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       rsc-daisyui:
-        specifier: ^2.4.1
-        version: 2.4.1(react@19.2.4)
+        specifier: ^2.3.0
+        version: 2.3.0(react@19.2.4)
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -1916,8 +1916,8 @@ packages:
   rou3@0.9.2:
     resolution: {integrity: sha512-3SOzvaAg8rkHrXtRjpCvCvbyO5to9oOO27Z/XqHEYXfMRVSw/qMIVdmaOk9W2lcRLtR6dlqTjo9hDeJk70QBYQ==}
 
-  rsc-daisyui@2.4.1:
-    resolution: {integrity: sha512-fXIxfUmAA4HbcKqypL6cvUeG4ginzT+wn6a4ZaMkVs5OXBWDvozeJbKeBIm4aK4whLbzM9H/wyOmtgAi/Vt1tA==}
+  rsc-daisyui@2.3.0:
+    resolution: {integrity: sha512-OxUd/cRqS48dCi2NqKcjd+LYytDtEq0aPoMy74U0jqVpL4cHnU+peX0MtZRx8+zlq3XcBDaujhaMH6FZXp+JJA==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -3493,7 +3493,7 @@ snapshots:
 
   rou3@0.9.2: {}
 
-  rsc-daisyui@2.4.1(react@19.2.4):
+  rsc-daisyui@2.3.0(react@19.2.4):
     dependencies:
       '@tw-classed/react': 1.8.1(react@19.2.4)
       react: 19.2.4
