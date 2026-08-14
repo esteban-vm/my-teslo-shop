@@ -13,7 +13,7 @@ export const getMyOrders = safeAuthClient
   .action(
     cache(async ({ ctx, parsedInput }) => {
       const { page, take } = getPagination(parsedInput)
-      const userId = ctx.user.id
+      const userId = ctx.auth.user.id
 
       const orders = await prisma.order.findMany({
         take,
