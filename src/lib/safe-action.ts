@@ -1,6 +1,6 @@
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client'
 import { APIError } from 'better-auth'
 import { createSafeActionClient } from 'next-safe-action'
+import { Prisma } from '@/prisma/generated/client'
 import { getSession } from './auth'
 import { API_ERROR_MAP } from './constants'
 import { ServerError } from './errors'
@@ -9,11 +9,16 @@ export const safeClient = createSafeActionClient({
   handleServerError(error) {
     console.log({ error: error.message })
 
-    if (error instanceof PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
       const { code, meta } = error
+      const isProduct = meta?.modelName === 'Product'
 
-      if (code === 'P2002' && meta?.modelName === 'Product') {
-        return 'Ya existe un producto con el slug ingresado'
+      if (code === 'P2002' && isProduct) {
+        return 'El producto ya existe'
+      }
+
+      if (code === 'P2025' && isProduct) {
+        return 'Producto no encontrado'
       }
     }
 
