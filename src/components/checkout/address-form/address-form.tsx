@@ -8,7 +8,7 @@ import { CountrySelect } from './country-select'
 import { RememberCheck } from './remember-check'
 
 export interface AddressFormProps {
-  savedAddress: AddressDB
+  savedAddress?: AddressDB | null
 }
 
 export function AddressForm(props: AddressFormProps) {
