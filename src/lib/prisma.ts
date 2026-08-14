@@ -9,7 +9,7 @@ const pgAdapter = new PrismaPg({
 
 const prisma = new PrismaClient({
   adapter: pgAdapter,
-  errorFormat: 'pretty',
+  errorFormat: 'minimal',
   log: notProduction ? ['query', 'error'] : undefined,
 })
 
