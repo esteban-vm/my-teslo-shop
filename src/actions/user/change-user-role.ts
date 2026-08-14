@@ -11,7 +11,7 @@ export const changeUserRole = safeAdminClient.inputSchema(ChangeUserRole).action
   await sleep(3)
 
   const { userId, role } = parsedInput
-  if (userId === ctx.user.id) return null
+  if (userId === ctx.auth.user.id) return null
 
   await prisma.user.update({ where: { id: userId }, data: { role } })
   revalidatePath('/admin/users' satisfies Route)
