@@ -11,14 +11,27 @@ export const safeClient = createSafeActionClient({
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       const { code, meta } = error
+
       const isProduct = meta?.modelName === 'Product'
+      const isOrder = meta?.modelName === 'Order'
+      const isAddress = meta?.modelName === 'BillingAddress'
 
       if (code === 'P2002' && isProduct) {
         return 'El producto ya existe'
       }
 
-      if (code === 'P2025' && isProduct) {
-        return 'Producto no encontrado'
+      if (code === 'P2025') {
+        if (isProduct) {
+          return 'Producto no encontrado'
+        }
+
+        if (isOrder) {
+          return 'Orden no encontrada'
+        }
+
+        if (isAddress) {
+          return 'Dirección no encontrada'
+        }
       }
     }
 
