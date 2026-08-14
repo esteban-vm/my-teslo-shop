@@ -8,13 +8,14 @@ import { WithID } from '@/schemas/shared'
 
 export const getProductById = safeAdminClient
   .inputSchema(WithID)
-  .outputSchema(ProductDB)
+  .outputSchema(ProductDB.nullable())
   .action(
     cache(async ({ parsedInput }) => {
+      const { id } = parsedInput
+      if (id === 'new') return null
+
       const product = await prisma.product.findFirstOrThrow({
-        where: {
-          id: parsedInput.id,
-        },
+        where: { id },
         include: {
           images: {
             take: 2,
