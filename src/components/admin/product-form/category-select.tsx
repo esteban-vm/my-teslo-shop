@@ -6,13 +6,15 @@ import { CategoryName } from '@/prisma/generated/enums'
 export function CategorySelect<T extends FieldValues>(props: NamedFormControlProps<T>) {
   return (
     <DataSelect label='Categoría' {...props}>
-      {Object.values(CategoryName).map((category) => {
-        return (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        )
-      })}
+      {Object.values(CategoryName)
+        .sort()
+        .map((category) => {
+          return (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          )
+        })}
     </DataSelect>
   )
 }
