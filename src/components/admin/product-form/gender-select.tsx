@@ -6,13 +6,15 @@ import { Gender } from '@/prisma/generated/enums'
 export function GenderSelect<T extends FieldValues>(props: NamedFormControlProps<T>) {
   return (
     <DataSelect label='Género' {...props}>
-      {Object.values(Gender).map((gender) => {
-        return (
-          <option key={gender} value={gender}>
-            {gender}
-          </option>
-        )
-      })}
+      {Object.values(Gender)
+        .sort()
+        .map((gender) => {
+          return (
+            <option key={gender} value={gender}>
+              {gender}
+            </option>
+          )
+        })}
     </DataSelect>
   )
 }
