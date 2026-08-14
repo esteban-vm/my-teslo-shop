@@ -1,7 +1,9 @@
+import { betterAuth } from '@next-safe-action/adapter-better-auth'
 import { APIError } from 'better-auth'
+import { unauthorized } from 'next/navigation'
 import { createSafeActionClient } from 'next-safe-action'
+import { auth } from '@/auth'
 import { Prisma } from '@/prisma/generated/client'
-import { getSession } from './auth'
 import { API_ERROR_MAP } from './constants'
 import { ServerError } from './errors'
 
@@ -59,20 +61,16 @@ export const safeClient = createSafeActionClient({
   },
 })
 
-export const safeAuthClient = safeClient.use(async ({ next }) => {
-  const session = await getSession()
+export const safeAuthClient = safeClient.use(betterAuth(auth))
 
-  if (!session?.user) {
-    throw new ServerError('No autenticado')
-  }
+export const safeAdminClient = safeClient.use(
+  betterAuth(auth, {
+    authorize({ authData, next }) {
+      if (!authData || authData.user.role !== 'admin') {
+        unauthorized()
+      }
 
-  return next({ ctx: { user: session.user } })
-})
-
-export const safeAdminClient = safeAuthClient.use(async ({ ctx, next }) => {
-  if (ctx.user.role === 'user') {
-    throw new ServerError('No autorizado')
-  }
-
-  return next({ ctx: { user: ctx.user } })
-})
+      return next({ ctx: { auth: authData } })
+    },
+  })
+)
