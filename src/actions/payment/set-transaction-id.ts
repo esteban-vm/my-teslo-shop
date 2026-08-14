@@ -12,7 +12,7 @@ export const setTransactionId = safeAuthClient
     await prisma.order.update({
       where: {
         id: orderId,
-        userId: ctx.user.id,
+        userId: ctx.auth.user.id,
       },
       data: { transactionId },
     })
