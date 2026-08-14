@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import { getBillingAddress } from '@/actions/address'
 import { AddressForm } from '@/components/checkout'
 import { PageTitle } from '@/components/shared'
@@ -12,8 +11,6 @@ export type Props = PageProps<'/checkout/address'>
 
 export default async function Page() {
   const { data: address } = await getBillingAddress()
-
-  if (!address) notFound()
 
   return (
     <>
