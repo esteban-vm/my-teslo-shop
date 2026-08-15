@@ -1,8 +1,8 @@
 import type { ProductImages } from '@/schemas/product'
 import { CircleXIcon } from 'lucide-react'
-import Image from 'next/image'
 import { Button, Indicator, Mask } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
+import { ProductImage } from '@/components/shared'
 
 export interface ImageViewerProps {
   images: ProductImages
@@ -28,7 +28,7 @@ export function ImageViewer({ images }: ImageViewerProps) {
               </Button>
             </Indicator.Item>
             <Mask as='div' className='relative size-36 overflow-hidden lg:size-40' shape='squircle'>
-              <Image alt='' fill src={`/products/${image.url}`} />
+              <ProductImage fill src={image.url} />
             </Mask>
           </Indicator>
         )
