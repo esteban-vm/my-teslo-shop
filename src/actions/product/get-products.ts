@@ -21,7 +21,6 @@ export const getProducts = safeClient
         skip: (page - 1) * take,
         include: {
           images: {
-            take: 2,
             select: {
               id: true,
               url: true,
