@@ -18,7 +18,6 @@ export const getProductById = safeAdminClient
         where: { id },
         include: {
           images: {
-            take: 2,
             select: {
               id: true,
               url: true,
