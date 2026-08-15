@@ -17,7 +17,6 @@ export const getProductBySlug = safeClient
         },
         include: {
           images: {
-            take: 2,
             select: {
               id: true,
               url: true,
