@@ -2,8 +2,8 @@
 
 import type { Route } from 'next'
 import { revalidatePath } from 'next/cache'
+import { uploadImage } from '@/lib/cloudinary'
 import { capitalize, sleep } from '@/lib/helpers'
-import { uploadImage } from '@/lib/images'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
 import { ProductForm } from '@/schemas/product'
