@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Card } from 'rsc-daisyui'
 import tw from 'tailwind-styled-components'
 import { ProductImage } from '@/components/shared'
-import { formatPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/products'
 
 export function ProductCard({ product }: { product: ProductDB }) {
   const { id, title, price, slug, images } = product

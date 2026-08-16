@@ -2,15 +2,6 @@ import type { ParamValue } from 'next/dist/server/request/params'
 import type { WithPagination } from '@/schemas/shared'
 import type { CartProduct } from '@/types'
 
-export function formatPrice(price: number) {
-  return price.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  })
-}
-
 export function sleep(seconds = 1) {
   if (process.env.NODE_ENV !== 'development') return
 

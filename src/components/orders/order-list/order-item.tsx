@@ -1,7 +1,7 @@
 import type { CartProduct } from '@/types'
 import { List } from 'rsc-daisyui'
 import { ItemImage } from '@/components/shared'
-import { formatPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/products'
 
 export function OrderItem({ product }: { product: CartProduct }) {
   const { id, title, image, price, size, quantity } = product

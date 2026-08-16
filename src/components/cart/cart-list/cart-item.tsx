@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button, List } from 'rsc-daisyui'
 import { CounterInput, ItemImage } from '@/components/shared'
 import { useCartStore } from '@/hooks'
-import { formatPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/products'
 
 export function CartItem({ product }: { product: CartProduct }) {
   const { id, title, image, price, size, quantity, slug } = product

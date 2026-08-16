@@ -1,6 +1,6 @@
 import type { OrderSummary } from '@/schemas/order'
 import { Card } from 'rsc-daisyui'
-import { formatPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/products'
 
 export function SummaryDetails({ summary }: { summary: OrderSummary }) {
   const { total, subtotal, tax, totalItems } = summary

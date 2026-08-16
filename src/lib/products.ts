@@ -10,3 +10,12 @@ export function getProductImage(src?: string) {
 
   return imageSrc
 }
+
+export function formatPrice(price: number) {
+  return price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  })
+}
