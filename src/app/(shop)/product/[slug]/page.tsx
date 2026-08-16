@@ -7,7 +7,7 @@ import { Skeleton } from 'rsc-daisyui'
 import { getProductBySlug } from '@/actions/product'
 import { QuantitySelector, SizeSelector } from '@/components/cart'
 import { ProductInfo, ProductSlider, StockCounter } from '@/components/product'
-import { formatPrice } from '@/lib/helpers'
+import { formatPrice } from '@/lib/products'
 
 export type Props = PageProps<'/product/[slug]'>
 
