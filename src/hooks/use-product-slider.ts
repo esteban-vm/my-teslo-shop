@@ -1,7 +1,7 @@
 import type { GalleryItem, ImageGalleryRef } from 'react-image-gallery'
 import type { ProductSliderProps } from '@/components/product'
 import { useRef } from 'react'
-import { getProductImage } from '@/lib/helpers'
+import { getProductImage } from '@/lib/products'
 
 export function useProductSlider({ images }: ProductSliderProps) {
   const galleryRef = useRef<ImageGalleryRef>(null)
@@ -15,12 +15,8 @@ export function useProductSlider({ images }: ProductSliderProps) {
 
     if (gallery) {
       const currentIndex = gallery.getCurrentIndex()
-
-      if (currentIndex === 0) {
-        gallery.slideToIndex(1)
-      } else {
-        gallery.slideToIndex(0)
-      }
+      if (currentIndex === 0) gallery.slideToIndex(1)
+      else gallery.slideToIndex(0)
     }
 
     onPlay()
@@ -28,8 +24,8 @@ export function useProductSlider({ images }: ProductSliderProps) {
 
   const items: typeof images =
     images.length > 0
-      ? images.map((image) => ({ id: image.id, url: getProductImage(image.url) as string }))
-      : [{ url: getProductImage() as string }, { url: getProductImage() as string }]
+      ? images.map((image) => ({ id: image.id, url: getProductImage(image.url) }))
+      : [{ url: getProductImage() }, { url: getProductImage() }]
 
   const galleryItems = items.map((image): GalleryItem => {
     return {
