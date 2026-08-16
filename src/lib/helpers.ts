@@ -1,6 +1,5 @@
 import type { ParamValue } from 'next/dist/server/request/params'
 import type { WithPagination } from '@/schemas/shared'
-import type { CartProduct } from '@/types'
 
 export function sleep(seconds = 1) {
   if (process.env.NODE_ENV !== 'development') return
@@ -8,10 +7,6 @@ export function sleep(seconds = 1) {
   return new Promise((resolve) => {
     setTimeout(() => resolve(true), seconds * 1000)
   })
-}
-
-export function isSameProduct(product1: CartProduct, product2: CartProduct) {
-  return product1.id === product2.id && product1.size === product2.size
 }
 
 export async function getParams(searchParams: Promise<Record<string, ParamValue>>) {

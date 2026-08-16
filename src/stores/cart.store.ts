@@ -1,7 +1,7 @@
 import type { StateCreator } from 'zustand'
 import type { OrderSummary } from '@/schemas/order'
 import type { CartProduct } from '@/types'
-import { isSameProduct } from '@/lib/helpers'
+import { isSameProduct } from '@/lib/products'
 
 interface CartState {
   cart: CartProduct[]

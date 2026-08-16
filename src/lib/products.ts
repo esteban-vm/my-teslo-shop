@@ -1,3 +1,5 @@
+import type { CartProduct } from '@/types'
+
 export function getProductImage(src?: string) {
   let imageSrc: string
 
@@ -18,4 +20,8 @@ export function formatPrice(price: number) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   })
+}
+
+export function isSameProduct(product1: CartProduct, product2: CartProduct) {
+  return product1.id === product2.id && product1.size === product2.size
 }
