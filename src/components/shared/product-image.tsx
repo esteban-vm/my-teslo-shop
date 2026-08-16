@@ -17,7 +17,7 @@ export function ProductImage({ src, alt = '', className, ...rest }: ProductImage
   return (
     <Image
       alt={alt}
-      className={cn(className, 'transition-[filter] duration-30 ease-in', isLoading ? 'blur-sm' : 'blur-none')}
+      className={cn(className, 'transition-[filter] duration-300 ease-in', isLoading ? 'blur-sm' : 'blur-none')}
       onLoad={() => setLoading(false)}
       src={imageSrc}
       {...rest}
