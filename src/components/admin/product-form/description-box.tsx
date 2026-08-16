@@ -4,7 +4,6 @@ import type { FieldValues } from 'react-hook-form'
 import type { NamedFormControlProps } from '@/types'
 import { useId } from 'react'
 import { Controller } from 'react-hook-form'
-import TextareaAutosize from 'react-textarea-autosize'
 import { Label, Textarea, Validator } from 'rsc-daisyui'
 import { ELLIPSIS_CHAR } from '@/lib/constants'
 
@@ -25,12 +24,11 @@ export function DescriptionBox<T extends FieldValues>({ control, name }: NamedFo
             <Textarea
               aria-errormessage={errorId}
               aria-invalid={invalid}
-              as={TextareaAutosize}
-              className='w-full resize-none text-sm'
+              className='field-sizing-content w-full resize-none'
               id={boxId}
-              minRows={3}
               placeholder={ELLIPSIS_CHAR}
               required
+              rows={3}
               validator
               {...field}
             />
