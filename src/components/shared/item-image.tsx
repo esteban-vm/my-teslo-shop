@@ -3,7 +3,7 @@ import { ProductImage } from './product-image'
 
 export interface ItemImageProps {
   title: string
-  image?: string
+  image: string
   className?: string
 }
 
