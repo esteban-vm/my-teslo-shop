@@ -7,7 +7,7 @@ import { getProductImage } from '@/lib/products'
 import { cn } from '@/lib/ui'
 
 export interface ProductImageProps extends Partial<ImageProps> {
-  src?: string
+  src: string
 }
 
 export function ProductImage({ src, alt = '', className, ...rest }: ProductImageProps) {
