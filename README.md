@@ -13,3 +13,24 @@
 7. Limpiar el LocalStorage del navegador.
 
 ## Ejecutar proyecto en producción
+
+## Credenciales de acceso
+
+- Administrador:
+
+  ```text
+  email: admin@example.com
+  password: Abc123*
+  ```
+
+- Usuario:
+
+  ```text
+  email: user1@example.com
+  password: Abc123*
+  ```
+
+  ```text
+  email: user2@example.com
+  password: Abc123*
+  ```
