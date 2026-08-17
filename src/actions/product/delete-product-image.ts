@@ -12,7 +12,7 @@ import { ProductImage } from '@/schemas/product'
 export const deleteProductImage = safeAdminClient.inputSchema(ProductImage).action(async ({ parsedInput }) => {
   await sleep(3)
 
-  const { id, url } = parsedInput
+  const { url } = parsedInput
   if (!url.startsWith('http')) return
 
   const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
@@ -20,7 +20,7 @@ export const deleteProductImage = safeAdminClient.inputSchema(ProductImage).acti
     await deleteImage(imageName)
 
     const { product } = await tx.picture.delete({
-      where: { id },
+      where: { id: parsedInput.id },
       select: {
         product: {
           select: {
