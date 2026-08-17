@@ -1,8 +1,9 @@
 import type { CartProduct } from '@/types'
+import { DEFAULT_IMAGE_URL } from './constants'
 
 export function getProductImage(src: string) {
   let imageSrc: string
-  if (src.startsWith('http') || src.startsWith('/imgs')) imageSrc = src
+  if (src.startsWith('http') || src === DEFAULT_IMAGE_URL) imageSrc = src
   else imageSrc = `/products/${src}`
   return imageSrc
 }
