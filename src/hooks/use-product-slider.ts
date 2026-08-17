@@ -22,16 +22,13 @@ export function useProductSlider({ images }: ProductSliderProps) {
     onPlay()
   }
 
-  const items: typeof images =
-    images.length > 0
-      ? images.map((image) => ({ id: image.id, url: getProductImage(image.url) }))
-      : [{ url: getProductImage() }, { url: getProductImage() }]
+  const galleryItems = images.map((image): GalleryItem => {
+    const imageSrc = getProductImage(image.url)
 
-  const galleryItems = items.map((image): GalleryItem => {
     return {
-      original: image.url!,
+      original: imageSrc,
       originalAlt: 'Imagen del producto',
-      thumbnail: image.url,
+      thumbnail: imageSrc,
       thumbnailAlt: 'Miniatura del producto',
     }
   })
