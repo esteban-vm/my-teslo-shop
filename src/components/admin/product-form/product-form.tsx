@@ -1,6 +1,7 @@
 'use client'
 
 import type { ProductDB } from '@/schemas/product'
+import { useState } from 'react'
 import { Fieldset } from 'rsc-daisyui'
 import { FormButtons, FormField } from '@/components/shared'
 import { useProductForm } from '@/hooks'
@@ -16,6 +17,8 @@ export interface ProductFormProps {
 }
 
 export function ProductForm(props: ProductFormProps) {
+  const [isDeletingImage, setIsDeletingImage] = useState(false)
+
   const {
     form: { control },
     handleSubmitWithAction,
@@ -26,7 +29,7 @@ export function ProductForm(props: ProductFormProps) {
 
   return (
     <form className='data-form' noValidate onSubmit={handleSubmitWithAction}>
-      <Fieldset disabled={isDisabled}>
+      <Fieldset disabled={isDisabled || isDeletingImage}>
         <div className='form-row'>
           <FormField control={control} label='Título' name='title' />
           <FormField control={control} label='Slug' name='slug' spellCheck={false} />
@@ -55,7 +58,7 @@ export function ProductForm(props: ProductFormProps) {
           <SizeChecker control={control} name='sizes' />
           <ImageInput control={control} name='uploads' />
         </div>
-        {images && <ImageViewer images={images} />}
+        {images && <ImageViewer images={images} onDeleteImage={setIsDeletingImage} />}
         <FormButtons.Submit className='w-fit' control={control}>
           Guardar
         </FormButtons.Submit>
