@@ -6,6 +6,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-export const uploadImage = (image: string) => cloudinary.uploader.upload(image)
+export const uploadImage = (image: string) => cloudinary.uploader.upload(image, { folder: 'teslo-shop' })
 
 export const deleteImage = (image: string) => cloudinary.uploader.destroy(image)
