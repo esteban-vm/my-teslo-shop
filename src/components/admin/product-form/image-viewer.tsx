@@ -1,5 +1,6 @@
 'use client'
 
+import type { Dispatch, SetStateAction } from 'react'
 import type { ProductImages } from '@/schemas/product'
 import { CircleXIcon } from 'lucide-react'
 import { useAction } from 'next-safe-action/hooks'
@@ -13,11 +14,13 @@ import { cn } from '@/lib/ui'
 
 export interface ImageViewerProps {
   images: ProductImages
+  onDeleteImage: Dispatch<SetStateAction<boolean>>
 }
 
-export function ImageViewer({ images }: ImageViewerProps) {
+export function ImageViewer({ images, onDeleteImage }: ImageViewerProps) {
   const { execute, isExecuting } = useAction(deleteProductImage, {
     onExecute() {
+      onDeleteImage(true)
       Toasts.execute('Eliminando imagen')
     },
     onSuccess() {
@@ -27,6 +30,9 @@ export function ImageViewer({ images }: ImageViewerProps) {
       const { serverError } = args.error
       if (!serverError) return
       Toasts.error(serverError)
+    },
+    onSettled() {
+      onDeleteImage(false)
     },
   })
 
