@@ -11,6 +11,7 @@ const prisma = new PrismaClient({
   adapter: pgAdapter,
   errorFormat: 'minimal',
   log: notProduction ? ['query', 'error'] : undefined,
+  transactionOptions: { timeout: 15_000 },
 })
 
 const globalForPrisma = global as typeof global & {
