@@ -4,6 +4,7 @@ import type { Route } from 'next'
 import { revalidatePath } from 'next/cache'
 import { deleteImage } from '@/lib/cloudinary'
 import { DEFAULT_IMAGE_URL } from '@/lib/constants'
+import { ServerError } from '@/lib/errors'
 import { sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
@@ -11,9 +12,11 @@ import { ProductImage } from '@/schemas/product'
 
 export const deleteProductImage = safeAdminClient.inputSchema(ProductImage).action(async ({ parsedInput }) => {
   await sleep(3)
-
   const { url } = parsedInput
-  if (!url.startsWith('http')) return
+
+  if (!url.startsWith('http')) {
+    throw new ServerError('No se puede eliminar una imagen local')
+  }
 
   const { id: productId, slug: productSlug } = await prisma.$transaction(async (tx) => {
     const imageName = url.split('/').pop()?.split('.')[0] ?? ''
