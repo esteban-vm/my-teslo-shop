@@ -3,6 +3,7 @@
 import type { Route } from 'next'
 import { revalidatePath } from 'next/cache'
 import { uploadImage } from '@/lib/cloudinary'
+import { DEFAULT_IMAGE_URL } from '@/lib/constants'
 import { capitalize, sleep } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { safeAdminClient } from '@/lib/safe-action'
@@ -49,12 +50,10 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
     }
 
     if (!id && !uploads) {
-      const url = '/imgs/placeholder.jpg'
-
       await tx.picture.createMany({
         data: [
-          { url, productId },
-          { url, productId },
+          { url: DEFAULT_IMAGE_URL, productId },
+          { url: DEFAULT_IMAGE_URL, productId },
         ],
       })
     }
