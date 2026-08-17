@@ -9,7 +9,7 @@ export interface CartProduct {
   price: number
   quantity: number
   size: Size
-  image?: string
+  image: string
 }
 
 export interface BaseFormControlProps<T extends FieldValues> extends PropsWithChildren {
