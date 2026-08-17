@@ -36,3 +36,4 @@ export const USER_ROLES = ['user', 'admin'] as const satisfies [Role, Role]
 // Image uploads
 export const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 export const ACCEPTED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/avif']
+export const DEFAULT_IMAGE_URL = '/imgs/placeholder.jpg'
