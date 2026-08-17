@@ -19,7 +19,7 @@ export const safeClient = createSafeActionClient({
       const isAddress = meta?.modelName === 'BillingAddress'
 
       if (code === 'P2002' && isProduct) {
-        return 'El producto ya existe'
+        return 'Ya existe un producto con el slug proveído'
       }
 
       if (code === 'P2025') {
