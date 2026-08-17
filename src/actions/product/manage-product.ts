@@ -49,7 +49,14 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
     }
 
     if (!id && !uploads) {
-      await tx.picture.create({ data: { url: '/imgs/placeholder.jpg', productId } })
+      const url = '/imgs/placeholder.jpg'
+
+      await tx.picture.createMany({
+        data: [
+          { url, productId },
+          { url, productId },
+        ],
+      })
     }
 
     return { productId, productSlug }
