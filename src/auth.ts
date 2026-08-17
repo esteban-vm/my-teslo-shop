@@ -8,7 +8,6 @@ import { users } from './prisma/data'
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
-  baseURL: process.env.BETTER_AUTH_URL,
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
