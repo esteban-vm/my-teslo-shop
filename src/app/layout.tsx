@@ -54,7 +54,6 @@ export default async function Layout({ children }: Props) {
           {children}
         </ThemeProvider>
         <ToastContainer
-          className='border border-primary'
           draggable={false}
           pauseOnHover={false}
           position='bottom-center'
