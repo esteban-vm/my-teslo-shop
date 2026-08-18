@@ -40,6 +40,7 @@ export function useProductForm({ savedProduct }: ProductFormProps) {
         else Toasts.execute('Creando producto')
       },
       onSuccess(args) {
+        navigator.vibrate(200)
         if (savedProduct) Toasts.success('Producto actualizado')
         else Toasts.success('Producto creado')
         router.replace(`/product/${args.data.productSlug}`)
