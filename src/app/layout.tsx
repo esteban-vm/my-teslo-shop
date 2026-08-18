@@ -35,6 +35,7 @@ export default async function Layout({ children }: Props) {
   return (
     <html
       className={`${mainFont.variable} ${titleFont.variable} bg-base-200 antialiased`}
+      dir='ltr'
       lang='es'
       suppressHydrationWarning
     >
@@ -51,8 +52,15 @@ export default async function Layout({ children }: Props) {
           value={THEME_MAP}
         >
           {children}
-          <ToastContainer draggable={false} pauseOnHover={false} position='bottom-center' theme='colored' />
         </ThemeProvider>
+        <ToastContainer
+          className='border border-primary'
+          draggable={false}
+          pauseOnHover={false}
+          position='bottom-center'
+          theme='colored'
+          toastClassName='font-geist font-semibold text-xs'
+        />
       </body>
     </html>
   )
