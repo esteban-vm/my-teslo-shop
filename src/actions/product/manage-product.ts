@@ -1,6 +1,7 @@
 'use server'
 
 import type { Route } from 'next'
+import type { Prisma } from '@/prisma/generated/client'
 import { revalidatePath } from 'next/cache'
 import { uploadImage } from '@/lib/cloudinary'
 import { DEFAULT_IMAGE_URL } from '@/lib/constants'
@@ -47,15 +48,9 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
       }
 
       await tx.picture.createMany({ data: urls.map((url) => ({ url, productId })) })
-    }
-
-    if (!id && !uploads) {
-      await tx.picture.createMany({
-        data: [
-          { url: DEFAULT_IMAGE_URL, productId },
-          { url: DEFAULT_IMAGE_URL, productId },
-        ],
-      })
+    } else if (!id) {
+      const pictureInput: Prisma.PictureCreateManyInput = { url: DEFAULT_IMAGE_URL, productId }
+      await tx.picture.createMany({ data: [pictureInput, pictureInput] })
     }
 
     return { productId, productSlug }
