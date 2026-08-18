@@ -47,10 +47,11 @@ export const manageProduct = safeAdminClient.inputSchema(ProductForm).action(asy
         urls.push(secure_url)
       }
 
-      await tx.picture.createMany({ data: urls.map((url) => ({ url, productId })) })
+      const inputs: Prisma.PictureCreateManyInput[] = urls.map((url) => ({ url, productId }))
+      await tx.picture.createMany({ data: inputs })
     } else if (!id) {
-      const pictureInput: Prisma.PictureCreateManyInput = { url: DEFAULT_IMAGE_URL, productId }
-      await tx.picture.createMany({ data: [pictureInput, pictureInput] })
+      const input: Prisma.PictureCreateManyInput = { url: DEFAULT_IMAGE_URL, productId }
+      await tx.picture.createMany({ data: [input, input] })
     }
 
     return { productId, productSlug }
