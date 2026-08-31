@@ -18,7 +18,7 @@ export function ImageInput<T extends FieldValues>({ control, name }: NamedFormCo
       render={({ field: { onChange, value: _, ...rest }, fieldState: { error, isDirty, invalid } }) => {
         return (
           <div className='w-full'>
-            <Label as='label' className='required-label' htmlFor={inputId}>
+            <Label as='label' htmlFor={inputId}>
               Imágenes:
             </Label>
             <FileInput
