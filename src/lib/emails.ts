@@ -12,14 +12,18 @@ const transporter = createTransport({
 })
 
 export async function sendEmail(args: SendEmailArgs) {
-  const info = await transporter.sendMail({
-    ...args,
-    priority: 'high',
-    from: {
-      name: 'Teslo Shop',
-      address: process.env.NODEMAILER_USER!,
-    },
-  })
+  try {
+    const info = await transporter.sendMail({
+      ...args,
+      priority: 'high',
+      from: {
+        name: 'Teslo Shop',
+        address: process.env.NODEMAILER_USER!,
+      },
+    })
 
-  console.table(info)
+    console.log(info)
+  } catch (error) {
+    console.error('Error sending email:', error)
+  }
 }
