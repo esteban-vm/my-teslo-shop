@@ -3,7 +3,7 @@ import { ThemeProvider } from '@teispace/next-themes'
 import { getTheme, getThemeScript } from '@teispace/next-themes/server'
 import { ToastContainer } from 'react-toastify'
 import { THEME_MAP, THEMES } from '@/lib/constants'
-import { mainFont, titleFont } from '@/lib/fonts'
+import { Geist, Montserrat } from '@/lib/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default async function Layout({ children }: Props) {
 
   return (
     <html
-      className={`${mainFont.variable} ${titleFont.variable} bg-base-200 antialiased`}
+      className={`${Geist.variable} ${Montserrat.variable} bg-base-200 antialiased`}
       dir='ltr'
       lang='es'
       suppressHydrationWarning
